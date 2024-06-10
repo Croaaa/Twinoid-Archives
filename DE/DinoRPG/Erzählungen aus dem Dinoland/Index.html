@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Erzählungen aus dem Dinoland</title>
+    <link rel="icon" type="image/gif" href="..\..\gfx\game\DinoRPG.ico">
+    <link href="../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tid_boutBank {
+            height: 40px;
+        }
+        .tid_thread {
+            height: 30px;
+        }
+        .tid_threads .tid_title {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tid_threads .tid_icon, 
+        .tid_threads .tid_subject {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tid_threads th {
+            background-color: #7E4D2A;
+            color: white;
+            vertical-align: middle;
+            cursor: default;
+            position: relative;
+            height: 28px;
+        }
+        .tid_threads td {
+            padding: 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .filter-input {
+            width: 90%;
+            padding: 5px;
+            margin: 5px auto;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            background-color: #B2A36C;
+            color: #333;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            background-color: #7E4D2A;
+            padding: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const getCellValue = (row, index) => row.children.length > index ? (row.children[index].innerText || row.children[index].textContent) : '';
+            const filterTable = (input, columnIndex) => {
+                const filterValue = input.value.toLowerCase();
+                const table = input.closest('table');
+                const tbody = table.querySelector('tbody');
+                const dateSeparators = Array.from(tbody.querySelectorAll('.tid_dateSeparator'));
+                Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                    const cellValue = getCellValue(row, columnIndex).toLowerCase();
+                    row.style.display = cellValue.includes(filterValue) ? '' : 'none';
+                });
+                dateSeparators.slice(0, 2).forEach(separator => separator.style.display = '');
+            };
+            const createFilterRow = (columns) => {
+                const filterRow = document.createElement('tr');
+                columns.forEach((th, index) => {
+                    const filterCell = document.createElement('th');
+                    if (index !== 0 && index !== 6) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.classList.add('filter-input');
+                        input.placeholder = "Filtrer";
+                        input.addEventListener('input', function() { filterTable(this, index); });
+                        filterCell.appendChild(input);
+                    }
+                    filterRow.appendChild(filterCell);
+                });
+                return filterRow;
+            };
+            const thead = document.querySelector('.tid_threads thead');
+            const columns = Array.from(thead.querySelectorAll('th'));
+            const filterRow = createFilterRow(columns);
+            thead.insertBefore(filterRow, thead.firstChild);
+        });
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all">
+                <table class="tid_forumLayout">
+                    <tbody>
+                        <tr>
+                            <td id="tid_forum_left">
+                                <div class="tid_containerWrapper">
+                                    <div class="tid_forumThreads">
+                                        <div class="tid_mainBar">                                            
+                                            <div class="tid_stack tid_bg4">
+												<a class="tid_bg4" href="../../Index.html" tid_href="left:">
+													<img src="../../../gfx/design/flag_DE.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+													Startseite
+												</a>
+                                                <a class="tid_bg4" href="../Index.html" tid_href="left:">DinoRPG</a>
+                                                <span class="tid_title">Erzählungen aus dem Dinoland</span>
+                                            </div>
+                                        </div>
+                                        <div class="tid_forumDesc tid_bg2">
+                                            <span class="tid_quote tid_start">“</span>Dieses Forum ist die Höhle der DinoRPG-Rollenspieler. Liebe zu Geschichten und Abenteuern, ran an die Federn !<span class="tid_quote tid_end">”</span>
+                                        </div>
+										
+                                        <div class="tid_threadsContainer">
+                                            <table class="tid_threads tid_bg1">
+                                                <thead>
+                                                    <tr><th class="tid_index">&nbsp;</th><th class="tid_index">Themen</th><th class="tid_index">Erstellungsdatum</th><th class="tid_index">Themenautor</th><th class="tid_index">Letzte Antwort</th><th class="tid_index">Von</th><th class="tid_index">Anzahl der Antworten</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_20417550" onclick="location.href='./20417550/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Ich habe die Mission der Feder nicht</td>
+    <td class="tid_subject tid_bg2 tid_author">19-01-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[3322571]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-01-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_18063258" onclick="location.href='./18063258/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">eine mssion</td>
+    <td class="tid_subject tid_bg2 tid_author">04-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Deinemutter7</td>
+    <td class="tid_subject tid_bg2 tid_author">05-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503847" onclick="location.href='./10503847/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Tagebuch eines Überlebenden - Info</td>
+    <td class="tid_subject tid_bg2 tid_author">09-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Cigue</td>
+    <td class="tid_subject tid_bg2 tid_author">15-06-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Crunchy</td>
+    <td class="tid_subject tid_bg2 tid_author">50</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11081518" onclick="location.href='./11081518/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Elemente</td>
+    <td class="tid_subject tid_bg2 tid_author">26-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Herrscher</td>
+    <td class="tid_subject tid_bg2 tid_author">31-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Herrscher</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503848" onclick="location.href='./10503848/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Tagebuch eines Überlebenden</td>
+    <td class="tid_subject tid_bg2 tid_author">19-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Cigue</td>
+    <td class="tid_subject tid_bg2 tid_author">28-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Cigue</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11106821" onclick="location.href='./11106821/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Elemente - Diskussionen</td>
+    <td class="tid_subject tid_bg2 tid_author">27-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Herrscher</td>
+    <td class="tid_subject tid_bg2 tid_author">09-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Ognom</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503845" onclick="location.href='./10503845/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Das Gorillozvolk</td>
+    <td class="tid_subject tid_bg2 tid_author">26-09-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Richard10</td>
+    <td class="tid_subject tid_bg2 tid_author">26-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Herrscher</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503846" onclick="location.href='./10503846/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Die Geschichte des Bao Bob</td>
+    <td class="tid_subject tid_bg2 tid_author">25-01-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Crunchy</td>
+    <td class="tid_subject tid_bg2 tid_author">25-01-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Crunchy</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503844" onclick="location.href='./10503844/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Papy Joes Kindheit</td>
+    <td class="tid_subject tid_bg2 tid_author">14-09-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">stefan0205</td>
+    <td class="tid_subject tid_bg2 tid_author">26-09-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Richard10</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503843" onclick="location.href='./10503843/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Der Anfang...</td>
+    <td class="tid_subject tid_bg2 tid_author">26-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[654717]</td>
+    <td class="tid_subject tid_bg2 tid_author">14-09-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

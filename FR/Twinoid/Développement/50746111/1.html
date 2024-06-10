@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Problemes Connexion API Twino</title>
+    <link href="../../../../gfx/game/Twinoid.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Accueil
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Twinoid</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Développement</a>
+                                            <span class="tid_title">Problemes Connexion API Twino</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_9_d72fbdd4_6238137_100x100.gif" title="Teasch" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6238137 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6238137/1" tid_id="6238137">Teasch</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebcstl.gif" title=""/> Inaugurateur jalousÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Hello, j'ai un soucis dans la connexion à l'API Twinoid, j'arrive pas a récupérer le pseudo et l'id de l'utilisateur<span class="tid_sideNote">C'est tout simple là, j'envois l'utilisateur vers mapage.com?yes a partir de mapage.com</span></p><pre>&lt;?php
+if(isset($_GET['yes']) 
+{ 
+// Fonction de connnexion à twinoid pour récupérer les infos
+
+ function connect()
+ {
+ $gettoken = token(); // fonction token qui récupère... le token depuis twinoid.
+ $_SESSION['token'] = $gettoken-&gt;access_token;
+ 
+ $infos = post($_SESSION['token']); // fonction post qui poste le token pour récupérer des infos de la personne qui se connecte
+ 
+ $_SESSION['id-twinoid'] = $infos-&gt;id;
+ $_SESSION['pseudo-twinoid'] = $infos-&gt;name;
+ }
+
+// Fonction de récupération de token pour chercher les infos
+
+ function token()
+ {
+ $url = "http://teasch.olympe.in/shoup/test.php";
+ $id = 235;
+ $secret = "Cle secrete";
+ $redirect = "http://teasch.olympe.in/shoup/yes.php?yes";
+ 
+ $contextOptions = array( // on demande un token pour récup les infos
+ 'http' =&gt; array(
+ 'method' =&gt; 'POST',
+ 'header' =&gt; 'Content-type: application/x-www-form-urlencoded',
+ 'content' =&gt; "client_id=".$id."&amp;client_secret=".$secret."&amp;redirect_uri=".$redirect."&amp;code=".$_GET['code']."&amp;grant_type=authorization_code"
+ )
+ );
+ $context = stream_context_create($contextOptions);
+ $resultat = file_get_contents($url, false, $context);
+ $resultat = json_decode($resultat);
+ return $resultat;
+ }
+
+// Récupération d'informations depuis le site de la MT.
+
+ function post($token) // on récupère l'id et le pseudo depuis le site de la MT
+ {
+ $url = "https://twinoid.com/graph/me?fields=id,name&amp;access_token=".$token."";
+ $json = file_get_contents($url);
+ $json = json_decode($json);
+ return $json;
+ }
+echo $_SESSION['pseudo-twinoid']
+}
+else 
+{
+echo '&lt;a href="https://twinoid.com/oauth/auth?response_type=code&amp;client_id=235&amp;redirect_uri=http%3A%2F%2Fteasch.olympe.in%2Fshoup%2Fyes.php%3Fyes&amp;scope=contacts&amp;state="&gt;Connexion Twinoid&lt;/a&gt;';
+}
+?&gt;
+</pre><p><span class="tid_sideNote">C'est sodimel qui m'a passé le code, je crois qu'il le sors de Ralof, m'enfin, j'ai cassé le sodimel du coup je peux plus demander <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></span></p><br><p>En esperant que je casse pas quelqu'un d'autre <img src="../../../../gfx/square/calim.png" alt=":calim:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Jkratos95" style="background-color: rgb(204,82,182); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_19751 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/19751/1" tid_id="19751">Jkratos95</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Si tu veux, inspire toi de mon code :</p><p><a href="https://github.com/jy95/Dino-Build/blob/master/controllers/ConnexionController.php" target="_blank">https://github.com/jy95/Dino-Build/bl...</a></p><p>PS: Le code est assez clair, en théorie tu devrais trouver ton bonheur ^^</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Watilin" style="background-color: rgb(82,204,157); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_378517 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/378517/1" tid_id="378517">Watilin</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Manquerait pas comme une parenthèse là ?</p><pre>if(isset($_GET['yes']) </pre><p>Et pis, manquerait pas comme un <em>error_reporting</em> qui t’aurait permis de voir tout de suite qu’il manquait une parenthèse ?</p><p>Manque aussi un point-virgule du côté de par-là :</p><pre>echo $_SESSION['pseudo-twinoid']</pre><p>D’autre part, est-ce que tu as bien fait <em>session_start()</em> ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_9_d72fbdd4_6238137_100x100.gif" title="Teasch" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6238137 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6238137/1" tid_id="6238137">Teasch</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebcstl.gif" title=""/> Inaugurateur jalousÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Ahah, effectivement, je regarde tout ça demain ^^<span class="tid_sideNote">fichiers parenthèses</span><br>Session_Start(), pourquoi j'ai l'impression qu'il me manque un grooos bout de code ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_9_d72fbdd4_6238137_100x100.gif" title="Teasch" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6238137 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6238137/1" tid_id="6238137">Teasch</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebcstl.gif" title=""/> Inaugurateur jalousÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bon, alors, j'ai plus une merveilleuse erreur 500 mais visiblement <em>$_SESSION['pseudo-twinoid']</em> a pour valeur rien <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"><br>En fait, c'est surement parce que je sais pas où mettre <em>session_start() </em> dans mon code <img src="../../../../gfx/square/confused.png" alt=":{" class="tid_ico"> <span class="tid_sideNote">Le machin là pour mes amis seulement <a href="http://teasch.olympe.in/shoup/testAPI.php" target="_blank">http://teasch.olympe.in/shoup/testAPI...</a></span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_a_01970e05_493393_100x100.png" title="bleuazur" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_493393 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/493393/1" tid_id="493393">bleuazur</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">La garde meurt, mais ne se rend pas !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>session_start() doit être appelée avant d'afficher quoi que ce soit dans le navigateur.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_9_d72fbdd4_6238137_100x100.gif" title="Teasch" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6238137 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6238137/1" tid_id="6238137">Teasch</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebcstl.gif" title=""/> Inaugurateur jalousÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Hummm, ça me donnerais un truc comme ça ?</p><pre>&lt;?php
+if(isset($_GET['yes']))
+{ 
+ session_start()
+ 
+//Recuperation des infos, blabla
+
+echo $_SESSION['pseudo-twinoid'];
+}
+else 
+{
+echo '&lt;a href="https://twinoid.com/oauth/auth?response_type=code&amp;client_id=235&amp;redirect_uri=http%3A%2F%2Fteasch.olympe.in%2Fshoup%2FtestAPI.php%3Fyes&amp;scope=contacts&amp;state="&gt;Connexion Twinoid&lt;/a&gt;';
+}
+?&gt;</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_a_01970e05_493393_100x100.png" title="bleuazur" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_493393 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/493393/1" tid_id="493393">bleuazur</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">La garde meurt, mais ne se rend pas !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><a target="_blank" href="http://php.net/manual/fr/function.session-start.php">En se référent a la doc</a></p><pre>&lt;?php
+session_start()
+if(isset($_GET['yes']))
+{ 
+ 
+//Recuperation des infos, blabla
+</pre><p>Je le placerai la mais je sais pas si cela change quelle que chose par rapport a toi</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_9_d72fbdd4_6238137_100x100.gif" title="Teasch" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6238137 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6238137/1" tid_id="6238137">Teasch</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebcstl.gif" title=""/> Inaugurateur jalousÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Hum, j'ai une magnifique erreur 500 ! <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Watilin" style="background-color: rgb(82,204,157); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_378517 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/378517/1" tid_id="378517">Watilin</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Erreur 500 ça veut dire qu’il y a un problème au niveau de la configuration du serveur. On dirait qu’il n’arrive pas à créer une session. Vérifie ces points :</p><p>– s’il y a un fichier <em>.htaccess</em> dans le dossier, essaye de voir si ce n’est pas lui qui pose problème<br>– regarde également les <em>.htaccess</em> dans les dossiers parents<br>– examine les paramètres liés aux sessions dans le <em>phpinfo</em></p><p>Montre-nous ici s’il y a des bouts de code ou autre qui te paraissent louches.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_10">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_7_9_2683f98e_1244143.jpg" title="badconker" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1244143 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1244143/1" tid_id="1244143">badconker</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\blitz_cycle.png" title=""/> HÃ© mec, Il est oÃ¹ mon vaisseau ?</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Et accessoirement tu peux regarder dans les logs apache pour voir l'erreur</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_11">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_9_d72fbdd4_6238137_100x100.gif" title="Teasch" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6238137 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6238137/1" tid_id="6238137">Teasch</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebcstl.gif" title=""/> Inaugurateur jalousÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Hum, j'ai aucun fichier <em>.htaccess</em> sur le serveur donc bon (oui c'est mal, je sais) .<br>En fait, c'est le <em>session_start()</em> qui casse tout.<br>Quand il est après le <em>if(isset($_GET['yes']))</em>, j'ai un beau <em>Parse error: syntax error, unexpected 'function' (T_FUNCTION) in C:\wamp\www\...\testAPI.php on line 9</em></p><br><p>Quand il est avant, j'ai <em> Parse error: syntax error, unexpected 'if' (T_IF) in C:\wamp\www\...\testAPI.php on line 3<br></em></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_12">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Watilin" style="background-color: rgb(82,204,157); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_378517 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/378517/1" tid_id="378517">Watilin</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Euh, point-virgule ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_13">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_9_d72fbdd4_6238137_100x100.gif" title="Teasch" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6238137 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6238137/1" tid_id="6238137">Teasch</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebcstl.gif" title=""/> Inaugurateur jalousÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><img src="../../../../gfx/square/calim.png" alt=":calim:" class="tid_ico"><br>Au moins, j'ai plus d'erreur 500 mais par contre, il m'echo pas le pseudo comme j'ai demandé (et là, y'a un point virgule)<br>En fait, la vrai question, c'est si <em>echo $_SESSION['pseudo-twinoid'];</em> echo vraiment le pseudo</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_14">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Watilin" style="background-color: rgb(82,204,157); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_378517 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/378517/1" tid_id="378517">Watilin</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Si la variable est vide, <em>echo</em> n’affiche rien. A priori c’est normal que le tableau <em>$_SESSION</em> soit vide s’il vient juste d’être créé. Utilise <em>var_dump</em> ou <em>print_r</em> pour vérifier.</p><p>Du coup l’erreur 500 tu as réussi à l’éliminer complètement ou pas ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_15">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_9_d72fbdd4_6238137_100x100.gif" title="Teasch" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6238137 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6238137/1" tid_id="6238137">Teasch</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebcstl.gif" title=""/> Inaugurateur jalousÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>On dirais bien que j'ai réussi a l'éliminer ^^<br>Pour le pseudo, je fais comment concrètement ?<br>Le plan c'est que je récupère le pseudo à la connexion pour l'afficher a un endroit (oui je fais tout ça pour juste un pseudo <img src="../../../../gfx/square/calim.png" alt=":calim:" class="tid_ico">)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_16">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_a_01970e05_493393_100x100.png" title="bleuazur" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 6 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_493393 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/493393/1" tid_id="493393">bleuazur</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">La garde meurt, mais ne se rend pas !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_6238137 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="6238137">Squadada</span></span><cite>On dirais bien que j'ai réussi a l'éliminer ^^<br>Pour le pseudo, je fais comment concrètement ?<br>Le plan c'est que je récupère le pseudo à la connexion pour l'afficher a un endroit (oui je fais tout ça pour juste un pseudo <img src="../../../../gfx/square/calim.png" alt=":calim:" class="tid_ico">)</cite><p>Tu as décode ton retour json pour en récupérer les infos ?<br>As tu essayer d'afficher le token pour verifier sa présence ?</p><div class="tid_sideNote"><span class="tid_preCite"><span class="tid_user tid_user_378517 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="378517">Watilin</span></span><cite><p>Si la variable est vide, <em>echo</em> n’affiche rien. A priori c’est normal que le tableau <em>$_SESSION</em> soit vide s’il vient juste d’être créé. Utilise <em>var_dump</em> ou <em>print_r</em> pour vérifier.</p><p>Du coup l’erreur 500 tu as réussi à l’éliminer complètement ou pas ?</p></cite><p>Et si la variable session est afficher sur une page A mais pas sur la pages B ?<br>Il la considère comme non définie pourquoi ?</p></div>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_17">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Watilin" style="background-color: rgb(82,204,157); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 6 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_378517 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/378517/1" tid_id="378517">Watilin</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bon alors il me manque sans doute quelques éléments pour tout comprendre, mais si je regarde le code que tu as donné à la page précédente, le seul endroit où tu mets quelque chose dans <em>$_SESSION['pseudo-twinoid']</em> c’est dans la fonction <em>connect</em>, et cette fonction n’est jamais appellée <img src="../../../../gfx/square/lookup.png" alt=":innocent:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

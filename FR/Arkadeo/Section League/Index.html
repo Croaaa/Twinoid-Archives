@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Section League</title>
+    <link rel="icon" type="image/gif" href="..\..\gfx\game\Arkadeo.ico">
+    <link href="../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tid_boutBank {
+            height: 40px;
+        }
+        .tid_thread {
+            height: 30px;
+        }
+        .tid_threads .tid_title {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tid_threads .tid_icon, 
+        .tid_threads .tid_subject {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tid_threads th {
+            background-color: #7E4D2A;
+            color: white;
+            vertical-align: middle;
+            cursor: default;
+            position: relative;
+            height: 28px;
+        }
+        .tid_threads td {
+            padding: 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .filter-input {
+            width: 90%;
+            padding: 5px;
+            margin: 5px auto;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            background-color: #B2A36C;
+            color: #333;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            background-color: #7E4D2A;
+            padding: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const getCellValue = (row, index) => row.children.length > index ? (row.children[index].innerText || row.children[index].textContent) : '';
+            const filterTable = (input, columnIndex) => {
+                const filterValue = input.value.toLowerCase();
+                const table = input.closest('table');
+                const tbody = table.querySelector('tbody');
+                const dateSeparators = Array.from(tbody.querySelectorAll('.tid_dateSeparator'));
+                Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                    const cellValue = getCellValue(row, columnIndex).toLowerCase();
+                    row.style.display = cellValue.includes(filterValue) ? '' : 'none';
+                });
+                dateSeparators.slice(0, 2).forEach(separator => separator.style.display = '');
+            };
+            const createFilterRow = (columns) => {
+                const filterRow = document.createElement('tr');
+                columns.forEach((th, index) => {
+                    const filterCell = document.createElement('th');
+                    if (index !== 0 && index !== 6) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.classList.add('filter-input');
+                        input.placeholder = "Filtrer";
+                        input.addEventListener('input', function() { filterTable(this, index); });
+                        filterCell.appendChild(input);
+                    }
+                    filterRow.appendChild(filterCell);
+                });
+                return filterRow;
+            };
+            const thead = document.querySelector('.tid_threads thead');
+            const columns = Array.from(thead.querySelectorAll('th'));
+            const filterRow = createFilterRow(columns);
+            thead.insertBefore(filterRow, thead.firstChild);
+        });
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all">
+                <table class="tid_forumLayout">
+                    <tbody>
+                        <tr>
+                            <td id="tid_forum_left">
+                                <div class="tid_containerWrapper">
+                                    <div class="tid_forumThreads">
+                                        <div class="tid_mainBar">                                            
+                                            <div class="tid_stack tid_bg4">
+												<a class="tid_bg4" href="../../Index.html" tid_href="left:">
+													<img src="../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+													Accueil
+												</a>
+                                                <a class="tid_bg4" href="../Index.html" tid_href="left:">Arkadeo</a>
+                                                <span class="tid_title">Section League</span>
+                                            </div>
+                                        </div>
+                                        <div class="tid_forumDesc tid_bg2">
+                                            <span class="tid_quote tid_start">“</span>Discutez de la league Arkadeo et de vos performances.<span class="tid_quote tid_end">”</span>
+                                        </div>
+										
+                                        <div class="tid_threadsContainer">
+                                            <table class="tid_threads tid_bg1">
+                                                <thead>
+                                                    <tr><th class="tid_index">&nbsp;</th><th class="tid_index">Sujets</th><th class="tid_index">Date de création</th><th class="tid_index">Auteur du sujet</th><th class="tid_index">Dernière réponse</th><th class="tid_index">Par</th><th class="tid_index">Nombre de réponses</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24614034" onclick="location.href='./24614034/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Fonctionnement de la section "League"</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">25-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">kill0u</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_37257178" onclick="location.href='./37257178/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Discussions Leagues Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">31-03-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Teasch</td>
+    <td class="tid_subject tid_bg2 tid_author">21-08-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Biocat</td>
+    <td class="tid_subject tid_bg2 tid_author">110</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24611039" onclick="location.href='./24611039/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[A lire] Règlement</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[1186985]</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[1186985]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42642001" onclick="location.href='./42642001/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Discussions Leagues Or</td>
+    <td class="tid_subject tid_bg2 tid_author">24-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">kill0u</td>
+    <td class="tid_subject tid_bg2 tid_author">02-04-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Spirou003</td>
+    <td class="tid_subject tid_bg2 tid_author">98</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_59079403" onclick="location.href='./59079403/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Discussions Leagues Master (2)</td>
+    <td class="tid_subject tid_bg2 tid_author">17-07-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Andior</td>
+    <td class="tid_subject tid_bg2 tid_author">21-10-2022</td>
+    <td class="tid_subject tid_bg3 tid_author">Art258</td>
+    <td class="tid_subject tid_bg2 tid_author">386</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_64183520" onclick="location.href='./64183520/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Montées!</td>
+    <td class="tid_subject tid_bg2 tid_author">30-03-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">metrekanter</td>
+    <td class="tid_subject tid_bg2 tid_author">20-04-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">metrekanter</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_61846798" onclick="location.href='./61846798/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Référencement Leagues actives</td>
+    <td class="tid_subject tid_bg2 tid_author">26-08-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[8155704]</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">LongDickJohnson</td>
+    <td class="tid_subject tid_bg2 tid_author">40</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_55723360" onclick="location.href='./55723360/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">La ligue Verrou</td>
+    <td class="tid_subject tid_bg2 tid_author">29-08-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Brynn</td>
+    <td class="tid_subject tid_bg2 tid_author">28-12-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">Permanence</td>
+    <td class="tid_subject tid_bg2 tid_author">14</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_61485053" onclick="location.href='./61485053/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Discussions League KrinK</td>
+    <td class="tid_subject tid_bg2 tid_author">16-06-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">kill0u</td>
+    <td class="tid_subject tid_bg2 tid_author">05-12-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9406098]</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_62107758" onclick="location.href='./62107758/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Réinitialisation de la saison ?</td>
+    <td class="tid_subject tid_bg2 tid_author">22-10-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">Mayu</td>
+    <td class="tid_subject tid_bg2 tid_author">22-10-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">Mayu</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_59053410" onclick="location.href='./59053410/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Disbudsions League KrinK</td>
+    <td class="tid_subject tid_bg2 tid_author">13-07-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[9374513]</td>
+    <td class="tid_subject tid_bg2 tid_author">15-06-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">Ubeike</td>
+    <td class="tid_subject tid_bg2 tid_author">410</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_31425240" onclick="location.href='./31425240/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Discussions Leagues Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">15-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">15-03-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">Permanence</td>
+    <td class="tid_subject tid_bg2 tid_author">170</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_35919984" onclick="location.href='./35919984/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Discussions Leagues Elite</td>
+    <td class="tid_subject tid_bg2 tid_author">13-02-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">RukawaKaede</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[9374513]</td>
+    <td class="tid_subject tid_bg2 tid_author">997</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_35180022" onclick="location.href='./35180022/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Discussions Leagues Master</td>
+    <td class="tid_subject tid_bg2 tid_author">20-01-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">07-07-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[9374513]</td>
+    <td class="tid_subject tid_bg2 tid_author">514</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_58365206" onclick="location.href='./58365206/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">points négatifs</td>
+    <td class="tid_subject tid_bg2 tid_author">24-04-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">AllezHop</td>
+    <td class="tid_subject tid_bg2 tid_author">24-04-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">kill0u</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_55086092" onclick="location.href='./55086092/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Prime d'entrée inexistante</td>
+    <td class="tid_subject tid_bg2 tid_author">09-07-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[8250187]</td>
+    <td class="tid_subject tid_bg2 tid_author">09-07-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">NoixRiver</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42642006" onclick="location.href='./42642006/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Discussions Leagues Bronze</td>
+    <td class="tid_subject tid_bg2 tid_author">24-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">kill0u</td>
+    <td class="tid_subject tid_bg2 tid_author">11-05-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Spirou003</td>
+    <td class="tid_subject tid_bg2 tid_author">23</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_52297891" onclick="location.href='./52297891/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Bug charlotte's quest</td>
+    <td class="tid_subject tid_bg2 tid_author">21-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">metablaze</td>
+    <td class="tid_subject tid_bg2 tid_author">22-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">kill0u</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43106842" onclick="location.href='./43106842/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">bug mode league</td>
+    <td class="tid_subject tid_bg2 tid_author">15-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">KILLERlalietoby</td>
+    <td class="tid_subject tid_bg2 tid_author">15-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">kill0u</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39884917" onclick="location.href='./39884917/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">BUG SUR ARKADEO</td>
+    <td class="tid_subject tid_bg2 tid_author">06-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Redhunter</td>
+    <td class="tid_subject tid_bg2 tid_author">04-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">bigsteve91</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_36519755" onclick="location.href='./36519755/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">cheat en league or.</td>
+    <td class="tid_subject tid_bg2 tid_author">05-03-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Robberball</td>
+    <td class="tid_subject tid_bg2 tid_author">19-08-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[1730040]</td>
+    <td class="tid_subject tid_bg2 tid_author">14</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40350667" onclick="location.href='./40350667/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">sa voir qu est ce qu ai un mtpass</td>
+    <td class="tid_subject tid_bg2 tid_author">27-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8286528]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-08-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[1730040]</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40674018" onclick="location.href='./40674018/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Retrogradé?</td>
+    <td class="tid_subject tid_bg2 tid_author">12-08-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">x-romulus-x</td>
+    <td class="tid_subject tid_bg2 tid_author">12-08-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">x-romulus-x</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_38002802" onclick="location.href='./38002802/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">partie cumulable</td>
+    <td class="tid_subject tid_bg2 tid_author">26-04-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">JeanBon</td>
+    <td class="tid_subject tid_bg2 tid_author">26-04-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">JeanBon</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_37856406" onclick="location.href='./37856406/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Calcul des points</td>
+    <td class="tid_subject tid_bg2 tid_author">21-04-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">JeanBon</td>
+    <td class="tid_subject tid_bg2 tid_author">21-04-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">JeanBon</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_36772786" onclick="location.href='./36772786/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Interet?</td>
+    <td class="tid_subject tid_bg2 tid_author">14-03-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Enoway</td>
+    <td class="tid_subject tid_bg2 tid_author">18-03-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Enoway</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_34837335" onclick="location.href='./34837335/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Saison 21</td>
+    <td class="tid_subject tid_bg2 tid_author">11-01-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Zethos</td>
+    <td class="tid_subject tid_bg2 tid_author">02-03-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">GilGalad</td>
+    <td class="tid_subject tid_bg2 tid_author">26</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30202779" onclick="location.href='./30202779/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">S15 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">17-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">19-02-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">diablesse1204</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_31387902" onclick="location.href='./31387902/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">S15 - League - Elite</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">kill0u</td>
+    <td class="tid_subject tid_bg2 tid_author">04-02-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">flix</td>
+    <td class="tid_subject tid_bg2 tid_author">128</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_35069049" onclick="location.href='./35069049/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">S21 - League Ebilon</td>
+    <td class="tid_subject tid_bg2 tid_author">17-01-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Schlitteur</td>
+    <td class="tid_subject tid_bg2 tid_author">17-01-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Schlitteur</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_31425248" onclick="location.href='./31425248/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">S15 - Leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">15-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">21-12-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">reykjavik</td>
+    <td class="tid_subject tid_bg2 tid_author">30</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_31978750" onclick="location.href='./31978750/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">S16 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">28-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">19-12-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Rincevent</td>
+    <td class="tid_subject tid_bg2 tid_author">52</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24979574" onclick="location.href='./24979574/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Généralités leagues</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">30-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">metrekanter</td>
+    <td class="tid_subject tid_bg2 tid_author">191</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_31393780" onclick="location.href='./31393780/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">S15 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">27-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">33</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_31391267" onclick="location.href='./31391267/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">S15 - League - Master</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[6208]</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">fruitduverger</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30808028" onclick="location.href='./30808028/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S14 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">30-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">39</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30806306" onclick="location.href='./30806306/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S14 - League - Elite</td>
+    <td class="tid_subject tid_bg2 tid_author">30-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">eLlaisSeDtraz</td>
+    <td class="tid_subject tid_bg2 tid_author">110</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30806325" onclick="location.href='./30806325/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S14 - Leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">30-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">13-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">julien94120</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30202794" onclick="location.href='./30202794/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S14 - Leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">17-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">13-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Isabelle45700</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30187978" onclick="location.href='./30187978/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S13 - League - Elite</td>
+    <td class="tid_subject tid_bg2 tid_author">17-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">kill0u</td>
+    <td class="tid_subject tid_bg2 tid_author">30-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Braft</td>
+    <td class="tid_subject tid_bg2 tid_author">60</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30185261" onclick="location.href='./30185261/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S13 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">16-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">29-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">19</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30277473" onclick="location.href='./30277473/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S13 - Master - Boralon</td>
+    <td class="tid_subject tid_bg2 tid_author">18-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LiaOkami</td>
+    <td class="tid_subject tid_bg2 tid_author">29-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Riseoflegends</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30202804" onclick="location.href='./30202804/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S13 - Leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">17-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">29-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">TheLinkdu59</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30199623" onclick="location.href='./30199623/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S13 - Master - Unedace</td>
+    <td class="tid_subject tid_bg2 tid_author">17-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Empiflor</td>
+    <td class="tid_subject tid_bg2 tid_author">29-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Empiflor</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30202828" onclick="location.href='./30202828/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">S15 - Leagues - Bronze</td>
+    <td class="tid_subject tid_bg2 tid_author">17-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">17-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29473425" onclick="location.href='./29473425/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S12 - Leagues - Master</td>
+    <td class="tid_subject tid_bg2 tid_author">02-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">16-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">jjfew</td>
+    <td class="tid_subject tid_bg2 tid_author">56</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29470409" onclick="location.href='./29470409/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S12 - League - Elite</td>
+    <td class="tid_subject tid_bg2 tid_author">02-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">15-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">eLlaisSeDtraz</td>
+    <td class="tid_subject tid_bg2 tid_author">26</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29470447" onclick="location.href='./29470447/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S12 - Leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">02-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">15-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">ArtKaos</td>
+    <td class="tid_subject tid_bg2 tid_author">29</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29470476" onclick="location.href='./29470476/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S12 - Leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">02-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">13-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ward</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29470511" onclick="location.href='./29470511/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S12 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">02-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">05-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">KiraTerra</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29473487" onclick="location.href='./29473487/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S12 - Leagues - Bronze</td>
+    <td class="tid_subject tid_bg2 tid_author">02-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">04-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pointelapointe</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28851398" onclick="location.href='./28851398/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - League - Elite</td>
+    <td class="tid_subject tid_bg2 tid_author">19-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">TotoLaGOTY</td>
+    <td class="tid_subject tid_bg2 tid_author">02-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Clevermat</td>
+    <td class="tid_subject tid_bg2 tid_author">35</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28879528" onclick="location.href='./28879528/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">TheWanderer</td>
+    <td class="tid_subject tid_bg2 tid_author">01-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">-Okami-</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28877753" onclick="location.href='./28877753/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">01-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[2175663]</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28879564" onclick="location.href='./28879564/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">TheWanderer</td>
+    <td class="tid_subject tid_bg2 tid_author">01-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[1730040]</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28877708" onclick="location.href='./28877708/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Master - Eledost</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">30-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Zethos</td>
+    <td class="tid_subject tid_bg2 tid_author">29</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28877770" onclick="location.href='./28877770/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Master - Ebilon</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">30-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Schlitteur</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28879503" onclick="location.href='./28879503/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Leagues - Bronze</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">TheWanderer</td>
+    <td class="tid_subject tid_bg2 tid_author">22-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Guizmo2000</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28923428" onclick="location.href='./28923428/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Master - Ozilich</td>
+    <td class="tid_subject tid_bg2 tid_author">21-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">21-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28923391" onclick="location.href='./28923391/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Master - Unedace</td>
+    <td class="tid_subject tid_bg2 tid_author">21-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">21-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28879632" onclick="location.href='./28879632/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">TheWanderer</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">TheWanderer</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28877730" onclick="location.href='./28877730/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S11 - Master - Boralon</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28166748" onclick="location.href='./28166748/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Master - Eledost</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">19-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">jnox-86</td>
+    <td class="tid_subject tid_bg2 tid_author">28</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28164317" onclick="location.href='./28164317/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - League - Elite</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">19-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Shynn</td>
+    <td class="tid_subject tid_bg2 tid_author">55</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28164335" onclick="location.href='./28164335/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Master - Boralon</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">19-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Cyril</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28164393" onclick="location.href='./28164393/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">18-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Brogol</td>
+    <td class="tid_subject tid_bg2 tid_author">33</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28164334" onclick="location.href='./28164334/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Spir_HunDouz</td>
+    <td class="tid_subject tid_bg2 tid_author">17-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Beline42</td>
+    <td class="tid_subject tid_bg2 tid_author">20</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28166828" onclick="location.href='./28166828/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">13-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">julien94120</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28169956" onclick="location.href='./28169956/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Leagues - Bronze</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">12-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">AquaFlow</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28164348" onclick="location.href='./28164348/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Master - Ebilon</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">09-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Douxy</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28166775" onclick="location.href='./28166775/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Master - Unedace</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">07-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">thomasz1</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28169974" onclick="location.href='./28169974/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">06-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">L-Ghost</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28166791" onclick="location.href='./28166791/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S10 - Master - Ozilich</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27472763" onclick="location.href='./27472763/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - League - Elite</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Biquette</td>
+    <td class="tid_subject tid_bg2 tid_author">53</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27472839" onclick="location.href='./27472839/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - Leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Madarjeen</td>
+    <td class="tid_subject tid_bg2 tid_author">30</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27470265" onclick="location.href='./27470265/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">05-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">trigomique</td>
+    <td class="tid_subject tid_bg2 tid_author">81</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27475216" onclick="location.href='./27475216/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - Master - Boralon</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">04-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">14</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27472931" onclick="location.href='./27472931/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - Master - Ebilon</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">04-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">TotoLaGOTY</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27475193" onclick="location.href='./27475193/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - Master - Eledost</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">04-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Riseoflegends</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27462639" onclick="location.href='./27462639/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - Leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Spir_HunDouz</td>
+    <td class="tid_subject tid_bg2 tid_author">04-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Stunter</td>
+    <td class="tid_subject tid_bg2 tid_author">19</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27475243" onclick="location.href='./27475243/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - Master - Unedace</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">04-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Shynn</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27472887" onclick="location.href='./27472887/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - Master - Ozilich</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">01-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[308881]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27475345" onclick="location.href='./27475345/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S9 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">23-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">mythic</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26714631" onclick="location.href='./26714631/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8- League - Élite</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">julien94120</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">68</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26716169" onclick="location.href='./26716169/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - Leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Termynus</td>
+    <td class="tid_subject tid_bg2 tid_author">37</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26715833" onclick="location.href='./26715833/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[6944133]</td>
+    <td class="tid_subject tid_bg2 tid_author">18</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26715095" onclick="location.href='./26715095/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Cyril</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">68</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26715888" onclick="location.href='./26715888/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">20-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Spir_HunDouz</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26716544" onclick="location.href='./26716544/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - Master - Ozilich</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">20-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[308881]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26720566" onclick="location.href='./26720566/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - Master - Ebilon</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">17-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Schlitteur</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26719975" onclick="location.href='./26719975/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - Master - Eledost</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Haksell</td>
+    <td class="tid_subject tid_bg2 tid_author">16-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[4238253]</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26070040" onclick="location.href='./26070040/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Non-payeurs en League Elite?</td>
+    <td class="tid_subject tid_bg2 tid_author">26-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[511787]</td>
+    <td class="tid_subject tid_bg2 tid_author">09-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Stunter</td>
+    <td class="tid_subject tid_bg2 tid_author">38</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26720603" onclick="location.href='./26720603/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - Master - Boralon</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[963886]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26720650" onclick="location.href='./26720650/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - Master - Unedace</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25966319" onclick="location.href='./25966319/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Cyril</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[2175663]</td>
+    <td class="tid_subject tid_bg2 tid_author">169</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25968326" onclick="location.href='./25968326/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7 - Leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Crustabri</td>
+    <td class="tid_subject tid_bg2 tid_author">42</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25966458" onclick="location.href='./25966458/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7 - Master - Ozilich</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">MotionTwit</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">32</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25968383" onclick="location.href='./25968383/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7 - Leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Douxy</td>
+    <td class="tid_subject tid_bg2 tid_author">80</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25972256" onclick="location.href='./25972256/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7- League - Élite</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">julien94120</td>
+    <td class="tid_subject tid_bg2 tid_author">08-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">RukawaKaede</td>
+    <td class="tid_subject tid_bg2 tid_author">55</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25973029" onclick="location.href='./25973029/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7 - Master - Unedace</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">07-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">thomasz1</td>
+    <td class="tid_subject tid_bg2 tid_author">50</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25973694" onclick="location.href='./25973694/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7 - Master - Boralon</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">07-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[1212547]</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25968283" onclick="location.href='./25968283/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">06-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">RH4CK</td>
+    <td class="tid_subject tid_bg2 tid_author">16</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25973091" onclick="location.href='./25973091/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7 - Master - Ebilon</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">03-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Romain672</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25968570" onclick="location.href='./25968570/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S7 - Master - Eledost</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">metaknight71</td>
+    <td class="tid_subject tid_bg2 tid_author">30-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">metaknight71</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25968200" onclick="location.href='./25968200/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S8 - Leagues - Bronze</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25402401" onclick="location.href='./25402401/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Cyril</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Cyril</td>
+    <td class="tid_subject tid_bg2 tid_author">121</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25402578" onclick="location.href='./25402578/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - Master - Unedace</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Shkeil</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Schlitteur</td>
+    <td class="tid_subject tid_bg2 tid_author">30</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25404666" onclick="location.href='./25404666/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - Leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LiaOkami</td>
+    <td class="tid_subject tid_bg2 tid_author">71</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25404650" onclick="location.href='./25404650/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - Leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Cyprin</td>
+    <td class="tid_subject tid_bg2 tid_author">34</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25405684" onclick="location.href='./25405684/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - Master - Ozilich</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Akwaresma</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">MotionTwit</td>
+    <td class="tid_subject tid_bg2 tid_author">74</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25402357" onclick="location.href='./25402357/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - League - Elite</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[2552946]</td>
+    <td class="tid_subject tid_bg2 tid_author">23-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">topcrunch</td>
+    <td class="tid_subject tid_bg2 tid_author">103</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25404633" onclick="location.href='./25404633/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">23-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Stunter</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25405761" onclick="location.href='./25405761/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - Master - Eledost</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Akwaresma</td>
+    <td class="tid_subject tid_bg2 tid_author">21-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Xenedriel</td>
+    <td class="tid_subject tid_bg2 tid_author">45</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25405656" onclick="location.href='./25405656/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - Master - Ebilon</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Akwaresma</td>
+    <td class="tid_subject tid_bg2 tid_author">20-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Socrate</td>
+    <td class="tid_subject tid_bg2 tid_author">19</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24773971" onclick="location.href='./24773971/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Fonctionnement de la section</td>
+    <td class="tid_subject tid_bg2 tid_author">20-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LiaOkami</td>
+    <td class="tid_subject tid_bg2 tid_author">12-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Rincevent</td>
+    <td class="tid_subject tid_bg2 tid_author">33</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25404680" onclick="location.href='./25404680/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S6 - Leagues - Bronze</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24981074" onclick="location.href='./24981074/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S5 - League - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[5941603]</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Cyprin</td>
+    <td class="tid_subject tid_bg2 tid_author">118</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24979172" onclick="location.href='./24979172/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S5 - Master - Prixivium</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LiaOkami</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[2175663]</td>
+    <td class="tid_subject tid_bg2 tid_author">227</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24979721" onclick="location.href='./24979721/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Saison 5 - leagues - Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">pvaill</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Riseoflegends</td>
+    <td class="tid_subject tid_bg2 tid_author">185</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24980049" onclick="location.href='./24980049/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S5 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LiaOkami</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Varvaras</td>
+    <td class="tid_subject tid_bg2 tid_author">31</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24979890" onclick="location.href='./24979890/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S5 - Leagues - Bronze</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LiaOkami</td>
+    <td class="tid_subject tid_bg2 tid_author">09-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Huspan</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24973196" onclick="location.href='./24973196/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Saison 5 League Émeraude (Master)</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[511787]</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24983893" onclick="location.href='./24983893/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S5 - Argent - Poxey</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Cyprin</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LiaOkami</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24614765" onclick="location.href='./24614765/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S4 - Platine - Shibatek</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Akwaresma</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">DouceBrise</td>
+    <td class="tid_subject tid_bg2 tid_author">38</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24614495" onclick="location.href='./24614495/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S4 - Platine - Rysium</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[1186985]</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ptiji</td>
+    <td class="tid_subject tid_bg2 tid_author">75</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24614462" onclick="location.href='./24614462/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S4 - Platine - Rofon</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[1186985]</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Quailard</td>
+    <td class="tid_subject tid_bg2 tid_author">55</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24614735" onclick="location.href='./24614735/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S4 - Platine - Thorilam</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Akwaresma</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LiaOkami</td>
+    <td class="tid_subject tid_bg2 tid_author">116</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24617827" onclick="location.href='./24617827/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S4 - Leagues - Or</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Akwaresma</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LiaOkami</td>
+    <td class="tid_subject tid_bg2 tid_author">83</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24614889" onclick="location.href='./24614889/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S4 - Leagues - Argent</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Akwaresma</td>
+    <td class="tid_subject tid_bg2 tid_author">26-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">OdALive</td>
+    <td class="tid_subject tid_bg2 tid_author">30</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24614426" onclick="location.href='./24614426/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">S4 - Leagues - Bronze</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[1186985]</td>
+    <td class="tid_subject tid_bg2 tid_author">26-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[2373954]</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24532740" onclick="location.href='./24532740/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Saison 4 - League Platine</td>
+    <td class="tid_subject tid_bg2 tid_author">13-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">kangou31</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Armadillidiidae</td>
+    <td class="tid_subject tid_bg2 tid_author">87</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24070719" onclick="location.href='./24070719/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Saison 3 - league Or</td>
+    <td class="tid_subject tid_bg2 tid_author">29-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Ulty</td>
+    <td class="tid_subject tid_bg2 tid_author">13-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">thomasz1</td>
+    <td class="tid_subject tid_bg2 tid_author">337</td>
+</tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

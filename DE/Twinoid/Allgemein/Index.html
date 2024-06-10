@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Allgemein</title>
+    <link rel="icon" type="image/gif" href="..\..\gfx\game\Twinoid.ico">
+    <link href="../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tid_boutBank {
+            height: 40px;
+        }
+        .tid_thread {
+            height: 30px;
+        }
+        .tid_threads .tid_title {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tid_threads .tid_icon, 
+        .tid_threads .tid_subject {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tid_threads th {
+            background-color: #7E4D2A;
+            color: white;
+            vertical-align: middle;
+            cursor: default;
+            position: relative;
+            height: 28px;
+        }
+        .tid_threads td {
+            padding: 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .filter-input {
+            width: 90%;
+            padding: 5px;
+            margin: 5px auto;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            background-color: #B2A36C;
+            color: #333;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            background-color: #7E4D2A;
+            padding: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const getCellValue = (row, index) => row.children.length > index ? (row.children[index].innerText || row.children[index].textContent) : '';
+            const filterTable = (input, columnIndex) => {
+                const filterValue = input.value.toLowerCase();
+                const table = input.closest('table');
+                const tbody = table.querySelector('tbody');
+                const dateSeparators = Array.from(tbody.querySelectorAll('.tid_dateSeparator'));
+                Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                    const cellValue = getCellValue(row, columnIndex).toLowerCase();
+                    row.style.display = cellValue.includes(filterValue) ? '' : 'none';
+                });
+                dateSeparators.slice(0, 2).forEach(separator => separator.style.display = '');
+            };
+            const createFilterRow = (columns) => {
+                const filterRow = document.createElement('tr');
+                columns.forEach((th, index) => {
+                    const filterCell = document.createElement('th');
+                    if (index !== 0 && index !== 6) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.classList.add('filter-input');
+                        input.placeholder = "Filtrer";
+                        input.addEventListener('input', function() { filterTable(this, index); });
+                        filterCell.appendChild(input);
+                    }
+                    filterRow.appendChild(filterCell);
+                });
+                return filterRow;
+            };
+            const thead = document.querySelector('.tid_threads thead');
+            const columns = Array.from(thead.querySelectorAll('th'));
+            const filterRow = createFilterRow(columns);
+            thead.insertBefore(filterRow, thead.firstChild);
+        });
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all">
+                <table class="tid_forumLayout">
+                    <tbody>
+                        <tr>
+                            <td id="tid_forum_left">
+                                <div class="tid_containerWrapper">
+                                    <div class="tid_forumThreads">
+                                        <div class="tid_mainBar">                                            
+                                            <div class="tid_stack tid_bg4">
+												<a class="tid_bg4" href="../../Index.html" tid_href="left:">
+													<img src="../../../gfx/design/flag_DE.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+													Startseite
+												</a>
+                                                <a class="tid_bg4" href="../Index.html" tid_href="left:">Twinoid</a>
+                                                <span class="tid_title">Allgemein</span>
+                                            </div>
+                                        </div>
+                                        <div class="tid_forumDesc tid_bg2">
+                                            <span class="tid_quote tid_start">“</span>Allgemeines Diskussionforum zu Twinoid.<span class="tid_quote tid_end">”</span>
+                                        </div>
+										
+                                        <div class="tid_threadsContainer">
+                                            <table class="tid_threads tid_bg1">
+                                                <thead>
+                                                    <tr><th class="tid_index">&nbsp;</th><th class="tid_index">Themen</th><th class="tid_index">Erstellungsdatum</th><th class="tid_index">Themenautor</th><th class="tid_index">Letzte Antwort</th><th class="tid_index">Von</th><th class="tid_index">Anzahl der Antworten</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_64399913" onclick="location.href='./64399913/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Information zur Verwendung von MT-Assets</td>
+    <td class="tid_subject tid_bg2 tid_author">24-04-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">MisterD</td>
+    <td class="tid_subject tid_bg2 tid_author">24-04-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">MisterD</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_65074091" onclick="location.href='./65074091/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Fortschritt des Eternal-Twin-Projekts</td>
+    <td class="tid_subject tid_bg2 tid_author">02-10-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">Dylan57</td>
+    <td class="tid_subject tid_bg2 tid_author">03-03-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Patate404</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_61536697" onclick="location.href='./61536697/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Twinoid</td>
+    <td class="tid_subject tid_bg2 tid_author">25-06-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9771252]</td>
+    <td class="tid_subject tid_bg2 tid_author">25-06-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9771252]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28565979" onclick="location.href='./28565979/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Alles hat mal ein Ende...</td>
+    <td class="tid_subject tid_bg2 tid_author">13-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">15-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Gcol</td>
+    <td class="tid_subject tid_bg2 tid_author">16</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_28260672" onclick="location.href='./28260672/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">twin - neue funktionen</td>
+    <td class="tid_subject tid_bg2 tid_author">07-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">kleidchen</td>
+    <td class="tid_subject tid_bg2 tid_author">07-08-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Mark2Man</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_9692712" onclick="location.href='./9692712/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Ich hätte einen Wunsch ;)</td>
+    <td class="tid_subject tid_bg2 tid_author">03-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Witch23</td>
+    <td class="tid_subject tid_bg2 tid_author">16-12-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Zeddo</td>
+    <td class="tid_subject tid_bg2 tid_author">50</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_13761412" onclick="location.href='./13761412/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Twinoid und "Die Invasion"</td>
+    <td class="tid_subject tid_bg2 tid_author">30-06-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">TarCat</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11940123" onclick="location.href='./11940123/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">e mail ändern</td>
+    <td class="tid_subject tid_bg2 tid_author">19-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">LOLMAN2000</td>
+    <td class="tid_subject tid_bg2 tid_author">22-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Anti</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10037129" onclick="location.href='./10037129/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Übersicht der Titelpräfixe/-suffixe</td>
+    <td class="tid_subject tid_bg2 tid_author">11-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">NobbZ</td>
+    <td class="tid_subject tid_bg2 tid_author">29-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">NobbZ</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_9901470" onclick="location.href='./9901470/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Trophäen Punkte</td>
+    <td class="tid_subject tid_bg2 tid_author">07-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Galaga</td>
+    <td class="tid_subject tid_bg2 tid_author">15-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">ecoolie</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_9650225" onclick="location.href='./9650225/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Vorschlag zur Forenübersicht</td>
+    <td class="tid_subject tid_bg2 tid_author">03-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">NobbZ</td>
+    <td class="tid_subject tid_bg2 tid_author">07-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">NobbZ</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

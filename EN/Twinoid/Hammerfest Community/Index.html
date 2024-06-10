@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Hammerfest Community</title>
+    <link rel="icon" type="image/gif" href="..\..\gfx\game\Twinoid.ico">
+    <link href="../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tid_boutBank {
+            height: 40px;
+        }
+        .tid_thread {
+            height: 30px;
+        }
+        .tid_threads .tid_title {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tid_threads .tid_icon, 
+        .tid_threads .tid_subject {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tid_threads th {
+            background-color: #7E4D2A;
+            color: white;
+            vertical-align: middle;
+            cursor: default;
+            position: relative;
+            height: 28px;
+        }
+        .tid_threads td {
+            padding: 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .filter-input {
+            width: 90%;
+            padding: 5px;
+            margin: 5px auto;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            background-color: #B2A36C;
+            color: #333;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            background-color: #7E4D2A;
+            padding: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const getCellValue = (row, index) => row.children.length > index ? (row.children[index].innerText || row.children[index].textContent) : '';
+            const filterTable = (input, columnIndex) => {
+                const filterValue = input.value.toLowerCase();
+                const table = input.closest('table');
+                const tbody = table.querySelector('tbody');
+                const dateSeparators = Array.from(tbody.querySelectorAll('.tid_dateSeparator'));
+                Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                    const cellValue = getCellValue(row, columnIndex).toLowerCase();
+                    row.style.display = cellValue.includes(filterValue) ? '' : 'none';
+                });
+                dateSeparators.slice(0, 2).forEach(separator => separator.style.display = '');
+            };
+            const createFilterRow = (columns) => {
+                const filterRow = document.createElement('tr');
+                columns.forEach((th, index) => {
+                    const filterCell = document.createElement('th');
+                    if (index !== 0 && index !== 6) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.classList.add('filter-input');
+                        input.placeholder = "Filtrer";
+                        input.addEventListener('input', function() { filterTable(this, index); });
+                        filterCell.appendChild(input);
+                    }
+                    filterRow.appendChild(filterCell);
+                });
+                return filterRow;
+            };
+            const thead = document.querySelector('.tid_threads thead');
+            const columns = Array.from(thead.querySelectorAll('th'));
+            const filterRow = createFilterRow(columns);
+            thead.insertBefore(filterRow, thead.firstChild);
+        });
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all">
+                <table class="tid_forumLayout">
+                    <tbody>
+                        <tr>
+                            <td id="tid_forum_left">
+                                <div class="tid_containerWrapper">
+                                    <div class="tid_forumThreads">
+                                        <div class="tid_mainBar">                                            
+                                            <div class="tid_stack tid_bg4">
+												<a class="tid_bg4" href="../../Index.html" tid_href="left:">
+													<img src="../../../gfx/design/flag_EN.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+													Home
+												</a>
+                                                <a class="tid_bg4" href="../Index.html" tid_href="left:">Twinoid</a>
+                                                <span class="tid_title">Hammerfest Community</span>
+                                            </div>
+                                        </div>
+                                        <div class="tid_forumDesc tid_bg2">
+                                            <span class="tid_quote tid_start">“</span>A place for the cavern crashing community of Hammerfest to hang out !<span class="tid_quote tid_end">”</span>
+                                        </div>
+										
+                                        <div class="tid_threadsContainer">
+                                            <table class="tid_threads tid_bg1">
+                                                <thead>
+                                                    <tr><th class="tid_index">&nbsp;</th><th class="tid_index">Topics</th><th class="tid_index">Creation Date</th><th class="tid_index">Topic Author</th><th class="tid_index">Last Reply</th><th class="tid_index">By</th><th class="tid_index">Number of Replies</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_65999910" onclick="location.href='./65999910/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Hammerfest is finally down</td>
+    <td class="tid_subject tid_bg2 tid_author">17-02-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">player1</td>
+    <td class="tid_subject tid_bg2 tid_author">03-05-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Trynt</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_23277627" onclick="location.href='./23277627/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Anybody still playing?</td>
+    <td class="tid_subject tid_bg2 tid_author">08-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Kowasaci1</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2021</td>
+    <td class="tid_subject tid_bg3 tid_author">StikManSmith</td>
+    <td class="tid_subject tid_bg2 tid_author">99</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_65415462" onclick="location.href='./65415462/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Game on!</td>
+    <td class="tid_subject tid_bg2 tid_author">25-02-2021</td>
+    <td class="tid_subject tid_bg3 tid_author">[9994898]</td>
+    <td class="tid_subject tid_bg2 tid_author">02-05-2021</td>
+    <td class="tid_subject tid_bg3 tid_author">[1910540]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_61847564" onclick="location.href='./61847564/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Load issues?</td>
+    <td class="tid_subject tid_bg2 tid_author">26-08-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">Tetsab</td>
+    <td class="tid_subject tid_bg2 tid_author">31-08-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">binto</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_31077848" onclick="location.href='./31077848/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Hammerfest site down?</td>
+    <td class="tid_subject tid_bg2 tid_author">06-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Anglophone</td>
+    <td class="tid_subject tid_bg2 tid_author">20-03-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Tetsab</td>
+    <td class="tid_subject tid_bg2 tid_author">39</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57931524" onclick="location.href='./57931524/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Password Retrieval</td>
+    <td class="tid_subject tid_bg2 tid_author">09-03-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">DeeDeVille</td>
+    <td class="tid_subject tid_bg2 tid_author">13-03-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">DeeDeVille</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_37550008" onclick="location.href='./37550008/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">I love rainbows</td>
+    <td class="tid_subject tid_bg2 tid_author">11-04-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8254055]</td>
+    <td class="tid_subject tid_bg2 tid_author">13-04-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Hacksaw</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_23304884" onclick="location.href='./23304884/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Question for Epoq</td>
+    <td class="tid_subject tid_bg2 tid_author">09-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Anglophone</td>
+    <td class="tid_subject tid_bg2 tid_author">10-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">2tousent</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_23277470" onclick="location.href='./23277470/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Thank based god</td>
+    <td class="tid_subject tid_bg2 tid_author">08-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Siiseli</td>
+    <td class="tid_subject tid_bg2 tid_author">05-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Demurgos</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

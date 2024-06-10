@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>[script] soulmate</title>
+    <link href="../../../../gfx/game/Die2nite.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/hordes_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/hordes_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_EN.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Home
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Die2nite</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Residents Forum</a>
+                                            <span class="tid_title">[script] soulmate</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 9, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><em>What is it?</em></p><p>A user script that will show which towns another player shared an existence with you.</p><p><em>Cool. How I get it to work?</em></p><p>1) Install <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">greasemonkey add-on for firefox</a> or <a target="_blank" href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">tampermonkey</a> for Chrome ;</p><p>2) Install <a target="_blank" href="https://greasyfork.org/scripts/23066-soulmate/code/soulmate.user.js">the script</a>;</p><p>3) Go to your target soul page;</p><p>4) You'll <a target="_blank" href="http://i.imgur.com/W86jWVz.png">notice</a> a new lost soul animated icon right next to their soul points. Click it.</p><p>5) You'll be taken to Your Game History. This time you will <a target="_blank" href="http://i.imgur.com/sWWVkOt.png">notice </a>some changes there.</p><p>6) Clicking the "Analyze!" button will check the towns for any match. <span class="tid_sideNote">some previous filtering was already made before you get to this page. After clicking the button the page will start checking each town. It can be a bit laggy here. Specially if you are Season 0-old and are checking another Season 0-old players. The analysis takes 1 minute for each 150 towns, approximately. It halts all navigation for that tab until it completes. I <em><strong>highly</strong></em> suggest you to save whatever you are doing as there is a chance your browser crash during this process.</span>7) Once it completes checking you will <a target="_blank" href="http://i.imgur.com/otI6g7O.png">see</a> a list of towns (or empty if no matches were found) that you shared with that person.<span class="tid_sideNote">if you click the animated souls icons you will get that town opened in a new tab. Sometimes you need to refresh it so it shows the content.</span></p><p><em>Awesome! Does it work in [insert browser here]/tampermonkey/zombinoia/hordes/dieversommenthing?</em></p><p><span class="tid_strike">I haven't checked it with tampermonkey, but I think <strong>it won't work.</strong></span> It works on Chrome now too! Still, you can try the lite-version of the code below (pasting it on the console... just follow the steps provided below).</p><p>Other game versions will get a version of this script soon.</p><p><img src="../../../../gfx/forum/smiley/h_ghost.gif" alt=":hordes_ame:" class="tid_ico"> "Lite"-Version of the Script<img src="../../../../gfx/forum/smiley/h_ghost.gif" alt=":hordes_ame:" class="tid_ico"></p><ul><li>1) Go to the Soul page of the person you want to check. Check the url at the address bar. Copy the number that says "uid=number";</li><li>2) Go to Your Soul -&gt; My Game History (<a target="_blank" href="http://i.imgur.com/9BUyheQ.png">here</a>)</li><li>3) Open the console of your browser (firefox: crtl+shift+k | chrome: crtl+shift+j | safari and opera: crtl+shift+i);</li><li>4) Paste the code below and replace "INSERT DIE2NITE UID HERE" that is right in the begining of the code with the uid thing you copied from your target. Hit enter.</li></ul><pre>var uidtarget="INSERT DIE2NITE UID HERE";if(!('contains' in String.prototype)){String.prototype.contains = function(str, startIndex){return -1 !== String.prototype.indexOf.call(this, str, startIndex);};}var twobj, cidade, sessao, extrato,ac,relink,ownId,season;var prelink = "me?id=";var poslink = ";sk=";var colessaumlinks = [];var tabela = document.getElementsByClassName("table")[0];sessao = document.URL.substring(document.URL.indexOf(poslink)+4);for (var i = 1, row; row = tabela.rows[i]; i++) {var colunaum = row.cells[1];cidade = (colunaum.innerHTML).substring(colunaum.innerHTML.indexOf(prelink)+6,colunaum.innerHTML.indexOf(poslink));colessaumlinks.push(cidade);}for (ac =0;ac&lt;colessaumlinks.length;ac++){var xhr = new XMLHttpRequest();xhr.open('GET', 'http://www.die2nite.com/ghost/ingame?id='+colessaumlinks[ac]+';sk='+sessao+'' , false);xhr.setRequestHeader('X-Handler', 'js.XmlHttp');xhr.send();extrato = xhr.response;if (extrato.contains(uidtarget) == true){relink = "http://www.die2nite.com/#ghost/ingame?id="+colessaumlinks[ac]+";sk="+sessao;$("tr:nth-child("+ (ac+2) +") &gt; td:nth-child(2) &gt; a:nth-child(1)").replaceWith($('&lt;a href="" target="_blank"&gt;&lt;img src="../../../../gfx/icons/item_soul_blue.gif" alt=""&gt;&lt;/a&gt;'));$("tr:nth-child("+ (ac+2) +") &gt; td:nth-child(2) &gt; a:nth-child(1)").attr("href", relink);}else{$("tr:nth-child("+ (ac+2) +")").hide();}}colessaumlinks = []; uidtarget ="";cidade="";sessao="";</pre><p><em>"I found a bug" OR "Man, your code sucks"</em></p><p>Do share suspicious behaviour or bugs here. I will try my best to fix them. Also, please note I am a dabbling coder myself. Its the first time I make something with javascript.</p><p>If you think you can improve this code to increase its efficiency, feel free to do it.<img src="../../../../gfx/forum/smiley/h_smile.gif" alt=":)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Dakash" style="background-color: rgb(135,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 9, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1297894 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1297894/1" tid_id="1297894">Dakash</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Really nice feature, gonna install it tomorrow to see how it goes. Thanks Miudo <img src="../../../../gfx/square/smile.png" alt=":sq_smile:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="kalone" style="background-color: rgb(112,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 9, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_324615 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/324615/1" tid_id="324615">kalone</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Cheers mate, gonna do this later today.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Superman32" style="background-color: rgb(204,82,126); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 9, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1832018 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1832018/1" tid_id="1832018">Superman32</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>I installed it with Firefox and it works just as you said it did.</p><p>It was laggy searching for two long time players.</p><p>I also had to refresh the result page to see the results.</p><p>But, overall a nice way to find previous friends (or adversaries<img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico">). Thanks!</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="shlominus" style="background-color: rgb(204,82,180); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 9, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6055872 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6055872/1" tid_id="6055872">shlominus</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>it's fairly obvious that miudo only wants to use this add-on for datagrabbing, so he can perfect his nefarious meta-schemes.</p><p>hah! <img src="../../../../gfx/square/chart.png" alt=":chart:" class="tid_ico"></p><p>also, in other news, i only just realised it's miudo, not muido. <img src="../../../../gfx/square/huh.png" alt="O_o" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 9, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_6055872 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="6055872">shlominus</span></span><cite>it's fairly obvious that miudo only wants to use this add-on for datagrabbing, so he can perfect his nefarious meta-schemes.</cite><p>What!? But the event.. i mean... the tool was announced months ago: <a href="http://twd.io/e/fY4T0M/14" target="_blank">http://twd.io/e/fY4T0M/14</a></p><p>and you are correct <img src="../../../../gfx/forum/smiley/h_lol.gif" alt=":D" class="tid_ico"> When you have 162 towns and you get that feeling "oh I saw this dude/gal somewhere", its a pain to go over each one checking.</p><span class="tid_preCite"><span class="tid_user tid_user_6055872 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="6055872">shlominus</span></span><cite>also, in other news, i only just realised it's miudo, not muido. <img src="../../../../gfx/square/huh.png" alt="O_o" class="tid_ico"></cite><p>yeah, diphthongs.<br><span class="tid_preCite"><span class="tid_user tid_user_1832018 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1832018">Superman32</span></span><cite><br>It was laggy searching for two long time players.</cite>Holy <span class="tid_strike">shlominus</span> cow! Super haven't skipped a single season ever since Old Towns! <img src="../../../../gfx/square/huh.png" alt="O_o" class="tid_ico"></p><p>So it didn't break the browser when you checked for another Season 0 dude? Great <img src="../../../../gfx/square/surprised.png" alt="8D" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="shlominus" style="background-color: rgb(204,82,180); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 9, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6055872 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6055872/1" tid_id="6055872">shlominus</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>ts;dr</p><p><img src="../../../../gfx/square/anim.png/cgu.gif" alt=":anim_chart:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="kalone" style="background-color: rgb(112,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 9, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_324615 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/324615/1" tid_id="324615">kalone</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>I just realised I need Firefox for this. Blegh.<img src="../../../../gfx/square/sad.png" alt=":sq_sad:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Jedermann" style="background-color: rgb(204,82,106); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 9, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3697548 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3697548/1" tid_id="3697548">Jedermann</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Or Chrome + Tampermonkey (likely - didn't test it)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Superman32" style="background-color: rgb(204,82,126); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 10, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1832018 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1832018/1" tid_id="1832018">Superman32</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Haha! Yeah, I've been here ever since they opened the gates in season 0!</p><p>It was quite a bit of data processing with two really long term players, but nothing exploded or appears to be broken. <img src="../../../../gfx/square/yeah.png" alt=":youpi:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_10">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="kalone" style="background-color: rgb(112,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 10, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_324615 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/324615/1" tid_id="324615">kalone</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Tested the script on Tampermonkey. Does not work.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_11">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 10, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Chrome users (or firefox users that don't want to install the Greasemonkey script) can still get the "lite"-version of the script running as instructed on the first post.</p><p>Just tested it myself in Chrome:<br><a href="http://i.imgur.com/bw5v9uI.png" target="_blank">http://i.imgur.com/bw5v9uI.png</a></p><p><span class="tid_sideNote">Firefox users will see each row of towns get deleted/hidden as the script runs. Chrome users will see nothing until the script ends. Be patient</span></p><p>I will see what i can do with tampermonkey next.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_12">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="k0l3" style="background-color: rgb(204,118,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 11, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3926538 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3926538/1" tid_id="3926538">k0l3</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_mystic.gif" title=""/> Iced Guardian</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>I was about to install but Dream told me this is just an evil plan from Miudo to spy and sabotage all metas... <img src="../../../../gfx/square/crylot.png" alt="T_T" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_13">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_5_3_17c04c39_70794_100x100.jpg" title="Dream" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 12, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_70794 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/70794/1" tid_id="70794">Dream</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Inspiration for the people</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>dont twist my words K0l3, <br>i said this is a good way to track who shunned or hanged you in the past to know who to take revenge on in the future. <img src="../../../../gfx/square/happy2.png" alt="^_^" class="tid_ico"></p><p><span class="tid_wspoil">sorry , couldnt resist , i am starting to feel the evil inside</span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_14">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_0_c7739fc8_1797494_100x100.png" title="Joanne" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 12, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1797494 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1797494/1" tid_id="1797494">Joanne</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\ac68b7192866fdd49e853a1f48f4884f" title=""/> Community Companion</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>This is absolutely awesome! !I'm stoked to try! Thanks</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_15">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 13, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>It should work with Tampermonkey now. (i think the script auto-updates, otherwise just re-install it).</p><p>this is still a thing though:<br><cite>Firefox users will see each row of towns get deleted/hidden as the script runs. Chrome users will see nothing until the script ends. Be patient</cite></p><p>For those frightful <span class="tid_user tid_user_3926538 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="3926538">k0l3</span>'s out there here is a video of me using the script: <a href="https://youtu.be/yck4Tg1YQIk" target="_blank">https://youtu.be/yck4Tg1YQIk</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_16">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Dakash" style="background-color: rgb(135,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On september 19, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1297894 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1297894/1" tid_id="1297894">Dakash</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Working fine in Chrome, thanks for the tool Miudo <img src="../../../../gfx/square/smile.png" alt=":sq_smile:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_17">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_9_0_94eeba33_204764_100x100.jpg" title="yungching" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On august 13, 2019
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_204764 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/204764/1" tid_id="204764">yungching</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_camp.gif" title=""/> Home Depot Regular</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bump because this is a lifesaver when you've been away from the game for years and can't remember how on earth you even know some people :x</p><p>I'm amazed though that I hardly ever played with some of the closest friends I've made on d2n. Shows how much more goes on in IRC I guess.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_18">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On august 13, 2019
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Just watched the YouTube video tutorial... looks very nice <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></p><p><a href="https://youtu.be/yck4Tg1YQIk" target="_blank">https://youtu.be/yck4Tg1YQIk</a></p><p>Good job <span class="tid_user tid_user_1397717 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1397717">Miudo</span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_19">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_0_c7739fc8_1797494_100x100.png" title="Joanne" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On august 29, 2019
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1797494 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1797494/1" tid_id="1797494">Joanne</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\ac68b7192866fdd49e853a1f48f4884f" title=""/> Community Companion</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>I finally did this!</p><p>im SUPER curious to know who you have played towns with the MOST!</p><p>what is your highest number!?!?!?! wonder what is average</p><p>My pal <span class="tid_user tid_user_622781 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="622781">ipharted</span> and I have been in 56 towns together. <br><span class="tid_sideNote">Im so glad you were my first friend. I dunno if I would have stayed or gotten hooked on mibbit without you <img src="//data.twinoid.com/proxy/mush.twinoid.com/img/icons/ui/lp.png" alt=":mush_hp:" class="tid_ico"></span></p><p>Share your highest please <img src="../../../../gfx/square/smile.png" alt=":tid_smile:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_20">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="McQuade" style="background-color: rgb(82,86,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On august 29, 2019
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1001758 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1001758/1" tid_id="1001758">McQuade</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bram and I have had 58 towns together Couldn't think of who could be more I tired Neuroguy and Viggo As well they both was about 35 towns</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_21">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Epoxy" style="background-color: rgb(204,82,106); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On august 29, 2019
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_32028 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/32028/1" tid_id="32028">Epoxy</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>88 towns with <span class="tid_user tid_user_85565 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="85565">MadMax</span>, 68 with <span class="tid_user tid_user_1371955 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1371955">Zealon</span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_22">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Zombieman" style="background-color: rgb(151,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On august 30, 2019
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8668354 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8668354/1" tid_id="8668354">Zombieman</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><a target="_blank" href="https://gyazo.com/05e69f249692dffe2b25235e719a1cb4">I thought I would have played alot more towns with people. My numbers are so low.</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_23">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="RaptorJesus" style="background-color: rgb(204,188,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On august 30, 2019
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1797892 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1797892/1" tid_id="1797892">RaptorJesus</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oh this is curious.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_24">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_9_0_94eeba33_204764_100x100.jpg" title="yungching" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On march 27, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_204764 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/204764/1" tid_id="204764">yungching</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_camp.gif" title=""/> Home Depot Regular</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>UP because I have a feeling there's gonna be some old players coming back and a lot of nostalgia <img src="../../../../gfx/forum/smiley/h_blink.gif" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_25">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_0_c7739fc8_1797494_100x100.png" title="Joanne" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 1, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1797494 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1797494/1" tid_id="1797494">Joanne</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\ac68b7192866fdd49e853a1f48f4884f" title=""/> Community Companion</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>What are Epoxy and Max at now?</p><p>Ipharted and I have 73 now, catching up! <img src="../../../../gfx/square/yeah.png" alt=":tid_youpi:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_26">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_0_c7739fc8_1797494_100x100.png" title="Joanne" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 27, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1797494 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1797494/1" tid_id="1797494">Joanne</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\ac68b7192866fdd49e853a1f48f4884f" title=""/> Community Companion</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>i hope we can modify this for mh <img src="../../../../gfx/forum/smiley/h_smile.gif" alt=":)" class="tid_ico"> I love this.</p><p>I never caught up to Epoxy I bet, but I have 93 with ipharted to close out this game <img src="../../../../gfx/square/crylot.png" alt="T_T" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

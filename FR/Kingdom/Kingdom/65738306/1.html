@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>[Eternal Kingdom] Probas sur la grille</title>
+    <link href="../../../../gfx/game/Kingdom.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Accueil
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Kingdom</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Kingdom</a>
+                                            <span class="tid_title">[Eternal Kingdom] Probas sur la grille</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 7 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Les fantastiques Bibni et Keats ont bien avancé sur Eternal Kingdom. On a maintenant une grille toute jolie et fonctionnelle, et ils s'attaquent au gameplay autour de la carte.</p><br><p>Quelques liens sur ce forum autour du projet : <br><a target="_self" href="/tid/forum#!view/481|thread/65340425?p=1">Présentation du projet</a><br><a target="_self" href="/tid/forum#!view/481|thread/65659950?p=1">FAQ</a></p><br><p>Et vous pouvez tester l'alpha ici : <a href="https://kingdom.eternaltwin.org/" target="_blank">https://kingdom.eternaltwin.org/</a></p><br><p>Ici, je reviens sur la grille :<br>Les probabilités d'apparition des éléments sont issues d'un premier jet. Les seuils d'apparitions des citoyens et des épées sont bien implémentés, avec des valeurs fixes de la proba d'apparition suivant qu'on est en dessus ou en dessous du seuil</p><br><p>C'est à dire que pour l'instant c'est du on/off : tu es au dessus du seuil ou pas. On n'a donc pas, par exemple, de ralentissement de l'apparition des bonshommes pour les populations hautes comme on peut le voir en jeu ; à voir si on rajoute ces effets, mais ça demanderait une compréhension fine du phénomène.</p><br><p>Dans un premier temps, j'aimerais ajuster les probabilités d'apparitions des symboles blé, or, bois, marteaux et double flèches, ainsi que la probabilité d'apparitions des bonshommes en début de partie. Pour cela, j'aurais besoin de collecter suffisamment d'échantillons en jeu pour avoir des moyennes significatives.</p><br><p>Si vous pouviez m'aider, ce serait super sympa choupinou tout plein <img src="../../../../gfx/square/cute.png" alt=":cute:" class="tid_ico"><img src="../../../../gfx/square/cute.png" alt=":cute:" class="tid_ico"><img src="../../../../gfx/square/cute.png" alt=":cute:" class="tid_ico"></p><br><p>Le plus simple :<br> - lancer une partie et compter les symboles de chaque type dans la grille de départ. En ne jouant aucun tour, on peut produire un nouveau jeu de données toutes les 30-35min, voire toutes les 15-20min si on le fait sur carte privée en x2.</p><br><p><span class="tid_sideNote">Je ne pense pas que ces données vont permettre de déduire directement la probabilité d'apparitions des symboles. En effet, la grille de départ est contrainte : elle ne doit avoir aucun alignement. Or il y a plusieurs façons de générer une grille sans alignement :<br> - générer les symboles un par un en tenant compte de leurs proba d'apparition à chaque tirage, et retirer un symbole s'il génère un alignement (c'est l'algo actuellement implémenté dans Eternal Kingdom)<br> - générer dans un premier temps une grille sans se préoccuper des alignements en tenant compte des probas d'apparitions des éléments, puis dans un second temps "appliquer" les alignements en faisant disparaître les symboles concernés, faisant descendre les symboles au dessus et générant les nouveaux symboles (comme quand on joue des tours ; mais sans production de ressources).<br><br><br>Comme ça je ne sais pas trop si ces deux méthodes donnent des résultats similaires (je ferai des tests avec un prototype de grille). Mais elles vont changer un peu la fréquence d'apparition des éléments par rapports aux probas de base : en effet un élément plus probable a plus de chance de générer un alignement, donc d'être ôté de la grille.<br><br><br>Je ferai donc un petit modèle de grille pour voir quelles probas il faut mettre pour retomber sur la fréquence d'apparition observée dans la grille de départ, dépendant de l'algo de génération de grille (en espérant tomber sur un truc cohérent avec ce qu'on observe en dehors de la grille de départ, quand on joue sa grille au fil des tours !).</span></p><br><p>Un peu plus compliqué : jouer sa grille et noter ce qui tombe. Si vous êtes super motivés et vous lancez là-dedans, j'aurais besoin de connaître aussi au fil des tours votre population et vos stocks de blé et d'or.</p><br><p>Merci d'avance pour vos contributions <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"><img src="../../../../gfx/square/cute.png" alt=":cute:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_d_4f4ce43e_420420_100x100.png" title="BibTimson" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 7 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_420420 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/420420/1" tid_id="420420">BibTimson</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\token.png" title=""/> Je touche pas Ã  Ã§a, MOI.</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Hello! <br>Pour compléter ce message, j'ai créé un tableur Google pour que vous puissiez mettre vos données de grille initiale</p><p><a href="https://docs.google.com/spreadsheets/d/1vitYSGfhj8p_JnOjc2suSRSDzJ12wNRSa19QBP1tTRU/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/...</a></p><p>Merci d'avance! <img src="../../../../gfx/square/anim.png/bg.gif" alt=":cool:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Merci pour toutes ces infos ! <img src="../../../../gfx/square/yeah.png" alt=":youpi:" class="tid_ico"></p><br><p><span class="tid_roleplay"><span class="tid_wroleplay">TL;DR : c'est super, j'en veux encore !<br>Et je veux bien vos historiques de capitales (grille) aussi, pour extraire les types de trucs alignés.</span></span></p><p>Faut continuer encore <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"> Comme les écarts-type sont assez grands, il faut qu'on ait beaucoup d'échantillons pour remonter à des moyennes fiables et remonter ensuite à des probas d'apparition.</p><br><p>C'est donc encore à consolider, on compte sur votre aide à tous <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"><br>Mais on commence déjà à voir des trucs intéressants <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"> Etonnamment il semblerait que le blé soit un chouia plus rare que l'or, le bois ou les marteaux, du moins sur la grille de départ. Encore qu'on peut être dans la zone improbable de l'intervalle de confiance. On verra quand on aura davantage de données.</p><br><p>Je me dis que ce serait quand même intéressant de collecter des infos sur la grille en dehors de celle de départ <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p><br><p>Comme c'est vraiment galère de noter ce qui apparaît quand on joue un tour, je me dis que globalement, si on regarde sur suffisamment de tours joués à la suite, ce qui apparaît en moyenne ça va finir par être aligné. Donc on pourrait simplement analyser les types de symboles alignés, et ça on peut l'automatiser assez facilement : il suffit de récupérer l'historique de la page capitale, l'injecter dans une moulinette que je peux coder, et en extraire des stats.<br><span class="tid_sideNote">(le seul truc à faire attention, c'est de bien différencier une production issue du chantier, d'un alignement de blé suivi d'un alignement d'or ; si le nombre de paysans et de marchands est différent c'est simple, sinon je devrais sûrement écarter des valeurs jugées trop peu fiables)</span></p><br><p>Plus exactement, sur des historiques de grille je pense ne regarder (au moins dans un premier temps) que les stats du blé, de l'or, du bois, des marteaux et des doubles flèches. Tout sauf les citoyens et les épées, donc. En effet l'apparition de ces derniers dépend de paramètres externes à la grille qui sont relous à donner pour vous (pour l'historique suffit d'un copier-coller ; pour les stocks faudrait les regarder à chaque tour joué) et qui complexifie les données à traiter ensuite. Par ailleurs, on a tendance à gérer un peu différemment comment on les aligne (par exemple, les bonshommes on va généralement chercher à les aligner en priorité ; sauf si on est en fin de rush de population où on va chercher à les accumuler pour aller un peu au dessus du palier de population de son titre) ; or je ne pense pas que l'historique de capitale couvre suffisamment de tours pour "lisser" ces effets.</p><br><p>Bref, je vais partir du principe que pour le blé, l'or, le bois, les marteaux et les doubles-flèches, les probas d'apparitions ne varient pas (à part pour normaliser l'ensemble ; c'est à dire que si la proba des bonshommes augmente, ça fait mécaniquement baisser celle des autres mais de façon homogène), et me concentrer sur celles-là.</p><br><p>En conclusion : si vous pouvez m'envoyer des historiques de grille ce serait super <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"><br>Pour ceux qui sont paranos et craignent de révéler l'information hautement stratégique de votre répartition de population ^^ vous pouvez m'envoyer votre historique par MP. Mon unique partie est sur Ermailoi en ce moment, et si vous avez moins de 150 ans ya pas de raison que je cherche à vous attaquer <img src="../../../../gfx/square/lookup.png" alt=":innocent:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="basicbrute" style="background-color: rgb(204,82,92); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_715 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/715/1" tid_id="715">basicbrute</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Pour avoir codé un tetris dans une autre vie, je me rappelle du système pour s'assurer du hasard mais aussi s'assurer qu'il y ai quand même régulièrement des barres.</p><p>Le système en question consiste en un sac de pièce dans lequels on met les 7 tetriminos, on en prend un aux hasard à chaque fois, et quand le sac est vide on le re-rempli.</p><br><p>A mon avis y'a un système similaire car les bonhommes ont tendances à être des multiples de trois, et parfois on a beau être dans de bonnes conditions, les bonhommes ou les épées tardent à arriver.</p><br><p>Perso je ferait un sac avec 6 blé, 6 ors, 6 bois, 6 marteaux, 6 rejouer. Plus 3 bonhommes et ou 3 (6 ?) épées si les conditions sont remplies (il en arrive aussi même hors condition mais il me semble bien que c'est par trois).</p><br><p>Je n'ai pas le courage de participer aux tests, mais à l'instinct et au souvenir des dizaines d'heure passées à étudier cette fichue grille, je dirai que les 5 éléments principaux sont répartis équitablement. Le nerf de la guerre algorythmique que vous avez déclarée étant les bonhommes et les épées.</p><br><p>Bon courage</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_d_4f4ce43e_420420_100x100.png" title="BibTimson" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_420420 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/420420/1" tid_id="420420">BibTimson</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\token.png" title=""/> Je touche pas Ã  Ã§a, MOI.</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui on appelle ça un tirage sans remise</p><p>Du coup pourquoi pas, on va étudier toutes les possibilités!<br>Merci pour ce retour <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oh, mais c'est super intéressant ça ! Merci beaucoup pour la suggestion <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p><p>Je savais que pour Tetris c'est du "tirage en sac"', mais j'y avais pas du tout pensé pour Kingdom.</p><br><p><cite>A mon avis y'a un système similaire car les bonhommes ont tendances à être des multiples de trois, et parfois on a beau être dans de bonnes conditions, les bonhommes ou les épées tardent à arriver.</cite><br>Oui, c'est super bien vu. J'avais déjà remarqué que les bonshommes qui arrivent hors des périodes de rush de population arrivent souvent par 3 (en rush de population c'est peut-être le cas aussi, mais c'est moins flagrant). Au point que j'ai pris l'habitude plus ou moins consciente quand je vois un bonhomme arriver de jouer mes tours suivants sur des colonnes proches, pour maximiser mes chances de pouvoir l'aligner avec ceux que j'espère voir vite arriver.</p><br><p>Jamais trop fait gaffe si les épées qui arrivent en dehors des seuils arrivent par 3, mais maintenant que tu le dis, je repense à toutes ces fois où je me suis dit "raaah, mais pourquoi j'ai des épées qui viennent me pourrir ma grille alors que j'en veux pas et que mon or est bas". Des épées, pas une toute seule.</p><br><p>Et le retard d'arrivée des épées, je l'ai expérimenté bien des fois.</p><p><span class="tid_sideNote">(pour les bonshommes aussi, mais j'ai l'impression que c'est moins souvent. Cela dit, quand je remarque le retard des épées c'est en général dans une situation tendue où il me faut absolument des épées là maintenant pour envoyer des renforts depuis ma capitale et j'ai presque plus de tours et ya un relais sur une bataille absolument vitale à faire rraaaaah il me faut des épées !!<br><br>Bref, si j'ai l'impression que ça arrive plus souvent avec les épées, il est très possible que ce soit dû à un gros biais cognitif : ça me marque parce que ça peut me mettre en difficulté dans ma partie, alors qu'un retard de rush de pop', bah... ça fait juste un départ moins brillant, mais c'est généralement sans conséquence immédiate)</span></p><br><br><p>J'ai aussi remarqué qu'une fois arrivé au palier de population, je faisait un citoyen de plus tous les ans environ. Peut-être que tous les x sacs on rajoute 3 bonshommes dedans ? En étant calé pour que ça arrive en moyenne tous les ans ?</p><br><p>En tout cas, je te remercie de cette suggestion, parce que ça colle bien à ce qu'on observe. Ou, en tout cas (et c'est peut-être le plus important), ça permettra de bien coller à ce qu'on voit en jeu de façon très naturelle.</p><br><p>Tout cela ne remet pas en cause ce que j'avais proposé sur ce fil <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"> : car si on part du principe qu'on fait des sacs de symboles et qu'on pioche dedans, il nous faut les proportions de chaque symboles dans un sac !</p><p>(par contre ya un truc super cool si on a bien intuité que ça marchait par sac : c'est que dans un sac on met un nombre entier de symboles, et qu'a priori un sac n'en contient pas énormément. Ca veut dire que le nombre de possibilité est relativement limité, alors qu'il est infini si on veut recaler des probabilités avec des flottants)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Au passage, je me dis que si la grille fonctionne avec du tirage par sac, la grille de départ n'est sans doute pas générée comme ça :</p><p><cite>générer les symboles un par un en tenant compte de leurs proba d'apparition à chaque tirage, et retirer un symbole s'il génère un alignement (c'est l'algo actuellement implémenté dans Eternal Kingdom)</cite></p><br><p>Mais peut-être plutôt comme ça :<br><cite>générer dans un premier temps une grille sans se préoccuper des alignements en tenant compte des probas d'apparitions des éléments, puis dans un second temps "appliquer" les alignements en faisant disparaître les symboles concernés, faisant descendre les symboles au dessus et générant les nouveaux symboles (comme quand on joue des tours ; mais sans production de ressources).</cite></p><br><p>Ce qui serait cohérent avec les grilles de départ (affreuses) où on n'a que 3 pauvres symboles blé : ce serait une grille avec davantage de blé à la base, mais pas de bol c'était aligné alors ça a disparu.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="basicbrute" style="background-color: rgb(204,82,92); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_715 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/715/1" tid_id="715">basicbrute</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>J'ai aussi remarqué qu'une fois arrivé au palier de population, je faisait un citoyen de plus tous les ans environ. Peut-être que tous les x sacs on rajoute 3 bonshommes dedans ? En étant calé pour que ça arrive en moyenne tous les ans ?</cite><br>Oui j'ai observé cette approche annuelle, c'est ce qui m'a fait penser à ce système de tirage. Mais soit c'est tous les X sacs ce qui favorise les rois de la combo, soit c'est tous les N tours. je suis personnellement pour favoriser les rois de la combo même si j'ai bien l'impression que c'est plutôt tout les N tours (hors rejouer)</p><br><p><cite>Ce qui serait cohérent avec les grilles de départ (affreuses) où on n'a que 3 pauvres symboles blé : ce serait une grille avec davantage de blé à la base, mais pas de bol c'était aligné alors ça a disparu.</cite><br>Oui il doit y avoir un truc comme ca. Ceci dit même si c'est le plus simple c'est peut etre pas la meilleure manière de procéder. Les grilles dégueux en début de partie c'est déprimant. Ceci dit j'ai pas vraiment d'idée pour faire ce truc sainement à part à empêcher (limiter?) de générer des alignements en reremplissant le sac même si il est pas vide au cas ou y'aurait pas le choix.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_d_b_293829ca_528629_100x100.jpg" title="simoons" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_528629 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/528629/1" tid_id="528629">simoons</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\rainbow.gif" title=""/> Pingouin into the sky</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Ou alors, pour la grille de départ, choisir les éléments qui seront dedans selon les probabilités observées, puis mélanger la grille (sans changer les éléments) jusqu'à ce qu'il n'y ait plus d'alignement ? (e.g. en intervertissant chaque fois un élément d'un alignement avec un élément random jusqu'à ce qu'il n'y ait plus d'alignement)<br> <br>Pour le sac, j'ai déjà entendu des gens se plaindre de ne pas avoir d'or pendant X tours (avec X suffisamment grand pour se plaindre)... Mais rien de suffisamment concret pour invalider la théorie.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>Je n'ai pas le courage de participer aux tests, mais à l'instinct et au souvenir des dizaines d'heure passées à étudier cette fichue grille, je dirai que les 5 éléments principaux sont répartis équitablement. </cite><br>En lisant ceci je m'étais fait la réflexion que j'avais l'impression que les doubles flèches étaient moins nombreuses que les 4 autre éléments principaux. Elles le sont statistiquement d'ailleurs moins dans les grilles de départ.</p><br><p>Hier soir on a fait des tests sur des débuts de partie, Than et moi. On a joué des tours, en faisant le moins de combos possibles (pour arriver à tout noter) et en notant ce qui tombe.<br>Et là surprise ! De mon côté j'ai autant de double flèches que de blé,or,etc. Than en a environ 2 fois ( j'ai les stats sur 80 tours de mon côté, lui 150, donc c'est a priori significatif).</p><br><p>La grosse différence c'est que de mon côté j'ai fait exprès de monter l'or pour avoir des épées et limiter les combos, Than a gardé l'or bas. J'ai aussi fait n'importe quoi sur le blé, donc alterné pop qui monte et quelques famines.</p><br><p>Le seuil de l'or jouerait il aussi sur la fréquence des doubles flèches ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_10">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Drange" style="background-color: rgb(82,204,94); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3117006 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3117006/1" tid_id="3117006">Drange</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>j'ai relu tes explications sur le discord<br>donc + d'or =&gt; plus d'épées et + de rejouez<br>ok donc il y a moins de quoi ? les autres ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_11">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui, en proportion. Voici les résultats que Than a relevés :</p><p>FOOD GOLD WOOD HAMMER TURN ARMY CITIZEN<br>106 112 112 106 57 8 23</p><br><p>Et voici les miens :<br>FOOD GOLD WOOD HAMMER TURN ARMY CITIZEN<br>59 56 54 52 57 35 25</p><br><p>On observe les mêmes stats d'apparition sur le blé, l'or, le bois et les marteaux. Par contre sur les double-flèches, il y a un énorme écart !<br>(sur les épées aussi, mais ça c'est logique vu que j'ai joué avec l'or haut et Than avec l'or bas).</p><br><p>D'où l'hypothèse que le seuil d'or augmente la proportion d'épées, mais aussi celle de doubles flèches.</p><p>Pour creuser le truc, il faudrait qu'on regarde ce qui tombe en jouant un paquet de tours à la suite dans chacune de ces 4 situations : l'or et le blé au dessus de leurs seuils, les deux en dessous de leurs seuils, l'un ou dessus l'autre en dessous et inversement.<br>(sur les 2 séries de tours qu'on a, le blé est tantôt au dessus du seuil tantôt pas)</p><br><p>S'il y a des motivés pour le faire, je prends !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_12">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_528629 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="528629">simoons</span></span><cite>Ou alors, pour la grille de départ, choisir les éléments qui seront dedans selon les probabilités observées, puis mélanger la grille (sans changer les éléments) jusqu'à ce qu'il n'y ait plus d'alignement ? (e.g. en intervertissant chaque fois un élément d'un alignement avec un élément random jusqu'à ce qu'il n'y ait plus d'alignement)</cite><p>Oui, c'est une possibilité aussi. Cela dit, ça me semble pas trivial de trouver un algo qui aboutit à une grille valide (sans se mettre dans une impasse, ou à boucler indéfiniment sur les mêmes permutations).</p><br><p>Alors que la méthode implémentée en jeu est directe et fiable (il y a suffisamment d'éléments différents pour qu'on puisse remplacer un élément qui cause un alignement par un élément qui n'en cause pas). Et celle consistant à tirer une grille puis "résoudre" les alignements utiliserait simplement un bout de code existant (celui de résolution des tours).</p><br><p>Pour ces raisons, ça me semblerait plus naturel de ne pas avoir utilisé l'approche que tu proposes. Mais je peux me tromper.</p><br><p><span class="tid_preCite"><span class="tid_user tid_user_528629 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="528629">simoons</span></span><cite>Pour le sac, j'ai déjà entendu des gens se plaindre de ne pas avoir d'or pendant X tours (avec X suffisamment grand pour se plaindre)... Mais rien de suffisamment concret pour invalider la théorie.</cite><br>C'est vrai, mais comme tu dis c'est peu concret. Et puis il y a une différence entre "aucun or n'est tombé", et "je n'ai pas pu aligner d'or" (l'or peut tomber mais à un endroit où la grille est bloquée).</p><br><p>Si j'aime bien la piste du tirage par sac, c'est un peu pour les mêmes raisons que plus haut. Tetris fonctionne comme ça. Or beaucoup de dev de jeux se sont fait la main en recodant un jeu simple et classique, comme Tetris justement. Il est extrêmement probable que parmi ceux qui ont codé Kingdom, il y a quelqu'un qui connaissait ce principe.</p><br><p>Il y a énormément de possibilités à explorer, alors je choisis d'abord celles qui me semblent le plus prometteuses et probables <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_13">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><img src="../../../../gfx/square/confused.png" alt=":{" class="tid_ico"><img src="../../../../gfx/square/confused.png" alt=":{" class="tid_ico"><img src="../../../../gfx/square/confused.png" alt=":{" class="tid_ico"></p><p>J'ai refait des essais, je suis un peu perplexe. J'ai essayé de regarder l'impact des seuils sur ce qui tombe. Pas sûre d'avoir pu jouer assez de tours pour avoir des trucs très significatifs.</p><br><p>Une poignée de tours avec le blé au dessus du seuil, l'or en dessous :<br>FOOD GOLD WOOD HAMMER TURN ARMY CITIZEN<br>55 - 44 - 52 - 50 - 35 - 1 - 33</p><p>(quelques ratés avec des combos imprévus, donc il y a des tours où j'ai pas pu noter, ce qui doit perturber un peu les stats)</p><br><br><p>Très peu de tours où tout est en dessous du seuil, je n'y suis pas restée assez longtemps pour pouvoir en déduire grand chose (c'est aussi le plus pénible à tester : en dessous des seuils la grille est fluide, même en y faisant attention il y a toujours des combos qui passent et c'est difficile de noter) :<br>FOOD GOLD WOOD HAMMER TURN ARMY CITIZEN<br>13 - 18 - 7 - 15 - 5 - 0 - 1</p><br><p>Et enfin des tours avec le blé en dessous du seuil, et l'or au dessus :<br>FOOD GOLD WOOD HAMMER TURN ARMY CITIZEN<br>59 - 64 - 55 - 67 - 41 - 41 - 4</p><br><p>Je trouve des taux de doubles flèches en dessous de ce que j'avais observé il y a quelques jours (où j'avais l'or systématiquement haut, et le blé tantôt haut tantôt en famine). À la louche, en rush de population on a une proportion de citoyens à 2/3 par rapport aux symboles de bases (or, blé, bois, marteaux), et des doubles flèches en même quantité que les citoyens.<br>Avec l'or haut, à la louche ça semble pareil mais avec les épées à la place des citoyens.</p><br><br><p>Faudrait tester sérieusement le cas où l'or et le blé sont tous les deux en dessous du seuil, et le cas où ils sont tous les deux en dessus. Je ne comprends pas trop la logique d'apparition des doubles flèches.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_14">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[8984666]" style="background-color: rgb(82,204,135); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8984666 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8984666/1" tid_id="8984666">[8984666]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Si on met de côté les résultats que tu as pour "tout en dessous du seuil" (car sur trop peu de tours), ça peut être que les doubles flèches sont influencées de manière identique par l'or et la nourriture, et que l'influence des deux s'additionne.</p><br><p>Cela expliquerait que tu aies à peu près la même proportion si exactement une de ces deux ressources est au dessus du seuil, et ça ne contredirait pas tes résultats précédents (d'avoir obtenu plus de doubles flèches avec l'or systématiquement haut et, par moment, en plus, la nourriture au dessus du seuil).</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_15">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>C'est fort possible, oui.</p><br><p>J'ai rejoué quelques tours, toujours en configuration "blé bas, or haut". Ca reste à peu près dans les même proportions que les tours précédents (ce qui est plutôt rassurant).</p><br><p>La théorie des bonshommes qui arrivent par 3 hors seuil de blé en prend un coup par contre : j'ai eu 2 bonshommes qui arrivaient en même temps, et d'autres éparpillés avec beaucoup de tours entre chaque. Alors, certes, on peut regrouper les arrivages de bonshommes pour les mettre par 3, mais quand il n'y a pas tellement plus de raison de séparer les groupes de 3 à tel citoyen plutôt qu'au suivant, on peut tout aussi bien dire qu'ils n'arrivent pas par 3 mais indépendamment.</p><br><p>Aussi, la théorie du tirage par sac avec des citoyens rajoutés par 3 dans le sac en prend un coup aussi.<br>Par contre, je n'ai jamais vu plus de 2 symboles identiques arriver à la suite (enfin, parfois sur des combos, mais je suis pas très sûre de noter les symboles dans le bon ordre au sein du tour quand il y a un combo). Faudrait que je me penche un peu plus sur le bazar pour voir si c'est juste très improbable d'en avoir 3 identiques, ou si ça montre presque à coup sûr que le tirage est fait de sorte qu'il soit impossible d'avoir 3 symboles identiques à la suite.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_16">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_d_b_293829ca_528629_100x100.jpg" title="simoons" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 14 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_528629 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/528629/1" tid_id="528629">simoons</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\rainbow.gif" title=""/> Pingouin into the sky</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>As-tu pensé à regarder les vidéos de départ canon (<a target="_blank" href="https://twinoid.com/g/ipk#videos">ici</a> et surement beaucoup d'autres ailleurs) pour compter les alignements, les apparitions, etc. ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_17">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_d_b_293829ca_528629_100x100.jpg" title="simoons" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 14 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_528629 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/528629/1" tid_id="528629">simoons</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\rainbow.gif" title=""/> Pingouin into the sky</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je peux tenter de te faire une retranscription d'une ou l'autre vidéo en suivant le format suivant, si ça peut être utile :<br><a href="https://docs.google.com/spreadsheets/d/1sEnLZDdcuwMmu1FiRVR85GItLc7WEg9YRTwSwfXkVBI/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/...</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_18">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 14 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui je veux bien si tu as le temps !</p><br><p>Than a rejoué des tours et il tombe pas sur les mêmes taux de double flèches que moi.</p><br><p>Pour les vidéos, oui j'y avais pensé mais j'ai renoncé à essayer de les analyser <img src="../../../../gfx/square/redface.png" alt=":}" class="tid_ico"> Comme ce sont des départs canons ça combotte de partout, c'est donc dur de tout bien noter. Pour ça que j'avais pris l'approche "je joue volontairement comme un pied avec des combos que si j'ai pas le choix et de préférence pas de combo pour arriver à tout noter".</p><br><p>En faisant l'hypothèse que la façon de jouer la grille n'influence pas ce qui tombe. Mais c'est peut-être faux en fait.</p><br><p>Bref, si tu as le temps de regarder et d'apporter de nouveaux éléments ça m'intéresse !<img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_19">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_d_b_293829ca_528629_100x100.jpg" title="simoons" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 24 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_528629 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/528629/1" tid_id="528629">simoons</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\rainbow.gif" title=""/> Pingouin into the sky</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Voici : <a href="https://docs.google.com/spreadsheets/d/1sEnLZDdcuwMmu1FiRVR85GItLc7WEg9YRTwSwfXkVBI/edit#gid=1336588947" target="_blank">https://docs.google.com/spreadsheets/...</a> <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"><br>C'est juste la grille, mais le lien de la vidéo est au-dessus si tu veux compléter avec la population, les stocks, etc. <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_20">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_d_4f4ce43e_420420_100x100.png" title="BibTimson" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_420420 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/420420/1" tid_id="420420">BibTimson</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\token.png" title=""/> Je touche pas Ã  Ã§a, MOI.</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Le taf incroyable <img src="../../../../gfx/square/eek.png" alt="8O" class="tid_ico"> !<br>Merci beaucoup</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_21">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_d_b_293829ca_528629_100x100.jpg" title="simoons" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_528629 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/528629/1" tid_id="528629">simoons</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\rainbow.gif" title=""/> Pingouin into the sky</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Vous saurez l'exploiter ou je dois encore faire des trucs pour que ça soit vraiment utile ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_22">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 mars 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Merci beaucoup Simoons <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p><br><p>Je n'ai pas encore eu le temps de regarder en détail, je te tiens au courant !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_23">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_9_19fb00cf_359113.jpg" title="Artas69" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 13 juin 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_359113 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/359113/1" tid_id="359113">Artas69</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_plundr.gif" title=""/> Dissident des abimes</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><img src="../../../../gfx/square/psycho.png" alt=":psycho:" class="tid_ico"> Comment allez-vous ? Tjs heureux de Macron <img src="../../../../gfx/square/lol.png" alt=":lol:" class="tid_ico"><img src="../../../../gfx/square/lol.png" alt=":lol:" class="tid_ico"><img src="../../../../gfx/square/lol.png" alt=":lol:" class="tid_ico"><img src="../../../../gfx/square/lol.png" alt=":lol:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_24">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Talsi" style="background-color: rgb(82,84,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 août 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3019559 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3019559/1" tid_id="3019559">Talsi</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Tout comme pour la santé, on peut clore la discussion suite à la publication d'une partie des sources de Kingdom <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p><p>Les probas de la grille, c'est à partir de la ligne 56 de <a target="_blank" href="https://github.com/motion-twin/WebGamesArchives/blob/main/Muxxu/Kingdom/src/Rules.hx">ce fichier</a></p><br><p><span class="tid_sideNote">(PGather est probablement pour un symbole inachevé qu'on avait trouvé dans le fichier .swf de la grille. J'imagine qu'ils avaient prévu 8 symboles, et étaient restés finalement à 7 en voyant qu'à 7 symboles la grille se coince déjà pas mal)</span></p><br><p><span class="tid_sideNote">Et la formule des bonshommes confirme que pour atteindre ses 100+ citoyens, c'est plus vraiment la peine de garnir le grenier ! Proche de 100 citoyens la probabilités de faire tomber des bonshommes ne bouge plus vraiment.</span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

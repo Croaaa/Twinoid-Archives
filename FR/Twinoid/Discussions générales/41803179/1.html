@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>[BUG] Twinoid sur Firefox</title>
+    <link href="../../../../gfx/game/Twinoid.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Accueil
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Twinoid</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Discussions générales</a>
+                                            <span class="tid_title"><span class="tid_forumTag tid_minor">BUG</span>[BUG] Twinoid sur Firefox</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_8_4_d7cff3d0_38_100x100.png" title="Demurgos" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 octobre 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_38 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/38/1" tid_id="38">Demurgos</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\l_emperor.png" title=""/> Hacker lÃ©gendaire</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour,<br>Je vous écrit car j'ai récemment procédé à une réinstallation de mon système. J'ai installé Windows 7 (64 bits) sur ma machine (version propre téléchargée sur le site de Microsoft, sans programmes tiers).<br>Sur cette ordinateur j'ai ensuite installé la dernière version de Firefox (version 33) ainsi que Flash (version 14). On ne peut pas faire plus propre/vide comme système.<br>Tant qu'on en est à l'introduction : J'ai d'autres ordinateurs où Twinoid fonctionne bien sur Firefox (win 7 (64 bits), vista (32 bits), win 8 (64 bits), Debian Wheezy, Ubuntu 14.04) donc même si c'est la réinstallation de mon système qui a révélé ce bug, il parait indépendant de l'OS.</p><p>J'insiste donc sur le fait que j'ai bien les programmes minimum requis pour faire fonctionner Twinoid. Le problème est que l'interface de Twinoid est non fonctionnelle. Il s'agit du seul et unique site qui ne fonctionne pas correctement avec ma configuration (en un peu plus d'un mois d'utilisation). Voilà ce que j'entends par "interface non-fonctionnelle" :</p><ul><li>Impossible de s'identifier : la fenêtre s'ouvre mais quand on clique sur le gros bouton orange, rien ne se passe.<br><span class="tid_wspoil">Pour ceux qui se le demandent, j'ai dû poster les données manuellement pour me connecter, c'est pas ce que y'a de plus marrant...</span></li><li>Impossible de laisser un message sur son nexus</li><li>Impossible de répondre/commenter les messages de son nexus (message d'erreur "Message trop court" bien que le message fasse plus de 4 caractères)</li><li>Envoi de message sur le forum (même erreur : "Message trop court"<img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"><br><span class="tid_wspoil">Même pour ce pavé que je poste depuis Chrome du coup.</span></li><li>Impossible de cuber les messages du nexus</li><li>Impossible de cuber les sujets des fora</li><li>Impossible d'afficher les messages plus anciens sur son flux (en scrollant ou en cliquant sur le lien en bas du nexus)</li><li>Impossible d'afficher les statistiques détaillées sur un jeu en cliquant sur son icone à partir de la page personnelle des joueurs.</li></ul><p>Il s'agit des bugs les plus génants que j'ai pu repérer mais j'imagine qu'il y en a d'autres. D'après ce que j'ai pu observer, le soucis se produit dans</p><pre>tid.Boot.prototype.moduleAction //l.5848 de boot.js</pre><p>La fonction émets une erreur lors de la récupération des données du module associé. (élément parent de classe HTML "tid_module" ). Ces informations sont apparemment stockées dans l'attribut "ondblclick" (pourquoi ?!) mais je n'ai pas l'impression que jQuery y accède. Pendant l'éxécution, il teste plutôt les attribut de la forme "data-*", du coup quand j'ai ajouté</p><pre>data-mod-url="/mod/wall"</pre><p>ça a pu avancer un peu plus loin (afficher les messages plus anciens) (avant de planter parce qu'il n'arrivait pas à accèder à d'autres infos).</p><p>Je tiens à préciser que Chrome arrive malgré tout à accéder à ces informations -et du coup fonctionne- mais avant que certains ne me disent de switcher pour Chrome : NON.<br>Twinoid doit fonctionner sur tous les navigateurs majeurs. <strong>Il s'agit ici d'un problème sérieux, que j'ai pu un peu inspecter</strong>. Il serait bien que ce soucis puisse être corrigé rapidement. Pour information, les MP étant visiblement indépendant du système de modules de Twinoid, ils fonctionnent et vous pouvez donc passer par ce canal pour me contacter.</p><p><img src="http://kingdom.muxxu.com/img/icons/l_emperor.png" alt=":kingdom_empero_1:" class="tid_ico"> Demurgos</p><p><span class="tid_wspoil">Dernière chose, merci d'éviter les solutions bateau du genre "vide ton cache" ou "réinstalle ton navigateur". Ces solutions ont déjà été testées et sont inefficaces.</span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_9_f_0ab293c5_285727_100x100.png" title="Exagone313" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 octobre 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_285727 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/285727/1" tid_id="285727">Exagone313</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\331_1bb9.png" title=""/> Super chez</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Moi, sur un profil particulier de Firefox, du jour au lendemain, j'ai eu une interface de Twinoid modifiée, le logo de Twinoid en haut de la page n'est plus cliquable, et une partie du design est plus "grosse", un peu comme si c'était orienté tablette. J'ai jamais trouvé de solution (à part créer un nouveau profil)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_8_4_d7cff3d0_38_100x100.png" title="Demurgos" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 octobre 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_38 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/38/1" tid_id="38">Demurgos</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\l_emperor.png" title=""/> Hacker lÃ©gendaire</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Utiliser un nouveau profil semble avoir corrigé le soucis effectivement.<br>Je suis actuellement en train de réinstaller mes modules un à un mais ça a l'air de continuer de fonctionner.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Juegos</title>
+    <link rel="icon" type="image/gif" href="..\..\gfx\game\KadoKado.ico">
+    <link href="../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tid_boutBank {
+            height: 40px;
+        }
+        .tid_thread {
+            height: 30px;
+        }
+        .tid_threads .tid_title {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tid_threads .tid_icon, 
+        .tid_threads .tid_subject {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tid_threads th {
+            background-color: #7E4D2A;
+            color: white;
+            vertical-align: middle;
+            cursor: default;
+            position: relative;
+            height: 28px;
+        }
+        .tid_threads td {
+            padding: 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .filter-input {
+            width: 90%;
+            padding: 5px;
+            margin: 5px auto;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            background-color: #B2A36C;
+            color: #333;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            background-color: #7E4D2A;
+            padding: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const getCellValue = (row, index) => row.children.length > index ? (row.children[index].innerText || row.children[index].textContent) : '';
+            const filterTable = (input, columnIndex) => {
+                const filterValue = input.value.toLowerCase();
+                const table = input.closest('table');
+                const tbody = table.querySelector('tbody');
+                const dateSeparators = Array.from(tbody.querySelectorAll('.tid_dateSeparator'));
+                Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                    const cellValue = getCellValue(row, columnIndex).toLowerCase();
+                    row.style.display = cellValue.includes(filterValue) ? '' : 'none';
+                });
+                dateSeparators.slice(0, 2).forEach(separator => separator.style.display = '');
+            };
+            const createFilterRow = (columns) => {
+                const filterRow = document.createElement('tr');
+                columns.forEach((th, index) => {
+                    const filterCell = document.createElement('th');
+                    if (index !== 0 && index !== 6) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.classList.add('filter-input');
+                        input.placeholder = "Filtrer";
+                        input.addEventListener('input', function() { filterTable(this, index); });
+                        filterCell.appendChild(input);
+                    }
+                    filterRow.appendChild(filterCell);
+                });
+                return filterRow;
+            };
+            const thead = document.querySelector('.tid_threads thead');
+            const columns = Array.from(thead.querySelectorAll('th'));
+            const filterRow = createFilterRow(columns);
+            thead.insertBefore(filterRow, thead.firstChild);
+        });
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all">
+                <table class="tid_forumLayout">
+                    <tbody>
+                        <tr>
+                            <td id="tid_forum_left">
+                                <div class="tid_containerWrapper">
+                                    <div class="tid_forumThreads">
+                                        <div class="tid_mainBar">                                            
+                                            <div class="tid_stack tid_bg4">
+												<a class="tid_bg4" href="../../Index.html" tid_href="left:">
+													<img src="../../../gfx/design/flag_ES.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+													Inicio
+												</a>
+                                                <a class="tid_bg4" href="../Index.html" tid_href="left:">KadoKado</a>
+                                                <span class="tid_title">Juegos</span>
+                                            </div>
+                                        </div>
+                                        <div class="tid_forumDesc tid_bg2">
+                                            <span class="tid_quote tid_start">“</span>Juegos de KadoKado, trucos, consejos, récords, etc.<span class="tid_quote tid_end">”</span>
+                                        </div>
+										
+                                        <div class="tid_threadsContainer">
+                                            <table class="tid_threads tid_bg1">
+                                                <thead>
+                                                    <tr><th class="tid_index">&nbsp;</th><th class="tid_index">Temas</th><th class="tid_index">Fecha de creación</th><th class="tid_index">Autor del tema</th><th class="tid_index">Última respuesta</th><th class="tid_index">Por</th><th class="tid_index">Número de respuestas</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29495108" onclick="location.href='./29495108/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">[OF] Emotikadeando</td>
+    <td class="tid_subject tid_bg2 tid_author">02-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Omejo</td>
+    <td class="tid_subject tid_bg2 tid_author">12-12-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Omejo</td>
+    <td class="tid_subject tid_bg2 tid_author">102</td>
+</tr>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_64199684" onclick="location.href='./64199684/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Juegos con intentos infinitos</td>
+    <td class="tid_subject tid_bg2 tid_author">01-04-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">XoanoN</td>
+    <td class="tid_subject tid_bg2 tid_author">01-04-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">Distroyer</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_63627605" onclick="location.href='./63627605/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Record ridiculo F1 Champion</td>
+    <td class="tid_subject tid_bg2 tid_author">09-11-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">XoanoN</td>
+    <td class="tid_subject tid_bg2 tid_author">31-03-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">XoanoN</td>
+    <td class="tid_subject tid_bg2 tid_author">14</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_14783149" onclick="location.href='./14783149/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">¿Hasta que estrella has llegado?</td>
+    <td class="tid_subject tid_bg2 tid_author">25-07-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[2730622]</td>
+    <td class="tid_subject tid_bg2 tid_author">17-03-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">[884453]</td>
+    <td class="tid_subject tid_bg2 tid_author">23</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_64037830" onclick="location.href='./64037830/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Guia definitiva para F1 Champion</td>
+    <td class="tid_subject tid_bg2 tid_author">05-03-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">XoanoN</td>
+    <td class="tid_subject tid_bg2 tid_author">05-03-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">XoanoN</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_63871257" onclick="location.href='./63871257/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Mejorara en los Juegos</td>
+    <td class="tid_subject tid_bg2 tid_author">16-01-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">Lina</td>
+    <td class="tid_subject tid_bg2 tid_author">16-01-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">Lina</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_62957235" onclick="location.href='./62957235/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Synapses</td>
+    <td class="tid_subject tid_bg2 tid_author">09-05-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">gr4n4d4</td>
+    <td class="tid_subject tid_bg2 tid_author">09-05-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">gr4n4d4</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40721463" onclick="location.href='./40721463/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Iron Chouquette Problema</td>
+    <td class="tid_subject tid_bg2 tid_author">15-08-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">12F-uck</td>
+    <td class="tid_subject tid_bg2 tid_author">22-08-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Seba_A</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57238505" onclick="location.href='./57238505/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Juegos con mucho LAG</td>
+    <td class="tid_subject tid_bg2 tid_author">07-01-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Brit</td>
+    <td class="tid_subject tid_bg2 tid_author">26-02-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">gr4n4d4</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42553761" onclick="location.href='./42553761/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">piou-piou nivel oro/paraiso</td>
+    <td class="tid_subject tid_bg2 tid_author">19-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">SLF360</td>
+    <td class="tid_subject tid_bg2 tid_author">06-08-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Blaser02</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_50835711" onclick="location.href='./50835711/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Red Raid</td>
+    <td class="tid_subject tid_bg2 tid_author">06-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">-Godot</td>
+    <td class="tid_subject tid_bg2 tid_author">28-07-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[5189359]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_55325679" onclick="location.href='./55325679/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Más de 2 millones de puntos en safari!</td>
+    <td class="tid_subject tid_bg2 tid_author">27-07-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[2280562]</td>
+    <td class="tid_subject tid_bg2 tid_author">28-07-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[5189359]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_52698115" onclick="location.href='./52698115/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[OF] Reto Kado kado</td>
+    <td class="tid_subject tid_bg2 tid_author">09-02-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Omejo</td>
+    <td class="tid_subject tid_bg2 tid_author">18-03-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[3403567]</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_52666966" onclick="location.href='./52666966/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Kaskade 2</td>
+    <td class="tid_subject tid_bg2 tid_author">07-02-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">KingStrijder</td>
+    <td class="tid_subject tid_bg2 tid_author">07-02-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">gr4n4d4</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49799558" onclick="location.href='./49799558/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">choco mouche</td>
+    <td class="tid_subject tid_bg2 tid_author">09-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8765897]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Guarfield</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49378884" onclick="location.href='./49378884/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">bug iron shotter o simple¿mala suerte?</td>
+    <td class="tid_subject tid_bg2 tid_author">15-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[4271629]</td>
+    <td class="tid_subject tid_bg2 tid_author">18-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[4271629]</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44810855" onclick="location.href='./44810855/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">¿Foreando (1)?</td>
+    <td class="tid_subject tid_bg2 tid_author">08-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Superness</td>
+    <td class="tid_subject tid_bg2 tid_author">09-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">SiragusWolf</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41424419" onclick="location.href='./41424419/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">mis puntos kado</td>
+    <td class="tid_subject tid_bg2 tid_author">20-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Zangetsu</td>
+    <td class="tid_subject tid_bg2 tid_author">21-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">MiniEnzoo</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_32303887" onclick="location.href='./32303887/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[Ayuda] Judo Commando</td>
+    <td class="tid_subject tid_bg2 tid_author">05-11-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Porkyt-O</td>
+    <td class="tid_subject tid_bg2 tid_author">09-08-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">sifilix</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39154942" onclick="location.href='./39154942/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[Of] LCD</td>
+    <td class="tid_subject tid_bg2 tid_author">06-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">shinnock</td>
+    <td class="tid_subject tid_bg2 tid_author">06-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">shinnock</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_35874502" onclick="location.href='./35874502/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[OF] San Valextreme (Kado)</td>
+    <td class="tid_subject tid_bg2 tid_author">11-02-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">shinnock</td>
+    <td class="tid_subject tid_bg2 tid_author">15-02-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">shinnock</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30991082" onclick="location.href='./30991082/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Torneo RamdomKado (By: Alberto_Master)</td>
+    <td class="tid_subject tid_bg2 tid_author">04-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Alberto_Master</td>
+    <td class="tid_subject tid_bg2 tid_author">26-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Alberto_Master</td>
+    <td class="tid_subject tid_bg2 tid_author">54</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30508698" onclick="location.href='./30508698/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Encuentra a Pio</td>
+    <td class="tid_subject tid_bg2 tid_author">23-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Slowness</td>
+    <td class="tid_subject tid_bg2 tid_author">06-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Alberto_Master</td>
+    <td class="tid_subject tid_bg2 tid_author">53</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_22893728" onclick="location.href='./22893728/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Cristales en K-Slash</td>
+    <td class="tid_subject tid_bg2 tid_author">28-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">EnrickHammer</td>
+    <td class="tid_subject tid_bg2 tid_author">14-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Blaser02</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11121580" onclick="location.href='./11121580/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Tus mejores records.</td>
+    <td class="tid_subject tid_bg2 tid_author">27-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[951740]</td>
+    <td class="tid_subject tid_bg2 tid_author">29-05-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Roswellito</td>
+    <td class="tid_subject tid_bg2 tid_author">21</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_19451029" onclick="location.href='./19451029/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">votacion el juego mas facil</td>
+    <td class="tid_subject tid_bg2 tid_author">19-12-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[4821397]</td>
+    <td class="tid_subject tid_bg2 tid_author">06-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[5087259]</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10784308" onclick="location.href='./10784308/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Cuales son tus Juegos Kado Favoritos</td>
+    <td class="tid_subject tid_bg2 tid_author">20-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">-Gotham-</td>
+    <td class="tid_subject tid_bg2 tid_author">25-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">elcarnicerodebo</td>
+    <td class="tid_subject tid_bg2 tid_author">43</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_18502695" onclick="location.href='./18502695/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">juegos faciles</td>
+    <td class="tid_subject tid_bg2 tid_author">18-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[4821397]</td>
+    <td class="tid_subject tid_bg2 tid_author">20-12-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">JakkClutz</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_18048159" onclick="location.href='./18048159/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">interwheel y su final</td>
+    <td class="tid_subject tid_bg2 tid_author">03-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">icomel</td>
+    <td class="tid_subject tid_bg2 tid_author">01-12-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[2427899]</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_15342950" onclick="location.href='./15342950/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Un fin de semana de desafíos en KadoKado</td>
+    <td class="tid_subject tid_bg2 tid_author">10-08-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[3347963]</td>
+    <td class="tid_subject tid_bg2 tid_author">06-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Guarfield</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11842398" onclick="location.href='./11842398/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">zuny y diosdelrock</td>
+    <td class="tid_subject tid_bg2 tid_author">17-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">diosdelrock</td>
+    <td class="tid_subject tid_bg2 tid_author">07-10-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[919901]</td>
+    <td class="tid_subject tid_bg2 tid_author">21</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11841934" onclick="location.href='./11841934/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Sobre Alphabounce y su juego propio</td>
+    <td class="tid_subject tid_bg2 tid_author">17-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">ElViejoZunY</td>
+    <td class="tid_subject tid_bg2 tid_author">19-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">-Gotham-</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11464462" onclick="location.href='./11464462/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">que pasa mantenimiento en todo kadokado</td>
+    <td class="tid_subject tid_bg2 tid_author">07-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">amigos23</td>
+    <td class="tid_subject tid_bg2 tid_author">09-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">lanthony111</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

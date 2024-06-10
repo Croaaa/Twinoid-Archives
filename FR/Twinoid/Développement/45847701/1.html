@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Créer un solveur de sudoku (détente)</title>
+    <link href="../../../../gfx/game/Twinoid.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Accueil
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Twinoid</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Développement</a>
+                                            <span class="tid_title"><span class="tid_forumTag tid_minor">Demande</span>Créer un solveur de sudoku (détente)</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_2_9e255783_30806_100x100.jpg" title="superfranois" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_30806 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/30806/1" tid_id="30806">superfranois</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_goodg.gif" title=""/> ShÃ©rif lÃ©gendaire</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Salut à tous,</p><p>Ayant voulu apprendre un langage assez simple d'accès et en remarquant que certains ici en parlaient, je me suis mis à l'apprentissage du Python.<br>Je voudrais entreprendre de faire un programme qui résolu les grilles de sudoku.</p><p>Et j'ai quelque peu des problèmes et j'aurais besoin d'aide (pour l'instant ^^) en algorithmique !</p><p>On sait que le sudoku est un jeu dont la grille est de 9x9 constituée de grilles de 3x3<br>Chaque carré, ligne et colline ne doivent contenir qu'un seul chiffre allant de 1 à 9.</p><p>Je me questionne sur comment développer l'algorithme (détaillé si possible <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico">) d'un tel jeu.<br>Je ne sais pas si il faut utiliser des boucles while et ce qu'il faut mettre dans chacune d'elles et vous comprenez que sans une idée d'algorithmes je n'arriverai pas à le coder d'une façon simple et pragmatique ^^</p><p>Merci par avance de toute l'aide que vous pourrez m'apporter et étoffer un peu plus mes connaissances !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Réaliser un solveur de sudoku n'est vraiment pas la chose par laquelle je commencerais si tu en es à "ne pas savoir s'il faut utiliser des boucles while et quoi mettre dedans".</p><p>C'est de la recherche opérationnelle. C'est le top de l'algorithmique. Et en plus c'est un cas compliqué, car les approches classiques (Branch &amp; Bound, etc) ne suffisent pas : elles marcheraient, mais demandent des années de calcul.<br>Et l'approche plus bricolage (faire faire à la machine ce qu'on fait à la main) ne marchera pas pour les plus durs, où il faut un peu de backtracking; <br>Donc il faut combiner deux stratégies.</p><p>Bref, c'est pas facile du tout.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_2_9e255783_30806_100x100.jpg" title="superfranois" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_30806 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/30806/1" tid_id="30806">superfranois</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_goodg.gif" title=""/> ShÃ©rif lÃ©gendaire</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>J'imagine bien que ce n'est pas la chose la plus facile qui soit ^^<br>Pourtant ce projet me plait bien et m'apporterai une immense satisfaction dans mon apprentissage hihi ^^</p><p>Tu n'aurais pas un truc, genre une ébauche de raisonnement qui me permettrait d'avancer pas à pas ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Pas à pas, ça veut dire commencer par autre chose.</p><p>Si je te faisais faire étape par étape un solveur de sudoku, à la fin, tu en aurais un, tu croirais même peut-être avoir compris comment on est arrivé là, mais ça ne serait pas le cas, et tu serais incapable de faire un solveur de mot croisés ou de tour de Hanoï, pourtant plus simple.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_7_eed0ccbd_115255.jpg" title="TheFireNight" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_115255 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/115255/1" tid_id="115255">TheFireNight</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\eden1.png" title=""/> J'ai trouvÃ© la rÃ©ponse Ã  la grande question de la Vie, l'Univers et le reste !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>C'est très simple à faire, à condition de connaitre la récursivité.</p><p>Je t'invite à te renseigner sur ce qu'est le backtracking pour commencer ; ensuite il te suffira de repenser aux règles du sudoku :<br>- il faut pour remplir une case avec un nombre que la colonne ne contienne pas ce nombre ;<br>- il faut pour remplir une case avec un nombre que la ligne ne contienne pas ce nombre ;<br>- il faut pour remplir une case avec un nombre que la zone ne contienne pas ce nombre (c'est la condition la plus compliquée)</p><p>Si tu as besoin d'un peu plus d'aide, n'hésite pas à demander <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>C'est très simple à faire, à condition de connaitre la récursivité.<br></cite>Ce qui ne risque pas d'être le cas de quelqu'un qui dit "je suppose qu'il y aura des while, mais je ne sais pas quoi mettre dedans".</p><p>Et non, ce n'est pas si simple. C'est très simple de faire un solveur qui marche quasiment avec tous les sudoku de magazines (et nul besoin de backtracking et de récursivité pour ça d'ailleurs).</p><p>C'est moins simple d'en faire un, comme à l'école, qui marche pour tous les sudokus, mais peut avoir besoin des siècles pour converger (et là, il n'y a que du backtracking et de la récursivité^^)</p><p>Mais pour faire vrai solveur, il faut combiner les deux. Et, bien entendu, pour qui a l'habitude c'est simple. Mais pour quelqu'un qui veut apprendre l'algorithmique, non, c'est suicidaire. C'est des choses qu'on ne fait même pas dans toutes les écoles d'info, et quand on le fait, c'est pas en 1re année (foi de prof, dois-je le rappeler^^)</p><p>C'est un mauvais service à rendre à quelqu'un que de l'encourager dans cette impasse, qui, au mieux (s'il arrive, aux forceps, à programmer son solveur, lui aura appris des tas de mauvaises construction mentales, qu'il faudra ensuite défaire)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_7_eed0ccbd_115255.jpg" title="TheFireNight" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_115255 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/115255/1" tid_id="115255">TheFireNight</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\eden1.png" title=""/> J'ai trouvÃ© la rÃ©ponse Ã  la grande question de la Vie, l'Univers et le reste !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_36044 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="36044">ayalti</span></span><cite>Ce qui ne risque pas d'être le cas de quelqu'un qui dit "je suppose qu'il y aura des while, mais je ne sais pas quoi mettre dedans".</cite><p>C'est tout l'intérêt de la chose, la récursivité est l'un des concepts les plus difficiles à assimiler pour un débutant. Cependant, une personne motivée devrait pouvoir y arriver sans problème avec un peu de reflexion et un peu d'aide.</p><br><span class="tid_preCite"><span class="tid_user tid_user_36044 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="36044">ayalti</span></span><cite><p>Et non, ce n'est pas si simple. C'est très simple de faire un solveur qui marche quasiment avec tous les sudoku de magazines (et nul besoin de backtracking et de récursivité pour ça d'ailleurs).</p><p>C'est moins simple d'en faire un, comme à l'école, qui marche pour tous les sudokus, mais peut avoir besoin des siècles pour converger (et là, il n'y a que du backtracking et de la récursivité^^)</p></cite><p>Je ne comprend pas ce que tu entends par <em>"peut avoir besoin des siècles pour converger"</em>. Le siècle dont tu parles est un concept informatique ?</p><p>Quoi qu'il en soit, je ne pense pas qu'il soit vraiment difficile de faire du backtracking (partant toujours du principe que la recursivité est un concept acquis)</p><br><span class="tid_preCite"><span class="tid_user tid_user_36044 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="36044">ayalti</span></span><cite>Mais pour faire vrai solveur, il faut combiner les deux. Et, bien entendu, pour qui a l'habitude c'est simple. Mais pour quelqu'un qui veut apprendre l'algorithmique, non, c'est suicidaire. C'est des choses qu'on ne fait même pas dans toutes les écoles d'info, et quand on le fait, c'est pas en 1re année (foi de prof, dois-je le rappeler^^)</cite><p>Je ne te connais pas, je ne sais pas ce que tu enseignes, ni où tu l'enseignes. Loin de moi également l'idée de critiquer ta pédagogie. Cependant, je ne partage pas cette idée de dire "c'est difficile, donc faut pas qu'il essaye". A mon avis, si c'est un projet qui lui tient à coeur, il y a toutes les raisons du monde d'essayer. Peut-être va-t-il réussir, peut-être va-t-il échouer... S'il échoue, il aura la possibilité de réessayer après avoir demandé de l'aide, ou réessayer plus tard, après avoir pris un peu de barbe... Mais même en cas d'échec, il n'aura rien perdu, il aura acquis des compétences utiles (récursivité, python) qui pourront lui servir pour d'autres projets.</p><p>Quant-à dire qu'on ne le fait pas en première année (foi de prof <img src="../../../../gfx/square/anim.png/sifflote.gif" alt=":-&quot;" class="tid_ico">), je ne suis pas d'accord avec toi, c'est un sujet qui m'a été donné en début de second semestre dans mon école (si tu veux plus d'informations sur ma formation, je suis ouvert pour en discuter, mais en privé pour ne pas lancer le débat ici)</p><br><span class="tid_preCite"><span class="tid_user tid_user_36044 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="36044">ayalti</span></span><cite>C'est un mauvais service à rendre à quelqu'un que de l'encourager dans cette impasse, qui, au mieux (s'il arrive, aux forceps, à programmer son solveur, lui aura appris des tas de mauvaises construction mentales, qu'il faudra ensuite défaire)</cite><p>Je ne suis pas non plus d'accord sur ce point, pour les raisons déjà évoquées plus haut. Au contraire, selon moi, le fait de dire à quelqu'un qui débute en programmation "nan, ça c'est trop dure pour toi, retourne faire un truc à ton niveau" revient un peu à dire "nan, casse toi l'avorton, c'est un truc d'homme la programmation". En procédant ainsi, on risque fort de décourager les débutants qui risquent de penser finalement que la programmation est un domaine réservé à l'élite.</p><p>Je terminerais mon message en citant Sénèque qui résume selon moi assez bien mon idée :<br><cite>Ce n'est pas parce que c'est difficile que nous n'osons pas, c'est parce que nous n'osons pas que c'est difficile.</cite></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Ca n'a rien à voir avec la difficulté. Là, tu interprètes très mal la chose. Au contraire, je fais partie de ceux qui pensent que rien n'est trop dur pour personne. Et je ne fais pas que penser, j'ai déjà eu l'occasion de le prouver.</p><p>Mais justement, pour ça, il faut tout le temps essayer de penser à la construction mentale de la réalité que les gens vont se faire. Et attaquer direct un sujet comme ça, c'est prendre le risque que les gens se fassent une construction erronée de ce qu'est le backtracking ou la récursivité, dont ils auront le plus de mal à se défaire.</p><p>On n'enseigne pas le backtracking et la récursivité le même jour par exemple. C'est un coup à tout mélanger. On n'enseigne pas le backtracking tant que la récursivité n'est pas parfaitement maîtrisée, comprise, et pas à travers des modèles mentaux défectueux.</p><p>Or, faire faire un solveur de sudoku à un type qui ne connait ni récursivité, ni backtracking, c'est bien enseigner les 2 à la fois.</p><br><p>Ca semble bateau et répétitif aux élèves, mais la récursivité s'enseigne avec des exemples qui ne font intervenir que la récursivité (le grand classique "factorielle" ; ou un tri fusion-partition quand on a déjà bouffé tous les algos de tris). Sans vouloir avoir l'air de sortir les arguments d'autorité, une chose est de maîtriser parfaitement l'informatique, une autre est de savoir dans quel ordre l'enseigner. La pédagogie (même si peu de prof s'embêtent avec ça, c'est vrai), c'est pas juste expliquer ; c'est essayer de construire ce qu'il va y avoir dans le cerveau de l'élève. Pas à pas.</p><p>Pas de "c'est trop dur pour toi" là dedans.</p><p>Juste du bête : si tu veux faire un solveur de sudoko, super, bonne idée, je suis prêt à t'aider. Pour ça, il faut commencer par calculer factorielle N. Ensuite on fera des tas d'algos de tri. Ensuite on fera du branch&amp;bound avec la tour de hanoi ou autre. Et ensuite, seulement, on fera un solveur de sudoku.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_7_eed0ccbd_115255.jpg" title="TheFireNight" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_115255 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/115255/1" tid_id="115255">TheFireNight</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\eden1.png" title=""/> J'ai trouvÃ© la rÃ©ponse Ã  la grande question de la Vie, l'Univers et le reste !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Encore une fois, je ne partage pas ton avis. Toi tu es dans une optique d'apprendre le backtracking et la récursivité, tu vois ça directement comme des connaissances à acquérir ; moi je vois plutôt ça comme des outils à utiliser.</p><p>Je comprend tout à fait que tu veuilles que tes élèves apprennent les notions, et je pense que j'aurais la même démarche face à un étudiant ; mais dans le cas présent, ce n'est pas un étudiant qui est en face de nous, mais une personne qui a pour objectif de réaliser un projet.</p><p>Imagine le cas suivant, ce n'est pas un programme qu'il veut réaliser, mais un meuble. Tu ne vas pas lui dire "apprend à utiliser une scie dans un premier temps, puis apprend à te servir d'un marteau dans un second temps. Tu verras ensuite pour construire un meuble." . A mon avis, il est plus intéressant de se lancer et d'utiliser les outils que tu as a disposition. Peut être que tu n'utilises pas correctement le marteau, mais tu plantes ton clou avec, tu ne cherchais pas à faire plus... Et si à la fin ton meuble est raté, ben c'est pas très grave, tu recommence et tu auras sans doute un meilleur résultat. L'utilisation du marteau viendra par elle même.</p><p>Ici, peut être qu'il n'utiliseras pas la récursivité ou le backtracking correctement, mais si le résultat est là, il aura quand même acquis une partie des compétences associées. La différence fondamentale selon moi, c'est que dans ton cas il se sera ennuyé à essayer d'apprendre les notions sans but, et risque de conclure qu'en fait la programmation c'est chiant, dans mon cas il va pouvoir se lancer directement et avoir tout de suite la joie du travail fait.</p><p>Il va sans nul doute collectionner les stack overflows et les boucles infinies, mais à la fin il aura son solveur, juste son solveur.</p><p>Quant au fait de dire que le fait d'apprendre les deux à la fois sera néfaste pour lui, je ne suis pas non plus d'accord avec toi, et je te citerais l'exemple de mon binôme pour le solveur de sudoku que j'ai fait en première année. Lorsque nous avons commencé le projet, il n'avait pas compris le concept, j'ai du le lui expliquer pour qu'il comprenne bien. Deux ans plus tard, non seulement il maîtrise les deux concepts, mais il enseigne en plus.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour,</p><p>Indépendamment du langage, faire un solveur de Sudoku nécessite de connaître les règles de résolution d'un Sudoku. Car les grilles se résolvent en utilisant des techniques, jamais en faisant des suppositions au hasard.</p><p>Je comprends que le but est d'apprendre à coder et pas de faire un solveur propre et optimisé, mais pour apprendre le Python il y a sûrement des projets plus simples.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_10">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_f_7d881ccb_19935.jpg" title="Sirios" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_19935 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/19935/1" tid_id="19935">Sirios</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jtech.gif" title=""/> Bricoleur du dimanche</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonsoir,</p><p>il y a un tuto sur openclassrooms.com pour réaliser un solveur de sudoku si jamais. Ce n'est pas en python mais au final tous les langages se ressemble.</p><p>Je ne me souviens plus si on est autorisé à mettre des liens sur le forum du coup je te laisse chercher <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico">. Ca s'appel "Le backtracking par l'exemple : résoudre un sudoku".</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_11">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>On est autorisé à mettre des liens sur le forum (sinon, il n'y aurait pas de bouton "liens" ; ce serait pervers quand même de prévoir un bouton qu'il est interdit d'utiliser^^).</p><p>On n'est pas autorisé à faire de la pub. Et on n'est pas autorisé à mettre des liens vers des sites qui contreviennent aux règles du forum ou aux CGU (piratage, pornographie, racisme, etc).</p><p>Mais un lien vers un tuto openclassrooms.com ne rentre probablement dans aucune de ces catégories (d'ailleurs, si mettre un lien était interdit, donner l'URL le serait aussi^^)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_12">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Du coup, voila <a target="_blank" href="http://openclassrooms.com/courses/le-backtracking-par-l-exemple-resoudre-un-sudoku">le tuto en question</a>.</p><p><span class="tid_preCite">Openclassroom</span><cite>Considérons le problème : il nous faut énumérer tous les chiffres possibles, puis tester chaque solution éventuelle pour vérifier si elle nous amène à une solution correcte, ou bien à un blocage.</cite> Normalement une grille de Sudoku ne s'attaque pas par force brute, le tuto n'applique pas les règles de résolution. C'est intéressant techniquement, mais un bon programme c'est un programme qui évite au maximum la force brute et les boucles à tout-va. Autant prendre les bonnes habitudes dès le début... A mon avis le Sudoku n'est pas idéal pour apprendre. Mais puisque le tuto est clair, je suppose que <span class="tid_user tid_user_30806 tid_userBg tid_userFriend tid_parsed" tid_bg="1" tid_id="30806">superfranois</span> a sa réponse. <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_13">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_b_dc168593_2276925_100x100.jpg" title="Bulll$2276925" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2276925 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2276925/1" tid_id="2276925">Bulll$2276925</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Hacker d'Ã©lite</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Ici y a pas besoin de ce programme, mon paternel en fait quelques uns chaque jour et il n'est pas deborde</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_14">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 mai 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_2276925 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="2276925">Bulll</span></span><cite>Ici y a pas besoin de ce programme, mon paternel en fait quelques uns chaque jour et il n'est pas deborde</cite><p>A moins qu'il ne sache déjà programmer, il en a besoin.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_15">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_3_df546e81_1050061_100x100.jpg" title="ErreurInvali$1050061" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 30 juin 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1050061 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1050061/1" tid_id="1050061">ErreurInvali$1050061</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_winthi.gif" title=""/> Compagnon de la communautÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>À moins de passer pour un idiot fini, la récursivité me semble simple. Appeller une fonction dans sa définition <em>(oui bon c'est mal dit <img src="../../../../gfx/square/calim.png" alt=":calim:" class="tid_ico">)</em>, c'est pas dur à comprendre, si ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_16">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 30 juin 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Si.</p><p>La pédagogie est un métier vous savez. Et <em>"à moins de passer pour un idiot fini, ça me semble simple"</em> ne fait sûrement pas partie des raisonnements de ce métier.</p><p>Dans aucun métier, d'ailleurs, nier le problème n'est une solution. C'est juste qu'en la matière c'est plus tentant parce qu'on a envie de se la pêter genre "moi en tous cas je trouve ça facile"</p><p>C'est un fait, indéniable, que pourraient confirmer tous les profs du monde l'ayant enseigné : les élèves, même ceux qui n'ont pas de mal à comprendre des tas de choses plus compliquées, ont du mal à comprendre la récursivité. Et l'enseigner est un exercice délicat et subtil. Il ne faut surtout pa partir bille en tête "c'est simple, suffit de faire ça", parce que là, c'est foutu : les rares qui vont croire avoir compris vont au contraire se faire un modèle erroné, et ça va être encore pire pour eux.<br>Il y a plusieurs stratégies pour enseigner la récursivité. L'approche "mathématique" (qui va avec une programmation fonctionnelle pure : <em>fact(n) vaut 1 si n vaut 0, et n*fact(n-1) sinon</em>). Ou l'approche "assembleur" : on empile et on fait des goto (ou presque) et on montre qu'au final l'approche récursive ne fait rien d'autre (ce qui permet d'enchaîner sur la recursion terminale d'ailleurs)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_17">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_2_9e255783_30806_100x100.jpg" title="superfranois" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 30 juin 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_30806 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/30806/1" tid_id="30806">superfranois</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_goodg.gif" title=""/> ShÃ©rif lÃ©gendaire</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Ah au fait j'ai bien réussi à faire mon solveur, je le mettrai sous peu si vous voulez ! <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_18">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_7_eed0ccbd_115255.jpg" title="TheFireNight" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 30 juin 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_115255 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/115255/1" tid_id="115255">TheFireNight</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\eden1.png" title=""/> J'ai trouvÃ© la rÃ©ponse Ã  la grande question de la Vie, l'Univers et le reste !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1050061 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1050061">Django</span></span><cite>À moins de passer pour un idiot fini, la récursivité me semble simple. Appeller une fonction dans sa définition <em>(oui bon c'est mal dit <img src="../../../../gfx/square/calim.png" alt=":calim:" class="tid_ico">)</em>, c'est pas dur à comprendre, si ?</cite><p>Non, c'est très simple à comprendre dans la théorie (à priori) ; la difficulté vient de l'application puisqu'il faut anticiper l'état de ta stack à chaque boucle.</p><p>Pour des fonctions simples (facto) c'est simple (pour peu de tout faire dans l'ordre et d'adopter le concept fonctionnellement) ; pour des fonctions plus complexes, ça peut devenir très compliqué (au hasard, des fonctions avec plusieurs arguments et plusieurs appels internes différents)...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_19">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Farijo" style="background-color: rgb(82,118,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 30 juin 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_19662 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/19662/1" tid_id="19662">Farijo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jtamer.gif" title=""/> Terroriste dans into the sky</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>ou des graph <img src="../../../../gfx/forum/smiley/h_calim.gif" alt=":hordes_calim:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_20">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="mrnaia" style="background-color: rgb(92,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_657115 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/657115/1" tid_id="657115">mrnaia</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_36044 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="36044">ayalti</span></span><cite>Mais pour quelqu'un qui veut apprendre l'algorithmique, non, c'est suicidaire. C'est des choses qu'on ne fait même pas dans toutes les écoles d'info, et quand on le fait, c'est pas en 1re année (foi de prof, dois-je le rappeler^^)</cite><p><a target="_blank" href="http://alain.gaudino.pagesperso-orange.fr/python2013/dmds/dm4.pdf">Un DM de fin de 1è année avec moins de 2h d'info par semaine en PCSI donc première année où on apprend le Python pour les élèves</a></p><p>Comme on te l'a dit, je pense qu'il faut d'abord que tu apprennes mieux comment se passent les boucles...<br>Ensuite lis un peu l'énoncé de l'exo 2 de mon lien, ça t'aidera peut être à comprendre la difficulté sans te donner l'algorithme</p><p>Personnellement j'avais fait cet exo mais mon solveur ne résolvais que les grilles 'faciles', après j'ai laissé tomber par flemme, et d'autres matières à bosser</p><p>Edit : apparemment j'ai pas été assez rapide, je n'avais pas tout lu <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_21">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Sans parler du fait que même l'exo 2 n'est pas un solveur de sudoku. C'est une méthode très très très naïve qui est proposée là. A la portée de 1re année, certes. Mais très naïve.</p><p>Il est facile de construire des grilles qui mettront en échec ce "solveur".</p><br><p>Ce que ce solveur, fait, en gros, c'est</p><ul><li>Utiliser la méthode "glouton" si c'est possible (remplir toutes les cases qui n'ont qu'une seule possibilité ; placer tous les chiffres qui n'ont qu'une seule position dans une ligne, une colonne, un bloc ; et espérer que chaque fois qu'on remplit une case on crée un case de plus avec une seule possibilité, ou un chiffre de plus avec une seule place possible dans une ligne/colonne/bloc).</li><li>Utiliser la méthode "force brute" quand on est coincé. Méthode qui, de l'aveu même de l'auteur du sujet n'a tout simplement aucun espoir d'aboutir (pas avant que l'explosion du Soleil n'engloutisse l'ordinateur, en tous cas). Seulement il part du postulat que, quand la méthode glouton sera arrivé au bout de ses possibilités, alors la méthode "force brute" sera déjà plus viable. Ce qui est totalement faux. Même là, la méthode "force brute" mettra des siècles à converger.</li></ul><p>Du coup, on n'aborde dans cet exo pas le moins du monde la "résolution de problème". Les méthodes Branch&amp;Bound par exemple, que je citais pourtant déjà comme insuffisantes seules, ne sont même pas abordées (or il y a plusieurs fois l'âge de l'univers en temps de calcul entre Branch&amp;Bound et la méthode proposée dans l'exo).</p><p>Pour reprendre le débat "mais si c'est facile je l'ai fait" :</p><p>Vous pouvez tous à la queue-leu-leu venir me prouver que "moi en tous cas, j'ai pas eu de mal", ou "non, c'est pas compliqué", ça ne sert à rien.<br>C'est mon métier (un de mes métiers ; la flemme de tout redétailler pour ceux qui cherchent des contradictions dans mes arguments d'autorité) d'enseigner exactement ça (pas seulement l'informatique, mais, depuis pas mal de temps, ça précisément). <br>OK, c'est impressionnant de savoir que vous l'avez fait, mais ça ne me fait pas changer d'avis. Moi aussi j'ai commencé tôt ; j'ai appris à programmer à 7 ans (à une époque où il n'y avait rien d'autre à faire avec un ordinateur ; c'est donc, paradoxalement, moins épatant que ça ne le serait aujourd'hui où l'ordinateur est un produit courant), vendu mes premiers logiciels à 14. Et fait des solveurs de sudoku, de mots croisés et de tas de machin bien avant l'école d'ingé. <br>Seulement voilà : du coup il a fallu ensuite que je désapprenne plein de trucs d'autodidacte pour passer à l'étape d'après, et raisonner comme il faut pour ce genre de problème.</p><p>Je sais que c'est possible. Je sais que des tas d'entre vous savent le faire les doigts dans le nez.<br>Mais c'est pas une bonne idée de commencer par ça, c'est tout.</p><br><p>On n'apprend pas la récursivité et le backtracking le même jour. On ne les traite pas comme de simples outils. Et, fort heureusement, l'exercice en question ne fait ni l'un ni l'autre (rien à redire pédagogiquement). Et du coup ne propose pas un solveur de sudoku.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_22">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_a_5535c286_8507409_100x100.gif" title="Kaeso" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8507409 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8507409/1" tid_id="8507409">Kaeso</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_doutsd.gif" title=""/> Alone in the Dark</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Juste par curiosité, y'avais quels types de langages quand tu avais 7 ans ( en supposant que tu as entre 20 et 30 ans, c'était moins avancer que maintenant ) ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_23">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>J'ai pas entre 20 et 30 ans (plus).</p><p>Et comme beaucoup j'ai appris</p><ul><li>en commençant par BASIC, qui existe encore ; il y a même un très bon interprète sous Android, qui a l'avantage de savoir utiliser toutes les fonctionnalités du téléphone, gps, accéléromètre, etc. Sans parler du Visual Basic</li><li>un peu de Logo. Qui existe encore, mais étonnement pas tellement pour l'apprentissage, puisque c'est devenu un langage presque sérieux, utilisé dans certains domaines très précis ; en finance par exemple</li><li>du Pascal quand c'est devenu plus sérieux. Lui n'existe, à ma connaissance, que pour des nostalgiques et des gens qui ont des vieux codes à maintenir, combiné à un peu d'assembleur (qui existe et existera toujours, je suppose, même si il n'y a plus guère que les fabricants de compilateurs qui le programment eux-mêmes)</li></ul><p>Mais ta remarque semble croire à un mythe de l'informatique où tout change en questions années.</p><p>Si j'avais eu entre 20 et 30 ans, ça veut dire qu'on parlerait là d'une période située entre il y a 13 et 23 ans. Ie entre 1992 (si j'avais 30 ans) et 2002 (si j'avais 20 ans).</p><p>Entre 1992/2002 et maintenant, il n'y a pas eu tellement de changements. Oh, il y en a eu plein, bien sûr. Mais pas de changements des fondamentaux, comme tu semble le croire.<br>En 1992 j'utilisais internet. Le langage le plus utilisé était le C, qui l'était toujours la dernière fois que j'ai regardé un classement (il venait de reprendre la 1re place à Java).<br>Javascript ou Java sont nés et sont devenus universellement connus pendant cette période. C++ était en train de piquer la 1re place de C. <br>Cobol, Algol, FORTRAN n'étaient que des anciens langages fossiles que plus personne n'apprenait, sauf si on avait à travailler sur de vieux codes bancaires.</p><p>Bref : la situation était presque exactement la même que maintenant.</p><p>La norme C que, de nos jours, on utilise quand on veut faire du C plus "moderne", s'appelle C99. 99 comme 1999.</p><p>Les choses n'évoluent pas aussi vite que tu crois. <br>Quand j'ai commencé, plus tôt encore que tu ne le supposes (et je ne donnerai pas la date, non pas par coquetterie, mais parce que je ne tiens pas à livrer trop de détails perso), les piles, les variables, les boucles while/for, les continuations, les fonctions récursives, le backtracking, toutes les structures de données, etc, etc, tout ça étaient des choses courantes et banales depuis des décennies. <br>Même la programmation objet avait déjà "des décennies" ou peu s'en faut, même si ce n'était pas encore un concept banal.</p><br><p>Le matériel change très vite (encore que ça s'est calmé depuis 10 bonnes années). Les usages du coup aussi : quand les machines vont 1000 fois plus vite qu'avant, ça ouvre la porte à des usages qui n'étaient même pas envisagés. Ca plus les tablettes, l'internet illimité, permanent, et "haut débit"... ça fait des clouds et autres.</p><p>Mais les langages et les concepts, non. Pour ça il faudrait autre chose que des machines plus rapides, plus petites ou je ne sais quoi : du point de vue du programmeur, ça ne change rien.<br>Le multi-coeur aurait pu induire d'autres concepts. Il ne l'a pas encore fait. On n'a pas vraiment trouvé de langages et de conceptes de programmation qui intègrent le multicoeur (il y a les thread et tout, bien sûr ; mais ça se programme comme du matériel normal, avec une API. Je caricature un peu ; mais en tous cas, les tentatives de faire des langages avec des "/<strong></strong>/" et autres "for/<strong></strong>/" pour l'exécution parallèle ont fait long feu. L'ordinateur quantique, si on le voit un jour, induira aussi probablement de nouvelles façons de penser.<br>Mais en dehors de ça, tant qu'on a juste des machines plus rapides, avec plus de RAM, plus de résolution graphique etc, il n'y a rien qui oblige à changer de façon de penser.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_24">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_a_5535c286_8507409_100x100.gif" title="Kaeso" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8507409 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8507409/1" tid_id="8507409">Kaeso</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_doutsd.gif" title=""/> Alone in the Dark</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Merci de ta réponse, ça m'a appris des trucs ( par exemple je pensais qu'entre 95 et 2015 il y avait eu pleins de changements. ). ^^</p><p>Si j'ai bien compris le seul changement c'est que certains langages ne sont plus autant utilisés ?</p><p>En tout cas c'est cool de lire tes pavés o/.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_25">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Entre 1995 et 2015 ?</p><p>En fait c'est même une période de 20 ans dans laquelle il y a eu exceptionnellement peu de changements en terme de langages. Ce qui ne veut pas dire qu'elle est mauvaise. Au contraire. C'est une bonne chose. Si on passe son temps à changer de langage, ça freine le reste du progrès.</p><br><p>Le top5 de 1995 devait être, à la louche et dans le désordre : C, C++, Java, Ada, et, comme il en faut 5, un langage un peu spécifique du genre Scheme, Lisp, Prolog, etc (langages qui n'ont jamais été des langages de programmation industriels, n'ont jamais essayé de dépasser leur niche, et ont toujours leur niche ; ils sont toujours enseignés, et toujours aussi peu utilisés sorti de l'école ou du labo)</p><p>Le top5 de 2015 doit être, à la louche et dans le désordre : C, C++, Java, C#, JS</p><p>Alors qu'entre 1955 et 1975 ou entre 1975 et 1995, le top5 a été totalement renversé (APL, B, Simula, Algol, Cobol, Fortran, PL/1, Lisp, et même Pascal ont été dans ce top, mais ne sont plus enseignés ou presque)</p><br><p>Entre 1995 et 2015, j'ajoute JS, qui était déjà utilisé en 1995 (il l'a été immédiatement à sa sortie ; c'est un langage internet, ça se propage bien plus vite). Mais qui en 1995 n'était qu'un truc pour faire un &lt;blink&gt; ici, ou convertir des francs en euro là (en ECU plutôt), alors qu'en 2015 c'est devenu un langage qui sert à développer de véritables applis.</p><p>Mais à part l'arrivée de C# (qui est très bien, mais n'est pas un changement de paradigme ; c'est juste le pendant commercial de Java), le départ de Ada (qui n'a rien de périmé, juste il n'a pas pris commercialement), assez peu de changement. Oh, il y a eu des tas de nouveaux langages (Python, Lua, Go, datent de cette période. Php, si on appelle ça un langage, mais tout le monde sait bien que c'est surtout l'API qui l'a fait perdurer plus que le langage, qui n'invente rien). Ca, il y en aura toujours. Mais fondamentalement, l'art de la programmation n'a pas changé, en témoigne le top5.</p><p>Dans tout ce que je raconte, le changement le plus radical de paradigme de programmation, c'est peut être JS. Qui a repris tous les concepts de Scheme donc n'a rien inventé vraiment. Sauf que Scheme était un langage pour quelques chercheurs, alors que JS est pour le tout venant. Ce qui fait que les concepts de lambda, de continuations, de pile arborescente qui existent depuis des décennies mais seulement pour une "élite" concernent maintenant tous les programmeurs.<br>Et encore, quand on discute avec ceux qui découvrent ça maintenant, on se rend compte qu'ils intègrent ça comme juste une ou deux petites particularités du langage, sans plus.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_26">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>Le matériel change très vite (encore que ça s'est calmé depuis 10 bonnes années). Les usages du coup aussi : quand les machines vont 1000 fois plus vite qu'avant, ça ouvre la porte à des usages qui n'étaient même pas envisagés. Ca plus les tablettes, l'internet illimité, permanent, et "haut débit"... ça fait des clouds et autres.<br><br>Mais les langages et les concepts, non. Pour ça il faudrait autre chose que des machines plus rapides, plus petites ou je ne sais quoi : du point de vue du programmeur, ça ne change rien.</cite> Ça a quand même sans doute changé un truc : plus le matériel est puissant et moins on se soucie de coder proprement.</p><p>Quand internet était en bas débit, les webmasters devaient compter le poids de leurs pages pour que ça ne mette pas 2 minutes à charger (et fasse fuir le visiteur). Aujourd'hui on peut mettre une photo d'1 Mo en miniature sans que ça se voie. Pareil pour la programmation : je n'ai pas connu cette époque mais je suppose qu'on était beaucoup plus soucieux des performances du temps où les machines avaient la puissance d'une calculatrice.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_27">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_7_eed0ccbd_115255.jpg" title="TheFireNight" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_115255 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/115255/1" tid_id="115255">TheFireNight</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\eden1.png" title=""/> J'ai trouvÃ© la rÃ©ponse Ã  la grande question de la Vie, l'Univers et le reste !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_430289 tid_userBg tid_userFriend tid_parsed" tid_bg="1" tid_id="430289">Nadawoo</span></span><cite><p>Ça a quand même sans doute changé un truc : plus le matériel est puissant et moins on se soucie de coder proprement.</p><p>Quand internet était en bas débit, les webmasters devaient compter le poids de leurs pages pour que ça ne mette pas 2 minutes à charger (et fasse fuir le visiteur). Aujourd'hui on peut mettre une photo d'1 Mo en miniature sans que ça se voie. Pareil pour la programmation : je n'ai pas connu cette époque mais je suppose qu'on était beaucoup plus soucieux des performances du temps où les machines avaient la puissance d'une calculatrice.</p></cite><p>Aujourd'hui, on préfère un code "lisible" plutôt que rapide... Mon patron actuel m'impose l'utilisation de jQuery même lorsque ce n'est pas utile parce qu'il trouve ça "plus joli"...</p><p>Autant je peux comprendre l'intérê pour des sites avancés, autant pour faire du simple dom, je pense que le JS natif fonctionne très bien tout seul sans nécéssiter un tank...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_28">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_2_a56ab0d6_94991_100x100.png" title="Meiteisho" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_94991 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/94991/1" tid_id="94991">Meiteisho</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Porteur du Souvenir</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><span class="tid_user tid_user_6685877 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="6685877">firenight</span> après le code plus lisible, ça se justifie si tu sais que tu va avoir de la maintenance dessus.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_29">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>La lourdeur des librairies c'est autre chose, je parlais plutôt de la vraie propreté du code. Par exemple, pour savoir en PHP si une clé existe dans un array, on voit souvent faire une boucle :</p><pre>foreach my_array as $key =&gt; $val
+ if ($key == 'cle_cherchee')
+ ...</pre><p>(Et en prime, même pas de break pour arrêter la boucle dès que la clé est trouvée).</p><p>Alors qu'il existe une fonction in_array() spécialement prévue pour ça et plus légère. Mais sur une machine puissante, le code moche ne fera pas de différence visible, alors on ne cherchera même pas à l'optimiser.</p><p>C'est quand même encore le cas sur les hébergements web, où les ressources sont limitées. On voit souvent des webmasters demander sur les forums pourquoi ils se prennent un timeout quand ils mettent une requête SQL dans une boucle de 150 éléments...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_30">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_b_e5b6d0f9_26974_100x100.jpg" title="Gyncoca" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_26974 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/26974/1" tid_id="26974">Gyncoca</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\allfschmoll.png" title=""/> Ancien lÃ©gendaire</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_36044 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="36044">ayalti</span></span><cite><p>Le top5 de 1995 devait être, à la louche et dans le désordre : C, C++, Java, Ada</p></cite><p>Ada ? Vraiment ? A part la défense américaine, j'ai jamais vu personne l'utiliser réellement. Même trouvé des biblios c'est la croix et la bannière.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_31">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Et la défense française, pour ce que ça compte. Et certainement de tas d'autres pays.</p><p>La défense était, et est toujours d'ailleurs, un donneur d'ordre très important en informatique.</p><p>On ajoute à ça à peu près tous les domaines où les gens tiennent à une certaine sûreté, à des preuves statiques, etc. L'aéronautique, par exemple, l'utilisait beaucoup. Le spatial. Etc. Pendant longtemps tout ce qui était système embarqué (avant que les systèmes embarqués deviennent, pour la plupart, tellement puissants qu'ils se mettent à héberger des usines à gaz aussi grosses que les ordinateurs de bureau)</p><p>Mais même s'il n'y avait eu que la défense américaine ça aurait suffit à le faire entrer dans le top5, de toutes façons.</p><br><p>A l'heure actuelle, ADA n'est évidemment plus ce qu'il était. C'est dans mon top5 de 1995 que je l'ai mis hein ; je n'ai pas osé le mettre dans celui de 2015 ; si on inclus le dev web, qui a pris une place démesurée, et les langages sont des langages de programmation génétiques tout en ne l'étant en pratique pas, il est évident que même Perl doit dépasser Ada. Encore que je me trompe peut-être ; la défense est un milieu pas aussi visible quand on n'y est pas, ce qui fait que Ada est peut-être encore dans le top5.</p><p>Mais quoi qu'il en soit, même actuellement, Ada est toujours le langage utilisé pour les systèmes des contrôleurs aériens de plein de pays (dont la France et les Etats-Unis) ; c'est le langage du code embarqué sur Ariane (soit dit en passant, s'il avait été utilisé correctement, sans désactiver la protection des varaibles, le crash d'Ariane 5 aurait été déctecté dès la compilation ; comme cela a été prouvé par un type que j'ai connu et qui a eu le droit à une médaille Turing pour ça) ; c'est le langage utilisé par la NASA et l'ESA pour l'embarqué (j'ai moi même codé de l'ADA pour un robot martien) ; le langage du code d'encore une bonne partie des satellites artificiels (notamment les GPS)<br>Il est utilisé encore en Aéronautique (airbus et Boeing l'utilisent)<br>Les TGV l'utilisent. Le métro sans chauffeur l'utilise.<br>L'indutrie du nucléaire l'utilise</p><p>Bref, il est encore très très utilisé pour les trucs pour lesquels la sûreté surpasse le confort du programmeur</p><p>(Quant aux librairies : certes, ce serait plus confortable de programmer dans les langages les plus utilisés par les auteurs de librairies; Mais enfin, c'est un langage compilé : à la fin, il suffit de se linker au .so, au .a ou .dll selon les cas ; bien sûr, le compilateur ne peut rien garantir de ce qui se passe dans les librairies, compilées avec des compilateurs moins rigoureux. Mais il peut les utiliser quand même)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_32">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_3_a595f75a_22295_100x100.jpg" title="Cabra_Sanguir$22295" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 30 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_22295 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/22295/1" tid_id="22295">Cabra_Sanguir$22295</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_rrefer.gif" title=""/> Gentil Organisateur</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je peux même dire que l'ADA95 était encore utilisé sur les radars embarqués dans les Rafales et Mirage 2000 par Thalès il y a 4 ans... avions de chasse faisant partie des avions les plus à la pointe de la technologie !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_33">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 31 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><span class="tid_sideNote">Et le Rafale, à la pointe des avions les moins vendus. <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_34">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_2_a56ab0d6_94991_100x100.png" title="Meiteisho" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 31 juillet 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_94991 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/94991/1" tid_id="94991">Meiteisho</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Porteur du Souvenir</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>avions de chasse faisant partie des avions les plus à la pointe de la technologie !</cite><br>Source : Le Figaro</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

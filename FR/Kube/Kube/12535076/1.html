@@ -1,0 +1,2679 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Fusions, mode d'emploi</title>
+    <link href="../../../../gfx/game/Kube.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Accueil
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Kube</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Kube</a>
+                                            <span class="tid_title">Fusions, mode d'emploi</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>J'ai compris comment marchent les <a target="_self" href="/tid/forum#!view/492|thread/9479063?p=1">fusions d'îles</a>.</p><br><p><span class="tid_roleplay"><span class="tid_wroleplay"><strong>Théorie</strong></span></span>Il faut d'abord comprendre comment marche le monde de Kube :</p><p><strong>Kube gère les zones par groupes de 8×8</strong> (que j'appelle blocs) arrangés en grille.<br>Les frontières de blocs sont en coordonnées multiples de 8, aux bords nord et ouest de la zone (vers l'infini négatif) : <br>[-8][-8] à [-1][-1], [0][0] à [7][7], [8][8] à [15][15] etc.<br><br><br><strong>Kube garde en mémoire locale seulement les 2×2 = 4 blocs</strong> dans lesquels on évolue, soit 16×16 zones.<br>Dès qu'on s'approche à moins de 4 zones d'un bloc non chargé, Kube déleste les 2 blocs dont on s'éloigne, et charge les 2 vers lesquels on va.<br><br>C'est pour ça que les "<em>Chargement du Monde...</em>" sont toujours aux même endroits, en coordonnées multiples de 8 +4 (détail qui peut être important en construction étendue), et que si on fait immédiatement demi-tour ça charge de nouveau seulement une zone plus loin alors que tout droit c'est 12 zones plus loin.<br><br><br><strong>Le monde est créé à la volée.</strong><br>Plus précisément, le contenu des blocs est généré à leur premier chargement (tout joueurs confondus). Avant ça ils n'existent pas, après ça ils sont intégralement enregistrés indépendamment des évolutions du jeu.<br><br>C'est pour ça qu'on a encore pas trop loin au nord des îles buguées sans arbres, alors que ce bug de génération est corrigé depuis longtemps.<br><br>C'est pour ça qu'en avançant en terrain vierge, on a des "<em>Chargement du Monde...</em>" plus longs.<br><br><br><strong>Le monde est créé par <a target="_blank" href="http://fr.wikipedia.org/wiki/Bruit_de_Perlin">bruit de Perlin</a>.</strong><br>C'est une méthode conçue exprès pour créer un relief apparemment aléatoire mais cohérent d'après les seules coordonnées, donc avec l'énorme avantage de ne pas devoir tenir compte du relief existant pour créer le nouveau.<br><br>Kube crée d'abord une forme d'île neutre.<br>Puis tire au hasard son type d'île qui détermine sa hauteur, son kube de sol et son décor (arbres et compagnie), lui aussi par bruit de Perlin.<br>Et incruste les filons éventuels.<br><br><br><span class="tid_roleplay"><span class="tid_wroleplay"><strong>Aha !</strong></span></span>Nous y voilà enfin : le <em>type</em> d'une île doit lui être propagé d'un bloc à l'autre.<br><br>Et c'est bugué : Quand on avance de face il est propagé correctement à partir des blocs à droite et à gauche, mais pas de ceux en face.<br><br><br><span class="tid_roleplay"><span class="tid_wroleplay"><strong>Résumé</strong></span></span>En gros, les fusions peuvent arriver toutes les 8 zones quand 2 explorations en terrain vierge sont proches.<br><br><br><span class="tid_roleplay"><span class="tid_wroleplay"><strong>Illustration</strong></span></span><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose3.png" alt=":kube_action_50000:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose3.png" alt=":kube_action_50000:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose3.png" alt=":kube_action_50000:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><br><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"> sont des blocs vierges, jamais créés.<br><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"> sont des blocs déjà créés par le passage du joueur.<br><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"> sont des blocs déjà créés par une autre exploration.<br><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"> est le bloc du joueur.<br><img src="http://kube.muxxu.com/img/icons/pose3.png" alt=":kube_action_50000:" class="tid_ico"> sont les autres blocs chargés par le joueur.<br><br>Le joueur avance du bas vers le haut et va créer les blocs <img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"> et <img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico">.<br><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"> n'aura rien de spécial.<br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"> peut avoir une fusion au bord haut car rencontre d'explorations face à face, mais pas au bord gauche car rencontre d'explorations par le côté.<br><br><br><span class="tid_roleplay"><span class="tid_wroleplay"><strong>Pratique</strong></span></span><strong>Il n'y a que 3 configurations de fusion :</strong><br><br>En ligne droite, très commun.<br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><br><br>En coin, occasionnel.<br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><br><br>Triple en T, très rare. Je n'en ai vu qu'une, en photo.<br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/leader.png" alt=":majority_unani3_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/leader.png" alt=":majority_unani3_1:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/leader.png" alt=":majority_unani3_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/leader.png" alt=":majority_unani3_1:" class="tid_ico"><br><br>Les fusions quadruples ou en double coins ne sont pas possibles.<br><br><cite></cite><br><strong>Une fusion peut être discrète</strong> si les parties indépendantes sont par hasard du même type.<br><br>La hauteur sera exactement la même.<br>Le décor collera bien puisque lui aussi créé par bruit de Perlin.<br>Seuls les filons peuvent varier, ce qui donnera le plus souvent une fusion entièrement stérile indétectable, parfois une île mi-filon mi-stérile, et très rarement 2 parties de filons différents.<br><br><cite></cite><br><strong>On peut théoriquement améliorer ses chances de trouver du filon :</strong><br><br>Si on trouve une île en région vierge (juste l'île ne suffit pas) qui manifestement n'est pas filon et/ou trop basse mais s'étend sur un bloc voisin pas encore généré, ne pas avancer vers ce bloc.<br>Le contourner largement pour l'approcher du côté opposé.<br>L'autre partie de l'île sera fusionnée, et donc peut-être filon et/ou plus haute.<br><br><br><cite></cite><br><strong>Confirmation SVP.</strong><br><br>Je ne suis pas absolument certain que c'est côtés vs de face, ça pourrait être selon nord/sud/est/ouest.<br><br><cite></cite><br>Mais tout ça, <br><span class="tid_preRoleplay">Mortem Fact</span><span class="tid_roleplay"><span class="tid_wroleplay">Mortem le savait déjà dès le premier jour du jeu. En beta.</span></span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="sodimel" style="background-color: rgb(202,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_12661 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/12661/1" tid_id="12661">sodimel</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Waouh. C'est vachement bien analysé, je trouve.<br>Mais... si l'on est sûr d'avancer en territoire vierge (exil), que l'on explore <a target="_blank" href="http://kube.muxxu.com/photo/129668">au hasard</a> toujours en ligne droite et que l'on tombe sur une <a target="_blank" href="http://kube.muxxu.com/photo/129671">double</a> <a target="_blank" href="http://kube.muxxu.com/photo/129672">fusion</a>, est-ce que c'est <a target="_blank" href="http://kube.muxxu.com/photo/129678">logique</a> ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Pas trop non, mais il ne faut pas oublier qu'il suffit d'approcher un bloc pour le créer, ça peut se faire sans même qu'on en voie la moindre partie.</p><p>Si on ponte en diagonale, qu'on fait trempette pour sonder l'océan, qu'on fait le tour d'une île ou qu'on déambule là où le monde charge, ça peut beaucoup influer.<br>1 pas peut décaler les créations de 8 zones, ça va vite.</p><p>Ta double fusion, je l'appelle île doublement fusionnée ou fusion parallèle :<br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/leader.png" alt=":majority_unani3_1:" class="tid_ico"><br>3 parties, un seul plan de fusion.<br>Quand fusion il y a, c'est sur tout un bord du bloc donc 8 zones, et il n'y a alors pas vraiment de limite au nombre de parties que ça peut couper.</p><p>Ça ce serait possible :<br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/leader.png" alt=":majority_unani3_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/leader.png" alt=":majority_unani3_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/leader.png" alt=":majority_unani3_1:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose2.png" alt=":kube_action_5000:" class="tid_ico"></p><p>On peut aussi imaginer :<br><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><br><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/leader.png" alt=":majority_unani3_1:" class="tid_ico"><br>C'est comme une fusion en T, il y a juste moins d'îles pour matérialiser les 2 plans de fusion.</p><br><p>Mais je me demande s'il est possible en allant en diagonale de créer 3 blocs en un seul chargement du monde, et donc de créer des fusions plus complexes.<br>À essayer... un jour.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_b_4ac4fdc8_492.jpg" title="NoixRiver" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_492 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/492/1" tid_id="492">NoixRiver</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\514401490079dd72c97a496b56fd6413" title=""/> Corsaire occupÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Ouah, vraiment, tu me bluffes, bravo <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="sodimel" style="background-color: rgb(202,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_12661 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/12661/1" tid_id="12661">sodimel</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>Mais je me demande s'il est possible en allant en diagonale de créer 3 blocs en un seul chargement du monde, et donc de créer des fusions plus complexes.<br>À essayer... un jour.</cite>Il faudrait se déplacer en diagonale parfaite et ne pas se trouver dans un kube à coté, non ?<br>Je m'explique avec un schéma :</p><p><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"></p><p>Avec <img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"> comme les kubes sur lesquels ne pas marcher, <img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"> comme les kubes sur lesquels il faut se déplacer et <img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"> le kube permettant la génération.</p><p>Les <img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"> à gauche et en bas du <img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"> ne doivent pas être foulés, sinon ils pourraient générer les zones autour, il me semble.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_d_f_5e4249e9_6082.jpg" title="TheFreeStyle" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_6082 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/6082/1" tid_id="6082">TheFreeStyle</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\item_research_gold.png" title=""/> Apprenti fructologue du T'es aux fraises</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Très bien expliqué, merci et bravo <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_f_d36a0093_7639_100x100.gif" title="BlindEye" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_7639 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/7639/1" tid_id="7639">BlindEye</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\small_fuel_free.gif" title=""/> Pingouin Radioactif</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>J'ai un peu de mal à tout comprendre, mais c'est un travail titanesque ce que tu as accompli <img src="../../../../gfx/square/eek.png" alt="8O" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_4_e4818221_28293_100x100.jpg" title="UniKhorne" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_28293 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/28293/1" tid_id="28293">UniKhorne</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Ultra con</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Franchement, j'ai pas tout compris mais ça m'a l'air on ne peu plus logique. Bravo Musaran !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Brounie" style="background-color: rgb(204,145,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_31 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/31/1" tid_id="31">Brounie</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\item_wallet.png" title=""/> DivinitÃ© du supplÃ©ment chantilly</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Waw... Je sais pas où tu vas chercher tout cela, mais en tout cas, j'ai lu avec plaisir et j'ai compris. <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Maco" style="background-color: rgb(82,147,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_11728 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/11728/1" tid_id="11728">Maco</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Fausse fusion de deux volcans : <a href="http://kube.muxxu.com/photo/133177" target="_blank">http://kube.muxxu.com/photo/133177</a><br>Comme si les deux volcans étaient coupés pile poil de manière à ne faire qu'une île. <img src="../../../../gfx/square/calim.png" alt=":calim:" class="tid_ico"><br>Et l'exploitation : <a href="http://kube.muxxu.com/photo/133377" target="_blank">http://kube.muxxu.com/photo/133377</a> <img src="../../../../gfx/square/lol.png" alt=":lol:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_10">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_7_f8e1c45b_1747.jpg" title="akaad" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1747 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1747/1" tid_id="1747">akaad</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\sleepy.png" title=""/> MaÃ®tre du silence</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bravo pour l'analyse! et quand on utilise un nouveau dolmen, on crée les 8 zones aussi ?</p><p>Super photo maco!</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_11">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Dede" style="background-color: rgb(82,204,110); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1214 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1214/1" tid_id="1214">Dede</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Noraj, mon cher Maco. <img src="../../../../gfx/square/zombie.png" alt=":zombie:" class="tid_ico"></p><p>Le volcan est bel est bien filon des deux côtés, mais des filons on été ajoutés, et il n'est pas réellement exploité.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_12">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Maco" style="background-color: rgb(82,147,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_11728 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/11728/1" tid_id="11728">Maco</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>C'était obligé que des filons soient ajoutés. <img src="../../../../gfx/square/keepcool.png" alt=":K" class="tid_ico"></p><br><p>Et rien qu'avec les apparents, ça suffit pour se faire 2 TP, et dans la photo, y a à peine 5 MK (je n'ai pas vérifier <img src="../../../../gfx/square/calim.png" alt=":calim:" class="tid_ico"> ).</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_13">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1747 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1747">akaad</span></span><cite>quand on utilise un nouveau dolmen, on crée les 8 zones aussi ?</cite><p>Le dolmen porte au mieux à 3 zones en diagonale, le bloc voisin a déjà été chargé à 4 zones de distance.<br>Et à mon avis ce n'est pas un hasard.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_14">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ballom" style="background-color: rgb(186,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_22389 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/22389/1" tid_id="22389">ballom</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>avec cette méthode de fusion des iles, si on a de TRÈS GRANDES iles (bon après ses iles sont très rare aussi ), est ce qu'on peut donc "guider" la fusion?"<br>prenons une ile 10*6 (pas commun sa )<br><span class="tid_sideNote"></span><br>on pourrait faire quelque chose comme sa?</p><p><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><span class="tid_sideNote"></span><br>on génére une ile <img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico">, on fait généré les zones <img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"> sans aller toute fois sur les zones <img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"><br>puis ensuite on s'éloigne de l'ile et on revient vers le coin en bas à gauche et on suis le chemin.</p><p>sa serait marrant à faire</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_15">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ballom" style="background-color: rgb(186,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_22389 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/22389/1" tid_id="22389">ballom</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>oups c'est plutot une ile 12*20 avec l'algorythme sa ^^' (<img src="http://kube.muxxu.com/img/icons/decouverte2.png" alt=":kube_kubes_40:" class="tid_ico"> = 2*2 zones )</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_16">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_b_4ac4fdc8_492.jpg" title="NoixRiver" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_492 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/492/1" tid_id="492">NoixRiver</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\514401490079dd72c97a496b56fd6413" title=""/> Corsaire occupÃ©</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Les fusions, ok.<br>Mais... Et les collisions, alors ? Y a-t-il un rapport entre les fusions et les collisions ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_17">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>À priori oui, on peut guider l'intrusion d'une fusion à l'intérieur d'une maousse île.<br>Si j'ai l'occasion j'essaie, mais de si grandes îles sont rares.<br>Obtenir la génération d'un filon bonus est quand même plus prioritaire sur ma liste. <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p><p>Les collisions n'ont rien à voir, ce sont juste 2 îles très proches et ça c'est indépendant du découpage en blocs.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_18">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Durss" style="background-color: rgb(204,180,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_48 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/48/1" tid_id="48">Durss</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>J'ai tenté la chose il y a quelques semaines en faisant deux axes parallèles suffisamment espacés que j'ai ensuite fait rejoindre par endroits pour voir si des fusions avaient été crées mais j'ai pas eu de bol <img src="../../../../gfx/square/sad.png" alt=":(" class="tid_ico">.<br>&nbsp;<br>~1000<img src="http://muxxu.com/img/icons/token.png" alt=":_muxxu_token_1:" class="tid_ico"> de dégommés pour à peu près rien j'ai pas vraiment eu l'envie de renouveler l'expérience <img src="../../../../gfx/square/lol.png" alt=":lol:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_19">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="anaX" style="background-color: rgb(204,82,96); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_20153 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/20153/1" tid_id="20153">anaX</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je ne suis pas sûre d'avoir tout compris, mais ça <a target="_blank" href="http://ppoh.pagesperso-orange.fr/fleurette/images/fusion_paturage-desert.png">marche</a> <img src="../../../../gfx/square/cool.png" alt="8)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_20">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Durss" style="background-color: rgb(204,180,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_48 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/48/1" tid_id="48">Durss</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Woahouu elle est belle en plus!.<br>Chanceuse :p</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_21">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Ghirlandaio" style="background-color: rgb(82,96,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3421313 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3421313/1" tid_id="3421313">Ghirlandaio</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>fake c est trop pres de l axe ouest tu ne l as pas generee toi meme</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_22">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_f_d36a0093_7639_100x100.gif" title="BlindEye" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_7639 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/7639/1" tid_id="7639">BlindEye</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\small_fuel_free.gif" title=""/> Pingouin Radioactif</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>C'est juste qu'elle a compris la méthode. une fois qu'on à compris on peut générer des fusions <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_23">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[10999]" style="background-color: rgb(82,165,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_10999 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/10999/1" tid_id="10999">[10999]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>oui comme un axe qui souvent les expes s’arrêtent en -80 ou 80 et moi depuis 2 mois, je pontes et je contourne et donc j'ai trouver 2 petites fusion et blindeye sait ou sait car il y a trouver une transmute a moi pas finit et a finit de exploitée l'ile</p><p><img src="../../../../gfx/square/sad.png" alt=":(" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_24">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ballom" style="background-color: rgb(186,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_22389 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/22389/1" tid_id="22389">ballom</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_10999 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="10999">Kubien</span></span><cite>oui comme un axe qui souvent les expes s’arrêtent en -80 ou 80 et moi depuis 2 mois, je pontes et je contourne et donc j'ai trouver 2 petites fusion et blindeye sait ou sait car il y a trouver une transmute a moi pas finit et a finit de exploitée l'ile</cite><p>[yoda]savoir parler toi langue de la molière [/yoda]</p><br><p>mais par contre je me demande une chose, de quand date la première fusion?<br><strong></strong><br>je crois que le centre commençait déjà à se saturer quand on a découvert la 1ère fusion.<br>Or vu que tout le monde partait dans toutes les directions sans forcément aller en ligne droite, on aurais dut très rapidement avoir des fusions non?<br><strong></strong><br>d’ailleurs il y a eu des fusion dans le centre?</p><p>la plus proche dont je me rappel doit être vers 450/-200 ou un truc du genre</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_25">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_5_9_5e26c9e3_52_100x100.png" title="Swisks" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_52 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/52/1" tid_id="52">Swisks</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\alone.png" title=""/> La meilleur tactique pour majoritaire</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Peut être que les zones de bases étaient déjà générées avant l'ouverture du monde au grand public, ce qui à empêché la création de tels spécimens. <img src="../../../../gfx/square/question.png" alt=":?:" class="tid_ico"></p><br><p>Et j'en profite pour féliciter Musaran pour cette découverte, impressionnant ! <img src="../../../../gfx/square/huh.png" alt="O_o" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_26">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="sodimel" style="background-color: rgb(202,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_12661 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/12661/1" tid_id="12661">sodimel</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>Peut être que les zones de bases étaient déjà générées avant l'ouverture du monde au grand public, ce qui à empêché la création de tels spécimens. <img src="../../../../gfx/square/question.png" alt=":?:" class="tid_ico"></cite>Warp a pris les photos des zones publiques avant le lancement des invitations, non ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_27">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_f_d36a0093_7639_100x100.gif" title="BlindEye" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_7639 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/7639/1" tid_id="7639">BlindEye</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\small_fuel_free.gif" title=""/> Pingouin Radioactif</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Exact <img src="http://intrusion.muxxu.com/img/icons/ismiley_smile.png" alt=":intrusion_rank1_1:" class="tid_img tid_parsed" style=""></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_28">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Louleke" style="background-color: rgb(82,204,188); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_164332 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/164332/1" tid_id="164332">Louleke</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Un grand et beau MusaranPost, encore une fois ! Clair, net, bien expliqué, j'adore ! T'as déjà considérer de faire de l'enseignement <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p><p>Merci pour cet exposé, et encore un grand bravo <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p><p>Durss : j'essaierai aussi, voir...tu sais ou <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_29">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_f_d36a0093_7639_100x100.gif" title="BlindEye" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 15 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_7639 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/7639/1" tid_id="7639">BlindEye</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\small_fuel_free.gif" title=""/> Pingouin Radioactif</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Donc, imaginons que je soit sur une île qui ne soit pas totalement générée, comment la contourner pour provoquer une fusion? Je veux dire, à quelle distance la contourner? Une zone, 2 zones, un bloc?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_30">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 16 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Il faut laisser 1 bloc vierge de marge, donc s'éloigner de 3 blocs, soit au moins 24 zones. Et contourner, donc 2 ou 3 fois plus que ça en fait.</p><p>Il faut clairement pas ponter juste pour ça, c'est pas rentable.<br>Il vaut mieux mener des explorations parallèles ou convergentes depuis des origines différentes, et espérer que les îles et archipels vont naturellement provoquer les rapprochements nécessaires.</p><p>D'ailleurs il vaut mieux ponter en diagonale, théoriquement ça double le nombre d'occasions.</p><p>Mais...<span class="tid_roleplay"><span class="tid_wroleplay">Les fusions serait plus compliquées que ça.</span></span></p><p>Sur beaucoup de tentatives récentes, j'ai eu :<br>•Un bon paquet d'îles prometteuses qui s'avèrent finir juste avant le bord de bloc. C'est pas important ici, mais je me devais de faire mon <img src="http://intrusion.muxxu.com/img/icons/calim.png" alt=":intrusion_ccard_50:" class="tid_ico">.<br>•5 ou 6 fusions qui auraient dû se produire si j'avais raison. <img src="../../../../gfx/square/confused.png" alt=":{" class="tid_ico"><br>•1 fusion réussie. <img src="../../../../gfx/square/yeah.png" alt=":youpi:" class="tid_ico"><br>•1 fusion 1 bloc plus loin que prévu. <img src="../../../../gfx/square/question.png" alt=":?:" class="tid_ico"><br>•1 fusion complètement inattendue en avançant tout droit. <img src="../../../../gfx/square/exclaim.png" alt=":!:" class="tid_ico"></p><p>Pourtant toutes les fusions dont j'ai pu retracer l'origine venaient bien de la rencontre de 2 explorations en sens opposé.</p><br><p><span class="tid_roleplay"><span class="tid_wroleplay">Plusieurs hypothèses :</span></span>•Il faudrait 2 explorateurs différents. Bizarre, mais Kube enregistre probablement qui génère les blocs.<br>•Il faudrait que le client oublie l'exploration en cours. (recharger le jeu)<br>•Il faudrait que le serveur oublie l'exploration en cours. (attendre minuit)<br>•Le contenu des blocs serait fixé par lots de 4×4 ou plus. Possible si leur <a target="_blank" href="http://fr.wikipedia.org/wiki/Graine_al%C3%A9atoire">graine</a> est choisie avant génération effective.<br>•Le bug serait erratique, il faudrait les bonnes conditions <strong>et</strong> de la chance.<br>•Le type d'îles ne serait déterminé quasiment qu'à portée de vue. Mais j'en doute vraiment.<br>•Il faudrait un contact frontal uniquement. Sur mon illustration, <img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"> ne fusionnerait pas car le contact coulissant à gauche propagerait la jonction correcte au contact frontal.<br><cite><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a0.png" alt=":majority_chelem_1:" class="tid_ico"><img src="http://majority.muxxu.com/img/icons/a2.png" alt=":majority_plays_200:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose1.png" alt=":kube_action_500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose3.png" alt=":kube_action_50000:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose3.png" alt=":kube_action_50000:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/pose3.png" alt=":kube_action_50000:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map1.png" alt=":kube_zones_25:" class="tid_ico"></cite><br>Je continue mes recherches, mais vu le faible nombre d'îles propices je doute de tout comprendre.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_31">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="lucrallo" style="background-color: rgb(204,104,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2171 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2171/1" tid_id="2171">lucrallo</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>alors la, sa m’épate <img src="../../../../gfx/square/huh.png" alt="O_o" class="tid_ico"></p><p>mais j'ai pas compris pour la génération d'iles <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_32">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_8_9e0661c0_1737452_100x100.png" title="Mar3chalSardine" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1737452 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1737452/1" tid_id="1737452">Mar3chalSardine</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\calim.png" title=""/> Si j'aurais su, j'aurais po v'nu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Et avec un dolmen, peut-on généré le bloc d'à côté ?</p><p><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico">Bloc non découvert<br><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico">Bloc decouvert<br><img src="http://kube.muxxu.com/img/icons/decouverte1.png" alt=":kube_kubes_20:" class="tid_ico">Dolmen</p><p><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/decouverte1.png" alt=":kube_kubes_20:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><br><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map3.png" alt=":kube_zones_2500:" class="tid_ico"><img src="http://kube.muxxu.com/img/icons/map2.png" alt=":kube_zones_250:" class="tid_ico"></p><p>Sachant que nous, nous sommes au dolmen, et que ce même dolmen, est suffisamment proche pour faire découvrir une case d'un bloc voisin.<br>On l'active, cela va faire apparaître des cases du bloc voisin sur la mini map, donc logiquement les générées, mais cela engendrera t-il la génération entière de ce bloc ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_33">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="sodimel" style="background-color: rgb(202,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_12661 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/12661/1" tid_id="12661">sodimel</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Etant donné que le monde de Kube ne se génère que par bloc je pense que oui.<br>Néanmoins il peut y avoir plusieurs étapes de génération de la zone pour ce cas, 'faut voir...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_34">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_2_f_d36a0093_7639_100x100.gif" title="BlindEye" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_7639 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/7639/1" tid_id="7639">BlindEye</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\small_fuel_free.gif" title=""/> Pingouin Radioactif</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bah à mon avis non puisqu'un dolmen couvre une zone de 5x5 et qu'un bloc couvre 8x8 zones. Mais bon tout dépend à quel endroit est fait le Dolmen...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_35">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Question déjà posée !<br><span class="tid_preCite"><span class="tid_user tid_user_1747 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1747">akaad</span></span><cite>et quand on utilise un nouveau dolmen, on crée les 8 zones aussi ?</cite></p><p><span class="tid_preCite"><span class="tid_user tid_user_4030 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="4030">Musaran</span></span><cite>Le dolmen porte au mieux à 3 zones en diagonale, le bloc voisin a déjà été chargé à 4 zones de distance.<br>Et à mon avis ce n'est pas un hasard.</cite></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_36">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="sodimel" style="background-color: rgb(202,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 juin 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_12661 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/12661/1" tid_id="12661">sodimel</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Argh, moi et mon envie de raisonner tout seul :S<br>Il aurait suffi que je lise le sujet juste avant pour pouvoir répondre correctement.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_37">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_4_933b3968_4270_100x100.png" title="Vulnerrac" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 juillet 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4270 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4270/1" tid_id="4270">Vulnerrac</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ptame.gif" title=""/> Je passais par lÃ ..</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Il faut pas le dire, mais musaran a piraté les serveurs de la MT et a soudoyé un employé pour qu'il lui explique comment ça marche <img src="../../../../gfx/square/calim.png" alt=":calim:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_38">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Classement10" style="background-color: rgb(159,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 juillet 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_124118 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/124118/1" tid_id="124118">Classement10</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><a target="_blank" href="http://kube.muxxu.com/photo/158082">Expé avec thetoto</a></p><p>ce qui est bizarre c'est qur notre pont arrive pratiquement droit a cette fusion !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_39">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juillet 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je n'ai malheureusement rien trouvé de neuf et ne trouverai jamais car mon grand farfouillage d'immensités vierges touche à sa fin.</p><p>Je reste donc sur la supposition que le bug est erratique mais qu'on peut le favoriser en étant 2, se rapprochant d'assez loin, pas le même jour.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_40">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_e_081198d0_17151_100x100.jpg" title="Sternum" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 juillet 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_17151 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/17151/1" tid_id="17151">Sternum</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_nodrug.gif" title=""/> Druide des temps modernes</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>•Il faudrait 2 explorateurs différents. Bizarre, mais Kube enregistre probablement qui génère les blocs.</cite></p><p>J'ai une hypothèse, encore à prouver mais elle expliquerai les fusion sur mon exil perso:</p><p>- Chaque jour on est un "générateur" différent.</p><p>Je m'explique, il m'est arrivé plusieurs fois en fesant le tour d'une archipel le lendemain de mon expédition, pour des raisons diverses (manque de temps, noyade, flemme, etc) de trouver une fusion). <a target="_blank" href="http://kube.muxxu.com/photo/158104">En voila un</a>e. Ce qui m'est jamais arrivé quand je faisait le tour d'une archipel en un jour.</p><p><span class="tid_wspoil">J'éspère avoir été un minimum clair</span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_41">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[1117523]" style="background-color: rgb(157,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 juillet 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1117523 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1117523/1" tid_id="1117523">[1117523]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Fusion étrange, avec Kiokk.</p><p><a href="http://kube.muxxu.com/photo/158657" target="_blank">http://kube.muxxu.com/photo/158657</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_42">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_f_7eef449a_72063.jpg" title="TeddyBeer" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 juillet 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_72063 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/72063/1" tid_id="72063">TeddyBeer</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\340_e49c.png" title=""/> Pilier De Comptoir</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Sa m'a plutôt l'air d'un collision (quand 2 iles différentes se chevauchent, ou se croisent).</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_43">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_9_3305c9da_103704_100x100.jpg" title="Slick" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 juillet 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_103704 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/103704/1" tid_id="103704">Slick</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\pose3.png" title=""/> Architecte</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui c'est une collision ^^</p><br><p>Et pour la technique des fusion super j'ai tester et j'ai u une Volcan/antenne</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_44">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 6 juillet 2012
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1117523 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1117523">Adarke</span></span><cite><p>Fusion étrange, avec Kiokk.</p><a target="_blank" href="http://kube.muxxu.com/photo/158657"></a><a href="http://kube.muxxu.com/photo/158657" target="_blank">http://kube.muxxu.com/photo/158657</a></cite><p>Les plus proches collisions que je connaissait se touchaient par une arête.</p><p>Là, ça pose sérieusement la question de comment Kube décide où commence et finit une île.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_45">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><span class="tid_sideNote">6 mois plus tard...</span></p><br><p>J'ai refait de l'exploration d'inconnu en masse.</p><p>Cette fois en avançant parfaitement droit sur long, pile entre 2 blocs.</p><p>Et ça a quand même provoqué quelques fusions.</p><br><p>J'en déduis que les fusions peuvent arriver "de nulle part", sans circonstances particulières (ou du moins remarquables).</p><p><span class="tid_sideNote">En plus des circonstance favorables que j'ai décris.</span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_46">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_9_3305c9da_103704_100x100.jpg" title="Slick" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_103704 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/103704/1" tid_id="103704">Slick</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\pose3.png" title=""/> Architecte</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_17151 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="17151">Sternum</span></span><cite><p>J'ai une hypothèse, encore à prouver mais elle expliquerai les fusion sur mon exil perso:</p><p>- Chaque jour on est un "générateur" différent.</p><p>Je m'explique, il m'est arrivé plusieurs fois en fesant le tour d'une archipel le lendemain de mon expédition, pour des raisons diverses (manque de temps, noyade, flemme, etc) de trouver une fusion). <a target="_blank" href="http://kube.muxxu.com/photo/158104">En voila un</a>e. Ce qui m'est jamais arrivé quand je faisait le tour d'une archipel en un jour.</p><span class="tid_wspoil">J'éspère avoir été un minimum clair</span></cite><br><p>Nop j'ai u une fusion en un jour <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_47">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_6_0d05f1ae_45643_100x100.png" title="LeReveur" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_45643 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/45643/1" tid_id="45643">LeReveur</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\mdr.png" title=""/> Roi sous la montagne</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Peut-être est-ce à la connexion ou la session, alors ?<br>Je veux dire : je me connecte le matin à 9h, j'explore, je ferme mon PC, et le soir je me reconnecte pour continuer mon exploration...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_48">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_9_3305c9da_103704_100x100.jpg" title="Slick" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_103704 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/103704/1" tid_id="103704">Slick</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\pose3.png" title=""/> Architecte</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Peut-être oui <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_49">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="sodimel" style="background-color: rgb(202,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_12661 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/12661/1" tid_id="12661">sodimel</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je me suis demandé l'autre jour s'il n'y avait pas un système de rotation de l'île juste avant sa génération tant la succession d'îles tantôt larges et tantôt longues m'intriguait <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_50">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_0_8f16018c_17226.jpg" title="lwxtz2004" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_17226 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/17226/1" tid_id="17226">lwxtz2004</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\29ca21248a70c9c48336f29b83857f68" title=""/> C'Ã©tait mieux avant !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Selon moi, rien de tout ça. <strong>Le générateur fait de l'aléatoire en suivant certaines lois de probabilité et puis c'est tout.</strong> Il ne se "rappelle" pas s'il vient de générer des îles larges pour ensuite faire des îles longues, etc.</p><p>De même que dans l'autre topic, on se demandait si avec un dé <span class="tid_funTag tid_funTag_dice20">18</span>, on sort plus souvent un numéro pair qu'un impair, ou si le 7 ou le 12 vont sortir plus souvent. Les numéros sortent simplement à la fréquence à laquelle ils doivent sortir, les tirages d'avant n'importent pas.</p><p>Là, de même, bien que les probabilités de sortie des îles ne soient pas uniformes - et je persiste à croire qu'elles ont changé depuis quelques mois - , le générateur doit générer de la même façon quelle que soit l'heure de la journée, sans avoir l'esprit assez tordu pour se souvenir de ce qu'il a généré précédemment.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_51">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Math94370" style="background-color: rgb(82,94,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_12114 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/12114/1" tid_id="12114">Math94370</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Lw a tout à fait raison, mais il faut juste rappeler que l'on est avec du pseudo-aléatoire, car l'informatique n'est jamais parfaite sur ce domaine <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_52">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Le "pseudo-aléatoire"/"aléatoire" c'est vraiment juste du détail de puriste sans aucun rapport. On apprend ça à l'école pour apprendre comment faire, et pour apprendre qu'il est important de bien faire. Et encore une couche en cryptographie pour éviter certains pièges.</p><p>Ca ne change rien du tout, sauf si tu es de la NSA en train d'essayer de trouver une légère chute de la dimension du chaos.</p><p>D'ailleurs, pour ce qui est de la génération d'îles, c'est très probablement faux : c'est pas du pseudo-aléatoire, mais du vrai aléatoire pour ce qui est concerné (et quand je dis très probablement, c'est juste parce que je n'ai pas vu le code ; mais je n'imagine pas une seule seconde que ça soit du pseudo-aléatoire ; ce serait trop tordu - pour une fois l'aléatoire est plus facile à faire que le pseudo aléatoire)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_53">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_6_0d05f1ae_45643_100x100.png" title="LeReveur" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_45643 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/45643/1" tid_id="45643">LeReveur</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\mdr.png" title=""/> Roi sous la montagne</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Correctement utilisé, le pseudo-aléatoire n'est pas plus mauvais que l'aléatoire, du moins en ce qui concerne de la génération de paysages informatiques. Du reste, il est informatiquement impossible de programmer du véritable aléatoire, puisque par définition la programmation c'est énoncer des règles précises et l'aléatoire ne suivre aucune règle précise - en dehors des limites de bord. Pour pouvoir utiliser du véritable aléatoire par programme, il faudrait doter les ordinateurs d'un composant spécifique dédié (d'ailleurs il y a même une société de service qui a développé ce type de dispositif pour proposer du véritable aléatoire en ligne à des sociétés commerciales).</p><p>Le problème soulevé par le cas de Kube est que la génération d'île ne dépend probablement pas d'un "simple" tirage de dés, mais d'un algorithme plus complexe.<br>Et je pense que le bug que nous soupçonnons depuis la disparition des îles volantes est lié soit à une modification involontaire des fréquences de répartition (lors d'un déménagement ou d'une màj serveur), soit - et là ce serait pire - à un effet de bord imprévu d'un ou plusieurs des calculs de l'algo de répartition (le même genre de bug qui avait planté à l'époque les minivilles à cause d'un bête problème de limite d'entier long sur les identifiants des actions en BDD).</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_54">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_6_0d05f1ae_45643_100x100.png" title="LeReveur" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_45643 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/45643/1" tid_id="45643">LeReveur</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\mdr.png" title=""/> Roi sous la montagne</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>dddp : je n'avais pas lu la réponse de Ayalti, aussi je me sens obligé de préciser que généralement on compense l'aspect "non véritable" du pseudo-aléatoire par une graine provenant d'un truc imprévisible à notre échelle, dans la grande majorité des cas le nombre de secondes écoulées depuis minuit.</p><p>Edit : c'est ce que j'entendais par "correctement utilisé".</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_55">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>Du reste, il est informatiquement impossible de programmer du véritable aléatoire, puisque par définition la programmation c'est énoncer des règles précises et l'aléatoire ne suivre aucune règle précise </cite>Ce n'est pas exact. Et justement, ici, c'est sûrement de l'aléatoire.<br>Tu parles d'un périphérique spécifique pour générer de l'aléatoire : il y en a déjà un sur toutes les machines ; ça s'appelle "l'utilisateur" (il y aussi le réseau d'ailleurs).</p><p>Le problème aléatoire/pseudo-aléatoire se pose quand on veut générer une série de nombre aléatoires ; et encore, il ne se pose pas pour le premier nombre de la série ; seulement pour tous les suivants.</p><p>La date, en microsecondes, à laquelle un utilisateur décide de jouer à Kube est du vrai aléatoire (modulo les questions philosophiques classiques sur le libre arbitre ; mais ce "doute" n'a rien de spécifique à l'informatique : s'il existe de l'aléatoire dans le monde, alors il en existe en informatique)</p><p>Et là, justement, il y a fort à parier qu'on soit dans ce cas. Sauf si le serveur retenait pour chaque utilisateur un seed de générateur de nombre pseudo-aléatoire, pour s'en resservir quand l'utilisateur revient, il me semble assez évident que le seed est regénéré au moment où la question se pose. Et ce moment est aléatoire et non pseudo-aléatoire.<br>(Et même s'ils avaient voulu faire du pseudo-aléatoire, ça aurait été compliqué : si on garde un seed par utilisateur, alors les interactions entre utilisateurs mélangerait leur signification : si un autre est venu entre temps générer l'île, ça décale toute la liste de nombre. Si on garde un seed global, ou un seed par région, c'est les interactions entre les utilisateurs qui créeront un mélange imprédictible. Bref, sur Kube, même si on ne le voulait pas, il serait assez difficile d'échapper à du vrai aléatoire)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_56">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>dddp aussi : voilà. Mais dans le cas où on a au final autant de graine que de nombres générés... (ce qui est très probablement le cas dans un jeu client serveur, où chaque action est une requête, servie par une application serveur qui n'a aucune raison de s'être embêtée à garder la graine d'une fois à l'autre pour continuer une série pseudo-aléatoire)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_57">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_6_0d05f1ae_45643_100x100.png" title="LeReveur" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_45643 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/45643/1" tid_id="45643">LeReveur</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\mdr.png" title=""/> Roi sous la montagne</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui, non mais c'était pédant de ma part. D'où ma réaction après avoir lu ton message que je n'avais pas remarqué avant de valider.<br>C'est d'un point de vue strictement mathématique que le pseudo-aléatoire n'est pas du vrai aléatoire. <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p><p>Le reste n'est qu'interprétation humaine, le hasard n'a ni conscience ni mémoire, mais on a beau le répéter, l'esprit humain, ou plus précisément le cerveau humain, est "paramétré" pour aboutir à des conclusions avant d'avoir eu des confirmations, à faire des rapprochements automatiques, avec le risque d'en faire là où il n'y en a pas forcément. C'est un mécanisme nécessaire, sans lequel nous serions incroyablement lents à prendre des décisions, et sans lequel nous ne pourrions pas accomplir des choses comme conduire un véhicule ou reconnaître un visage. Le meilleur moyen d'en prendre conscience est de jouer avec des illusions d'optique (et on peut le remarquer aussi dans diverses perceptions erronées, comme le fait de voir des visages dans des amas chaotiques naturels comme un tas de rocher ou la surface de la lune).</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_58">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_45643 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="45643">LeReveur</span></span><cite>Peut-être est-ce à la connexion ou la session, alors ?</cite><p>C'est possible.</p><p>Soit que ce soit un bug que ça en dépende.</p><p>Soit que warp ait mal choisi la graine pseudo-aléatoire.</p><p>Soit que ce soit voulu que ça dépende du profil du joueur.</p><br><p>Et là c'est beaucoup plus dérangeant, parce que la qualité des îles et filons pourrait dépendre de la "qualité du client".</p><p>C'est pas le genre de MT, mais c'est courant dans les jeux "gratuits mais vaut mieux payer", et quand on le fait c'est difficilement avouable.</p><p>Et ça expliquerait pourquoi une mise à jour Twinoïd (perte du lien avec le profil) aurait fait disparaître les îles volantes (baisse de qualité des îles).</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_59">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_9_3305c9da_103704_100x100.jpg" title="Slick" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_103704 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/103704/1" tid_id="103704">Slick</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\pose3.png" title=""/> Architecte</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Donc plus on paye, plus on a d'ile selon toi ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_60">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_0_8f16018c_17226.jpg" title="lwxtz2004" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_17226 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/17226/1" tid_id="17226">lwxtz2004</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\29ca21248a70c9c48336f29b83857f68" title=""/> C'Ã©tait mieux avant !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je crois pas, non <img src="../../../../gfx/square/happy2.png" alt="^_^" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_61">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_6_0d05f1ae_45643_100x100.png" title="LeReveur" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_45643 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/45643/1" tid_id="45643">LeReveur</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\mdr.png" title=""/> Roi sous la montagne</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>lw, ce que veut dire Musaran c'est effectivement plus on paie plus on aurait de chances de trouver des îles de qualité, et que justement un bug aurait remis à 0 la base de données nécessaire, et donc que même les gros payeurs comme toi seraient considérés comme des non-payeurs.</p><p>Mais je ne pense pas non plus que ce soit le cas. Non seulement ce n'est pas vraiment le genre de la maison (même si après l'épisode détestable des objets exclusifs de parrainage TS on est en droit de s'interroger à ce sujet), mais en plus le rasoir d’Ockham plaide pour la solution la plus simple, et selon moi la solution la plus simple est un dérèglement du système de génération d'îles, pour l'une ou l'autre des raisons que j'ai évoquées : erreur de recopie lors d'un transfert ou d'un rappel de sauvegarde du serveur, ou dépassement des limites d'une variable (par exemple, que certaines îles ne devant apparaître qu'au-delà d'un certain seuil, l'une des variables en entier signé se retrouve en dépassement, donc en négatif, et qu'au lieu de tester si n est supérieur à x on se retrouve à tester si -n est supérieur à x). Parce que ces deux cas sont des causes de bugs auxquelles on a déjà eu affaire avec des jeux MT, tandis que le dérèglement - et la présence - d'un système de favoritisme n'est pas avéré à ma connaissance.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_62">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="baptista" style="background-color: rgb(204,82,106); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1428 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1428/1" tid_id="1428">baptista</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><span class="tid_user tid_user_4030 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="4030">Musaran</span><cite> la qualité des îles et filons pourrait dépendre de la "qualité du client"</cite><br>Je ne pense pas. En effet lors de ma toute première expédition (je n'avais encore jamais dépensé le moindre token dans <strong>ce jeu</strong>), j'ai découvert une grotte filon émeraude, et une ou deux autres iles filons ...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_63">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_0_8f16018c_17226.jpg" title="lwxtz2004" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_17226 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/17226/1" tid_id="17226">lwxtz2004</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\29ca21248a70c9c48336f29b83857f68" title=""/> C'Ã©tait mieux avant !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Grotte filon <img src="http:../../../../gfx/square/anim.png/drowl.gif" alt=":anim_drowl:" class="tid_ico"></p><p>Même maintenant, j'ai déjà vu (en vrai) plusieurs IV filon, mais des grottes filons, jamais je crois ...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_64">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_6_e6337256_36168_100x100.jpg" title="Prince_Dage" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36168 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36168/1" tid_id="36168">Prince_Dage</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> La garde meurt, mais ne se rend pas !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Y a combien d'IV répertoriées?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_65">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_0_8f16018c_17226.jpg" title="lwxtz2004" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_17226 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/17226/1" tid_id="17226">lwxtz2004</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\29ca21248a70c9c48336f29b83857f68" title=""/> C'Ã©tait mieux avant !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Aucune <img src="http:../../../../gfx/square/happy.png" alt=":tid_happy:" class="tid_ico"></p><p>Je pense qu'on en a trouvé une 50aine en tout, donc 8 à 10 filons, pas plus ...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_66">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_6_e6337256_36168_100x100.jpg" title="Prince_Dage" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36168 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36168/1" tid_id="36168">Prince_Dage</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> La garde meurt, mais ne se rend pas !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>ben j'en connait que 2 ou 3 mais bon <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"> je sais que tu ne parles pas sans connaître le sujet <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"> de tte façon, avoir d'autres IV serait déjà bien, avec ou sans filon!<img src="http:../../../../gfx/square/anim.png/sifflote.gif" alt=":-&quot;" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_67">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_0_8f16018c_17226.jpg" title="lwxtz2004" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_17226 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/17226/1" tid_id="17226">lwxtz2004</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\29ca21248a70c9c48336f29b83857f68" title=""/> C'Ã©tait mieux avant !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Une fois en me baladant du côté MK (là où y'a la MB de mortem, le volcan toussa) j'en ai trouvé une qui faisait facilement 100 zones de surface, vraiment gigantesque le truc <img src="http:../../../../gfx/square/happy.png" alt=":tid_happy:" class="tid_ico"></p><p>Et l'IV émeraudes de mortem est très grande aussi <img src="http:../../../../gfx/square/razz.png" alt=":tid_razz:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_68">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_6_e6337256_36168_100x100.jpg" title="Prince_Dage" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36168 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36168/1" tid_id="36168">Prince_Dage</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> La garde meurt, mais ne se rend pas !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>qd je tombe sur une shinsekai de 40 zones je suis déjà un peu paumé mais une de 100 zones alors là ben j'abandonnerais tout de suite <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"><img src="http:../../../../gfx/square/anim.png/lol.gif" alt=":anim_lol:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_69">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_0_8f16018c_17226.jpg" title="lwxtz2004" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_17226 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/17226/1" tid_id="17226">lwxtz2004</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\29ca21248a70c9c48336f29b83857f68" title=""/> C'Ã©tait mieux avant !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>100 c'est à peu près 12x8, c'est quand même vite atteint. <img src="http:../../../../gfx/square/razz.png" alt=":tid_razz:" class="tid_ico"></p><p>Selon anaX (qui n'a pas osé poster ici), il y a plutôt aux alentours de 100 IV découvertes, dont 7 par le seul Austra ; elle doit être plus proche de la vérité que moi <img src="http:../../../../gfx/square/smile.png" alt=":tid_smile:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_70">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_6_e6337256_36168_100x100.jpg" title="Prince_Dage" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36168 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36168/1" tid_id="36168">Prince_Dage</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> La garde meurt, mais ne se rend pas !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>bah, y en a beaucoup c'est tout <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"> et je n'en connais pas le tiers du quart du cinquième <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_71">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_0_0_8f16018c_17226.jpg" title="lwxtz2004" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_17226 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/17226/1" tid_id="17226">lwxtz2004</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\29ca21248a70c9c48336f29b83857f68" title=""/> C'Ã©tait mieux avant !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Mais par rapport aux prairies/bouleaux elles sont en nombre négligeable, les prairies/bouleaux se comptent en milliers ... <img src="../../../../gfx/square/psycho.png" alt=":psycho:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_72">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_6_e6337256_36168_100x100.jpg" title="Prince_Dage" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 29 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36168 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36168/1" tid_id="36168">Prince_Dage</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> La garde meurt, mais ne se rend pas !</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>oui, mais on ne peut donc pas dire qu'elles soient exceptionnelles <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"> La seule IV encore en état que j'ai vue est la tienne (que je ne peux hélas plus aller photographier puisque schtroumpfi a vendu sa zone).</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_73">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="4rthur" style="background-color: rgb(204,190,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 30 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_15533 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/15533/1" tid_id="15533">4rthur</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Rien que Charpitou en a trouvé 4 ou 5 à ses débuts, pour dire ! (Dont une filon rubis me semble-t-il..)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_74">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="anaX" style="background-color: rgb(204,82,96); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 30 décembre 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_20153 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/20153/1" tid_id="20153">anaX</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>...pour anaX qui n'a pas osé poster ici...</cite></p><p>Recentrons le sujet sur les fusions :<br><a target="_blank" href="http://kube.muxxu.com/photo/122148">Fusion désert/volante</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

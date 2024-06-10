@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Neuigkeiten</title>
+    <link rel="icon" type="image/gif" href="..\..\gfx\game\Twinoid.ico">
+    <link href="../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tid_boutBank {
+            height: 40px;
+        }
+        .tid_thread {
+            height: 30px;
+        }
+        .tid_threads .tid_title {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tid_threads .tid_icon, 
+        .tid_threads .tid_subject {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tid_threads th {
+            background-color: #7E4D2A;
+            color: white;
+            vertical-align: middle;
+            cursor: default;
+            position: relative;
+            height: 28px;
+        }
+        .tid_threads td {
+            padding: 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .filter-input {
+            width: 90%;
+            padding: 5px;
+            margin: 5px auto;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            background-color: #B2A36C;
+            color: #333;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            background-color: #7E4D2A;
+            padding: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const getCellValue = (row, index) => row.children.length > index ? (row.children[index].innerText || row.children[index].textContent) : '';
+            const filterTable = (input, columnIndex) => {
+                const filterValue = input.value.toLowerCase();
+                const table = input.closest('table');
+                const tbody = table.querySelector('tbody');
+                const dateSeparators = Array.from(tbody.querySelectorAll('.tid_dateSeparator'));
+                Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                    const cellValue = getCellValue(row, columnIndex).toLowerCase();
+                    row.style.display = cellValue.includes(filterValue) ? '' : 'none';
+                });
+                dateSeparators.slice(0, 2).forEach(separator => separator.style.display = '');
+            };
+            const createFilterRow = (columns) => {
+                const filterRow = document.createElement('tr');
+                columns.forEach((th, index) => {
+                    const filterCell = document.createElement('th');
+                    if (index !== 0 && index !== 6) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.classList.add('filter-input');
+                        input.placeholder = "Filtrer";
+                        input.addEventListener('input', function() { filterTable(this, index); });
+                        filterCell.appendChild(input);
+                    }
+                    filterRow.appendChild(filterCell);
+                });
+                return filterRow;
+            };
+            const thead = document.querySelector('.tid_threads thead');
+            const columns = Array.from(thead.querySelectorAll('th'));
+            const filterRow = createFilterRow(columns);
+            thead.insertBefore(filterRow, thead.firstChild);
+        });
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all">
+                <table class="tid_forumLayout">
+                    <tbody>
+                        <tr>
+                            <td id="tid_forum_left">
+                                <div class="tid_containerWrapper">
+                                    <div class="tid_forumThreads">
+                                        <div class="tid_mainBar">                                            
+                                            <div class="tid_stack tid_bg4">
+												<a class="tid_bg4" href="../../Index.html" tid_href="left:">
+													<img src="../../../gfx/design/flag_DE.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+													Startseite
+												</a>
+                                                <a class="tid_bg4" href="../Index.html" tid_href="left:">Twinoid</a>
+                                                <span class="tid_title">Neuigkeiten</span>
+                                            </div>
+                                        </div>
+                                        <div class="tid_forumDesc tid_bg2">
+                                            <span class="tid_quote tid_start">“</span>Forum zu offiziellen News zu Twinoid.<span class="tid_quote tid_end">”</span>
+                                        </div>
+										
+                                        <div class="tid_threadsContainer">
+                                            <table class="tid_threads tid_bg1">
+                                                <thead>
+                                                    <tr><th class="tid_index">&nbsp;</th><th class="tid_index">Themen</th><th class="tid_index">Erstellungsdatum</th><th class="tid_index">Themenautor</th><th class="tid_index">Letzte Antwort</th><th class="tid_index">Von</th><th class="tid_index">Anzahl der Antworten</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40805250" onclick="location.href='./40805250/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Kein offizieller Support mehr</td>
+    <td class="tid_subject tid_bg2 tid_author">19-08-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[761262]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-08-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[761262]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39575322" onclick="location.href='./39575322/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">We're going mobile with Uppercup Fo[...]</td>
+    <td class="tid_subject tid_bg2 tid_author">23-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">12-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Ralf1971</td>
+    <td class="tid_subject tid_bg2 tid_author">28</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39116797" onclick="location.href='./39116797/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Wichtige Sondermeldung: Das Ende de[...]</td>
+    <td class="tid_subject tid_bg2 tid_author">05-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">05-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_15210482" onclick="location.href='./15210482/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author"><span class="tid_forumTag tid_major">Neuigkeit</span></td>
+    <td class="tid_subject tid_bg2 tid_author">06-08-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">06-08-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Sturmwindfuchs</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_14430896" onclick="location.href='./14430896/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Glottis letzte Tage sind gezählt</td>
+    <td class="tid_subject tid_bg2 tid_author">16-07-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">16-07-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_14199474" onclick="location.href='./14199474/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">KadoKado auf Twinoid</td>
+    <td class="tid_subject tid_bg2 tid_author">10-07-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">10-07-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11745098" onclick="location.href='./11745098/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">HURRA!!!  Die Ergebnisse zum "Ludum D [...]</td>
+    <td class="tid_subject tid_bg2 tid_author">14-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">14-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11101641" onclick="location.href='./11101641/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Update Twinoid 2.3</td>
+    <td class="tid_subject tid_bg2 tid_author">27-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">27-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11030008" onclick="location.href='./11030008/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Motion Twin bei Ludum Dare</td>
+    <td class="tid_subject tid_bg2 tid_author">25-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">25-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10251072" onclick="location.href='./10251072/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Ausblick Twinoid</td>
+    <td class="tid_subject tid_bg2 tid_author">12-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">12-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10251089" onclick="location.href='./10251089/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Saison 5 hat begonnen</td>
+    <td class="tid_subject tid_bg2 tid_author">12-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">12-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_9748094" onclick="location.href='./9748094/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Update Twinoid</td>
+    <td class="tid_subject tid_bg2 tid_author">04-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">04-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_9611646" onclick="location.href='./9611646/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">**Die Zeiten sind ernst.** :stop:</td>
+    <td class="tid_subject tid_bg2 tid_author">01-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">01-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_9534876" onclick="location.href='./9534876/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Update Twinoid 2.0</td>
+    <td class="tid_subject tid_bg2 tid_author">30-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">30-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Moderator</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

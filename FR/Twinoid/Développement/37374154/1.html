@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Framework développement d'applications</title>
+    <link href="../../../../gfx/game/Twinoid.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Accueil
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Twinoid</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Développement</a>
+                                            <span class="tid_title"><span class="tid_forumTag tid_minor">Outil</span>Framework développement d'applications</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour à tous,</p><p>Je suis ici pour vous présenter un outil actuellement en développement, un framework pour les API Twinoid.</p><p>Twinoid fourni aux développeurs des API avec une documentation plus ou moins complètes, voilà pourquoi les développeurs ou futurs développeurs ne devraient pas être bridés et pouvoir développer leurs propres applications.</p><br><p><span class="tid_roleplay"><span class="tid_wroleplay"></span></span></p><br><p><strong>Fonctionnalités</strong></p><div class="tid_sideNote">• <strong><em>Gestion de session</em></strong> <br><span class="tid_sideNote">Vous permet de garder en session l'authentification Twinoid (Le token).</span><br>• <strong><em>Gestion de l'authentification Twinoid</em></strong> <br><span class="tid_sideNote">S'occupe de la redirection pour l'authentification Twinoid et la récupération du Token.</span><br>• <strong><em>Gestion de l'API Twinoid</em></strong> <br><span class="tid_sideNote">S'occupe d'effectuer les requêtes à l'API Twinoid avec le token précédemment obtenu.</span><br>• <strong><em>Gestion de l'API Hordes</em></strong> <br><span class="tid_sideNote">S'occupe d'effectuer les requêtes à l'API Hordes avec le token précédemment obtenu.</span><br>• <strong><em>Gestion de l'API Mush</em></strong> <br><span class="tid_sideNote">S'occupe d'effectuer les requêtes à l'API Mush avec le token précédemment obtenu.</span><br>• <strong><em>Gestion des erreurs</em></strong> <br><span class="tid_sideNote">Affichage des erreurs de requêtes.</span><br>• <strong><em>Calcul des appels vers l'API</em></strong><br><span class="tid_sideNote">Chaque API calcul le nombre de requêtes envoyées à l'API.</span><br>• <strong><em>Statut de Hordes sans requête supplémentaire</em></strong><br><span class="tid_sideNote">Il est possible de connaître le statut du jeu à la suite d'une requête précédemment effectuée sans requête supplémentaire. (Hordes)</span></div><br><p><span class="tid_roleplay"><span class="tid_wroleplay"></span></span></p><br><p><strong>Quel langage?</strong><br>J’ai choisi PHP comme langage de programmation, il est simple d’apprentissage et supporté par tous les hébergeurs.</p><p>Ce framework est codé en POO, rien ne vous oblige à connaître celle-ci, il vous suffit de savoir utiliser ses objets avec les accesseurs fourni. Vous pourrez ensuite coder le reste en procédural si cela vous convient.</p><div class="tid_sideNote">Si certains ont d’autres suggestions, je suis ouvert d’esprit.</div><br><p><span class="tid_roleplay"><span class="tid_wroleplay"></span></span></p><br><p><strong>Le concept</strong><br>Ce framework est développé en POO et vous permet de gérer l’authentification avec Twinoid, avec les informations de votre application dans un fichier de configuration il vous permet de récupérer le token et de le stocker en Session ou comme bon vous semble.</p><p>Il vous suffit de créer une instance de la classe d’authentification et une fois le token récupéré il vous est possible d’instancier une connexion avec l’API Twinoid et/ou l’API Hordes. Pour l’instant je n’ai pas prévu gérer d’autre API, si vous avez des suggestions dites-les.</p><p>Ensuite, à partir de l’un de ces API, il est possible de récupérer les informations disponibles pour ceux-ci le tout dans des objets.</p><p>Concrètement, avec un appel vers<br><a href="http://www.hordes.fr/tid/graph/me," target="_blank">http://www.hordes.fr/tid/graph/me,</a> vous recevez un objet User avec les mêmes informations que l’API. Ensuite, vous avez vos informations dans votre objet qui contient même un Array de Cadavers etc. Pour garder l'authentification, il y a plusieurs moyens comme de garder l'authentification en variable SESSION.</p><br><p><span class="tid_roleplay"><span class="tid_wroleplay"></span></span></p><br><p><strong>Exemple :</strong><br><a target="_blank" href="https://github.com/Ralof/framework-twinoid/blob/master/README.md#exemple">Visualiser avec coloration syntaxique.</a></p><pre>&lt;?php
+ $hordesApi = new HordesAPI($authTwinoid-&gt;getToken());
+ $currentUser = $hordesApi-&gt;getMe(); //Retourne un objet User (explication plus bas)
+ echo $currentUser-&gt;name; //Affiche le pseudo de l'utilisateur
+ // Il suffit de remplacer name par la valeur souhaitée de l'objet User.
+ ?&gt;
+</pre><p>En somme, ce framework vous permet de développer vos propres applications sans vous soucier de l’authentification, la récupération des informations et les informations reçues sont déjà sous forme d’objets.</p><br><p><span class="tid_roleplay"><span class="tid_wroleplay"></span></span></p><br><p><strong>L'avenir du projet</strong><br>Le but est simple et je compte en faire le framework « officiel » pour les applications Twinoid et surtout Hordes pour le début.</p><p><a target="_blank" href="https://github.com/Ralof/framework-twinoid">Git repository</a>, si vous souhaitez y apporter votre contribution, vous êtes la bienvenue.</p><p>L'API Hordes devient de plus en plus complet et le framework aussi.</p><p>Histoire de faciliter la migration de l'ancien flux XML à JSON, c'est le moment de changement <img src="http:../../../../gfx/square/anim.png/sifflote.gif" alt=":-&quot;" class="tid_ico">.</p><p>Le support du framework est disponible sur ce sujet ou par MP <span class="tid_user tid_user_1711366 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1711366">Ralof</span> pour des questions plus précises.</p><br><p><span class="tid_roleplay"><span class="tid_wroleplay"></span></span></p><p><a target="_blank" href="https://github.com/Ralof/framework-twinoid/releases">La version de distribution v1.0 est désormais disponible.</a> <em>(14/04/2014)</em></p><p><em><strong>Le message de présentation sera mis à jour prochainement.</strong></em></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Le framework possède maintenant un dépôt Git, disponible à <a target="_blank" href="https://github.com/Ralof/framework-twinoid">cette adresse</a>.</p><p>Si vous souhaitez y apporter votre contribution, vous êtes la bienvenue.</p><p>Le fichier <em>index.php</em> représente l'index de votre application, pour l'instant j'y est laisser mes tests histoire que vous voyez le fonctionnement.</p><p>Quelques mises à jour suivront dans les prochains jours, notamment la gestion de la validité du token, quand celui-ci doit être actualisé et finalisé la récupération des données sur l'API Hordes.</p><p>Vos commentaires sont les bienvenus.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 6 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonsoir,</p><p>Je ne peux pas tester en pratique car j'ai arrêté de coder pour Twino, mais je te félicite de ton initiative. J'ai toujours trouvé dommage que les devs externes doivent réinventer la roue chacun de leur côté. Bon courage pour la suite, ça devrait intéresser pas mal de codeurs. <img src="../../../../gfx/forum/smiley/h_smile.gif" alt=":hordes_smile:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 7 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonsoir Nadawoo,</p><p>Merci pour ton message ! <img src="../../../../gfx/forum/smiley/h_smile.gif" alt=":hordes_smile:" class="tid_ico"></p><p>___________________</p><p>J'en profite également pour signaler les dernières mises à jour :</p><p><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico"><strong>Mise à jour de l'API Hordes</strong> <br><span class="tid_sideNote"><span class="tid_sideNote"><em> Implantation de plusieurs méthodes additionnelles:<br>getMeBasicsInfos() - Retourne les informations de bases du joueur<br>getTwinUser($twinUser) - Recherche à partir de l'identifiant Twinoid<br>getMap($mapId) - Retourne les informations d'une map</em></span></span></p><p><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico"><strong>Mise à jour de l'utilitaire de débogage</strong><br><span class="tid_sideNote"><span class="tid_sideNote"><em>Il est maintenant possible de désactiver l'affichage des variables en mode debug en interne sans retirer les lignes d'affichages.</em></span></span></p><p>___________________</p><p>L'API Hordes devient de plus en plus complet et le framework aussi.</p><p>Histoire de faciliter la migration de l'ancien flux XML à JSON, c'est le moment de changement <img src="http:../../../../gfx/square/anim.png/sifflote.gif" alt=":-&quot;" class="tid_ico">.</p><p>N'oubliez pas que le support du framework est disponible sur ce sujet ou par MP <span class="tid_user tid_user_1711366 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1711366">Ralof</span> pour des questions plus précises.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_9_5_fc55df84_2250999.jpg" title="Zariell" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2250999 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2250999/1" tid_id="2250999">Zariell</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_armag.gif" title=""/> TÃ©moin de l'Armageddon</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bon courage pour ton projet. Je penses que je vais y faire un tour voir ce que tu nous a concocté dès que j'ai quelques minutes... J'y mettrais la patte, encore une fois, si je trouve du temps. Bonne chance !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 8 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour Zariell,</p><p>Merci pour ton message !</p><p>___________________</p><p>Comme d'habitude, voici les dernières grandes mises à jour :</p><p><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico"> <strong>Gestion de l'expiration du token</strong><br><span class="tid_sideNote"><span class="tid_sideNote"><em>Renouvelle la connexion quand celle-ci est expirée.</em></span></span><br><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico"> <strong>Implantation de l'API Mush</strong><br><span class="tid_sideNote"><span class="tid_sideNote"><em>Il est maintenant possible de récupérer quelques informations sur Mush.</em></span></span><br><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico"> <strong>Implantation de l'API Twinoid</strong><br><span class="tid_sideNote"><span class="tid_sideNote"><em>Il est maintenant possible de récupérer des informations sur L'API Twinoid.</em></span></span></p><p><a target="_blank" href="https://github.com/Ralof/framework-twinoid">Tout ceci se trouve sur le Git.</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[2181]" style="background-color: rgb(204,124,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2181 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2181/1" tid_id="2181">[2181]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Tu poste ça sous quel licence ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour Titi_Alone,</p><p>Merci de l'intérêt que tu portes à ce projet.</p><p>Tout d'abord, laisse-moi te rappeler que le framework est avant tout un projet <em>Open Source</em> dont l'objectif premier est d'utiliser plus simplement et plus rapidement l'API Twinoid. Dans une optique où il ne sera plus nécessaire que chaque développeur réinvente la roue de son côté. Ainsi, chaque développeur récupère le framework et développe son application sans se soucier du reste, une version qui est mise à jour par la communauté.</p><p>Pour répondre plus précisément à ta question, je viens d'ajouter une licence MIT au projet. Vous pouvez l'utilisé et le modifié comme bon vous semble, par contre si vous souhaitez le modifié n'oubliez pas que vous pouvez contribuer au projet ou si vous souhaitez faire des changements majeurs vous pouvez toujours créer votre propre branche.</p><p>Bien sûr, ce framework vous permet de récupérer un code pour ensuite récupérer les informations de Twinoid, par la suite vous êtes responsables de ces informations. Je vous rappelle que votre application doit respecter les <a target="_blank" href="#">CGU</a> de Twinoid (particulièrement les points <a target="_blank" href="http://support.twinoid.com/cgu#6">6</a> et <a target="_blank" href="http://support.twinoid.com/cgu#9.1">9.1</a>).</p><p>Quant à l’utilisation commerciale, je rappelle qu’une application ne doit à aucun moment demander un paiement ou un don.</p><p>Ce framework et ses développeurs ne seront pas tenus responsables de l'utilisation ni des dégâts causés par celui-ci. De plus, ils [ce framework et ses développeurs] se dégagent de toute responsabilité en cas d'utilisation par une tierce personne. Vous êtes le seul responsable de toutes les activités entreprises avec cet outil.</p><p>Si tu as d’autres questions, n’hésite pas.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="-HS-" style="background-color: rgb(204,82,100); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1582911 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1582911/1" tid_id="1582911">-HS-</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Je demande un procÃ¨s par Whordes'Up</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Salut Ralof !</p><p>Merci pour ton boulot, en espérant que ça donne envie à des codeurs de développer des applis pour Twinoid...</p><p>J'essaie de coder un truc (en gros amateur) et quand j'utilise la fonction 'initialize' de ton framework (pour récupérer le token), l'erreur suivante s'affiche systématiquement :</p><p><span class="tid_roleplay"><span class="tid_wroleplay">Warning: file_get_contents(): Unable to find the wrapper &amp;quot;https&amp;quot; - did you forget to enable it when you configured PHP?</span></span></p><p>Est-ce que ça pourrait venir du fait que mon appli est uniquement sur mon PC, je ne l'ai pas mise en ligne ?</p><p>HS : je n'ai pas bricolé ton framework, je l'utilise tel quel.<br>HSS : je suis vraiment un très gros amateur, hein...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_d_7_a418e63b_332_100x100.png" title="Scipion" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_332 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/332/1" tid_id="332">Scipion</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\EA_GrandBeta.gif" title=""/> Beta-testeur qui se la pÃ¨te</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>J'ai regardé le code de tout ça, ça semble bien réalisé.</p><p>Vu que je vais devoir coder en vitesse grand V une application pour servir de base à une de mes animations, ça va m'être très utile, merci à toi.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_10">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour -HS-,</p><p>Pour envoyer une requête par le protocole HTTPS, tu dois activer l'extension <em>php_openssl.dll</em> dans ton <em>php.ini</em>.</p><p>En bref, ouvre ton <em>php.ini</em> et assure-toi qu'il y a cette ligne : <em>extension=php_openssl.dll</em> sans <em>;</em> devant.</p><p>___________________</p><p>Bonjour Scipion,</p><p>Merci pour ce commentaire, tu me monteras ton application. <img src="../../../../gfx/forum/smiley/h_smile.gif" alt=":hordes_smile:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_11">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1711366 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1711366">Ralof</span></span><cite>tu dois activer l'extension <em>php_openssl.dll</em> dans ton <em>php.ini</em>.</cite><p>Hihi, c'est peut-être pas une bonne idée de faire ça en ce moment. Attends quelques jours. <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_12">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_430289 tid_userBg tid_userFriend tid_parsed" tid_bg="1" tid_id="430289">Nadawoo</span></span><cite>Hihi, c'est peut-être pas une bonne idée de faire ça en ce moment. Attends quelques jours. <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></cite><p>Hahaha, si c'est en local avec un peu de chance il n'aura pas de soucis. <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p><br><p>Sinon merci Ralof pour ce framework ! Je n'y connaissais strictement rien niveau API, voila qui me permet de me lancer et de m'amuser un peu pour Hordes notamment. <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico"></p><p>Si j'y arrive (et si j'arrive à quelque chose tout court), je créerai peut-être une branche au repo git un de ces jours. <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_13">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bien vu Nada, mais à moins qu'il utilise HTTPS pour son application il est sans risque sachant que <a target="_blank" href="http://filippo.io/Heartbleed/#twinoid.com">Twinoid est safe</a>.</p><p>Voxran, amuse-toi c'est là pour ça <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"> <br>Au plaisir de voir naître une application et/ou branche.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_14">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="-HS-" style="background-color: rgb(204,82,100); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1582911 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1582911/1" tid_id="1582911">-HS-</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Je demande un procÃ¨s par Whordes'Up</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Arg, ça bloque encore...</p><p>Voila mon code :</p><p><em>require 'AuthTwinoid.class.php' ;<br><br>$AuthTwinoid = new AuthTwinoid(118, "XxxxXXX", "<a href="http://localhost/test/page1.php" target="_blank">http://localhost/test/page1.php</a><strong></strong>"<strong></strong>);<br><br>$AuthTwinoid-&gt;initialize($code);</em></p><p>(je précise : $code contient bien le code renvoyé par Twinoid à l'étape 1 -vérifié avec des echo bien placés)</p><p>Quand j'affiche la variable $json (avec Var_dump) ça m'affiche : <br><em>object(stdClass)[2]<br> public 'error' =&gt; string 'invalid_client' (length=14)</em></p><p>Et pourtant j'ai vérifié et re-vérifié, le code client que je fournis ("XxxxXXX"<strong></strong>) est bien le bon...</p><p><img src="../../../../gfx/square/drowl.png" alt=":drowl:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_15">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour -HS-,</p><p>Je ne vois pas le problème avec si peu de codes.<br>Tu utilises bien le code que Twinoid envois par <em>$_GET['code']</em> et non ta clé secrète dans initialize?</p><p>Par contre, pourquoi n'utilises-tu pas directement la structure du framework? Le framework possède un autoload, une gestion des sessions histoire d'être sûr que le code reçu soit le bon et il y aussi un utilitaire de débogage (Beaucoup plus facile à lire):</p><pre>Debug::showVariable();
+</pre><br><p>Tu n'as qu'à prendre le modèle de <em>index.php</em> et de supprimer mes tests en dessous de :</p><pre>//Récupération de l'authentification
+$authTwinoid = $_SESSION['authTwinoid'];
+</pre><p>Si tu souhaites travailler avec ta structure, écris moi par MP on règlera ce problème.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_16">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="-HS-" style="background-color: rgb(204,82,100); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1582911 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1582911/1" tid_id="1582911">-HS-</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Je demande un procÃ¨s par Whordes'Up</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Yep, j'utilise le $_GET['code']. Ca je gère.</p><p>Par contre j'avoue que la requête en POST pour récupérer un json... J'avais jamais vu.</p><p>Je vais reprendre la structure de ton framework. Si ça continue à bugger, je te MP (ou je me mets au tricot, nettement plus à ma portée)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_17">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je ne fais que débuter pour ce qui est des API, et je me rends compte que je suis à environ 300 requêtes sur l'API aujourd'hui (sur un Quota par appli de 500), car j'actualise à chaque petite modif sur mon boulot.</p><p>Y-a-t-il un quelconque moyen de mettre en place un "cache", qui éviterait de re-pomper à chaque fois 100% des infos ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_18">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour Voxran,</p><p>Le quota des applications est variable, tu devrais passer à 1000 après une première validation, car pour l'instant tu es le fier possesseur de la plus récente application <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico">.</p><p>Pour le système de cache, je n'avais pas prévu cela à la base, ça peut être intéressant dans certains cas comme pour les informations relatives à l'utilisateur qui ne devraient pas changer.</p><p>Par contre, il suffit de linéarisé l'objet retourné par une requête dans une variable session.</p><p>Par exemple pour les informations de l'utilisateur :</p><pre>$_SESSION['currentUser'] = $hordesApi-&gt;getMe();
+echo $_SESSION['currentUser']-&gt;name;
+/* Affiche le nom sans faire une deuxième requête. */ 
+</pre><p>Ainsi, à la prochaine itération de l'application, vérifié si la variable session ne contient pas déjà un objet, si oui l'utiliser, sinon le récupéré.</p><p>Ensuite, si cela devient essentiel à y penser rapidement je ferais des classes qui héritent des API et qui intègrent un système de cache. En bref, lors de la récupération des informations, l'objet vérifie avant s'il ne possède pas déjà ses informations et qu'ils datent de moins de x minutes, si oui il les retourne, sinon il récupère et retourne.</p><p>Si linéarisé les objets de retour ne te convient pas, ne te gêne pas pour écrire comment tu vois ça.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_19">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Haha, je ne souhaite pas passer à une validation quelconque pour le moment, mais rien qu'à force de rafraichir mes tests pour le design, ça me bouffe à chaque fois 4 requêtes d'API. Donc là j'approche des 400. <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p><br><p>Je vais voir ce que donne ton bout de code, couplé à ce que j'ai déjà pu tenter de faire. A vrai dire je pensais juste à une solution quelle qu'elle soit, qui éviterait d'aller refaire une requête sur l'API, même si rien n'a changé. Ou au moins un timer de XXsec/min paramétrable (en l’occurrence mes infos ne changent pas toutes les minutes), qui indique quand il est faut actualiser le cache (en gros on actualise, mais pendant xx temps on a toujours les mêmes infos).</p><p>Pour info, je m'amuse à faire un "BBH-Like" pour Hordes, ou du moins un truc à ma façon. Donc à chaque fois que je rajoute un petit bout de code j'actualise, et ça fait une nouvelle requête inutile (vu que je n'ai soit pas bougé sur la map, soit je suis en ville et je m'en fous pour l'instant que ça ai changé). <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p><br><p>Et pour seconde info, j'ai mis dans des variables un peu toutes les infos que renvoie l'API d'Hordes, comme ceci : <br><span class="tid_sideNote"> <em>User (me)</em><br><br> $currentUser = $hordesApi-&gt;getMe();<br><br> $cuName = $currentUser-&gt;name;<br> $cuTwinId = $currentUser-&gt;twinId;<br> $cuMapId = $currentUser-&gt;mapId;<br> $cuAvatar = $currentUser-&gt;avatar;<br> $cuHero = $currentUser-&gt;hero;<br> ...<br><br> <em>Map</em><br><br> $currentMap = $hordesApi-&gt;getMap($cuMapId);<br><br> $cmId = $currentMap-&gt;id;<br> $cmWid = $currentMap-&gt;wid;<br> $cmHei = $currentMap-&gt;hei;<br> $cmBonusPts = $currentMap-&gt;bonusPts;<br> ...<br></span><br>Ce qui me permet d'utiliser "facilement" les infos reçues.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_20">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 11 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Sinon, désolé pour le double post, mais il y aurait peut-être possibilité d'éviter des requêtes inutiles <em>(et c'est probablement ce que fait Fred avec BBH)</em> en stockant les infos dans la base de données <em>bien organisée à la base</em>, de les récup' automatiquement de là (sauf à la connexion où on reload), et de les actualiser uniquement en cas de pression du bouton "Refresh".</p><p>Probablement le + simple....</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_21">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Certes, c'est comme ça que fait Fred pour rassembler les informations de tous les joueurs. Cependant le framework est là à la base pour récupérer les informations de l'API Twinoid, y intégrer une base de données ne serait pas une bonne idée.</p><p>Ensuite, dépendamment de l'application que tu fais, tu es libre d'utilisé une base de données. Pour des applications qui se concentrent sur l'utilisateur actuellement connecté et qui ne souhaite pas stocké ces informations dans une base de données, mais seulement analysé ceux-ci, à ce moment-là je conseille fortement de linéarité les objets reçus dans une variable session.</p><p>Concrètement, je reçois les informations d'un utilisateur x : <br><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico">Linéarisation de ses informations dans une variable session (utilisable tant que l'utilisateur est connecté);<br><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico">J'ajoute dans une autre variable session le timestamp d'expiration de ses données;<br><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico">Lors de la prochaine itération de l'application, je vérifie s'il y a des données dans la variable session, si oui je vérifie si elles sont toujours valides (non expiré);<br><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico">Dans le cas contraire, je récupère les nouvelles informations.</p><p>S'il s'agit simplement des méta-informations de l'utilisateur, pas besoin de gérer l'expiration de celles-ci.</p><p>C'est peut-être simple à première vue utilisé une base de données, cependant pour des applications simples, stockés les informations de chaque utilisateur qui visitent peut vite gourmand. De plus, pour récupérer les données sur l'utilisateur actuellement connecté dans la base de données, tu dois avoir l'identifiant unique de celui-ci, donc une requête à l'API, se qui revient au même que de le stocké en session. Le seul avantage que je vois à la base de données, c'est le fait qu'il est possible de garder un historique des informations et de faire des analyses.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_22">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Houla, une BDD... Il ne fait pas un CMS pour faire des applis clés en main non plus. <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></p><p>Mais juste enregistrer un fichier d'API complet et l'enregistrer en local sur le PC, ça permettrait de tester tant que vous voulez puisqu'il n'y aurait pas de requête vers Hordes. Est-ce que le framework permet de personnaliser l'emplacement de l'API ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_23">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Le framework permet de faire des requêtes POST vers une URL et d'y récupérer le flux JSON.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_24">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Mon but étant de refaire à ma sauce un BBH-like, je me vois mal ne pas utiliser une BDD en fait. <img src="http:../../../../gfx/square/anim.png/surprise.gif" alt="8D" class="tid_ico"></p><p>Après le framework, je ne sais pas trop ce que tu comptais réellement faire avec, mais j'ai pour habitude de beaucoup bidouiller et au final la "base" ne ressemble plus grand chose... <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p><br><p>Nadawoo : Le truc, c'est que je ne suis pas très doué en PHP, mais je me démerde bien mieux avec une BDD qu'avec tout un tas d'autres choses de gestion/transfert de données/variables/blablabla. :p<br>Du coup je ne comptais pas lui demander de faire un système de BDD, mais c'est bien moi qui comptais le mettre en place comme un grand. Mais effectivement on s'écarte totalement du framework de base.</p><p>Quand à l'enregistrer en local et le traiter/analyser correctement, ça par exemple je ne sais pas faire.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_25">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Effectivement si tu souhaites faire un BBH-Like, l'utilisation d'une base de données est l'idéale, par contre ce n'est plus du ressort du framework à proprement dit.</p><p>L'idéal serait d'éviter de modifier le framework sans commiter les changements, mais de faire d'autres classes annexes ou fonctions ou une classe enfant du framework. Si tu modifies les fichiers et qu'il y a une mise à jour, tu ne pourras pas en profiter directement <img src="../../../../gfx/square/smile.png" alt=":)" class="tid_ico">.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_26">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>A part le index.php (évidemment, dur de l'éviter), j'ai créé mes propres fichiers qui viennent s'annexer dessus, comme des un functions.php, header/footer.php qui sont appelés par l'index.php, etc.</p><p>En fait, j'avais cette idée là depuis un bout de temps, mais j'étais incapable de savoir utiliser correctement l'API, ou simplement de m'y connecter. Ce que m'a permit le framework. <img src="../../../../gfx/square/wink.png" alt=";)" class="tid_ico"></p><br><p>Edit : Une chose que je ne comprends pas... J'ai 4 appels sur l'API (d'après le quota dans mon compte) à chaque rafraichissement. Est-ce normal ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_27">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_f_7d881ccb_19935.jpg" title="Sirios" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_19935 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/19935/1" tid_id="19935">Sirios</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jtech.gif" title=""/> Bricoleur du dimanche</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><span class="tid_user tid_user_2136174 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="2136174">Voxran</span> : c'est qu'il faut optimiser ta requête. Je ne sais pas si le framework de <span class="tid_user tid_user_1711366 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1711366">Ralof</span> le permet mais toutes les informations hordes se trouve dans l'URL d'appel : <a href="http://www.hordes.fr/tid/graph/me" target="_blank">http://www.hordes.fr/tid/graph/me</a> (à l'exception du statut).</p><p>Il faudrait donc t'arranger pour récupérer toutes les infos que tu désires en une seule requête.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_28">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui le framework le permet, par exemple pour getMe(), il prend en argument <em>$fields</em> qui par défaut (lorsqu’aucun argument n'est passé) prend la valeur :</p><pre>$fields = "name,twinId,mapId,map,avatar,hero,dead,job,out,baseDef,ban,x,y,playedMaps" 
+</pre><p>En bref, si aucun argument n'est passé, il sélectionne tout, avec un argument, comme l'exemple suivant qui récupère seulement le pseudo de l'utilisateur :</p><pre>getMe("name");
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_29">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 13 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Le soucis, c'est que je ne vois pas comment optimiser.</p><p>J'ai tenter, sur une seconde adresse et une seconde application (créée avec mon compte), d'utiliser le framework basique. <br>Problème, il me le compte dans le quote de la première, alors que le App.inc.php est complètement différent (1 pour chaque appli)... Et il me compte toujours bien 4 requêtes.</p><p>Peut-être ais-je mal compris comment créer une appli (j'utilise la même adresse dans les champs "URL de l'application" &amp; "redirection", je ne vois pas quoi d'autre).</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_30">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 13 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je ne connais pas bien le flux Twino, mais s'il respecte les conventions, tu dois l'appeler une seule fois, en demandant tous les éléments dont tu as besoin. A toi ensuite de faire le tri dans ces données.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_31">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 13 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Mea Culpa, je sais en effet d'où vient le soucis des 4 appels.</p><p>J'appelais par exemple :<br><cite>$isAttack = $hordesApi-&gt;isAttack();<br>$isMaintenance = $hordesApi-&gt;isMaintenance();</cite><br>Ce qui fait déjà 2 appels, +2 autres pour l'utilisateur et la map....</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_32">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_c_f0dfe203_430289_100x100.png" title="Nadawoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 13 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_430289 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/430289/1" tid_id="430289">Nadawoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Pingouin pour</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Tiens, c'est une idée d'amélioration pour <span class="tid_user tid_user_1711366 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1711366">Ralof</span> du coup : c'est possible d'ajouter un affichage du nombre d'appels à l'API ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_33">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 13 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Pourquoi pas oui !</p><p>Et dans le cas d'appels à la base comme mes 2 fonctions ci-dessus, comment améliorer ça ? (en sachant qu'elles ne sont pas dans le graph/me)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_34">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 13 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>C'est noté, un compteur sera intégré.</p><p>Ça devrait être possible de faire ça en une requête, lors de l'attaque le serveur devrait généré une erreur /graph/me, suffit de la récupérer et de mettre un flag.</p><p>Je n'ai jamais essayer mais je présume, je regarde ça à mon retour chez moi, sur mobile c'est pas l'idéal.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_35">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_c_ed01ae68_1711366_100x100.jpg" title="Ralof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 14 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1711366 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1711366/1" tid_id="1711366">Ralof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jsham.gif" title=""/> Gardien des archives</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour à tous,</p><p>Une mise à jour du framework est maintenant disponible sur le <a target="_blank" href="https://github.com/Ralof/framework-twinoid/">Git</a>, d'ailleurs la version release 1.0 devrait voir le jour dans le début de la semaine avec son tag respectif.</p><p><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico"> <strong>Compteur de requêtes</strong><br><span class="tid_sideNote"><em>Chaque API calcul maintenant le nombre de requêtes envoyées à Twinoid.</em></span></p><br><p><img src="../../../../gfx/forum/smiley/h_middot.gif" alt=":hordes_*:" class="tid_ico"> <strong>Modification de la récupération du statut</strong><br><span class="tid_sideNote"><em>Il est maintenant possible de connaître l'état de Hordes sans avoir à faire une requête supplémentaire. Après avoir fait une requête comme getMe(), si le serveur est attaqué, celui-ci générera une erreur "serveur_error" un flag est automatiquement levé. Il est donc possible de le vérifier <strong>à la suite d'une requête</strong> par -&gt;isAttack() ou -&gt;isAvailable().</em></span></p><br><p>Merci à <span class="tid_user tid_user_430289 tid_userBg tid_userFriend tid_parsed" tid_bg="1" tid_id="430289">Nadawoo</span> et <span class="tid_user tid_user_2136174 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="2136174">Voxran</span> pour ces retours.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_36">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_6_6b2aded4_3607225_100x100.png" title="LouCypher" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 15 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3607225 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3607225/1" tid_id="3607225">LouCypher</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\noise.png" title=""/> Frequent caller</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>J'aurais vu une méthode "update" qui fait une requête sur l'API et qui met à jour les données sur l'objet hordesAPI. Par la suite, les méthodes genre isAttack, isChuckInBank se contenterais de lire les propriété de l'objet hordesAPI. <br>Parce que si j'ai bien compris, en l'état, il y a une requête à chaque fois qu'on a besoin d'une information. Ce qui veux dire que la framework sert à rien car elle va bouffer le quota vitesse grand V.</p><br><span class="tid_preCite"><span class="tid_user tid_user_2136174 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="2136174">Voxran</span></span><cite>Problème, il me le compte dans le quote de la première, alors que le App.inc.php est complètement différent (1 pour chaque appli)... Et il me compte toujours bien 4 requêtes.</cite><p>Tu utilise bien un identifiant d'application différent pour chaque App.inc.php ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_37">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_93946860_2136174_100x100.gif" title="Voxran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 15 avril 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2136174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2136174/1" tid_id="2136174">Voxran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Fondateur du temps perdu</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_3607225 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="3607225">LouCypher</span></span><cite>Tu utilise bien un identifiant d'application différent pour chaque App.inc.php ?</cite><p>En effet, j'utilisais même l'ancien App.inc.php (sans le scope) d'un côté, et le nouveau de l'autre, mais ça rentrait en conflit. Bizarre... (Mais c'était sur le même nom de domaine, juste pas le même dossier).</p><p>Enfin merci pour les amélioration au niveau de $isAttack et autres, Ralof !</p><p>J'en suis à l'heure actuelle où la map est sauvegardée à la première connexion dans une BDD (donc requête getMe(); + requête getMap($mapId); ), avec les infos qu'il faut. Si la seconde/troisième/etc connexion se fait moins de 2min (modifiable) plus tard, on vérifie l'existence de la map dans la BDD (donc juste une requête getMe(); pour nos infos). Et sinon on update les infos susceptibles de changer (eau, zones, etc). Et sinon, si elle existe déjà et qu'on estime les infos encore valables (date d'update de la map de moins de 2min dans la BDD), on fait simplement une requête sur la BDD pour obtenir les infos.</p><br><p>Mais au final, quoi que je fasse, j'ai 1 requête getMe();, et toutes les 2min une requête getMap($mapId); en plus. Je ne sauvegarde pas encore les infos des utilisateurs ceci-dit.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_38">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_c_e6c282cc_3422361.jpg" title="Tyler_Durden" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 13 février 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_3422361 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/3422361/1" tid_id="3422361">Tyler_Durden</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Voleur de fichiers</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Super taf... Impressionnant investissement personnel, tu profites à toute la communauté, merci !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_39">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_1_b4645bf4_8544151_100x100.png" title="Aymerik" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 13 février 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8544151 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8544151/1" tid_id="8544151">Aymerik</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_jtamer.gif" title=""/> ShÃ©rif de l'Ouest</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>En effet pas mal, c'est bien pratique et ça fait gagner du temps. ^^</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_40">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_7_b_c99b843f_4647_100x100.gif" title="Zenoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 9 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4647 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4647/1" tid_id="4647">Zenoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_beta.gif" title=""/> In with the bricks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Hey !</p><p>Bon, ça fait un sacré moment que j'utilise le framework, j'ai même rajouté quelques fonctions, mais là j'avoue ne pas comprendre une erreur.</p><p>Voici le code en question :</p><pre>&lt;?php
+
+ include 'Library/autoload.php'; //Auto chargement des classes
+ 
+ 
+ define('REDIRECT_URI', "xxxxxxxxx");
+ define('CLIENT_ID', xxx);
+ define('CLIENT_SECRET', "xxxxxxxxxxxxxxx");
+ define('SCOPE', "contacts,groups,applications,www.hordes.fr");
+ 
+ /*
+ //Overload
+ define('REDIRECT_URI', "xxxxxxxxx");
+ define('CLIENT_ID', xxx);
+ define('CLIENT_SECRET', "xxxxxxxxxxxxxxxxxxxx");
+ define('SCOPE', "contacts,groups,applications,www.hordes.fr");
+*/
+ 
+ session_start(); //Démarrage de la session
+
+ Debug::debugModeOn(); //Activation du mode de déboggage
+
+ //Déconnexion
+ if(isset($_GET['reset']))
+ {
+ SessionManager::deleteConnection();
+ }
+
+ //Gestion de la session
+ SessionManager::createConnection();
+ 
+ //Application
+ if(SessionManager::isConnected())
+ {
+ echo '&lt;a href="'.REDIRECT_URI.'"&gt;Refresh&lt;/a&gt; &lt;br /&gt;' . "\n";
+ echo '&lt;a href="'.REDIRECT_URI.'?reset"&gt;Reset&lt;/a&gt; &lt;br /&gt;' . "\n";
+
+ //Récupération de l'authentification
+ $authTwinoid = $_SESSION['authTwinoid'];
+
+ //Gestion de l'API Hordes
+ $hordesApi = new HordesAPI($authTwinoid-&gt;getToken());
+ 
+ //Gestion des erreurs
+ if($hordesApi-&gt;errors())
+ {
+ $description = $hordesApi-&gt;getErrorsDescriptions();
+
+ foreach($hordesApi-&gt;getErrors() as $key =&gt; $error)
+ {
+ echo $error . ' : ' . $description[$key] . '&lt;br/&gt;';
+ }
+ }
+
+ }
+ 
+ $today = getdate();
+ if($today['hours'] == 0 &amp;&amp; $today['minutes'] &lt; 37){
+ echo '&lt;div id="errorH"&gt;&lt;p&gt;Le site subit des attaques répé... HaaaAAAARGH &lt;img src="http://www.hordes.fr/favicon.ico"&gt;&lt;/p&gt;&lt;/div&gt;';
+ exit();
+ }
+ 
+ 
+ $hordesGeneral = $hordesApi-&gt;getMe("name,twinId,mapId,x,y,out");</pre><p>Pour expliquer en quelques mots ce qui change du framework de base : Je fais les define directement dans ce fichier, et non pas dans un include, pour pouvoir toggle un autre accès d'application quand le premier est full requêtes.<br>Pour le reste c'est le framework de base.</p><p>Ce qui pose problème ici est :</p><pre>$hordesGeneral = $hordesApi-&gt;getMe("name,twinId,mapId,x,y,out");</pre><p>J'ai des</p><pre>PHP Fatal error: Call to a member function getMe() on null in /home/aubxoqyt/public_html/hordes/map/index.php on line 72</pre><p>qui pop de partout dans mon logfile.<br>La page s'affiche correctement, mais extrêmement lentement.<br>J'ai bien-sûr essayé de voir avec mon fournisseur si ça ne venait pas de lui et rien.</p><p>Je suppose donc que ça vient de là.</p><p>Au passage, voici la fonction getMe(), je ne crois pas l'avoir modifiée, mais on sait jamais :</p><pre> //Récupère les informations sur l'utilisateur actuellement connecté
+ public function getMe($fields = "name,twinId,mapId,map,avatar,hero,dead,job,out,baseDef,ban,x,y,playedMaps")
+ {
+ $url = self::URL."me?fields=".$fields."&amp;access_token=".$this-&gt;_token."";
+ 
+ return $this-&gt;jsonCall($url);
+ }</pre><p>Si quelqu'un a une idée, j'suis preneur, parce que là je bloque.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_41">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_7_9_2683f98e_1244143.jpg" title="badconker" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1244143 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1244143/1" tid_id="1244143">badconker</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\blitz_cycle.png" title=""/> HÃ© mec, Il est oÃ¹ mon vaisseau ?</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Il doit y avoir un soucis au niveau de SessionManager::createConnection qui fait que la connexion foire donc du coup tu passes pas dans ton if(SessionManager::isConnected()) et du coup $hordesApi non défini.</p><p>Donc :</p><ul><li>1 - problème de connexion</li><li>2 - $hordesGeneral = [..] devrait être dans le if pour éviter ce genre d'erreur à l'avenir</li></ul>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_42">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_7_b_c99b843f_4647_100x100.gif" title="Zenoo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 10 décembre 2015
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4647 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4647/1" tid_id="4647">Zenoo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_beta.gif" title=""/> In with the bricks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Effectivement, j'ai mis le reste de mon code dans le if, ça semble régler le souci.<br>Par contre le problème de connexion que tu soulèves m'intéresse.<br>J'ai des sacrées lenteurs avec toutes mes applis utilisant ce framework, dans le chargement des pages.<br>Pourtant je n'ai rien changé dans tout ce qui concerne gestion de la session.<br>Y aurait-il un autre souci là-dedans?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Utilitaire : inventaire</title>
+    <link href="../../../../gfx/game/Mush.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Accueil
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Mush</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Entraide</a>
+                                            <span class="tid_title">Utilitaire : inventaire</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Loscian" style="background-color: rgb(204,82,135); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 1 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2233414 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2233414/1" tid_id="2233414">Loscian</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je remarque que le système en vigueur pour l'inventaire laisse un peu à désirer, notamment en ce qui concerne la mise à jour des pièce quand on commence à déplacer l'équipement. S'en suivent des trajets perdus à aller chercher ce que machin ou truc ont déjà été chercher avant nous. <br>Surtout, l'inventaire devient totalement illisible une fois que les pièces ont été mises à jour deux ou trois fois.</p><p>Je ne vais pas proposer de lien externe ; je n'ai pas la compétence, et je crois que les joueurs ne les utilisent pas. Mais je propose une nouvelle formulation.</p><ul><li>Elle est conçue pour être lisible et ne contenir aucune mise en forme, afin de pouvoir être copiée-collée de message en message.</li><li>La partie note, à la fin, est pensée pour être écrite en italique. La mise en forme disparait au copié-collé, ce qui permet de garder les notes précédentes (s'il y a lieu) tout en conservant la plus récente en exergue. L'idée est d'avoir une utilisation demandant un effort nul.</li><li>Il y a trois points entre chaque pièce. Seul le second est utilisé pour l'inventaire. Les autres servent à la mise en page. Je copie ici l'inventaire de ma partie pour qu'il y ai des exemples d'objets.</li></ul><p>Voilà. L'idée est que les gens utilisent ce système en le prenant ici, afin de conserver le même ordre de salles d'une partie à l'autre. Cela facilitera la lecture.</p><br><p><em><strong>C'est parti</strong></em></p><br><p>..........PONT..........<br>.<br>. Bidouilleur - Plan du sofa<br>.<br>..........TOURELLE A-AVANT..........<br>.<br>. Vide<br>.<br>..........TOURELLE B-AVANT..........<br>.<br>. Vide<br>.<br>..........COULOIR AVANT..........<br>.<br>. Médikit - Armure<br>.<br>..........LABORATOIRE..........<br>.<br>. Souche - Tablier - Grenades x2 - Bananiers x2<br>.<br>..........INFIRMERIE...........<br>.<br>. Médicaments<br>.<br>..........JARDIN..........<br>.<br>. Jeunes bananiers x2 - Hydropot<br>.<br>..........STOCKAGE AVANT..........<br>.<br>. Vide<br>.<br>..........COULOIR CENTRAL..........<br>.<br>.Gants - Blaster<br>.<br>..........RÉFECTOIRE..........<br>.<br>. Rations x28 <br>.<br>..........TOURELLE A-CENTRE..........<br>.<br>. ?<br>.<br>...........TOURELLE B-CENTRE..........<br>.<br>. Vide<br>.<br>..........BAIE BÊTA...........<br>.<br>.Extincteurs x2<br>.<br>..........STOCKAGE B-CENTRE............<br>.<br>.Vide<br>.<br>..........BAIE ALPHA............<br>.<br>.Ruban - Combi<br>.<br>..........STOCKAGE A-CENTRE..........<br>.<br>. ?<br>.<br>..........DORTOIR ALPHA...........<br>.<br>. Tee-shirt sale<br>.<br>..........DORTOIR BÊTA...........<br>.<br>. Savon<br>.<br>............COULOIR ARRIERE............<br>.<br>.Blaster<br>.<br>............NEXUS...........<br>.<br>. Vide<br>.<br>..........BAIE ALPHA 2..........<br>.<br>. Pl. Thrmocenseur<br>.<br>..........BAIE ICARUS..........<br>.<br>.Combi x5 - Boussole - Corde x2 - Couteau - Foreuse<br>.<br>..........STOCKAGE A-ARRIERE..........<br>.<br>. ?<br>.<br>..........STOCKAGE B-ARRIERE..........<br>.<br>. Vide<br>.<br>..........TOURELLE A-ARRIERE..........<br>.<br>. Vide<br>.<br>...........TOURELLE B-ARRIERE..........<br>.<br>. Vide<br>.<br>..........MOTEURS...........<br>.<br>. Vide<br>.<br>...........NOTES..........<br>.Ancienne note ayant perdu sa mise-en-forme<br>.<em>nouvelle note en italique</em></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_8_f_703ee1e9_2666_100x100.png" title="LaTerreurMonAme" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 1 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2666 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2666/1" tid_id="2666">LaTerreurMonAme</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">ExpÃ©rience dangereuse</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>J'ai pas très bien compris l'intérêt... <img src="../../../../gfx/square/question.png" alt=":?:" class="tid_ico"></p><p>Tu insinues qu'il faudrait reposter l'inventaire en entier chaque fois qu'un objet est déplacé ?<br>Si c'est ça, au bout de 5 jours tu devras attendre 10min pour que la page se recharge tellement le canal sera surchargé... <img src="../../../../gfx/square/hmm.png" alt=":-/" class="tid_ico"></p><p>Sinon, tu peux réexpliquer ? <img src="../../../../gfx/square/huh.png" alt="O_o" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_c_1_87da6a1a_7130264_100x100.jpg" title="theligal45" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 1 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_7130264 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/7130264/1" tid_id="7130264">theligal45</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">Mutilateur</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>je croit avoir compris que le système actuel d'inventaire ne lui plait pas</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Cydu" style="background-color: rgb(204,169,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 1 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1123 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1123/1" tid_id="1123">Cydu</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Le temps de faire défiler le message d'inventaire que chaque personne aura mis à jour, l'ordinateur va griller !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Loscian" style="background-color: rgb(204,82,135); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 1 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2233414 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2233414/1" tid_id="2233414">Loscian</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Non non, pas à chaque fois qu'un objet est déplacé. <br>Seulement en début de partie, durant la période où les objets sont répertoriés et répartis au mieux dans le vaisseau.</p><p>Actuellement, le principe est de poster des messages salle par salle, avec comme effet d'obtenir à J3 un inventaire absurde où les salles notifiées se contredisent : objets à plusieurs endroits en même temps, objets situés nul part, et surtout objets notifiés dans une salle où ils ne sont pas. <br>Et au premier incendie tous le monde cherche l'extincteur.</p><p>En repostant l'ensemble on évite tout ça. Voilà.</p><p>Au final ça fait moins de messages postés. Et comme il n'est plus nécessaire "d'afficher toutes les réponses", je pense qu'on ne provoquerait aucun ralentissement.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_8_f_703ee1e9_2666_100x100.png" title="LaTerreurMonAme" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 1 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2666 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2666/1" tid_id="2666">LaTerreurMonAme</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle">ExpÃ©rience dangereuse</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Pour palier au problème, déjà, il faudrait que tout le monde tienne à jour l'inventaire. Ce que peu de gens font...<br>Pour trouver un objet, si je peux te proposer un truc, c'est d'ouvrir l'inventaire et avec ctrl+F tu cherches la dernière fois où cet objet a été noté. S'il n'y est pas, que ça soit avec ta méthode de groupement de l'inventaire ou par la méthode actuelle, ça viendra du même problème : un manque de rigueur de l'équipage.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_6_f_775674be_4030.jpg" title="Musaran" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_4030 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/4030/1" tid_id="4030">Musaran</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\book.png" title=""/> Chineur de la Connaissance</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_2233414 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="2233414">Loscian</span></span><cite>En repostant l'ensemble on évite tout ça.</cite><p>En repostant l'ensemble, on perd l'information de qui a mis à jour ou rappelé quoi et quand.</p><br><p>Et euh... une mis en forme de 111 lignes avec moults vides pour un pauvre tchat étriqué d'à peine 20 lignes ?<br>Sérieusement ?</p><p>Ceux qui floodent le tchat, j'ai tendance à les tuer moi...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Loscian" style="background-color: rgb(204,82,135); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2233414 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2233414/1" tid_id="2233414">Loscian</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui, bon, ben j'ai compris, ça va.... <img src="../../../../gfx/square/sad.png" alt=":(" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[1384803]" style="background-color: rgb(88,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1384803 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1384803/1" tid_id="1384803">[1384803]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Sinon il y a <a target="_blank" href="http://astropad.sunsky.fr/">AstroPad</a> qui fait déjà ce que tu proposes mais en mieux ; l'essayer c'est l'adopter !</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Loscian" style="background-color: rgb(204,82,135); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2233414 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2233414/1" tid_id="2233414">Loscian</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui, <img src="../../../../gfx/square/cute.png" alt=":cute:" class="tid_ico"> c'est certain. Je le plussoie à m'en user le pouce.</p><p>Mais même en casting j'ai l'impression que pour faire installer grease monkey à tout le monde, puis l'astropad lui-même, c'est pas gagné...</p><p>D'où l'idée d'un simple message à copier-coller. Mais bon... <img src="../../../../gfx/square/sad.png" alt=":(" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_10">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[1384803]" style="background-color: rgb(88,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1384803 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1384803/1" tid_id="1384803">[1384803]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>C'est le message, prédéfini dans l'aide d'AstroPad que tu dois copier coller quitte à spammer le canal :<br><cite><strong>Je vous propose l'AstroPad pour gérer l'inventaire</strong><br>Il s'agit d'un script qui fonctionne avec Firefox(GreaseMonkey) et Chrome(TamperMonkey).<br>Sur firefox, installer GreaseMonkey<br><em><a href="https://addons.mozilla.org/fr/firefox/addon/greasemonkey" target="_blank">https://addons.mozilla.org/fr/firefox...</a></em><br>Sur Chrome, installer TamperMonkey<br><em><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=fr" target="_blank">https://chrome.google.com/webstore/de...</a></em><br>Aller ensuite sur le lien suivant pour installer le script<br><em><a href="http://astropad.sunsky.fr/astropad.user.js" target="_blank">http://astropad.sunsky.fr/astropad.us...</a></em><br>Aller ensuite sur le lien suivant pour rejoindre l'inventaire de cette partie<br><em><a href="http://mush.vg/?astroId=...&amp;astroKey=..." target="_blank">http://mush.vg/?astroId=...&amp;amp;astro...</a></em></cite><br>En suite s'il y a des récalcitrants qui se bornent à ne pas l'installer, c'est qu'ils ne doivent même pas lire les messages... se tuer à leur mettre en forme un joli inventaire en mode texte et espérer en plus qu'ils en fassent autant, n'est que pure perte de temps et d'énergie.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_11">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Loscian" style="background-color: rgb(204,82,135); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2233414 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2233414/1" tid_id="2233414">Loscian</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Ça semble être l'avis général oui.</p><p>Je tenterai de poster le message que tu m'as laissé, merci ^^</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_12">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[1384803]" style="background-color: rgb(88,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1384803 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1384803/1" tid_id="1384803">[1384803]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Non ne poste pas ce message que je t'ai laissé, mais plutôt celui que tu trouveras sous un des onglets d'AstroPad dans ta partie et qui comporte le lien propre à l'inventaire de ta partie en cours.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_13">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Loscian" style="background-color: rgb(204,82,135); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2233414 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2233414/1" tid_id="2233414">Loscian</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><img src="../../../../gfx/square/facepalm.png" alt=":fp:" class="tid_ico"> Ah, oui, bien-sûr...</p><p>Merci ^^</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_14">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_9_e_5ad9416b_36352.jpg" title="Lexam" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36352 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36352/1" tid_id="36352">Lexam</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_explo2.gif" title=""/> Indiana jones et les ruines de l'outre-monde</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Mais vous arrrivez a voir l'inventaire avec AstroPad ? Quelqu'un m'explique comment on fait, parce que moi je peut créer un inventaire, le rejoindre, le mettre a jour... mais pas le voir ! (ce qui limite quand même l'utilité <img src="../../../../gfx/forum/smiley/h_calim.gif" alt=":hordes_calim:" class="tid_ico">)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_15">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Loscian" style="background-color: rgb(204,82,135); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_2233414 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/2233414/1" tid_id="2233414">Loscian</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>(ce qui limite quand même l'utilité <img src="../../../../gfx/forum/smiley/h_calim.gif" alt=":hordes_calim:" class="tid_ico">)</cite><br>C'est un fait...</p><p>Pourtant je en fais rien de précis. Mais je l'ai testé à partir de liens qui se trouvaient dans mon casting, et non sur le forum général. Peut-être les liens du forums sont-ils cassés ?</p><p><span class="tid_sideNote">Note : la première fois e n'avais pas remarqué l'onglet qui s'était ajouté dans la liste des canaux. Tu as bien vérifié ?</span></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_16">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_9_e_5ad9416b_36352.jpg" title="Lexam" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36352 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36352/1" tid_id="36352">Lexam</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_explo2.gif" title=""/> Indiana jones et les ruines de l'outre-monde</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui je l'ai vu, et quand je clique sur visualiser, au lieu de me retrouver sur une page comme dans l'exemple je me retrouve sur la page d'installation du script... Alors que l'url dans la barre de navigation est bien la bonne ( <a href="http://astropad.sunsky.fr/?gid=785&amp;rkey=d6885ef1db396964e9751d99006bbb08" target="_blank">http://astropad.sunsky.fr/?gid=785&amp;am...</a> )</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_17">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Lulunadipaelle" style="background-color: rgb(204,145,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1998391 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1998391/1" tid_id="1998391">Lulunadipaelle</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1384803 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1384803">MrFlibble</span></span><cite><p>C'est le message, prédéfini dans l'aide d'AstroPad que tu dois copier coller quitte à spammer le canal :</p><p>En suite s'il y a des récalcitrants qui se bornent à ne pas l'installer, c'est qu'ils ne doivent même pas lire les messages... se tuer à leur mettre en forme un joli inventaire en mode texte et espérer en plus qu'ils en fassent autant, n'est que pure perte de temps et d'énergie.</p></cite><p>Ou que le script fait buguer leur navigateur au point de provoquer des BLUE SCREENS OF DEATH. Chacun a ses raisons de pas vouloir installer un truc balancé comme a sur un jeu. Certes c'est connu, on en parle pas mal machin toussa, mais ça n'empêche pas certaines personnes de se méfier ou avoir d'autres choses à faire que dl un ènième gadget pour ton ordi. Sans parler de ceux qui n'ont pas leur ordi à eux et qui ne peuvent pas trop le modifier.<br>Je veux bien croire que pas mal de gens font effectivement pas l'effort de lire ou de télécharger un truc mais de là à dire ça, c'est un peu trop généraliser.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_18">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[1731262]" style="background-color: rgb(204,126,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1731262 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1731262/1" tid_id="1731262">[1731262]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Et comment créer en Inventaire pour ta partie et inciter les autres à le rejoindre?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_19">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_5_f_80b68f41_33908.jpg" title="joora" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_33908 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/33908/1" tid_id="33908">joora</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\Trolls.png" title=""/> TÃªte de de qui sent le poisson</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>L'idée d'automatiser avec un script est pas mal, mais on ne peut forcer personne à l'installer.<br>Perso, j'ai désinstallé tempermonkey de Chrome qui ralentit le navigateur, et je ne le réinstallerai pas. Tout le monde n'a pas forcément un ordi puissant. Et il y a bien d'autres raisons de ne pas vouloir installer ce genre de chose.</p><p>Donc pour que les outils comme astropad fonctionne, ils faut absolument qu'il soit<strong> d'abord en mode manuel</strong> (comme coeurdeneron même si celui-ci est peu pratique), et qu'en bonus ça soit automatisé pour ceux qui ont envie d'installer un script.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_20">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[7395213]" style="background-color: rgb(137,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 22 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_7395213 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/7395213/1" tid_id="7395213">[7395213]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>J'ai une question toute bête mais je n'arrive pas à trouver l'info...</p><p>Quand une nouvelle partie commence, je ne vois pas l'icone d'astropade et je ne sais pas comment trouver le dernier lien à donner à l'équipage pour lier l'astropade à la partie.<br>Quelqu'un pôurrais m'aider svp ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_21">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_8_805f2caf_5705355_100x100.jpg" title="Elfyr$5705355" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 22 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_5705355 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/5705355/1" tid_id="5705355">Elfyr$5705355</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\marteau.png" title=""/> ShÃ©rif Savant</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><a target="_blank" href="http://twinoid.com/g/le-palais-de-la-folie/forum/#!view/67061?p=3|thread/25707847">Il vaut mieux demander ici</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_22">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_f_6_ea3fb583_92417_100x100.png" title="PrincessFelicie" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 22 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_92417 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/92417/1" tid_id="92417">PrincessFelicie</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\PonyLogo.png" title=""/> Princesse Felinophile</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>EDIT: j'efface ma connerie :X</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_23">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_8_805f2caf_5705355_100x100.jpg" title="Elfyr$5705355" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 22 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_5705355 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/5705355/1" tid_id="5705355">Elfyr$5705355</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\marteau.png" title=""/> ShÃ©rif Savant</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Et mer** j'oublie toujours è_é<br>Attends.<br><a target="_blank" href="http://mush.vg/tid/forum#!view/67061?p=3|thread/25707847">Voilà le bon lien.</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_24">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[7395213]" style="background-color: rgb(137,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 22 août 2013
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_7395213 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/7395213/1" tid_id="7395213">[7395213]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Merci beaucoup, ça marche du feu de dieu ^^</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

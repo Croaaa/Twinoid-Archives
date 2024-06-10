@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Commande de moteurs en Python</title>
+    <link href="../../../../gfx/game/Twinoid.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Accueil
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Twinoid</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Développement</a>
+                                            <span class="tid_title"><span class="tid_forumTag tid_minor">Projet</span>Commande de moteurs en Python</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_1a25202d_28532_100x100.jpg" title="R0K3T" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 février 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_28532 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/28532/1" tid_id="28532">R0K3T</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebuild.gif" title=""/> Nova-boy</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour,<br> <br>Je suis conscient que ce que je demande n'a strictement rien à voir avec Twinoïd mais n'ayant pas une très grande expérience en Python, je sollicite votre aide.</p><p>Pour un projet (<em>PPE</em>), je dois commander plusieurs moteurs manuellement, sous entendu par des touches de clavier. Ils sont au nombre de trois, le schéma de mouvements sera équivalent au modèle <a target="_blank" href="http://www.wowwee.com/en/products/tech/telepresence/rovio/rovio">Rovio</a>. Ce sera un programme que je superposerais avec d'autres dans une interface utilisateur pour un contrôle sur un ordinateur.</p><br><p>Le programme pour commander les moteurs sera géré par un module Raspberry Pi, plus particulièrement son GPIO. Ce GPIO sera relié à deux ponts en H L293D (<a target="_blank" href="http://host.tale-of-defense.fr/uploads/4546.jpg">plan pour deux moteurs</a>, désolé mais certains caractères ont du mal à être lisibles) <br>L'ordinateur de l'utilisateur se connectera à distance au raspberry pour commander le robot.<br>Pour commencer, je me suis d'abord amusé à faire tourner un moteur en marche avant, tout fonctionna nickel. J'ai fais de même avec deux et avec succès.</p><p>L'ébauche du programme ci-dessous pour un seul moteur :</p><pre>import RPi.GPIO as GPIO
+from Tkinter import *
+f=Tk()
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(4,GPIO.OUT)
+
+def Mo(event):
+&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(4,True)
+
+def OFF(event):
+&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(4,False)
+ 
+
+f.bind("&lt;Up&gt;",Mo)
+f.bind("&lt;KeyRelease&gt;",OFF)
+f.mainloop()</pre><br><p>Seulement, pour amener le même moteur en marche arrière et en gardant la touche haut pour avancer j'ai du mal, le module n'aimant pas coupler <em>GPIO.output(4,False)</em> et <em>GPIO.output(6,False)</em> dans le même événement sans planter.<br>On m'a conseillé d'instaurer une variable à chaque événement et la changer dès qu'il se termine mais sans succès.<br>L'ébauche de ma tentative :</p><pre>import RPi.GPIO as GPIO
+from Tkinter import *
+f=Tk()
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(4,GPIO.OUT)
+GPIO.setup(6,GPIO.OUT)
+
+def Mo(event):
+&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(4,True)
+&nbsp;&nbsp;&nbsp;&nbsp;T=1
+ 
+def Mn(event):
+&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(6,True)
+&nbsp;&nbsp;&nbsp;&nbsp;T=2
+
+def OFF(event):
+&nbsp;&nbsp;&nbsp;&nbsp;if T == 1:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(4,False)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GPIO.cleanup()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T=0
+&nbsp;&nbsp;&nbsp;&nbsp;elif T == 2:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(6,False)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GPIO.cleanup()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T=0
+
+f.bind("&lt;Up&gt;",Mo)
+f.bind("&lt;Down&gt;",Mn)
+f.bind("&lt;KeyRelease&gt;",OFF)
+f.mainloop()
+</pre><p>Je suppose que les événements n'aiment pas trop les fonctions <em>if</em> et les instaurations de variables.</p><br><p>Le côté théorique est déjà fait et les grandes idées sont dans ma tête. Seulement pour la pratique, mon expérience est que trop légère.<br>Je cherche donc de l'aide et des conseils et astuces pour la réalisation de ma tâche.</p><br><p>Merci d'avance.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_7_9_2eee41e9_354884_100x100.jpg" title="Joker" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 février 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_354884 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/354884/1" tid_id="354884">Joker</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\icon_mobile.png" title=""/> If Today Was Your Last Day</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Edit: je suis aveugle. <img src="../../../../gfx/forum/smiley/h_calim.gif" alt=":hordes_calim:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 26 février 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>* Pourquoi un GPIO.cleanup dès qu'on lâche la touche ?<br>Surtout que tu ne remets pas en mode OUT à chaque appui.</p><p>(GPIO.cleanup remet tous les GPIO en mode "input"<strong></strong>)</p><ul><li>J'ai du mal à voir pourquoi le module planterait parce qu'on traite 2 GPIO dans le même évènement. Il n'a aucune raison de même connaître l'existence des évènements (tes évènements n'ont rien à voir avec des IRQ de GPIO ou je ne sais quoi. Ce ne sont que des évènements clavier. Du point de vue du GPIO, au pire, c'est juste deux actions sur le GPIO qui surviennent de façon très rapprochée, mais il ne peut pas savoir si c'est le même évènement ou pas. Et même très rapprochée, je ne crois pas que ça pose problème non plus.<br>Tu pourrais nous montrer le code qui te fais penser à un plantage quand tu gères 2 GPIO dans le même évènement ?</li></ul>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_1a25202d_28532_100x100.jpg" title="R0K3T" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 février 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_28532 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/28532/1" tid_id="28532">R0K3T</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebuild.gif" title=""/> Nova-boy</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Sincèrement, je ne me souviens plus pourquoi j'avais mis GPIO.cleanup dans le programme.</p><p>Le programme qui me fait penser au plantage est le suivant :</p><pre>import RPi.GPIO as GPIO
+from Tkinter import *
+f=Tk()
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(4,GPIO.OUT)
+GPIO.setup(6,GPIO.OUT)
+
+def Mo(event):
+&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(4,True)
+ 
+def Mn(event):
+&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(6,True)
+
+def OFF(event):
+&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(4,False)
+&nbsp;&nbsp;&nbsp;&nbsp;GPIO.output(6,False)
+
+
+f.bind("&lt;Up&gt;",Mo)
+f.bind("&lt;Down&gt;",Mn)
+f.bind("&lt;KeyRelease&gt;",OFF)
+f.mainloop()
+</pre><p>En faisant une série de test pour voir qu'est ce qui me faisait planter, j'ai retiré <em>GPIO.output(6,False)</em> de l'événement OFF.<br>Le programme ne plantait plus du tout quand je faisais une marche avant.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 février 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Etonnant. <br>Remarque, je n'ai jamais manipulé les GPIO en pythobn du Raspberry qu'à la main, donc j'ai échappé à tout problème de timing. C'est peut-être juste une histoire comme ça : deux manipulations consécutives de GPIO sont peut être trop proches. J'en doute fortement ; normalement on devrait pouvoir s'amuser à faire tout ce qu'on veut sur tout un paquet de pattes à la fois. Les GPIO ça ne sert pas juste à faire allume éteint à l'échelle de la seconde sur une papatte. On devrait pouvoir jouer de la musique, sortir un signal vidéo, ou faire une implémentation de port parallèle avec. Sans aller jusqu'à ces extrémités, je pilote des écrans LCD avec, et ça implique de manipuler une petite dizaine de GPIO aussi simultanément que possible (cad pas simultanément, bien sûr, mais sans aucune pause). C'est en C certes. Mais je ne vois pas pourquoi python aurait des problèmes de timing que C n'a pas (ça devrait être l'inverse : python est plus lent, il inclus donc une pause involontaire entre changements de GPIO par rapport à C)</p><p>Mais en tous cas j'insiste : les GPIO ne peuvent pas se rendre compte qu'on est dans le même handler d'évènement. Les évènements dont on parle ici sont des évènements pythons (certes hérités après 5 ou 6 couches logicielles d'une IRQ du Raspberry ; mais bon, on n'est plus dans le traitement de l'IRQ depuis longtemps quand tu as la main). Ils sont sans rapport avec les évènements des GPIO.</p><br><p>Juste pour comprendre, qu'est-ce que tu appelles "planter" ?</p><p>Il affiche un message d'erreur ? C'est un plantage du programme python ? Un plantage du module de GPIO de python (le programme python continue à fonctionner, mais manifestement il ne pilote plus les GPIO) ? Un plantage carrément de tout le sous-système GPIO (genre plus moyen d'utiliser les GPIO avant d'avoir rebooté le Raspberry) ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_1a25202d_28532_100x100.jpg" title="R0K3T" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 février 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_28532 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/28532/1" tid_id="28532">R0K3T</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebuild.gif" title=""/> Nova-boy</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Mmmmh, je vois.</p><p>Ce que j'appelle planter c'est quand le module raspberry qui est connecté à mon ordinateur n’émet plus aucun signal et que ses petites diodes qui s'allument en vert quand tout va bien s'éteignent toutes sauf une qui devient rouge. <br>Puis les moteurs s’emballent et ne s'arrêtent pas avec la précédente commande.</p><p>Donc je suis contraint de relancer le raspberry.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 27 février 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Ah <img src="../../../../gfx/square/happy.png" alt=":D" class="tid_ico"></p><p>Question con : tu l'alimente avec quelle puissance ton Raspberry ?</p><p>Tu as bien mis un driver de moteur derrière les GPIO (je suppose, sinon ça se serait bien vu^^)<br>Tu sais combien ils consomment les drivers ?</p><p>Parce que ça ressemble un peu à "mince plus assez de jus" ça.</p><p>Edit : ah oui, des L293D.</p><p>Bon, du coup autre question : ils sont alimentés comment tes L293D ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_1a25202d_28532_100x100.jpg" title="R0K3T" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 février 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_28532 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/28532/1" tid_id="28532">R0K3T</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebuild.gif" title=""/> Nova-boy</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Pour le moment, le raspberry est directement branché sur une prise de courant mais il doit se servir du 3,3 volts via le chargeur.<br>Plus tard il sera alimenté par des batteries en 3,3 volts, quand on le disposera sur le système.</p><p>Par driver, tu entends les <em>L293D</em> ?<br>Ils reçoivent le même jus que les moteurs en 3,3 volts.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 28 février 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oui les L293D</p><p>En gros ma question (la 2e, la première je l'ai annulée en voyant le circuit), c'est : est-ce qu'il est possible que le raspberry soit privé de courant par les moteurs (ou le L293D, c'est presque pareil).</p><p>Si je pige bien les moteurs et le L293D sont alimentés par la même source. Est-ce que le raspberry aussi (bon évidemment, à la fin c'est EDF, mais ils sont sur des transfos séparés ?)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_1a25202d_28532_100x100.jpg" title="R0K3T" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 1 mars 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_28532 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/28532/1" tid_id="28532">R0K3T</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebuild.gif" title=""/> Nova-boy</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Les moteurs et le driver lors de mes tests ont été branchés sur un générateur réglé pour fournir du 3,3V.<br>Tandis que le raspberry était branché de son côté sur une prise de courant.</p><p>Par contre, une fois le système installé, ils seront alimentés par la même source normalement. A moins de rediriger les différents coupleurs séparément.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_10">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="ayalti" style="background-color: rgb(204,171,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 mars 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_36044 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/36044/1" tid_id="36044">ayalti</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Au fait, j'ai pas tilté sur le voltage :</p><p>3,3V pour un L293D, c'est possible ça ? Moi j'avais en tête du "5V ça passe, mais bon, c'est plus fait pour 12 ou plus". Renseignement pris, c'est "de 4,5V à 36V" (je parle de l'alimentation, pas de signal de commande qui lui, ma foi, du moment qu'il est détecté...)</p><p>3,3V pour le Raspberry, c'est possible ça ? Bon, je sais que c'est possible, je connais qqn qui le fait. Mais ça nécessite de bricoler un peu le Raspberry. Normalement, il lui faut du 5V. Certes toute son électronique est 3,3V (le 5V, ce n'est que pour ses ports USB). Mais bon, il n'empêche qu'il fait l'hypothèse qu'il a du 5V. Par exemple son électronique est alimentée par un régulateur de tension 3,3V. Qui pour fonctionner a donc besoin d'un chouïa plus que 3,3V donc.</p><p>Et j'ajoute, un peu par doute, et beaucoup pour le plaisir de l'anaphore :<br>3,3V pour les moteurs, c'est possible ça ? <br>Je ne suis pas un grand utilisateur de moteurs pas à pas. En fait je n'en ai même jamais acheté : tout ce que j'ai bricolé à base de moteurs pas à pas, ça a toujours été à partir de moteurs récupérés ailleurs. Donc, je n'ai jamais choisi le voltage, j'ai toujours adapté mon circuit au voltage du moteur qui m'était tombé sous la main.<br>Mais bon, j'ai quand même bien bricolé une douzaine de trucs avec des moteurs pas à pas, ce qui signifie probablement 12 types de moteurs différents, en fonction du hasard des trouvailles. J'ai pas souvenir d'avoir jamais donné aussi peu de voltage à un moteur.<br>En fait j'ai au contraire bien souvenir d'avoir soit du dégotter une alim 12/5 pour avoir du 12 pour le moteur du 5 pour l'électronique ; soit alimenté le tout en 12, avec une cascade de régulateurs pour faire du 5 pour l'électronique. Et une fois, fait l'inverse : alimenté le tout en 5, et cascadé des régulateurs (chers) pour monter à 12 pour les moteurs.</p><p>Peut être est-ce que je n'ai pas eu de bol dans mes approvisionnement. Mais ça me laisse quand même l'impression que, en général, les moteurs pas à pas classique prennent plus du 12 que du 3,3.<br>Et comme par ailleurs ton circuit a l'air très classique (Raspberry, L293D, ...) je soupçonne que ceux qui te fournissent le matériel ne sont pas allé chercher l'originalité, et ont de bon gros vieux moteurs pas à pas génériques.</p><p>(D'ailleurs l'alim du moteur c'est ce qui sort du L293D. Et, sauf erreur de ma part donc, le L293D n'est pas censé sortir du 3,3V. Le fait que tu aies des L293D, cad le driver de moteur le plus classique qui soit, me laisse penser que tu as aussi un moteur assez classique.</p><p>Bref, je ne suis sûr de rien ; l'électronique n'est qu'un hobby, et je n'apprends donc que au fur et à mesure de mes propres bricolages. Mais, sauf si toi tu es vraiment sûr de ce que tu fais, je vérifierais ça quand même)</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_11">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_b_d_1a25202d_28532_100x100.jpg" title="R0K3T" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 4 mars 2014
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_28532 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/28532/1" tid_id="28532">R0K3T</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ebuild.gif" title=""/> Nova-boy</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Les moteurs que nous utilisons, nous les avons récupérés sur le rovio lui même (après avoir eu des petits moteurs pas très puissants qu'on a vite changés), on nous a autorisé à le démonter pour se servir des petites pièces. Ce qui est assez étrange c'est que quand je faisais des tests, j'ai fait tourner deux moteurs de ce type avec le même voltage en marche avant et tout allait très bien, pour ça que j'ai du mal à réaliser pourquoi il aurait du mal en marche arrière pour un seul moteur si c'est un manque de voltage qui est en jeu.</p><p>Pour le moment, puisque le Raspberry est branché directement sur une prise de courant, il peut se servir autant en 5V qu'en 3.3V. Je ne comprends pas trop l'idée du court-jus dans ce cas-ci. Bien sûr, une fois sur le dispositif il sera alimenté en 3.3V mais je pense qu'on va plutôt lui donner du 5V pour éviter tout type de problème.</p><p>Après, si le problème des moteurs viendrait qu'ils ne seraient pas alimentés de la bonne puissance, je changerais la puissance du générateur pour voir.<br>Malheureusement, je n'ai pas le matos sur moi pour faire les différents tests mais je m'y attèlerais quand je l'aurais à ma disposition.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

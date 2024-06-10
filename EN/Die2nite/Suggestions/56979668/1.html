@@ -1,0 +1,3812 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>[LIST]Interesting Scripts(thanks fdamned</title>
+    <link href="../../../../gfx/game/Die2nite.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/hordes_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/hordes_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_EN.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Home
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Die2nite</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Suggestions</a>
+                                            <span class="tid_title">[LIST]Interesting Scripts(thanks fdamned</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tid_clear tid_threadStart"></div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 17, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Small text label what shows how many items we have in bank <img src="../../../../gfx/forum/smiley/h_sleep.gif" alt=":hordes_zzz:" class="tid_ico"> (per item category?)</p><br><br><p><strong>Edit 23-04-2017 10:11</strong><br><em>Nevermind.</em><br><em>There, kid, some useful script by Mr. Fdamned26:/</em></p><br><p><strong>Number of buildings found:</strong></p><pre>jQuery( "p.text.building_outside" ).length</pre><br><p><strong>Number of people in town alive:</strong></p><pre>jQuery( "td.last_update" ).length</pre><br><p><strong>Number of DO (in text):</strong></p><pre>jQuery( "#bank_info #bank_panel &gt; div:nth-child(3) &gt; ul li.item p.item-amount" )</pre><br><p><strong>Number of DO in bank (3rd DIV):</strong></p><pre>var s=0; jQuery( "#bank_info #bank_panel &gt; div:nth-child(3)
+.item-amount" ).each( function() {
+s += parseInt( jQuery(this).text(), 10) || 0; }); s;</pre><p>Prints 8 for 3+2+2+1<br><strong><br><br>Number of FOOD 6/7 in bank (4th DIV):</strong></p><pre>var s=0; jQuery( "#bank_info #bank_panel &gt; div:nth-child(4)
+.item-amount" ).each( function() {
+s += parseInt( jQuery(this).text(), 10) || 0; }); s;</pre><p>Prints 31</p><br><p><strong>Number of people in town who are NOT scavenging right now:</strong></p><pre>jQuery( '#citizen_overview_table td.coordinates:contains(inside)' ).length</pre><p>Basically, the number of citizens / residents / heroes,<br>for which the coordinates are "inside" town... <img src="../../../../gfx/square/idea.png" alt=":idea:" class="tid_ico"></p><br><p><strong>Planning Night Watch:</strong><br>Assuming MapViewer bank tab is up to date<br><a href="http://die2nite.gamerz.org.uk/town/37..." target="_blank">http://die2nite.gamerz.org.uk/town/37...</a></p><p>You can plan watchmen weapons to fill up your google docs<br>using this jQuery on the MapViewer bank tab console:</p><pre>var s = "", x = jQuery( "table.watchmen tr[data-bank]" ).each(
+function(i, n){ var $t = jQuery(this),
+nb = +$t.attr( "data-bank" ) || 0,
+def = +$t.attr( "data-defence" ) || 0,
+text = jQuery.trim(jQuery( "&gt;td:first" , $t).text() || "" );
+s += "\n" + nb + "," + def + "," + text; }); s;</pre><br><p><strong>Number of sand balls building marker:</strong></p><pre>+jQuery( "li.item[title='Sand Ball'] p.item-amount" ).text()</pre><br><p><strong>Number of buildings found marker:</strong></p><pre>+jQuery( "p.building_outside.description" ).length</pre><p><strong><br>How to list everyone names to create Twinoid town mailing list<br>by using FDTD DEV console:</strong></p><pre>var t=''; jQuery( '#citizen_overview_table td.name p' ).each( function() { t += ', @' + jQuery.trim( jQuery(this).text() ); }); console.log( t.substring(2) );</pre><p><strong><br>How to list everyone who is NOT scavenging (i.e. inside town):</strong></p><pre>var t=**'**'; jQuery( '#citizen_overview_table td.name p' ).each( function() { var $t = jQuery(this), $z = $t.parent().next(), inside = $z.filter( ':contains(inside)' ).length &gt; 0; if ( inside ) t += ', @' + jQuery.trim( jQuery(this).text()); }); console.log( t.substring(2) );</pre><br><p><strong>How to list everyone who IS scavenging (i.e. NOT inside town):</strong></p><pre>var t=''; jQuery( '#citizen_overview_table td.name p' ).each( function() { var $t = jQuery(this), $z = $t.parent().next(), inside = $z.filter( ':contains(inside)' ).length &gt; 0; if ( ! inside ) t += ', @' + jQuery.trim( jQuery(this).text()); }); console.log( t.substring(2) );</pre><p><strong><br>Calculating sum of attack points (weapons) in bank:</strong></p><pre>var adi = 0, xi, x = document.getElementsByClassName('multi')||[],z,p,
+loc=window.location.href||'',h,bank=loc.indexOf('www.die2nite.com') &gt; -1 &amp;&amp; loc.indexOf('city/bank') &gt; -1;
+for (xi = 0; xi&lt;x.length; ++xi){ h = x[xi].outerHTML || '';
+if (h.indexOf('soldat') &gt; -1) { z = h.substring(h.indexOf('n (')+3,h.indexOf(' attack pts'));
+if (h.indexOf('count') &gt; -1) { p = h.substring(h.indexOf('count')+7,h.indexOf('&lt;/span&gt;')); } else { p = 1; };
+adi += (parseInt(+z||0) * parseInt(+p||0)); }};
+alert(bank ? 'Town can obtain ' + adi + ' defense points from watchman items' : 'Use this script at The Bank page of die2nite.com' );</pre><pre>alert(function(a,$) {
+$('.cityBank li.multi a[onmouseover*=soldat]').each(function() { 
+a += (+/weapon\D*(\d+) attack pts/.exec('' + this.onmouseover)[1] || 0) * (+$('span.count', this).text() || 1); });
+return /www.die2nite.com.*?city.bank/.test(window.location.href || '') ? 'Town can obtain ' + a + ' defense points from watchman items' : 'Use this script at The Bank page of die2nite.com';
+}(0,jQuery));</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 17, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>It's called FDTD and jQuery inside the F12 developer console...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="matsuuu" style="background-color: rgb(188,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 17, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1946812 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1946812/1" tid_id="1946812">matsuuu</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>I don't see much use for this except fun fact to know. In every category there are items that are different from others in same category, like book of calm belongs to pharmacy, which twist an information where ever it is used.</p><p>Only category where I would need this is DO's but it is already displayed.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 17, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>We may need it for fun.<br>And for All or Nothing.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 18, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Well tell me which category you need to know,<br>and I will cook you up the jQuery for it,<br>once I join a town</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 22, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Number of buildings found:</strong></p><p>jQuery( "p.text.building_outside" ).length</p><br><p><strong>Number of people in town alive:</strong></p><p>jQuery( "td.last_update" ).length</p><br><p><strong>Number of DO (in text):</strong></p><p>jQuery( "#bank_info #bank_panel &gt; div:nth-child(3) &gt; ul li.item p.item-amount" )</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 22, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Oh, awesome <img src="../../../../gfx/square/yeah.png" alt=":youpi:" class="tid_ico"></p><p>Hmm... but I meant counter of all items in bank, not only DOs <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Nuka-Cola" style="background-color: rgb(204,167,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 22, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9517002 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9517002/1" tid_id="9517002">Nuka-Cola</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>That already exists. If you have more than one of an item in the bank,<br> it says so.<br> We have 5 wooden planks in our town bank.</p><p>It shows a picture of a wooden plank and the number 5 next to it.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="matsuuu" style="background-color: rgb(188,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 22, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1946812 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1946812/1" tid_id="1946812">matsuuu</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>But to get the whole count you need to add count every single item to each other, like in my town there is 70 different items. Even tho I couldn't come with any ideas where to use this, but after Saran's comment realized that All for Nothing could need that kind of counter.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 22, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>That's not it needs it, I think there could be even more fun to calculating it manually <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"><br>Anyway, we need game updates! Fast!</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_10">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 22, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Number of DO in bank (3rd DIV):</strong></p><p>var s=0; jQuery( "#bank_info #bank_panel &gt; div:nth-child(3) <br>.item-amount" ).each( function() { <br>s += parseInt( jQuery(this).text(), 10) || 0; }); s;</p><br><p>Prints 8 for 3+2+2+1</p><p><strong>Number of FOOD 6/7 in bank (4th DIV):</strong></p><p>var s=0; jQuery( "#bank_info #bank_panel &gt; div:nth-child(4) <br>.item-amount" ).each( function() { <br>s += parseInt( jQuery(this).text(), 10) || 0; }); s;</p><br><p>Prints 31</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_11">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 23, 2016
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Number of people in town who are NOT scavenging right now:</strong></p><br><p>jQuery( '#<strong>citizen</strong>_overview_table td.<strong>coordinates</strong>:contains(<strong>inside</strong>)' ).length</p><br><p>Basically, the number of <strong>citizens </strong>/ residents / heroes,<br>for which the <strong>coordinates </strong>are "<strong>inside</strong>" town... <img src="../../../../gfx/square/idea.png" alt=":idea:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_12">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Nuka-Cola" style="background-color: rgb(204,167,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On january 3, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9517002 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9517002/1" tid_id="9517002">Nuka-Cola</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Give us more than just 6 crappy AP a day and I would be out scavenging still.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_13">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="matsuuu" style="background-color: rgb(188,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On january 3, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1946812 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1946812/1" tid_id="1946812">matsuuu</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Food and water takes you 9 ap away from town while enough AP for returning. There is usually many undeleted zones in that range where to scavenge.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_14">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On january 5, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Add WatchTower 5 and you can go 10-11AP range</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_15">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="36Ranger" style="background-color: rgb(137,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On january 6, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9432267 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9432267/1" tid_id="9432267">36Ranger</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>add 3 twinoids and 1 bottle of alcohol and you can reach as far as the meatlocker.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_16">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On january 7, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_9432267 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="9432267">Ranger</span></span><cite>add 3 twinoids and 1 bottle of alcohol and you can reach as far as the meatlocker.</cite><p>If you don't mind being hooked...</p><p>We got a <strong>hooked scout</strong> last town <br>for soul retrieval and special missions...</p><p>Unless you can find one of those non-expired 30AP item...<br><a href="http://d2nwiki.com/wiki/Betapropine_5mg" target="_blank">http://d2nwiki.com/wiki/Betapropine_5mg</a></p><p>even if they were removed from the game since Season 1</p><p>Another way is:</p><p>Alarm clock 7AP, Food 7AP, Second Wind 6AP, Water 6AP,<br>Twinoid 8AP, Coffee 4AP, Coffee 4AP, Coffee 4AP, Alcohol 6AP,<br>Water 6AP in town.</p><p>or</p><p>Alarm clock 7AP, Food 7AP,<br>Coffee 4AP, Water 6AP, Coffee 4AP, Coffee 4AP, Twinoid 8AP, Alcohol 6AP,<br>Heroic return 11km, Water 6AP in town.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_17">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On march 6, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Assuming MapViewer bank tab is up to date<br><a href="http://die2nite.gamerz.org.uk/town/37755/bank/day/20" target="_blank">http://die2nite.gamerz.org.uk/town/37...</a></p><p>You can plan <strong>watchmen weapons </strong>to fill up your google docs<br>using this jQuery on the MapViewer bank tab console:</p><p>var s = "", x = jQuery( "table.watchmen tr[data-bank]" ).each(<br>function(i, n){ var $t = jQuery(this),<br>nb = +$t.attr( "data-bank" ) || 0,<br>def = +$t.attr( "data-defence" ) || 0, <br>text = jQuery.trim(jQuery( "&gt;td:first" , $t).text() || "" ); <br>s += "\n" + nb + "," + def + "," + text; }); s;</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_18">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On march 25, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Number of sand balls building marker:</strong></p><p>+jQuery( "li.item[title='Sand Ball'] p.item-amount" ).text()<br><br><strong>Number of buildings found marker:</strong><br><br>+jQuery( "p.building_outside.description" ).length</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_19">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="matsuuu" style="background-color: rgb(188,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On march 25, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1946812 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1946812/1" tid_id="1946812">matsuuu</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Isn't that faster to just use FDTD for those sandballs and buildings.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_20">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 23, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>How to list everyone names to create <strong>Twinoid town mailing list</strong> <br>by using FDTD DEV console:</p><p>var t=''; jQuery( '#citizen_overview_table td.name p' ).each( function() { t += ', @' + jQuery.trim( jQuery(this).text() ); }); console.log( t.substring(2) );</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_21">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 23, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>How to list everyone who is <strong>NOT scavenging</strong> (i.e. inside town):</p><p>var t=''; jQuery( '#citizen_overview_table td.name p' ).each( function() { var $t = jQuery(this), $z = $t.parent().next(), inside = $z.filter( ':contains(inside)' ).length &gt; 0; if ( inside ) t += ', @' + jQuery.trim( jQuery(this).text()); }); console.log( t.substring(2) );</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_22">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_7_a_42a17be8_8673940_100x100.png" title="tchekof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 24, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8673940 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8673940/1" tid_id="8673940">tchekof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Pasteur du village</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>what about spacing your code big boy, nobody should have to read such a mess.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_23">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 24, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>read? for what?<br>just use and be happy <img src="../../../../gfx/square/anim.png/lol.gif" alt=":anim_lol:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_24">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_7_a_42a17be8_8673940_100x100.png" title="tchekof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 24, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8673940 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8673940/1" tid_id="8673940">tchekof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Pasteur du village</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Yeah, let's just copy-past some unreadable code posted by a shady person on an obscure forum without bothering to read it.</p><p>i mean, what could go wrong.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_25">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 24, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><img src="../../../../gfx/square/anim.png/oups.gif" alt=":anim_oups:" class="tid_ico"></p><p>#updated first post</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_26">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 24, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>You can use the code tag</p><pre>CODE HERE</pre><p>&lt;c.ode&gt; STUFF &lt;/c.ode&gt;</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_27">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_5_3_17c04c39_70794_100x100.jpg" title="Dream" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 24, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_70794 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/70794/1" tid_id="70794">Dream</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> Inspiration for the people</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <pre>If (you use unlabelled drugs, today , before attack)
+ you will get shunned,
+Else 
+ Well done, you listen to reason.
+ </pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_28">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 25, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>It is not UNREADABLE, <br>it is just <strong>jQuery JavaScript source code</strong><br>and I made it COMPACT and on ONE-LINE, <br>so that you can easily paste it on the Chrome or Firefox console...</p><p>The only thing I added was SPACE to avoid smileys...</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_29">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 25, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Number of sand balls building marker:<br></strong></p><pre>+jQuery( "#overview_tab_items li.item[title='Sand Ball'] p.item-amount" ).text()
+</pre><p><strong>Number of buildings found marker:<br></strong></p><pre>+jQuery( "p.building_outside.description" ).length
+</pre><p><strong>Total:</strong></p><pre>+jQuery( "#overview_tab_items li.item[title='Sand Ball'] p.item-amount" ).text() +jQuery( "p.building_outside.description" ).length
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_30">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 26, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>How to list everyone who is <strong>NOT scavenging</strong> (i.e. inside town):</p><pre>var t=''; jQuery( '#citizen_overview_table td.name p' ).each( function() { var $t = jQuery(this), $z = $t.parent().next(), inside = $z.filter( ':contains(inside)' ).length &gt; 0; if ( inside ) t += ', @' + jQuery.trim( jQuery(this).text()); }); console.log( t.substring(2) );
+</pre><p><strong>Explained:</strong></p><p>jQuery( '#citizen_overview_table td.name p' )</p><p><em>is really a short-cut using CSS selector for the following code: </em></p><pre>// Find the TAB with ID #citizen_overview_table
+jQuery( '#citizen_overview_table' )
+
+// Inside find a table entry tag with the name CSS class
+.find( 'td.name' )
+
+// Inside find a paragraph tag
+.find( 'p' )
+</pre><p><strong>and here's the full snippet explained:</strong></p><pre>// Declare a text empty string variable 't'
+var t=''; 
+
+// Inside the Citizen Overview tab
+// Find the table entry with name class
+// and give me the paragraph inside it
+jQuery( '#citizen_overview_table td.name p' )
+
+// This returns a jQueryfied ARRAY of DOM Elements
+
+// Iterate over EACH entry
+// where 'this' is the current DOM Element
+
+.each( function() { 
+
+// jQueryfied the current DOM Element into $t
+var $t = jQuery(this), 
+
+// Grab the parent next DOM Element item in the table
+// This gives the next td entry
+// which might contain the text "inside"
+// and store this jQueryfied item into '$z'
+$z = $t.parent().next(), 
+
+// Is the next entry ($z) contains the word "inside"
+// if so give back this DOM Element inside an array
+inside = $z.filter( ':contains(inside)' )
+
+// Is this array size not empty ?
+// Therefore, inside is a boolean
+// where inside = true,
+// only if $z contains the text "inside"
+.length &gt; 0; 
+
+// IF inside is TRUE THEN
+if ( inside ) 
+// Append the current player name trimmed into '$t'
+// by converting the current DOM Element into text
+// then applying TRIM
+// then prefixing with ', @'
+// and storing the result into '$t'
+t += ', @' + jQuery.trim( jQuery(this).text() ); 
+
+}); // Loop next "each" DOM element
+
+// Remove the ", " prefix from the first loop
+// and output the result to the DEV console
+console.log( t.substring(2) );
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_31">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 26, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><img src="../../../../gfx/square/anim.png/surprise.gif" alt=":anim_surprised:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_32">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 27, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>How to list everyone who <strong>IS</strong> scavenging (i.e. NOT inside town):</p><p>Change the condition <em>if ( inside )</em></p><p>into if <strong>NOT</strong> inside</p><p><em>if ( </em>!<em> inside )</em></p><p>as follow:</p><pre>var t=''; jQuery( '#citizen_overview_table td.name p' ).each( function() { var $t = jQuery(this), $z = $t.parent().next(), inside = $z.filter( ':contains(inside)' ).length &gt; 0; if ( ! inside ) t += ', @' + jQuery.trim( jQuery(this).text()); }); console.log( t.substring(2) );
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_33">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 28, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>If anyone has any other weird use cases / needs,<br>then please let me know<br>and I will cook up the required code <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_34">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 28, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>I want to get push notification on my phone when auto-search ends</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_35">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_a_9824fc00_8770325_100x100.jpg" title="Squinton$8770325" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 28, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8770325 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8770325/1" tid_id="8770325">Squinton$8770325</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ptame.gif" title=""/> If Today Was Your Last Day</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1397717 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1397717">Miudo</span></span><cite>I want to get push notification on my phone when auto-search ends</cite><p>^And what items have been looted. An set timer to tell when its time to head back with a customizeable ring tone.</p><p>like this <a href="https://youtu.be/Ht84GghEeG0" target="_blank">https://youtu.be/Ht84GghEeG0</a></p><p>Be able to see my inventory inside my house. Ab what i have outside.<br>Be able to see whats in the bank and all registers.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_36">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>What!?</p><p>No music!! This is blasphemy.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_37">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1397717 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1397717">Miudo</span></span><cite>I want to get push notification on my phone when auto-search ends</cite><p>You need a back-end server for that.</p><p>I only do simple browser console stuff.</p><p>Try to see if <span class="tid_user tid_user_79091 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="79091">Rulesy</span> extension works on your phone,<br>then you could ask him to cook up a <strong>browser</strong> notification<br>extension a bit like discord does.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_38">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_a_9824fc00_8770325_100x100.jpg" title="Squinton$8770325" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8770325 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8770325/1" tid_id="8770325">Squinton$8770325</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ptame.gif" title=""/> If Today Was Your Last Day</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_8770325 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="8770325">sheriff</span></span><cite><p>^And what items have been looted. An set timer to tell when its time to head back with a customizeable ring tone.</p><p>like this <a target="_blank" href="https://youtu.be/Ht84GghEeG0"></a><a href="https://youtu.be/Ht84GghEeG0" target="_blank">https://youtu.be/Ht84GghEeG0</a></p><p>Be able to see my inventory inside my house. Ab what i have outside.<br>Be able to see whats in the bank and all registers.</p></cite><br><br><p>Be able to see the map and see all zombies and be notified before entering a zone. An be able to detect d2n and automatically play.music.</p><p>Also to be able to see the gazzette. An acess the town forums and have chat as well.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_39">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Ok, then cook me a thing that will list all my towns and count how many times I played with each player on the resulting list.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_40">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_a_9824fc00_8770325_100x100.jpg" title="Squinton$8770325" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8770325 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8770325/1" tid_id="8770325">Squinton$8770325</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ptame.gif" title=""/> If Today Was Your Last Day</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1397717 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1397717">Miudo</span></span><cite>Ok, then cook me a thing that will list all my towns and count how many times I played with each player on the resulting list.</cite><p>An show all points and disinctions. An tell how close you are to them.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_41">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_a_9824fc00_8770325_100x100.jpg" title="Squinton$8770325" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8770325 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8770325/1" tid_id="8770325">Squinton$8770325</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ptame.gif" title=""/> If Today Was Your Last Day</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1397717 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1397717">Miudo</span></span><cite><p>What!?</p><p>No music!! This is blasphemy.</p></cite><p>Why no music?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_42">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_8770325 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="8770325">sheriff</span></span><cite>Why no music?</cite><p>I'm deaf IRL.</p><p>Are you racist? <img src="../../../../gfx/square/twisted.png" alt=":sadist:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_43">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_a_9824fc00_8770325_100x100.jpg" title="Squinton$8770325" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8770325 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8770325/1" tid_id="8770325">Squinton$8770325</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ptame.gif" title=""/> If Today Was Your Last Day</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1397717 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1397717">Miudo</span></span><cite><p>I'm deaf IRL.</p><p>Are you racist? <img src="../../../../gfx/square/twisted.png" alt=":sadist:" class="tid_ico"></p></cite><p>Are you serious?</p><p>Are you really deaf irl?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_44">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Sorry? Say Again? <img src="../../../../gfx/square/question.png" alt=":?:" class="tid_ico">7</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_45">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Could we please stay on focus with simple scripts <br>for die2nite bank, die2nite citizen tabs <br>or FDTD / MapViewer items / overlay?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_46">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_a_9824fc00_8770325_100x100.jpg" title="Squinton$8770325" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8770325 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8770325/1" tid_id="8770325">Squinton$8770325</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ptame.gif" title=""/> If Today Was Your Last Day</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1437174 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1437174">fdamned26</span></span><cite>Could we please stay on focus with simple scripts <br>for die2nite bank, die2nite citizen tabs <br>or FDTD / MapViewer items / overlay?</cite><p>That First and then notifications and music</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_47">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>music means a source of MP3 / OGG and either HTML5 new Audio()</p><p><a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_audio_all" target="_blank">https://www.w3schools.com/html/tryit....</a></p><p>or soundmanager2 lib</p><p><a href="http://www.schillmania.com/projects/soundmanager2/" target="_blank">http://www.schillmania.com/projects/s...</a></p><p>or similar...</p><p>Here's a sample:</p><pre>var a=new Audio();a.src='//www.w3schools.com/html/horse.mp3';a.play();
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_48">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_3_a_9824fc00_8770325_100x100.jpg" title="Squinton$8770325" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 29, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8770325 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8770325/1" tid_id="8770325">Squinton$8770325</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_ptame.gif" title=""/> If Today Was Your Last Day</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1397717 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1397717">Miudo</span></span><cite>Sorry? Say Again? <img src="../../../../gfx/square/question.png" alt=":?:" class="tid_ico">7</cite><p>Miudo just use this <a href="http://www.die2nite.com/m/logs?sk=aa339" target="_blank">http://www.die2nite.com/m/logs?sk=aa339</a></p><p>Die2nite anthrax or mobile version can tell you all that.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_49">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 30, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Nah you want a mobile phone with Flash dev installed.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_50">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On may 15, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Browse Console's copy/paste code to calculate amount of defense points the town can get from repairs.</p><p>screenshot:<br><a href="http://i.imgur.com/D5orEjC.png" target="_blank">http://i.imgur.com/D5orEjC.png</a></p><p>code:</p><pre>var adi = 0;var res, xi;var x = document.getElementsByClassName("critical");for (xi = 0; xi&lt;x.length; xi++){var z = x[xi].outerHTML.substring(x[xi].outerHTML.indexOf(" : ")+3,x[xi].outerHTML.indexOf(" / "));var p = x[xi].outerHTML.substring(x[xi].outerHTML.indexOf(" / ")+3,x[xi].outerHTML.indexOf("', event"));res = (parseInt(p) - parseInt(z));adi = adi + res;};loc=window.location.href,loc.indexOf("www.die2nite.com")!=-1&amp;&amp;loc.indexOf("city/buildings")!=-1?alert("Town can obtain "+adi+" defense points from repairs"):alert("Use this script at Construction Sites of die2nite.com");</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_51">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On may 15, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Not bad.</p><p>Any script to calculate sum of attack points (weapons) in bank?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_52">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On may 15, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>I'm working at one greasemonkey script that will fix the MapViewer outdated Watch items thingie.</p><p>Data needs to be collected first.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_53">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On may 16, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Well, while we wait. I think you can use this code below, which is a small adaptation of the repair code I just cooked</p><p>Just note that it will give you the amount of defense points you can get from items with Watch value, so it rules out broken items and possible Watch items, such as torches.</p><p>screenshot:<br><a href="http://i.imgur.com/R92Iq4W.png" target="_blank">http://i.imgur.com/R92Iq4W.png</a></p><p>code:</p><pre>if(!('contains' in String.prototype)){String.prototype.contains = function(str, startIndex){return -1 !== String.prototype.indexOf.call(this, str, startIndex);};}
+
+var adi = 0;var res, xi;var x = document.getElementsByClassName('multi');for (xi = 0; xi&lt;x.length; xi++){if (x[xi].outerHTML.contains("soldat")){var z = x[xi].outerHTML.substring(x[xi].outerHTML.indexOf('n (')+3,x[xi].outerHTML.indexOf(' attack pts'));if (x[xi].outerHTML.contains('count')){var p = x[xi].outerHTML.substring(x[xi].outerHTML.indexOf('unt')+5,x[xi].outerHTML.indexOf("&lt;/span&gt;"));}else {var p = 1;}res = (parseInt(z) * parseInt(p));adi = adi + res;}else{}};
+
+loc=window.location.href,loc.indexOf('www.die2nite.com')!=-1&amp;&amp;loc.indexOf('city/bank')!=-1?alert('Town can obtain '+adi+' defense points from watchman items'):alert('Use this script at The Bank page of die2nite.com');
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_54">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On may 28, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1397717 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1397717">Miudo</span></span><cite><p>Well, while we wait. I think you can use this code below, which is a small adaptation of the repair code I just cooked</p><p>Just note that it will give you the amount of defense points you can get from items with Watch value, so it rules out broken items and possible Watch items, such as torches.</p><p>screenshot:<br><a target="_blank" href="http://i.imgur.com/R92Iq4W.png"></a><a href="http://i.imgur.com/R92Iq4W.png" target="_blank">http://i.imgur.com/R92Iq4W.png</a></p><p>code:</p><pre>if(!('contains' in String.prototype)){String.prototype.contains = function(str, startIndex){return -1 !== String.prototype.indexOf.call(this, str, startIndex);};}
+
+var adi = 0;var res, xi;var x = document.getElementsByClassName('multi');for (xi = 0; xi&lt;x.length; xi++){if (x[xi].outerHTML.contains("soldat")){var z = x[xi].outerHTML.substring(x[xi].outerHTML.indexOf('n (')+3,x[xi].outerHTML.indexOf(' attack pts'));if (x[xi].outerHTML.contains('count')){var p = x[xi].outerHTML.substring(x[xi].outerHTML.indexOf('unt')+5,x[xi].outerHTML.indexOf("&lt;/span&gt;"));}else {var p = 1;}res = (parseInt(z) * parseInt(p));adi = adi + res;}else{}};
+
+loc=window.location.href,loc.indexOf('www.die2nite.com')!=-1&amp;&amp;loc.indexOf('city/bank')!=-1?alert('Town can obtain '+adi+' defense points from watchman items'):alert('Use this script at The Bank page of die2nite.com');
+</pre></cite><p>Just a fix as Washing machine description was breaking the code <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></p><p>New version:</p><pre>if(!('contains' in String.prototype)){String.prototype.contains = function(str, startIndex){return -1 !== String.prototype.indexOf.call(this, str, startIndex);};}
+
+var adi = 0;var res, xi;var x = document.getElementsByClassName('multi');for (xi = 0; xi&lt;x.length; xi++){if (x[xi].outerHTML.contains("soldat")){var z = x[xi].outerHTML.substring(x[xi].outerHTML.indexOf('n (')+3,x[xi].outerHTML.indexOf(' attack pts'));if (x[xi].outerHTML.contains('count')){var p = x[xi].outerHTML.substring(x[xi].outerHTML.indexOf('count')+7,x[xi].outerHTML.indexOf("&lt;/span&gt;"));}else {var p = 1;}res = (parseInt(z) * parseInt(p));adi = adi + res;}else{}};
+
+loc=window.location.href,loc.indexOf('www.die2nite.com')!=-1&amp;&amp;loc.indexOf('city/bank')!=-1?alert('Town can obtain '+adi+' defense points from watchman items'):alert('Use this script at The Bank page of die2nite.com');</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_55">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On may 30, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Shorter / Safer version (non-jQuery):<br></strong></p><pre>var adi = 0, xi, x = document.getElementsByClassName('multi')||[],z,p,
+loc=window.location.href||'',h,bank=loc.indexOf('www.die2nite.com') &gt; -1 &amp;&amp; loc.indexOf('city/bank') &gt; -1;
+for (xi = 0; xi&lt;x.length; ++xi){ h = x[xi].outerHTML || '';
+if (h.indexOf('soldat') &gt; -1) { z = h.substring(h.indexOf('n (')+3,h.indexOf(' attack pts'));
+if (h.indexOf('count') &gt; -1) { p = h.substring(h.indexOf('count')+7,h.indexOf('&lt;/span&gt;')); } else { p = 1; };
+adi += (parseInt(+z||0) * parseInt(+p||0)); }};
+alert(bank ? 'Town can obtain ' + adi + ' defense points from watchman items' : 'Use this script at The Bank page of die2nite.com' );</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_56">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On may 30, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><span class="tid_user tid_user_1397717 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1397717">Miudo</span> script (DO in bank)</p><p><strong>Shortest version Non-jQuery </strong></p><pre>var adi = 0, loc=window.location.href||'',h,bank=loc.indexOf('www.die2nite.com') &gt; -1 &amp;&amp; loc.indexOf('city/bank') &gt; -1,
+xi = 0, x = document.getElementsByClassName('multi')||[];
+for (; xi &lt; x.length; ++xi) { h = x[xi].outerHTML || '';
+if (h.indexOf('soldat') &gt; -1) { var c = h.indexOf('count');
+adi += (+h.substring(h.indexOf('n (')+3,h.indexOf(' attack pts'))||0) * (c &gt; -1 ? +h.substring(c+7,h.indexOf('&lt;/span&gt;'))||0 : 1); }};
+alert(bank ? 'Town can obtain ' + adi + ' defense points from watchman items' : 'Use this script at The Bank page of die2nite.com' );
+</pre><p><strong> jQuery with above indexOf logic </strong></p><pre>var adi=0, loc=window.location.href||'', bank=loc.indexOf('www.die2nite.com') &gt; -1 &amp;&amp; loc.indexOf('city/bank') &gt; -1;
+jQuery('.multi').each(function() { var h=jQuery(this).html()||'';
+if (h.indexOf('soldat') &gt; -1) { var c = h.indexOf('count');
+adi += (+h.substring(h.indexOf('n (')+3,h.indexOf(' attack pts'))||0) * (c &gt; -1 ? +h.substring(c+7,h.indexOf('&lt;/span&gt;'))||0 : 1); }});
+alert(bank ? 'Town can obtain ' + adi + ' defense points from watchman items' : 'Use this script at The Bank page of die2nite.com' );
+</pre><p><strong> jQuery with CSS selector + RegExp </strong></p><pre>var adi=0, loc=window.location.href||'', bank=loc.indexOf('www.die2nite.com') &gt; -1 &amp;&amp; loc.indexOf('city/bank') &gt; -1;
+jQuery('.multi a[onmouseover*=soldat]').each(function() {
+adi += (+/n \((\d+) attack pts/.exec('' + this.onmouseover)[1] || 0) * (+jQuery('span.count', this).text() || 1); });
+alert(bank ? 'Town can obtain ' + adi + ' defense points from watchman items' : 'Use this script at The Bank page of die2nite.com' );
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_57">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On may 30, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>jQuery CSS selector + dual RegExp</strong> <img src="../../../../gfx/square/anim.png/calmos.gif" alt=":anim_calmos:" class="tid_ico"><br><strong>one-liner self-executing closure with no global variables:</strong> <img src="../../../../gfx/square/anim.png/cool.gif" alt=":anim_cool:" class="tid_ico"><img src="../../../../gfx/square/anim.png/bg.gif" alt=":cool:" class="tid_ico"></p><pre>alert(function(a,$) {
+$('.cityBank li.multi a[onmouseover*=soldat]').each(function() { 
+a += (+/weapon\D*(\d+) attack pts/.exec('' + this.onmouseover)[1] || 0) * (+$('span.count', this).text() || 1); });
+return /www.die2nite.com.*?city.bank/.test(window.location.href || '') ? 'Town can obtain ' + a + ' defense points from watchman items' : 'Use this script at The Bank page of die2nite.com';
+}(0,jQuery));
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_58">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On october 1, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Any script for displaying names of meta players in current town? <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_59">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On october 1, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_8961237 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="8961237">Saran</span></span><cite>Any script for displaying names of meta players in current town? <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></cite><p>Define META players, you mean with a dictionary list?</p><p>If so yes, provides such list of nicknames in JSON format and I can cook you something.</p><pre>
+/* Lowercase nickname dictionary, 
+but this will not work for people 
+with identical nicknames */
+
+(function(){
+
+var dict={saran:1,slimshaney:1,fdamned26:1};
+
+$("#citizen_overview_table td.name p").each(function(){
+var t=$(this),nick=$.trim(t.text()||'').toLowerCase();
+if(dict[nick])t.css('background-color','green');});})();</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_60">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On october 7, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1437174 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1437174">fdamned26</span></span><cite><pre>var dict={saran:1,slimshaney:1,fdamned26:1};</pre></cite><p>No one has ever offended me so much!<br><span class="tid_wspoil">OK, there were some people</span></p><p>What about getting nicknames from Twinoid groups?<br>It would be nice if I could specify a list of groups in the dict <img src="../../../../gfx/forum/smiley/h_smile.gif" alt=":)" class="tid_ico"><br>For example: <a href="https://twinoid.com/g/sota-survivors-of-the-atom/members" target="_blank">https://twinoid.com/g/sota-survivors-...</a><br><a href="https://twinoid.com/g/the-squad/members" target="_blank">https://twinoid.com/g/the-squad/members</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_61">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On october 7, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Sure, like this?</p><br><p><strong>Simple flat-dictionary:</strong></p><pre>var dict=window.dict||{},a=$("a.tid_user").each(function(){ 
+var t=$(this),nick=$.trim(t.text()||''),
+tid=+$.trim(t.attr('tid_id')||'')||1; 
+dict[nick]=tid; });
+window.dict=dict;
+JSON.stringify(dict);
+</pre><p><strong>Sorted by twinoid groups:</strong></p><pre>var gdict={},a=$("a.tid_user").each(function(){ 
+var t=$(this),nick=$.trim(t.text()||''),
+tid=+$.trim(t.attr('tid_id')||'')||1; 
+gdict[nick]=tid; }),
+g=window.g||{},
+twinoid_group_name=(window.location.href||''
+).replace(/^https?[\:\/]+twinoid\.com[\/]+g[\/]+/gmi,''
+).replace(/[\/]+members?$/gmi, ''
+).replace(/\W+/gmi, '_'); 
+g[twinoid_group_name]=gdict;
+window.g=g; 
+JSON.stringify(g);
+</pre><p><strong>Between each page retrieve the group or dictionary</strong></p><pre>window.dict=JSON.parse(localStorage.getItem('dict')||'{}');
+window.g=JSON.parse(localStorage.getItem('g')||'{}');
+</pre><p><strong>Between each page save the group or dictionary</strong></p><pre>localStorage.setItem('dict', JSON.stringify(window.dict||{}));
+localStorage.setItem('g', JSON.stringify(window.g||{}));
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_62">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On october 8, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>This also works in season leaderboard:</p><pre>$("a.tid_user")
+
+$("a.tid_user[tid_user=1437174]")
+
+$("a.tid_user:contains(fdamned26)")
+</pre><p>Also, mapping by Twinoid ID is probably safer than by nickname,<br>to avoid false positives.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_63">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On october 11, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>New FIXED range script with AP / KM support</strong></p><ul><li>KM uses Pythagorean of (x,y)</li><li>AP uses sum of absolute values of (x,y)</li></ul><p>11 AP ranges was added in this version useful for WT5 scavenging.</p><p><em>Works in MapViewer and FDTD</em></p><p>Just open Chrome Console (F12) and paste content below.</p><pre>function getZones() {
+ var $ = window.jQuery,
+ j = "_",
+ p = "#zone" + j,
+ q = p.substr(1),
+ css = "ul &gt; li[id^=" + q + "]";
+ return $(css);
+}
+
+
+function getZoneXY(zones0, i0) {
+ var zones = zones0 || getZones(),
+ i = +i0 || 0,
+ f = zones[i &gt; 0 ? i : 0],
+ id = (f &amp;&amp; f.id) || '',
+ xy = id.substr(5).split(/_/g),
+ x = +xy[0] || 0,
+ y = +xy[1] || 0,
+ r = [x, y];
+ return r;
+}
+
+
+function pyth(x, y, isAP) {
+ x = Math.abs(+x || 0);
+ y = Math.abs(+y || 0);
+ return +Math.round(isAP ? (x + y) : Math.sqrt(x * x + y * y));
+}
+
+function drawRange(zones0, dist, color, isAP) {
+ var zones = zones0 || getZones() || [],
+ nbZones = (zones &amp;&amp; zones.length) || 0,
+ $ = window.jQuery,
+ i = 0,
+ x = 0,
+ y = 0,
+ xy, o,
+ blc = "border-left-color",
+ brc = "border-right-color",
+ bbc = "border-bottom-color",
+ btc = "border-top-color";
+
+ if (dist &gt; 0 &amp;&amp; color) {
+ for (i = 0; i &lt; nbZones; ++i) {
+ xy = getZoneXY(zones, i);
+ if (xy) {
+ x = xy[0];
+ y = xy[1];
+
+ if (pyth(x, y, isAP) === dist) {
+ o = zones.eq(i);
+ if (x &lt; 0 &amp;&amp; pyth(x - 1, y, isAP) !== dist) {
+ o.css(blc, color);
+ } else if (x &gt; 0 &amp;&amp; pyth(x + 1, y) !== dist) {
+ o.css(brc, color);
+ } else if (isAP) {
+ if (x === 0) {
+ o.css(blc, color);
+ o.css(brc, color);
+ } else if (x === (dist - 1)) {
+ o.css(brc, color);
+ }
+ }
+
+ if (y &lt; 0 &amp;&amp; pyth(x, y - 1, isAP) !== dist) {
+ o.css(bbc, color);
+ } else if (y &gt; 0 &amp;&amp; pyth(x, y + 1) !== dist) {
+ o.css(btc, color);
+ } else if (isAP) {
+ if (y === 0) {
+ o.css(bbc, color);
+ o.css(btc, color);
+ } else if (y === (dist - 1)) {
+ o.css(btc, color);
+ }
+ }
+ }
+ }
+ }
+ }
+}
+
+function drawRangeHR(zones0) {
+ drawRange(zones0, 11, "yellow");
+}
+
+function drawRangeWT4(zones0) {
+ drawRange(zones0, 1, "gray");
+}
+
+function drawRangeWT5(zones0) {
+ drawRange(zones0, 2, "yellow");
+}
+
+function drawRangeDistant(zones0) {
+ drawRange(zones0, 5, "cyan");
+}
+
+function drawRangeEE(zones0) {
+ drawRange(zones0, 17, "white");
+}
+
+function drawRange9AP(zones0) {
+ drawRange(zones0, 9, "yellow", true);
+}
+
+function drawRange11AP(zones0) {
+ drawRange(zones0, 11, "pink", true);
+}
+
+var zones0 = getZones();
+drawRangeHR(zones0);
+drawRangeEE(zones0);
+drawRangeWT4(zones0);
+drawRangeWT5(zones0);
+drawRange9AP(zones0);
+drawRange11AP(zones0);
+drawRangeDistant(zones0);</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_64">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On october 11, 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Simplified further:</strong></p><pre>function getZones() {
+ return window.jQuery("ul &gt; li[id^=zone_]");
+}
+
+
+function getZoneXY(zones0, i0) {
+ var zones = zones0 || getZones() || [],
+ i = +i0 || 0,
+ f = zones[i &gt; 0 ? i : 0],
+ id = (f &amp;&amp; f.id) || '',
+ xy = id.substr(5).split(/_/g),
+ x = +xy[0] || 0,
+ y = +xy[1] || 0,
+ r = [x, y];
+ return r;
+}
+
+
+function pyth(x, y, isAP) {
+ x = Math.abs(+x || 0);
+ y = Math.abs(+y || 0);
+ return +Math.round(isAP ? (x + y) : Math.sqrt(x * x + y * y));
+}
+
+function drawRange(zones0, dist, color, isAP) {
+ var zones = zones0 || getZones() || [],
+ nbZones = (zones &amp;&amp; +zones.length) || 0,
+ i = 0,
+ x = 0,
+ y = 0,
+ xy, o,
+ blc = "border-left-color",
+ brc = "border-right-color",
+ bbc = "border-bottom-color",
+ btc = "border-top-color";
+
+ if (dist &gt; 0 &amp;&amp; color) {
+ for (i = 0; i &lt; nbZones; ++i) {
+ xy = getZoneXY(zones, i);
+ if (xy) {
+ x = +xy[0];
+ y = +xy[1];
+
+ if (pyth(x, y, isAP) === dist) {
+ o = zones.eq(i);
+ if (x &lt; 0 &amp;&amp; pyth(x - 1, y, isAP) !== dist) {
+ o.css(blc, color);
+ } else if (x &gt; 0 &amp;&amp; pyth(x + 1, y, isAP) !== dist) {
+ o.css(brc, color);
+ } else if (isAP &amp;&amp; x === 0) {
+ o.css(blc, color);
+ o.css(brc, color);
+ }
+
+ if (y &lt; 0 &amp;&amp; pyth(x, y - 1, isAP) !== dist) {
+ o.css(bbc, color);
+ } else if (y &gt; 0 &amp;&amp; pyth(x, y + 1, isAP) !== dist) {
+ o.css(btc, color);
+ } else if (isAP &amp;&amp; y === 0) {
+ o.css(bbc, color);
+ o.css(btc, color);
+ } 
+ }
+ }
+ }
+ }
+}
+
+function drawRangeHR(zones0) {
+ drawRange(zones0, 11, "yellow");
+}
+
+function drawRangeWT4(zones0) {
+ drawRange(zones0, 1, "gray");
+}
+
+function drawRangeWT5(zones0) {
+ drawRange(zones0, 2, "yellow");
+}
+
+function drawRangeDistant(zones0) {
+ drawRange(zones0, 5, "cyan");
+}
+
+function drawRangeEE(zones0) {
+ drawRange(zones0, 17, "white");
+}
+
+function drawRange9KM(zones0) {
+ drawRange(zones0, 9, "yellow", true);
+}
+
+function drawRange11KM(zones0) {
+ drawRange(zones0, 11, "pink", true);
+}
+
+var zones0 = getZones();
+drawRangeHR(zones0);
+drawRangeEE(zones0);
+drawRangeWT4(zones0);
+drawRangeWT5(zones0);
+drawRange9KM(zones0);
+drawRange11KM(zones0);
+drawRangeDistant(zones0);</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_65">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 6, 2018
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Will update first post later</p><p><span class="tid_user tid_user_1437174 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1437174">fdamned26</span> what was that script for checking towns that you played together with person X?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_66">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 10, 2018
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><a href="http://twd.io/e/-21k0M/0" target="_blank">http://twd.io/e/-21k0M/0</a></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_67">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On october 6, 2019
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>More jQuery scripts to know who's in town and how many:</p><p><strong>How many in town ?</strong></p><pre>jQuery( ".job-image +p" ).css( 'background','red' ).length
+</pre><p><strong><br>Who's in town ?</strong></p><pre>jQuery( "td div.job-image +p" ).css( 
+'background','red' ).text()
+</pre><p><strong><br>Who's in town with default @ tags ?</strong></p><pre>jQuery( "td .job-image +p" ).css( 
+'background','red' ).text().split( /\s+/g
+).join( ", @" ).substr(2)
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_68">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On february 1, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>List all the RP texts that you have found and how many:<br></strong></p><pre>var t = "" , 
+j = jQuery( "div.books table td:not(.date) a" ).each( 
+function(){ t += "\n" + ( jQuery(this).text() || "" ); 
+}).length; 
+
+t += "\nFound: " + j; 
+
+console.log( t );
+
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_69">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="matsuuu" style="background-color: rgb(188,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On february 1, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1946812 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1946812/1" tid_id="1946812">matsuuu</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1437174 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1437174">fdamned26</span></span><cite><strong>List all the RP texts that you have found and how many:<br></strong><pre>var t = "" , 
+j = jQuery( "div.books table td:not(.date) a" ).each( 
+function(){ t += "\n" + ( jQuery(this).text() || "" ); 
+}).length; 
+
+t += "\nFound: " + j; 
+
+console.log( t );
+
+</pre></cite><p>You know, that we have actually a page that tells you how many RP texts you have found, what they are, and even day you have read it.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_70">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On february 4, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>That script is for copy-pasting easily <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"> that table formatted list.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_71">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 17, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>List everything</strong> that is in the <strong>bank </strong>from FDTD,<br>so that the console output can be easily copy-pasted into<br>a Google Sheet tab using Chrome.</p><pre>//`
+
+var csv = "",
+li = jQuery("#bank_panel div.bank_category li.item"
+).each(function() { 
+
+var t = jQuery(this),
+name=t.find("div").attr("title")|| t.attr("title")||"", 
+amount = +t.find("p.item-amount").text()||0; 
+
+if (+amount &gt; 0) {
+csv += "\n" + name + "\t,\t" + amount + "\t,\t"; 
+}
+
+}); csv;
+
+//`
+</pre><p>You could for instance use this information to make a Google Sheet<br>for watchmen plans by simply doing vlookup into this<br>new 2 column content.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_72">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 17, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>List everything</strong> that is in the <strong>bank </strong>from FDTD,<br>so that the console output can be easily copy-pasted into<br>a Google Sheet tab using Chrome.</p><pre>//`
+
+var csv = "",
+li = jQuery("#bank_panel.bank &gt; div.bank_category li.item"
+).each(function() { 
+
+var t = jQuery(this),
+name=t.find("div").attr("title")|| t.attr("title")||"", 
+amount = +t.find("p.item-amount").text()||0; 
+
+if (+amount &gt; 0) {
+csv += "\n" + name + "\t,\t" + amount + "\t,\t"; 
+}
+
+}); csv;
+
+//`
+</pre><p>You could for instance use this information to make a Google Sheet<br>for watchmen plans by simply doing vlookup into this<br>new 2 column content.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_73">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_4_1_0e289176_1397717_100x100.gif" title="Miudo" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On may 10, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1397717 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1397717/1" tid_id="1397717">Miudo</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Tha dance of the ducks</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Outside Dump Calculator script for Tampermonkey - Chrome</strong></p><p><a href="https://greasyfork.org/en/scripts/403006-outside-dump-calculator" target="_blank">https://greasyfork.org/en/scripts/403...</a></p><p>It calculates the defense the town can obtain by collecting all dumpables in the World Beyond that are inside the 11AP range.</p><p>It has controls for dump types and stuff.</p><p>It also lists the top 10 zones with the most defense points for scrap runners to focus.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_74">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On june 26, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Calculate Town Points from Soul page</strong></p><br><pre>//`
+
+var curr = 0,
+first = 0,
+total = 0,
+q = jQuery( "#ghost_pages table.table td.days em" ),
+n = q.length,
+left = 40 - n,
+x = q.each(function() { 
+var $t = jQuery(this),
+d = +$t.text() || 0; 
+total += d; 
+if (d &gt;= first) { first = d; } }),
+cday = Math.max( curr, first + 1 ),
+pts = left * cday + total;
+
+console.log( "Current Day: ", cday, " or ", curr );
+console.log( "People Already Dead Points: ", total );
+console.log( "Number of People Already Dead: ", n );
+console.log( "Last person died on Day: ", first );
+console.log( "Number of People still alive: ", left );
+
+console.log( "Total Town Points: ", pts, " pts" );
+
+//`
+</pre><p>Open the soul page of someone who died in your town,<br>open that town death history<br>open the dev console<br>paste the above <img src="../../../../gfx/square/razz.png" alt=":P" class="tid_ico"></p><p>Change <strong>curr=0</strong> to the current day if nobody died "<em>yesterday</em>". <img src="../../../../gfx/square/chart.png" alt=":chart:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_75">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On july 16, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Show how many people in town and whom.</p><br><pre>var s = '', j = jQuery( 
+"#citizen_overview_table td.name .job-image" 
+).each( function(i, n) { 
+s+='\n'+( (i+1)+ jQuery(this).html( 
+"&lt;b&gt;&amp;nbsp;" +(i+1)+ "&lt;/b&gt;" ).next().text() || '' ); 
+}); s = s.replace( /[^\n\S]+/gm, ' @' );
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_76">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On october 16, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Show how many people in town <br>AND how many are inactive or still inside town,<br>as in NOT SCAVENGING.</p><pre>//`
+
+var j = 0;
+jQuery("#citizen_overview_table td.name .job-image"
+).each(function(i, n, c) { 
+c = jQuery(this).html( "&lt;b&gt;&amp;nbsp;" + (1+i) + "&lt;/b&gt;"
+).parent().next(); 
+if ( c.text().indexOf("inside") &gt; -1 ) { 
+c.append( "&lt;b&gt;&amp;nbsp;" + (++j) + "&lt;/b&gt;" ); 
+} });
+
+//`
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_77">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On november 1, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Script to auto-fill sign up sheet with pre-sort in Excel:</p><pre>//`
+
+var jobs_type={
+'job-hunter' : 'SURV',
+'job-shield' : 'GUARD',
+'job-tamed_pet' : 'TAMR',
+'job-tech' : 'TECH',
+'job-pelle' : 'Scav',
+'job-vest_on' : 'SCOUT',
+'job-vest_off' : 'SCOUT',
+'job-question-mark' : 'WaitN',
+'job-basic_suit' : 'Resi',
+'' : 'WaitN'
+};
+
+var jobs_priority={
+'job-hunter' : 1,
+'job-shield' : 2,
+'job-tamed_pet' : 3,
+'job-tech' : 4,
+'job-pelle' : 5,
+'job-vest_on' : 6,
+'job-vest_off' : 7,
+'job-question-mark' : 8,
+'job-basic_suit' : 9,
+'' : 10
+};
+
+ 
+
+var csv='',$j=$(
+"#citizen_overview_table td.name div.job-image"
+).each(function(i,n){ 
+var t=$(this),c=t[0].className||'',
+m=$.trim(c.replace(/\s*job-image\s*/gmi,'')),
+nick=t.next().text()||''; 
+t.html( "&lt;b&gt;&amp;nbsp;"+(1+i)+"&lt;/b&gt;" ); 
+csv += [i, jobs_priority[m], nick, jobs_type[m]].join('\t') + '\n'; }); csv;
+
+//`
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_78">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On november 1, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Script to auto-fill sign up sheet with pre-sort by priority:</strong></p><pre>//`
+var jobs_type={
+'job-hunter' : 'SURV',
+'job-shield' : 'GUARD',
+'job-tamed_pet' : 'TAMR',
+'job-tech' : 'TECH',
+'job-pelle' : 'Scav',
+'job-vest_on' : 'SCOUT',
+'job-vest_off' : 'SCOUT',
+'job-question-mark' : 'WaitN',
+'job-basic_suit' : 'Resi',
+'' : 'WaitN'
+};
+
+var jobs_priority={
+'job-hunter' : 100,
+'job-shield' : 200,
+'job-tamed_pet' : 300,
+'job-tech' : 400,
+'job-pelle' : 500,
+'job-vest_on' : 600,
+'job-vest_off' : 700,
+'job-question-mark' : 800,
+'job-basic_suit' : 900,
+'' : 1000
+};
+
+var type_boost={
+'PW' : -50,
+'PM' : -40,
+'PC' : -30,
+'SW6' : -20,
+'4CP' : -10,
+'3CP' : -5,
+'LC' : -2,
+'' : 0
+};
+
+var nick_boost = {
+'fdamned26' : 'PW',
+'UrsulaK' : 'PW',
+'Aivaras' : 'PW',
+'Ruint' : 'PW',
+'cerebus' : 'PW',
+'Greenwing' : 'PW',
+'AnachroNia' : 'PM',
+'Arte' : 'LC',
+'Cliath' : 'PW',
+'furfur0162' : '3CP',
+'Gamster' : '3CP',
+'Ihop222' : 'PC',
+'intimidant' : '3CP',
+'Moppet' : 'PM',
+'Px-c9' : '3CP',
+'quattro' : 'PC',
+'Raine' : 'LC',
+'SteZie' : 'PM',
+'tudorionascu88' : 'PM',
+'Typhonist' : 'PC',
+'Zesmau' : 'PM',
+'' : ''
+};
+
+var csv='\n',scsv='\n',arr=[],$j=$( 
+"#citizen_overview_table td.name div.job-image" 
+).each( function(i, n) { 
+var t=$(this), c=t[0].className || '',
+m=$.trim(c.replace( /\s*job-image\s*/gmi, '' )),
+nick=$.trim(t.next().text()||''),
+prio=+jobs_priority[m]||0,
+type=$.trim(jobs_type[m]||''),
+j=1+i,
+nboost=nick_boost[nick]||'',
+pboost=+type_boost[nboost]||0,
+suffix=nboost ? ( ' (' + nboost + ')' ) : '',
+row=[j, prio+pboost, nick+suffix, type ];
+t.html("&lt;b&gt;&amp;nbsp;"+j+"&lt;/b&gt;");
+arr.push(row);
+csv += row.join('\t') + '\n';
+});
+arr.sort(function(a, b){ return a[1] - b[1]; });
+$.each(arr, function(i, row) {
+ scsv += row.join('\t') + '\n';
+});
+scsv;
+//`
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_79">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On november 30, 2020
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Total number of soul points inside a town citizen tab:</p><pre>//`
+
+var total = 0, j = jQuery(
+"#generic_section &gt; div &gt; table &gt; tbody &gt; tr td:nth-child(4)"
+).each(function( i, n ) { 
+total += +( jQuery(this).text() || "" ).replace( /\D+/,"" ); 
+});
+total;
+
+//`</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_80">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[9991909]" style="background-color: rgb(104,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On february 6, 2021
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9991909 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9991909/1" tid_id="9991909">[9991909]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Solo tengo que hablar aquí para una misión ya me voy <img src="../../../../gfx/forum/smiley/h_smile.gif" alt=":)" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_81">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On june 18, 2021
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong>Town List of Technicians:<br></strong></p><pre>"@"+ jQuery( "#citizen_info .job-tech + p" 
+).text().trim(
+).split(/\s+/).join( "\n @" )
+</pre><p><strong>Town List of Scouts:<br></strong></p><pre>"@"+ jQuery( "#citizen_info .job-vest_on + p" 
+).text().trim(
+).split(/\s+/).join( "\n @" )
+</pre><p><strong>Town List of Tamers:<br></strong></p><pre>"@"+ jQuery( "#citizen_info .job-tamed_pet + p" 
+).text().trim(
+).split(/\s+/).join( "\n @" )
+</pre><p><strong>Town List of Survivalists:<br></strong></p><pre>"@"+ jQuery( "#citizen_info .job-hunter + p" 
+).text().trim(
+).split(/\s+/).join( "\n @" )
+</pre><p><strong>Town List of Guardians:<br></strong></p><pre>"@"+ jQuery( "#citizen_info .job-shield + p" 
+).text().trim(
+).split(/\s+/).join( "\n @" )
+</pre><p><strong>Town List of Scavengers:<br></strong></p><pre>"@"+ jQuery( "#citizen_info .job-pelle + p" 
+).text().trim(
+).split(/\s+/).join( "\n @" )
+</pre><p><strong>Town List of Residents:<br></strong></p><pre>"@"+ jQuery( "#citizen_info .job-basic_suit + p" 
+).text().trim(
+).split(/\s+/).join( "\n @" )
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_82">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On june 18, 2021
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Similar script with proper Twinoid ID suffix<br><em>(does not work in die2nite)</em></p><br><br><p><strong>Town List of Technicians: </strong></p><pre>var s="",
+j=jQuery( "#citizen_info .job-tech + p" 
+).each(function(){
+var $t=$(this),
+name=($t.text()||"").trim(),
+id=+$t.parent("td").attr("id")||"";
+s+="@"+name; 
+if(id)s+=":"+id; 
+s+=" \n"; 
+});s.trim();
+</pre><p><strong>Town List of Scouts: </strong></p><pre>var s="",
+j=jQuery( "#citizen_info .job-vest_on + p" 
+).each(function(){
+var $t=$(this),
+name=($t.text()||"").trim(),
+id=+$t.parent("td").attr("id")||"";
+s+="@"+name; 
+if(id)s+=":"+id; 
+s+=" \n"; 
+});s.trim();</pre><p><strong>Town List of Tamers: </strong></p><pre>var s="",
+j=jQuery( "#citizen_info .job-tamed_pet + p" 
+).each(function(){
+var $t=$(this),
+name=($t.text()||"").trim(),
+id=+$t.parent("td").attr("id")||"";
+s+="@"+name; 
+if(id)s+=":"+id; 
+s+=" \n"; 
+});s.trim();
+</pre><p><strong>Town List of Survivalists: </strong></p><pre>var s="",
+j=jQuery( "#citizen_info .job-hunter + p" 
+).each(function(){
+var $t=$(this),
+name=($t.text()||"").trim(),
+id=+$t.parent("td").attr("id")||"";
+s+="@"+name; 
+if(id)s+=":"+id; 
+s+=" \n"; 
+});s.trim();
+</pre><p><strong>Town List of Guardians: </strong></p><pre>var s="",
+j=jQuery( "#citizen_info .job-shield + p" 
+).each(function(){
+var $t=$(this),
+name=($t.text()||"").trim(),
+id=+$t.parent("td").attr("id")||"";
+s+="@"+name; 
+if(id)s+=":"+id; 
+s+=" \n"; 
+});s.trim();
+</pre><p><strong>Town List of Scavengers: </strong></p><pre>var s="",
+j=jQuery( "#citizen_info .job-pelle + p" 
+).each(function(){
+var $t=$(this),
+name=($t.text()||"").trim(),
+id=+$t.parent("td").attr("id")||"";
+s+="@"+name; 
+if(id)s+=":"+id; 
+s+=" \n"; 
+});s.trim();
+</pre><p><strong>Town List of Residents: </strong></p><pre>var s="",
+j=jQuery( "#citizen_info .job-basic_suit + p" 
+).each(function(){
+var $t=$(this),
+name=($t.text()||"").trim(),
+id=+$t.parent("td").attr("id")||"";
+s+="@"+name; 
+if(id)s+=":"+id; 
+s+=" \n"; 
+});s.trim();
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_83">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_1_e_825d4dd3_1437174_100x100.jpg" title="fdamned26" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On december 10, 2021
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_1437174 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/1437174/1" tid_id="1437174">fdamned26</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_wintop.gif" title=""/> If you want to live... Follow me!</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><strong><br>Number of death people from your town soul profile<br></strong></p><pre>jQuery( "#ghost_pages div.ghistory table.table td.days em"
+).each( function(i) { jQuery(this).text( 1+i ); });
+</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_84">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On january 18, 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_1437174 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="1437174">fdamned26</span></span><cite><strong><br>Number of death people from your town soul profile<br></strong><pre>jQuery( "#ghost_pages div.ghistory table.table td.days em"
+).each( function(i) { jQuery(this).text( 1+i ); });
+</pre></cite><p>Oh my, you're truly unstoppable</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_85">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_7_a_42a17be8_8673940_100x100.png" title="tchekof" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 4, 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8673940 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8673940/1" tid_id="8673940">tchekof</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\r_cwater.gif" title=""/> Pasteur du village</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Could I get a counter displayed all the time near the town name with the number of time binto got hanged/shunned? That would be really nice.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_86">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Saran" style="background-color: rgb(88,204,82); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            On april 4, 2022
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8961237 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8961237/1" tid_id="8961237">Saran</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>I want it as well <img src="../../../../gfx/square/anim.png/surprise.gif" alt=":anim_surprised:" class="tid_ico"></p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

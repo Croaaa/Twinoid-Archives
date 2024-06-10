@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Klans</title>
+    <link rel="icon" type="image/gif" href="..\..\gfx\game\DinoRPG.ico">
+    <link href="../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tid_boutBank {
+            height: 40px;
+        }
+        .tid_thread {
+            height: 30px;
+        }
+        .tid_threads .tid_title {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tid_threads .tid_icon, 
+        .tid_threads .tid_subject {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tid_threads th {
+            background-color: #7E4D2A;
+            color: white;
+            vertical-align: middle;
+            cursor: default;
+            position: relative;
+            height: 28px;
+        }
+        .tid_threads td {
+            padding: 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .filter-input {
+            width: 90%;
+            padding: 5px;
+            margin: 5px auto;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            background-color: #B2A36C;
+            color: #333;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            background-color: #7E4D2A;
+            padding: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const getCellValue = (row, index) => row.children.length > index ? (row.children[index].innerText || row.children[index].textContent) : '';
+            const filterTable = (input, columnIndex) => {
+                const filterValue = input.value.toLowerCase();
+                const table = input.closest('table');
+                const tbody = table.querySelector('tbody');
+                const dateSeparators = Array.from(tbody.querySelectorAll('.tid_dateSeparator'));
+                Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                    const cellValue = getCellValue(row, columnIndex).toLowerCase();
+                    row.style.display = cellValue.includes(filterValue) ? '' : 'none';
+                });
+                dateSeparators.slice(0, 2).forEach(separator => separator.style.display = '');
+            };
+            const createFilterRow = (columns) => {
+                const filterRow = document.createElement('tr');
+                columns.forEach((th, index) => {
+                    const filterCell = document.createElement('th');
+                    if (index !== 0 && index !== 6) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.classList.add('filter-input');
+                        input.placeholder = "Filtrer";
+                        input.addEventListener('input', function() { filterTable(this, index); });
+                        filterCell.appendChild(input);
+                    }
+                    filterRow.appendChild(filterCell);
+                });
+                return filterRow;
+            };
+            const thead = document.querySelector('.tid_threads thead');
+            const columns = Array.from(thead.querySelectorAll('th'));
+            const filterRow = createFilterRow(columns);
+            thead.insertBefore(filterRow, thead.firstChild);
+        });
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all">
+                <table class="tid_forumLayout">
+                    <tbody>
+                        <tr>
+                            <td id="tid_forum_left">
+                                <div class="tid_containerWrapper">
+                                    <div class="tid_forumThreads">
+                                        <div class="tid_mainBar">                                            
+                                            <div class="tid_stack tid_bg4">
+												<a class="tid_bg4" href="../../Index.html" tid_href="left:">
+													<img src="../../../gfx/design/flag_DE.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+													Startseite
+												</a>
+                                                <a class="tid_bg4" href="../Index.html" tid_href="left:">DinoRPG</a>
+                                                <span class="tid_title">Klans</span>
+                                            </div>
+                                        </div>
+                                        <div class="tid_forumDesc tid_bg2">
+                                            <span class="tid_quote tid_start">“</span>Diskussionen zwischen Clans, oder werbe hier deine zukünftigen Mitglieder an !<span class="tid_quote tid_end">”</span>
+                                        </div>
+										
+                                        <div class="tid_threadsContainer">
+                                            <table class="tid_threads tid_bg1">
+                                                <thead>
+                                                    <tr><th class="tid_index">&nbsp;</th><th class="tid_index">Themen</th><th class="tid_index">Erstellungsdatum</th><th class="tid_index">Themenautor</th><th class="tid_index">Letzte Antwort</th><th class="tid_index">Von</th><th class="tid_index">Anzahl der Antworten</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503840" onclick="location.href='./10503840/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author"><span class="tid_forumTag tid_minor">Dp</span></td>
+    <td class="tid_subject tid_bg2 tid_author">11-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">blackdoom</td>
+    <td class="tid_subject tid_bg2 tid_author">03-05-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">blackdoom</td>
+    <td class="tid_subject tid_bg2 tid_author">89</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503841" onclick="location.href='./10503841/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Procyons Dinoz Armee</td>
+    <td class="tid_subject tid_bg2 tid_author">06-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[512478]</td>
+    <td class="tid_subject tid_bg2 tid_author">03-03-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[512478]</td>
+    <td class="tid_subject tid_bg2 tid_author">72</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503838" onclick="location.href='./10503838/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">X-Treme Dimension</td>
+    <td class="tid_subject tid_bg2 tid_author">28-01-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Herrscher</td>
+    <td class="tid_subject tid_bg2 tid_author">30-01-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Cordobar</td>
+    <td class="tid_subject tid_bg2 tid_author">216</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503839" onclick="location.href='./10503839/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">German Connection</td>
+    <td class="tid_subject tid_bg2 tid_author">06-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">11-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Mindriel</td>
+    <td class="tid_subject tid_bg2 tid_author">203</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503797" onclick="location.href='./10503797/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Sticky Klanthreads</td>
+    <td class="tid_subject tid_bg2 tid_author">12-05-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Devi</td>
+    <td class="tid_subject tid_bg2 tid_author">11-01-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">MicEisvogel</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503835" onclick="location.href='./10503835/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Die Zerstörer</td>
+    <td class="tid_subject tid_bg2 tid_author">20-09-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Dino12345678</td>
+    <td class="tid_subject tid_bg2 tid_author">01-12-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Dino12345678</td>
+    <td class="tid_subject tid_bg2 tid_author">44</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503834" onclick="location.href='./10503834/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Deutscher Dino Dschungel</td>
+    <td class="tid_subject tid_bg2 tid_author">21-11-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">Dennomon</td>
+    <td class="tid_subject tid_bg2 tid_author">10-10-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[5000713]</td>
+    <td class="tid_subject tid_bg2 tid_author">79</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503818" onclick="location.href='./10503818/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">La Unión hace la Fuerza</td>
+    <td class="tid_subject tid_bg2 tid_author">07-11-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">T0xXI</td>
+    <td class="tid_subject tid_bg2 tid_author">27-08-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">AlexPeace2K16</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503842" onclick="location.href='./10503842/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Darkside Rising</td>
+    <td class="tid_subject tid_bg2 tid_author">15-10-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[869776]</td>
+    <td class="tid_subject tid_bg2 tid_author">15-08-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Biquinho</td>
+    <td class="tid_subject tid_bg2 tid_author">111</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503836" onclick="location.href='./10503836/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">X-Treme Dimension Wing (OP - STH)</td>
+    <td class="tid_subject tid_bg2 tid_author">16-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Ruffy23</td>
+    <td class="tid_subject tid_bg2 tid_author">12-08-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Herrscher</td>
+    <td class="tid_subject tid_bg2 tid_author">71</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503827" onclick="location.href='./10503827/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Slayers</td>
+    <td class="tid_subject tid_bg2 tid_author">27-03-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">12-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Trick17</td>
+    <td class="tid_subject tid_bg2 tid_author">19</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503833" onclick="location.href='./10503833/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">FlügelDerUnsterblichenStreiter</td>
+    <td class="tid_subject tid_bg2 tid_author">13-02-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">GStarRaw</td>
+    <td class="tid_subject tid_bg2 tid_author">17-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Richard10</td>
+    <td class="tid_subject tid_bg2 tid_author">27</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503829" onclick="location.href='./10503829/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Beer Belly Bandits</td>
+    <td class="tid_subject tid_bg2 tid_author">21-11-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">loam</td>
+    <td class="tid_subject tid_bg2 tid_author">28-02-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">loam</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54094395" onclick="location.href='./54094395/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Neu auf dem server</td>
+    <td class="tid_subject tid_bg2 tid_author">29-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">deibor</td>
+    <td class="tid_subject tid_bg2 tid_author">29-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">deibor</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503815" onclick="location.href='./10503815/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Wie ändere ich das Klanbanner?</td>
+    <td class="tid_subject tid_bg2 tid_author">11-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">NeoSchakal</td>
+    <td class="tid_subject tid_bg2 tid_author">30-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Marietta</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49589956" onclick="location.href='./49589956/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Klan für mich :DDDD</td>
+    <td class="tid_subject tid_bg2 tid_author">27-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">kivi</td>
+    <td class="tid_subject tid_bg2 tid_author">27-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">kivi</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44110312" onclick="location.href='./44110312/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">JeCeD [R]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[1014976]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[1014976]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40036200" onclick="location.href='./40036200/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Itchy Trigger Fingers Anonymous</td>
+    <td class="tid_subject tid_bg2 tid_author">12-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Loppermann</td>
+    <td class="tid_subject tid_bg2 tid_author">14-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[7226535]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39600695" onclick="location.href='./39600695/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">suche clan</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[1014976]</td>
+    <td class="tid_subject tid_bg2 tid_author">24-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">BlackAndLoki</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39452963" onclick="location.href='./39452963/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Clan en español</td>
+    <td class="tid_subject tid_bg2 tid_author">18-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[1014976]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[1014976]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_15139602" onclick="location.href='./15139602/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Darth Gorgoth</td>
+    <td class="tid_subject tid_bg2 tid_author">04-08-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Diamantfaust</td>
+    <td class="tid_subject tid_bg2 tid_author">05-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">BlackAndLoki</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503788" onclick="location.href='./10503788/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Weapons From Hell</td>
+    <td class="tid_subject tid_bg2 tid_author">17-07-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Toonboy</td>
+    <td class="tid_subject tid_bg2 tid_author">22-05-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">BlackAndLoki</td>
+    <td class="tid_subject tid_bg2 tid_author">65</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503813" onclick="location.href='./10503813/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Happy Dinoz</td>
+    <td class="tid_subject tid_bg2 tid_author">17-11-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Ahtan</td>
+    <td class="tid_subject tid_bg2 tid_author">18-01-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Sturmwindfuchs</td>
+    <td class="tid_subject tid_bg2 tid_author">14</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_19648208" onclick="location.href='./19648208/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Suche Krieger für unseren Klan</td>
+    <td class="tid_subject tid_bg2 tid_author">26-12-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">throof</td>
+    <td class="tid_subject tid_bg2 tid_author">26-12-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">throof</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_17802921" onclick="location.href='./17802921/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Suche Klan</td>
+    <td class="tid_subject tid_bg2 tid_author">26-10-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Herkulinchen</td>
+    <td class="tid_subject tid_bg2 tid_author">26-10-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Herkulinchen</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11642138" onclick="location.href='./11642138/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">TKB Les Lapins Tueurs (Rekrutierung)</td>
+    <td class="tid_subject tid_bg2 tid_author">11-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Narig</td>
+    <td class="tid_subject tid_bg2 tid_author">11-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Narig</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10715871" onclick="location.href='./10715871/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Blutkorgonen</td>
+    <td class="tid_subject tid_bg2 tid_author">18-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Dekana-Heaven</td>
+    <td class="tid_subject tid_bg2 tid_author">28-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Anti</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503832" onclick="location.href='./10503832/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Dark Circle</td>
+    <td class="tid_subject tid_bg2 tid_author">09-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">xLinivinix</td>
+    <td class="tid_subject tid_bg2 tid_author">11-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[512478]</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503831" onclick="location.href='./10503831/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Klan-Zusammenschluss</td>
+    <td class="tid_subject tid_bg2 tid_author">06-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Glottis</td>
+    <td class="tid_subject tid_bg2 tid_author">08-03-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[512478]</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503828" onclick="location.href='./10503828/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Klan für Klanlose</td>
+    <td class="tid_subject tid_bg2 tid_author">04-02-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">NeoSchakal</td>
+    <td class="tid_subject tid_bg2 tid_author">04-02-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503826" onclick="location.href='./10503826/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Die Brokolibande sucht &gt;Mitglieder&lt;</td>
+    <td class="tid_subject tid_bg2 tid_author">20-11-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">ZexyZap</td>
+    <td class="tid_subject tid_bg2 tid_author">01-02-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[919574]</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503825" onclick="location.href='./10503825/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Mitglieder für Die Brokolibande</td>
+    <td class="tid_subject tid_bg2 tid_author">26-01-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">ZexyZap</td>
+    <td class="tid_subject tid_bg2 tid_author">26-01-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503824" onclick="location.href='./10503824/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Klan austreten</td>
+    <td class="tid_subject tid_bg2 tid_author">19-01-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">F-Boy</td>
+    <td class="tid_subject tid_bg2 tid_author">19-01-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">stefan0205</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503821" onclick="location.href='./10503821/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">ProTeam sucht Mitglieder</td>
+    <td class="tid_subject tid_bg2 tid_author">28-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Marcel202</td>
+    <td class="tid_subject tid_bg2 tid_author">28-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Marcel202</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503820" onclick="location.href='./10503820/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Gotei 13  sucht Mitglieder</td>
+    <td class="tid_subject tid_bg2 tid_author">09-11-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">NeoSchakal</td>
+    <td class="tid_subject tid_bg2 tid_author">18-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503819" onclick="location.href='./10503819/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Gotei 13 sucht neue Mitglieder!!!</td>
+    <td class="tid_subject tid_bg2 tid_author">18-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">NeoSchakal</td>
+    <td class="tid_subject tid_bg2 tid_author">18-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">NeoSchakal</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503817" onclick="location.href='./10503817/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">DinoTopia</td>
+    <td class="tid_subject tid_bg2 tid_author">13-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">illumineos</td>
+    <td class="tid_subject tid_bg2 tid_author">13-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">illumineos</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503816" onclick="location.href='./10503816/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Gotei 13</td>
+    <td class="tid_subject tid_bg2 tid_author">11-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">NeoSchakal</td>
+    <td class="tid_subject tid_bg2 tid_author">11-12-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503814" onclick="location.href='./10503814/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Master Of Death</td>
+    <td class="tid_subject tid_bg2 tid_author">18-11-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">albatr00n</td>
+    <td class="tid_subject tid_bg2 tid_author">18-11-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">albatr00n</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503812" onclick="location.href='./10503812/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Dinoz mit Reis</td>
+    <td class="tid_subject tid_bg2 tid_author">05-11-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">hypnotoad</td>
+    <td class="tid_subject tid_bg2 tid_author">05-11-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">hypnotoad</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503811" onclick="location.href='./10503811/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">gesucht klan</td>
+    <td class="tid_subject tid_bg2 tid_author">15-10-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">T0xXI</td>
+    <td class="tid_subject tid_bg2 tid_author">15-10-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">T0xXI</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503810" onclick="location.href='./10503810/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Die Sororitas Noctis</td>
+    <td class="tid_subject tid_bg2 tid_author">19-09-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[990835]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-09-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503809" onclick="location.href='./10503809/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Franzosische Clan rekrutieren</td>
+    <td class="tid_subject tid_bg2 tid_author">03-09-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[939664]</td>
+    <td class="tid_subject tid_bg2 tid_author">09-09-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503808" onclick="location.href='./10503808/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">suche klan</td>
+    <td class="tid_subject tid_bg2 tid_author">21-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[815141]</td>
+    <td class="tid_subject tid_bg2 tid_author">21-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[815141]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503807" onclick="location.href='./10503807/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Vongola Klan</td>
+    <td class="tid_subject tid_bg2 tid_author">17-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Zeres</td>
+    <td class="tid_subject tid_bg2 tid_author">17-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Zeres</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503806" onclick="location.href='./10503806/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">One Piece - Die Strohhüte</td>
+    <td class="tid_subject tid_bg2 tid_author">19-01-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Pazifist</td>
+    <td class="tid_subject tid_bg2 tid_author">12-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">blackdoom</td>
+    <td class="tid_subject tid_bg2 tid_author">132</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503805" onclick="location.href='./10503805/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Karate Klub</td>
+    <td class="tid_subject tid_bg2 tid_author">27-07-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Stormy44</td>
+    <td class="tid_subject tid_bg2 tid_author">09-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Stormy44</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503804" onclick="location.href='./10503804/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Wanwan-Warriors</td>
+    <td class="tid_subject tid_bg2 tid_author">29-01-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[436153]</td>
+    <td class="tid_subject tid_bg2 tid_author">06-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[436153]</td>
+    <td class="tid_subject tid_bg2 tid_author">23</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503803" onclick="location.href='./10503803/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">WanWan-Warriors</td>
+    <td class="tid_subject tid_bg2 tid_author">06-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">06-08-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503802" onclick="location.href='./10503802/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Der neue Clan für Sie!</td>
+    <td class="tid_subject tid_bg2 tid_author">21-07-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">26-07-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Kipsitas</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503801" onclick="location.href='./10503801/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Ich suche einen Clan</td>
+    <td class="tid_subject tid_bg2 tid_author">25-07-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Kipsitas</td>
+    <td class="tid_subject tid_bg2 tid_author">25-07-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503800" onclick="location.href='./10503800/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Bewerbung</td>
+    <td class="tid_subject tid_bg2 tid_author">07-07-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">FrEaK1559</td>
+    <td class="tid_subject tid_bg2 tid_author">07-07-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503799" onclick="location.href='./10503799/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Alpha-Warriors</td>
+    <td class="tid_subject tid_bg2 tid_author">14-06-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Karozo</td>
+    <td class="tid_subject tid_bg2 tid_author">14-06-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">MicEisvogel</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503798" onclick="location.href='./10503798/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">suche clan</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">15-05-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503795" onclick="location.href='./10503795/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Element Warriors (Suche nach neuen</td>
+    <td class="tid_subject tid_bg2 tid_author">08-05-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Freino</td>
+    <td class="tid_subject tid_bg2 tid_author">08-05-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Freino</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503794" onclick="location.href='./10503794/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">DEU. KLAN auf SPANISCHEN SERVER?</td>
+    <td class="tid_subject tid_bg2 tid_author">05-05-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Brontalo</td>
+    <td class="tid_subject tid_bg2 tid_author">05-05-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Brontalo</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503793" onclick="location.href='./10503793/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Suche Klan</td>
+    <td class="tid_subject tid_bg2 tid_author">05-05-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Zaibis</td>
+    <td class="tid_subject tid_bg2 tid_author">05-05-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503792" onclick="location.href='./10503792/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Guerreros de E. Member suchen</td>
+    <td class="tid_subject tid_bg2 tid_author">10-04-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">AmaroSoto</td>
+    <td class="tid_subject tid_bg2 tid_author">10-04-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">AmaroSoto</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503791" onclick="location.href='./10503791/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">ARMAGEDDON</td>
+    <td class="tid_subject tid_bg2 tid_author">25-08-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">-SIRIUS-</td>
+    <td class="tid_subject tid_bg2 tid_author">24-03-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">-SIRIUS-</td>
+    <td class="tid_subject tid_bg2 tid_author">15</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503790" onclick="location.href='./10503790/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Ich suche spanischsprachigen Clan</td>
+    <td class="tid_subject tid_bg2 tid_author">23-03-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">23-03-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503789" onclick="location.href='./10503789/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Wozu Klanmitgliedschaft?</td>
+    <td class="tid_subject tid_bg2 tid_author">21-03-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">21-03-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Trini</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503787" onclick="location.href='./10503787/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">French Conspiracy</td>
+    <td class="tid_subject tid_bg2 tid_author">03-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">inpact</td>
+    <td class="tid_subject tid_bg2 tid_author">18-03-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">71</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503786" onclick="location.href='./10503786/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">~TUD~ sucht Mitglieder</td>
+    <td class="tid_subject tid_bg2 tid_author">17-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Ndeline</td>
+    <td class="tid_subject tid_bg2 tid_author">10-03-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Ndeline</td>
+    <td class="tid_subject tid_bg2 tid_author">14</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503785" onclick="location.href='./10503785/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">DinozFreundeDeutschland</td>
+    <td class="tid_subject tid_bg2 tid_author">24-10-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[512478]</td>
+    <td class="tid_subject tid_bg2 tid_author">01-03-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Meischner</td>
+    <td class="tid_subject tid_bg2 tid_author">20</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503784" onclick="location.href='./10503784/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Subanempujenestrujenbajen Recruit!</td>
+    <td class="tid_subject tid_bg2 tid_author">20-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">25-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503783" onclick="location.href='./10503783/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">suche clan</td>
+    <td class="tid_subject tid_bg2 tid_author">24-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[939664]</td>
+    <td class="tid_subject tid_bg2 tid_author">24-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503782" onclick="location.href='./10503782/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">JEMAND HAT CLAN</td>
+    <td class="tid_subject tid_bg2 tid_author">16-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">SirGwaine</td>
+    <td class="tid_subject tid_bg2 tid_author">16-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503781" onclick="location.href='./10503781/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Wie kann ich meinen Klan auflösen</td>
+    <td class="tid_subject tid_bg2 tid_author">13-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">13-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503780" onclick="location.href='./10503780/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Miracle´s klan</td>
+    <td class="tid_subject tid_bg2 tid_author">08-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">nuno2000</td>
+    <td class="tid_subject tid_bg2 tid_author">08-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">nuno2000</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503779" onclick="location.href='./10503779/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Suchtis FTW!!</td>
+    <td class="tid_subject tid_bg2 tid_author">04-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Kickergurke</td>
+    <td class="tid_subject tid_bg2 tid_author">04-02-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Meischner</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503778" onclick="location.href='./10503778/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Cherche clan francais</td>
+    <td class="tid_subject tid_bg2 tid_author">31-01-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[939664]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-01-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Namey</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503777" onclick="location.href='./10503777/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">klan war?</td>
+    <td class="tid_subject tid_bg2 tid_author">28-01-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">28-01-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503776" onclick="location.href='./10503776/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Fragen zum Klan!</td>
+    <td class="tid_subject tid_bg2 tid_author">21-12-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">12-01-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">78</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503775" onclick="location.href='./10503775/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">tipps</td>
+    <td class="tid_subject tid_bg2 tid_author">06-12-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">06-12-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Namey</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503774" onclick="location.href='./10503774/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Crushers(English ,Spanish)</td>
+    <td class="tid_subject tid_bg2 tid_author">27-11-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">nuno2000</td>
+    <td class="tid_subject tid_bg2 tid_author">27-11-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">nuno2000</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503773" onclick="location.href='./10503773/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Suche einen Klan</td>
+    <td class="tid_subject tid_bg2 tid_author">13-11-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">13-11-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Devi</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503772" onclick="location.href='./10503772/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Ich suche Clan</td>
+    <td class="tid_subject tid_bg2 tid_author">06-11-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">SirGwaine</td>
+    <td class="tid_subject tid_bg2 tid_author">06-11-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Devi</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503771" onclick="location.href='./10503771/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Dragonlance</td>
+    <td class="tid_subject tid_bg2 tid_author">01-11-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">ignaacioo</td>
+    <td class="tid_subject tid_bg2 tid_author">05-11-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503770" onclick="location.href='./10503770/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Final-Heaven</td>
+    <td class="tid_subject tid_bg2 tid_author">24-10-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">05-11-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503769" onclick="location.href='./10503769/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">FANTASY FIGHTER</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[199159]</td>
+    <td class="tid_subject tid_bg2 tid_author">28-10-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Toonboy</td>
+    <td class="tid_subject tid_bg2 tid_author">19</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503768" onclick="location.href='./10503768/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">todos los que hablen español</td>
+    <td class="tid_subject tid_bg2 tid_author">27-10-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">potable</td>
+    <td class="tid_subject tid_bg2 tid_author">27-10-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Devi</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503767" onclick="location.href='./10503767/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Oro, Bonos, Napos</td>
+    <td class="tid_subject tid_bg2 tid_author">19-10-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-10-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503766" onclick="location.href='./10503766/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Armageddon</td>
+    <td class="tid_subject tid_bg2 tid_author">25-09-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">25-09-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Duaran</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503765" onclick="location.href='./10503765/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">An dieser klan</td>
+    <td class="tid_subject tid_bg2 tid_author">24-09-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">24-09-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503764" onclick="location.href='./10503764/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Suche nach Clans</td>
+    <td class="tid_subject tid_bg2 tid_author">11-09-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">11-09-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503763" onclick="location.href='./10503763/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Element</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">20-08-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503762" onclick="location.href='./10503762/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Eigenen Klan löschen?</td>
+    <td class="tid_subject tid_bg2 tid_author">31-07-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">01-08-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503761" onclick="location.href='./10503761/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Alpha-Warriors</td>
+    <td class="tid_subject tid_bg2 tid_author">23-07-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Karozo</td>
+    <td class="tid_subject tid_bg2 tid_author">26-07-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">iLLidan</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503760" onclick="location.href='./10503760/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">´Wieviele aktive Klans gibt es?</td>
+    <td class="tid_subject tid_bg2 tid_author">11-07-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Witch23</td>
+    <td class="tid_subject tid_bg2 tid_author">11-07-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">sebi13</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503759" onclick="location.href='./10503759/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Quileute</td>
+    <td class="tid_subject tid_bg2 tid_author">25-06-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[436153]</td>
+    <td class="tid_subject tid_bg2 tid_author">27-06-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[436153]</td>
+    <td class="tid_subject tid_bg2 tid_author">20</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503758" onclick="location.href='./10503758/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">die verdammten</td>
+    <td class="tid_subject tid_bg2 tid_author">16-06-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[512478]</td>
+    <td class="tid_subject tid_bg2 tid_author">17-06-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[512478]</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503757" onclick="location.href='./10503757/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">CariDinoz</td>
+    <td class="tid_subject tid_bg2 tid_author">21-04-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">21-05-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Dayan</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503756" onclick="location.href='./10503756/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Zutaten spenden</td>
+    <td class="tid_subject tid_bg2 tid_author">13-05-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">GStarRaw</td>
+    <td class="tid_subject tid_bg2 tid_author">18-05-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">Dayan</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503755" onclick="location.href='./10503755/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">$-Generation-$</td>
+    <td class="tid_subject tid_bg2 tid_author">06-02-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">06-02-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503754" onclick="location.href='./10503754/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Fotos-Clan</td>
+    <td class="tid_subject tid_bg2 tid_author">20-01-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[199159]</td>
+    <td class="tid_subject tid_bg2 tid_author">21-01-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[764870]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503753" onclick="location.href='./10503753/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Kriegers des Lichts</td>
+    <td class="tid_subject tid_bg2 tid_author">03-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">04-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">Azuron</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503752" onclick="location.href='./10503752/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">¡DinoRampage!</td>
+    <td class="tid_subject tid_bg2 tid_author">03-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">07-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503751" onclick="location.href='./10503751/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Video-spiel-chaoten</td>
+    <td class="tid_subject tid_bg2 tid_author">22-12-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">23-12-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[654717]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503750" onclick="location.href='./10503750/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">CariDinoz</td>
+    <td class="tid_subject tid_bg2 tid_author">27-11-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">30-11-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503749" onclick="location.href='./10503749/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Wie "aufwendig" ist ein Klan?</td>
+    <td class="tid_subject tid_bg2 tid_author">07-01-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">12-01-2010</td>
+    <td class="tid_subject tid_bg3 tid_author">inpact</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503748" onclick="location.href='./10503748/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Rundmail</td>
+    <td class="tid_subject tid_bg2 tid_author">10-12-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">20-12-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">X-die</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503747" onclick="location.href='./10503747/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">guerreros de las sombras</td>
+    <td class="tid_subject tid_bg2 tid_author">15-12-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">alexlezcano</td>
+    <td class="tid_subject tid_bg2 tid_author">15-12-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">alexlezcano</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503746" onclick="location.href='./10503746/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Codes für Klanbearbeitung</td>
+    <td class="tid_subject tid_bg2 tid_author">01-12-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">02-12-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503745" onclick="location.href='./10503745/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Ich suche einen klan</td>
+    <td class="tid_subject tid_bg2 tid_author">15-11-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">15-11-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[607770]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503744" onclick="location.href='./10503744/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">GUERREROS DE LAS SOMBRAS</td>
+    <td class="tid_subject tid_bg2 tid_author">14-11-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">SIHEROGE</td>
+    <td class="tid_subject tid_bg2 tid_author">14-11-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">SIHEROGE</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503743" onclick="location.href='./10503743/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Green Revenge</td>
+    <td class="tid_subject tid_bg2 tid_author">25-10-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">12-11-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503742" onclick="location.href='./10503742/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">cube's warum und sein neuer thread</td>
+    <td class="tid_subject tid_bg2 tid_author">26-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[1419433]</td>
+    <td class="tid_subject tid_bg2 tid_author">27-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503741" onclick="location.href='./10503741/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Einladung</td>
+    <td class="tid_subject tid_bg2 tid_author">26-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">26-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503740" onclick="location.href='./10503740/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Statement</td>
+    <td class="tid_subject tid_bg2 tid_author">23-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">23-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503739" onclick="location.href='./10503739/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Warum?</td>
+    <td class="tid_subject tid_bg2 tid_author">20-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">22-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503738" onclick="location.href='./10503738/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">french concpiracy</td>
+    <td class="tid_subject tid_bg2 tid_author">18-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">21-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503737" onclick="location.href='./10503737/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Pandere Wolf &amp; Fantasy Fighter</td>
+    <td class="tid_subject tid_bg2 tid_author">12-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[199159]</td>
+    <td class="tid_subject tid_bg2 tid_author">21-09-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[1419433]</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503736" onclick="location.href='./10503736/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Schweizer Clan</td>
+    <td class="tid_subject tid_bg2 tid_author">11-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">28-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[199159]</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_10503735" onclick="location.href='./10503735/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Ich suche Clan.</td>
+    <td class="tid_subject tid_bg2 tid_author">22-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">22-08-2009</td>
+    <td class="tid_subject tid_bg3 tid_author">[None]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

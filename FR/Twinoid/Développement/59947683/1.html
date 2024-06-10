@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Crée une api et parser une requete ?</title>
+    <link href="../../../../gfx/game/Twinoid.ico" rel="icon" type="image/gif"/>
+    <link href="../../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tid_niceHiddenNotice').click(function() {
+                $(this).next('.tid_post').slideDown(500);
+                $(this).slideUp(250);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all"></div>
+            <table class="tid_forumLayout">
+                <tbody>
+                    <tr>
+                        <td id="tid_forum_right">
+                            <div class="tid_containerWrapper">
+                                <div class="tid_forumThread">
+                                    <div class="tid_mainBar">
+                                        <div class="tid_stack tid_bg4">
+											<a class="tid_bg4" href="../../../Index.html" tid_href="left:">
+												<img src="../../../../gfx/design/flag_FR.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+												Accueil
+											</a>
+                                            <a class="tid_bg4" href="../../Index.html" tid_href="left:">Twinoid</a>
+                                            <a class="tid_bg4" href="../Index.html" tid_href="left:">Développement</a>
+                                            <span class="tid_title">Crée une api et parser une requete ?</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class='tid_threadNotice tid_niceLock'>Cette discussion a été marquée comme résolue (ou le tour de la question a été fait).</div>
+                                    <div class="tid_post tid_ tid_read" id="tid_forumPost_0">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[9401656]" style="background-color: rgb(114,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 2 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9401656 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9401656/1" tid_id="9401656">[9401656]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bonjour,</p><p>Dans le cadre d'un nouveau projet, je le dévellope en deux partie :<br> - une partie API (serveur) qui permet de récupérer des information (classique) et une partie API (spécial) qui permet de faire des actions (comme pour l'api elle retourne un json confirmant ou non le succès d'une actions.<br> - une partie WEB qui comprend les pages du site, uniquement en html/css/js et qui permet d'effectuer des actions/recup' des data grace a la premiére partie.<br><em>L'idée de bases est de permettre au utilisateur qui le souhaite d'améliorer le design ou le fonctionnement (du coter utilisateur) des pages sans qu'il puissent avoir accès au code source du site</em></p><p>BREF:</p><p>Dans l'idéal j'aimerais que ça donne un truc du style:</p><pre>variable(contenue,contenue(var,var,var(etc,etc)),contenue)</pre><p>Qui permettrais d'avoir un retour du style:</p><pre>{
+ &nbsp; &nbsp; variable: {
+ &nbsp; &nbsp; &nbsp; &nbsp; contenue: value,
+ &nbsp; &nbsp; &nbsp; &nbsp; contenue: {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; var: value,
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; var: value,
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; var: {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; etc: value,
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; etc: value,
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; etc: value
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+ &nbsp; &nbsp; &nbsp; &nbsp; },
+ &nbsp; &nbsp; &nbsp; &nbsp; contenue: value
+ &nbsp; &nbsp; }
+}</pre><p>Si value est un objet, on retourne juste "[Objet]" s'il n'y a aucun retour par default (ce qui sera probablement le cas). sinon value retourne un array, un int ou un string (voir un bool).<br><br>LE PROBLÈME:<br>Je ne sais, mais alors pas du <span class="tid_strike">coup</span>tout comment faire. Comment retourner les infos demander, comment sécurisé le machin pour que l'utilisateur n'ai pas accées a toute les données mais seul celle dont il a l'autorisation (c'est français ?) comment parser la requette pour effectuer proprement et rapidement les points précédents.<br><br>Je ne sais même pas dans quel syntaxe faire une api :/<br><br>SOLUTION:<br>J'aurais besoin de quelques explications sur le comment faire toussa &gt;.&lt;</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_1">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Cavaswaggduslip" style="background-color: rgb(147,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8702552 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8702552/1" tid_id="8702552">Cavaswaggduslip</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Yop Bird, pourquoi as tu besoin d'une api pour faire ça? L'échange de données est plutôt entre l'humain et la machine qu'entre 2 machines.<br>Une api météo par exemple permet à un site internet tier d'afficher la météo sur sa page d'accueil.<br>L'idée que j'ai de l'api, c'est que ça permet les requêtes cross domain très encadrées et sécurisés alors que classiquement elles sont interdites. Mais je ne suis pas un expert dans ce domaine.</p><p>Là, pour tes requêtes un espace membre pourrait classique pourrait suffire non?</p><br><p>Pour les requêtes serveur, ce dont tu parles ressemble beaucoup à de l'AJAX (XMLHttpRequest en combinaison avec du JSON). Tu peux trouver des cours sur internet assez complet dessus.</p><p>Bonne chance pour ton projet en tout cas ^^.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_2">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_0_73ed7b76_20333.jpg" title="Selliato" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_20333 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/20333/1" tid_id="20333">Selliato</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\fame.png" title=""/> Chef dÃ©corateur du Grand HÃ´tel</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <span class="tid_preCite"><span class="tid_user tid_user_8702552 tid_userBg tid_userUnknown tid_parsed" tid_bg="1" tid_id="8702552">Cavaswaggduslip</span></span><cite>Yop Bird, pourquoi as tu besoin d'une api pour faire ça? L'échange de données est plutôt entre l'humain et la machine qu'entre 2 machines.</cite><p>Alors justement l'échange de données s'effectue bien entre deux machines ici : Le serveur et le client utilisé pour charger le site.</p><p>Les API peuvent être utilisées entre autre pour :<br>- Communiquer d'un serveur à l'autre.<br>- Communiquer entre le serveur et le client.<br>- Faire la liaison entre deux langage sur une même machine.<br>- Faire la liaison entre deux logiciels.</p><p>Ajax dont tu parle va faire des requêtes au serveur mais il est ensuite possible soit de recharger totalement une partie de la page, soit de prendre juste les données qui change et de modifier l'affichage en fonction, pour cette dernière solution ce sera fait grâce à une API.</p><p>Sinon niveau sécurisation :<br>- Pour ce qui est de vérifier que la personne qui fait les modifications à le droit de le faire ou d'accéder aux données c'est comme pour une page "classique" : Vérification coté serveur uniquement. Ce qui est coté client tu ne pourra pas le sécuriser à 100%.</p><p>- Quand le client envois une requête :<br>Limiter le nombre de champs libre au strict nécessaire : pas de nom de table ou de champs par exemple, juste les données. Le nom des base de données, table, variable importante ... sont fixé coté serveur et pas dans des variable modifiables par l'utilisateur. C'est juste une correspondance qui doit être faite ensuite coté serveur.<br>Vérifier que les données sont au format attendu et faire la sécurisation classique pour éviter les injections.</p><p>Après sur comment retourner les infos, une simple page PHP, par exemple, créant le JSON à coup de "print" suffit.</p><p>Finalement tu t'y prends exactement de la même façon que si c'était un simple formulaire, sauf qu'au lieu de retourner une page générée via langage serveur, tu retourne un json généré via ce même langage.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_3">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[9401656]" style="background-color: rgb(114,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 3 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9401656 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9401656/1" tid_id="9401656">[9401656]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Je développe le site en node.js et j'utilise Ajax (la version JQuery qui est simple à utiliser [notamment grâce à la manipulation du DOM])<br>Donc tout est fait en js.<br>Comme je suis un newbie en node.js je ne sais pas utilisé les BDD donc j'ai mis au point mon propre système de stockage à coup de fs... Donc des fichier texte écrit en json.</p><p>Le truc c'est que je ne retourne pas toute les info d'un coup pour avoir des chargement +rapide d'où le besoin de l'api.</p><p>Ce que je souhaitais savoir en particulier c'est s'il y a des règle à respecter :<br>- appel en post ou en get? <br>- syntaxe de requête ?<br>- autre</p><p>Par exemple quand l'utilisateur m'envoie un formulaire je sais à quoi m'attendre (puisque j'ai défini les input et autre.. Donc s'il ne me donne pas ce que je demande [bidouillage] je le renvoie chier avec une grosse erreur bien dégueulasse) le truc c'est que pour l'api je ne sais pas ce qu'il vas me donner donc je ne sais pas comment lui répondre.<br><br>Comment vérifier si la syntaxe de ça requête est bonne ?<br>Comment parser cette requête pour savoir quoi lui retourner ? (j'ai une petite idée sur ce point mais c'est sale)<br><br>Pour savoir quel donné l'utilisateur a le droit d'avoir je regarde le cookie (qui est son id et un id de session qu'il obtient lorsqu'il ce connecte le tout encodé par divers criptage récupérer sur DCode.??)<br>S'il y a un problème avec l'authentification erreur, s'il demande des informations interdite erreur etc.<br><br>Comme je suis sur téléphone j'ai du mal à rédiger ce message donc il ce peut que le contenu répète plusieurs fois les même interrogations &gt;.&lt;</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_4">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[9401656]" style="background-color: rgb(114,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9401656 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9401656/1" tid_id="9401656">[9401656]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>En faite, je m'embêtais pour rien. J'ai l'api qui est comme ça :</p><pre>users {
+ &nbsp; &nbsp;name: String,
+ &nbsp; &nbsp;date: Date,
+ &nbsp; &nbsp;info: String,
+ &nbsp; &nbsp;etc: Array
+}
+autre {
+ &nbsp; &nbsp;etc: String
+}
+</pre><p>Et mes requête sont toute au format :</p><pre>users([name])
+Qui retourne {users:{name:"String"}}
+users(),autre()
+Qui retourne {users:null,autre:null}
+users([date],[info]),autre([etc])
+Qui retourne {users:{date:"Date",info:"String"},autre:{etc:"String"}}</pre><p>Ensuite pour parser la requête, j'utilise une RegExp :<br>Le Users me sert d'indicatif (l'utilisateur souhaite obtenir une information sur lui même ou un autre utilisateur) et les paramètre entre parenthèse me servent a cibler quel donnée l'utilisateur souhaite obtenir ainsi.</p><p>Mon erreur était de vouloir refiler un json "complexe" alors qu'en faite c'est inutile.</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_5">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="Cavaswaggduslip" style="background-color: rgb(147,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 5 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_8702552 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/8702552/1" tid_id="8702552">Cavaswaggduslip</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Yop Bird, il faudrait que tu définisses un peu plus en détails ces 2 points pour qu'on puisse t'aider :<br><cite>L'idée de bases est de permettre au utilisateur qui le souhaite d'améliorer le design ou le fonctionnement (du coter utilisateur)</cite><br>Comment veux-tu que l'utilisateur puisse changer le design? il envoie un code html? ou il peut juste changer le fond de page, la police ou la taille des balises d'une partie de la page?<br>Dans un cas, on peut assez facilement contrôler assez facilement les entrées, dans l'autre, ça me parait un peu tendu.</p><p>Pour améliorer le fonctionnement, tu veux permettre à l'utilisateur de désactiver des scripts que tu auras toi même implémenter, changer la résolution d'image ou de vidéo? Ou alors tu veux lui permettre de faire ses propres scripts à la Greasemonkey sous firefox?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_6">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[9401656]" style="background-color: rgb(114,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 6 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9401656 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9401656/1" tid_id="9401656">[9401656]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Et bien certains utilisateurs souhaite aider dans le développement du site (par exemple en corrigeant un bug du CSS) le problème c'est que je ne souhaite pas divulguer la partie serveur essentiellement pour des questions de sécurité (à tiens, ici il vérifie comme ça donc je vais faire ça pour accéder à ça) mais également parce que j'ai l'habitude de laisser des <br>Easter eggs un peut partout (à tiens il y a tout ça... Hop voilà je les ai activé)</p><p>Du coup la solution que j'ai choisie c'est de privilégier le côté serveur dans un premier temps puis de gérer la partie client en fonction des suggestions et des contributions. (donc oui j'ai carrément bâclé le travail niveau client)</p><p>Il y a toujours quelqu'un pour faire un userscript (pas forcément utile en plus) donc je ne les interdirait pas (mais je mettrai probablement un message "n'utilisez des userscript que de source fiable"<strong></strong>) et en soit un bon userscript permet d'améliorer le fonctionnement d'un site est c'est plus facile de faire un userscript qui utilise une api plutôt qu'un userscript qui doit parser du html pour recup les même info o/</p><p>J'ai une petite question qui n'as rien à voir mais pour des questions de sécurité je peut encoder les identifiant côté client (pseudo et mdp) pour les envoyer au serveur avec un seul String ?<br>Faut-il encodé/crypté les mots de passe sur le serveur (genre le string un fois reçu je le crypté côté serveur différemment et paf au lieu de deux correspondance j'en n'ai qu'une à vérifier)?<br>(J'ai besoin de quelques conseils pour sécurisé une connexion/identification)</p><p>Voilà voilà &gt;.&lt;</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_7">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\twinoid_e_0_73ed7b76_20333.jpg" title="Selliato" style="background-color: ; width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 6 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_20333 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/20333/1" tid_id="20333">Selliato</a>
+        </div>
+        <div class="tid_title">
+            <span class="tid_userTitle"><img alt="[?]" src="..\..\..\..\gfx\icons\fame.png" title=""/> Chef dÃ©corateur du Grand HÃ´tel</span>
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p><cite>J'ai une petite question qui n'as rien à voir mais pour des questions de sécurité je peut encoder les identifiant côté client (pseudo et mdp) pour les envoyer au serveur avec un seul String ?</cite></p><p>Crypter les identifiants coté client je ne pense pas que cela soit des plus utile :<br>- Soit tu passe par une connexion sécurisée et de toute façon tout sera chiffré entre le client et le serveur.<br>- Soit la connexion n'est pas sécurisée et dans ce cas une personne qui intercepte n'aura qu'à envoyer au serveur les données qui ont déjà était crypté coté client pour s'identifier à sa place.</p><p>L’intérêt dans le second cas est présent si l'utilisateur utilise le même mot de passe pour plusieurs sites.</p><p>Mais pourquoi vouloir envoyer un seul string ? ça reste normalement une requête très légère.</p><p><cite>Faut-il encodé/crypté les mots de passe sur le serveur (genre le string un fois reçu je le crypté côté serveur différemment et paf au lieu de deux correspondance j'en n'ai qu'une à vérifier)?</cite></p><p>Oui absolument.<br>Non seulement pour la sécurité de ton site, mais aussi pour protéger les utilisateurs qui auraient la mauvaise idée d'utiliser le même mot de passe sur plusieurs sites.</p><p>Le minimum est de saler et hasher le mot de passe ce qui permet de faire en sorte que deux utilisateurs ayant le même mot de passe n'ai pas la même valeur en base de données :</p><p>Au moment de la création du compte, tu crée un sel qui peut être une valeur aléatoire ou le timestamp du moment où le compte est crée. Tu concatène le mot de passe et le sel, et utilise une fonction de hashage sur le résultat.</p><p>En base de données tu enregistre le sel, et le résultat du hashage comme ça lors de l'identification tu n'aura plus qu'a comparer ce dernier avec hash(motdepasse-envoyé+sel).</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_8">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[9401656]" style="background-color: rgb(114,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 7 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9401656 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9401656/1" tid_id="9401656">[9401656]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Tu entend quoi par "connexion sécurisée"?<br>Si c'est le cadenas vert à gauche de l'URL c'est OK (enfin je pense) sinon ?</p><p>Pour l'api:<br>J'ai trouvé une autres solution, mais est-elle correcte ?<br>Au lieu de m'embêter à parser une requête pour pouvoir la traiter et renvoyer les informations demandée il est plus simple de récupérer directement un objet en json qu'il me suffit de JSON.parse() ensuite j'ai juste à tester si le json est un objet, puis de parcourir ce json avec une boucle (for... in{} il me semble) et switcher les clefs puis en fonction de ça valeur (donc case du switch) on test la valeur associée (type of) s'il correspond au type attendu (pour moi [object array]) on switch associé à un boucle classique (donc for puis switch) ensuite il suffit de push les info associées dans un variable qui sera elle même push dans une autre variable (puisque deux boucle) on JSON.stringify() le tout et on req.end() le json o/</p><p>Donc la requête c'est:</p><pre>?req='{"test":["param"]}'</pre><p>Qui retourne:</p><pre>[{"test":[{"param":"value" }]}]</pre><p>Edit: Je sais pas pourquoi dans ma tête c'était plus simple d'envoyer juste un string plutôt que deux... Mais à part être inutile je peut ?</p>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div><div class="tid_post tid_ tid_read" id="tid_forumPost_9">
+    <div class="tid_header tid_bg1">
+        <div class="tid_floatBox">
+            <table class="tid_valign" style="width : 80px">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tid_twinoidAvatar" style="width:80px; max-height:80px; height:80px;">
+                                <img src="..\..\..\..\gfx\avatars\img_defaultAvatar.png" title="[9401656]" style="background-color: rgb(114,82,204); width: 80px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tid_date">
+            Le 12 novembre 2017
+        </div>
+        <div class="tid_name">
+            <a class="tid_user tid_user_9401656 tid_userNoBg tid_userFriend tid_parsed" href="//twinoid.com/user/go/9401656/1" tid_id="9401656">[9401656]</a>
+        </div>
+        <div class="tid_title">
+            
+        </div>
+        <div class="tid_clearRight"></div>
+    </div>
+    <div class="tid_body tid_bg2">
+        <div class="tid_arrow"></div>
+        <div class="tid_originContent">
+            <div class="tid_editorContent tid_parsed">
+                <p>Bon le sujet est résolue, donc quelqu'un peut le verrouiller o/<br>Pour finir, j'utilise une autre méthode plus jolie visuellement quand on regarde l'url.</p><pre>http://monurl.domaine/api/users(id,name)</pre><p>Que je traduit en:</p><pre>[{"users":["id","name"]}]</pre><p>Et qui retourne:</p><pre>[{"users":{"id": Int,"name": String}}]</pre>
+            </div>
+        </div>
+        <div class="tid_clear"></div>
+    </div>
+</div>
+                                    <div id="tid_forumReplyForm" style="display: none"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

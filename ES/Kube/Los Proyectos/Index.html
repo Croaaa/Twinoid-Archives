@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Los Proyectos</title>
+    <link rel="icon" type="image/gif" href="..\..\gfx\game\Kube.ico">
+    <link href="../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tid_boutBank {
+            height: 40px;
+        }
+        .tid_thread {
+            height: 30px;
+        }
+        .tid_threads .tid_title {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tid_threads .tid_icon, 
+        .tid_threads .tid_subject {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tid_threads th {
+            background-color: #7E4D2A;
+            color: white;
+            vertical-align: middle;
+            cursor: default;
+            position: relative;
+            height: 28px;
+        }
+        .tid_threads td {
+            padding: 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .filter-input {
+            width: 90%;
+            padding: 5px;
+            margin: 5px auto;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            background-color: #B2A36C;
+            color: #333;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            background-color: #7E4D2A;
+            padding: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const getCellValue = (row, index) => row.children.length > index ? (row.children[index].innerText || row.children[index].textContent) : '';
+            const filterTable = (input, columnIndex) => {
+                const filterValue = input.value.toLowerCase();
+                const table = input.closest('table');
+                const tbody = table.querySelector('tbody');
+                const dateSeparators = Array.from(tbody.querySelectorAll('.tid_dateSeparator'));
+                Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                    const cellValue = getCellValue(row, columnIndex).toLowerCase();
+                    row.style.display = cellValue.includes(filterValue) ? '' : 'none';
+                });
+                dateSeparators.slice(0, 2).forEach(separator => separator.style.display = '');
+            };
+            const createFilterRow = (columns) => {
+                const filterRow = document.createElement('tr');
+                columns.forEach((th, index) => {
+                    const filterCell = document.createElement('th');
+                    if (index !== 0 && index !== 6) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.classList.add('filter-input');
+                        input.placeholder = "Filtrer";
+                        input.addEventListener('input', function() { filterTable(this, index); });
+                        filterCell.appendChild(input);
+                    }
+                    filterRow.appendChild(filterCell);
+                });
+                return filterRow;
+            };
+            const thead = document.querySelector('.tid_threads thead');
+            const columns = Array.from(thead.querySelectorAll('th'));
+            const filterRow = createFilterRow(columns);
+            thead.insertBefore(filterRow, thead.firstChild);
+        });
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all">
+                <table class="tid_forumLayout">
+                    <tbody>
+                        <tr>
+                            <td id="tid_forum_left">
+                                <div class="tid_containerWrapper">
+                                    <div class="tid_forumThreads">
+                                        <div class="tid_mainBar">                                            
+                                            <div class="tid_stack tid_bg4">
+												<a class="tid_bg4" href="../../Index.html" tid_href="left:">
+													<img src="../../../gfx/design/flag_ES.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+													Inicio
+												</a>
+                                                <a class="tid_bg4" href="../Index.html" tid_href="left:">Kube</a>
+                                                <span class="tid_title">Los Proyectos</span>
+                                            </div>
+                                        </div>
+                                        <div class="tid_forumDesc tid_bg2">
+                                            <span class="tid_quote tid_start">“</span>Comparte y discute sobre tus proyectos en Kube.<span class="tid_quote tid_end">”</span>
+                                        </div>
+										
+                                        <div class="tid_threadsContainer">
+                                            <table class="tid_threads tid_bg1">
+                                                <thead>
+                                                    <tr><th class="tid_index">&nbsp;</th><th class="tid_index">Temas</th><th class="tid_index">Fecha de creación</th><th class="tid_index">Autor del tema</th><th class="tid_index">Última respuesta</th><th class="tid_index">Por</th><th class="tid_index">Número de respuestas</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_11233801" onclick="location.href='./11233801/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">[Guía] Todo sobre los puentes</td>
+    <td class="tid_subject tid_bg2 tid_author">30-04-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Drinian</td>
+    <td class="tid_subject tid_bg2 tid_author">27-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[7905962]</td>
+    <td class="tid_subject tid_bg2 tid_author">13</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_9489606" onclick="location.href='./9489606/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Inspiración para construcciones</td>
+    <td class="tid_subject tid_bg2 tid_author">05-10-2011</td>
+    <td class="tid_subject tid_bg3 tid_author">Znarf</td>
+    <td class="tid_subject tid_bg2 tid_author">12-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">kakusho14</td>
+    <td class="tid_subject tid_bg2 tid_author">80</td>
+</tr>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_63676620" onclick="location.href='./63676620/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Holas! gente de Kube</td>
+    <td class="tid_subject tid_bg2 tid_author">22-11-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">NicoGoogle</td>
+    <td class="tid_subject tid_bg2 tid_author">25-11-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">NicoGoogle</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_58962005" onclick="location.href='./58962005/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Jugadores activos? Nuevos proyectos</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[6735913]</td>
+    <td class="tid_subject tid_bg2 tid_author">07-11-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">[9890313]</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_18533325" onclick="location.href='./18533325/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Paraiso Perdido</td>
+    <td class="tid_subject tid_bg2 tid_author">18-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Villanueva</td>
+    <td class="tid_subject tid_bg2 tid_author">16-02-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">ericmateo</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_12336328" onclick="location.href='./12336328/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Proyectos,zonas.</td>
+    <td class="tid_subject tid_bg2 tid_author">29-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Kairi</td>
+    <td class="tid_subject tid_bg2 tid_author">12-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">matyenge</td>
+    <td class="tid_subject tid_bg2 tid_author">63</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_36491349" onclick="location.href='./36491349/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Area 16.1</td>
+    <td class="tid_subject tid_bg2 tid_author">04-03-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Brandun</td>
+    <td class="tid_subject tid_bg2 tid_author">12-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8373866]</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_35956402" onclick="location.href='./35956402/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">casa de kubes</td>
+    <td class="tid_subject tid_bg2 tid_author">14-02-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">matyenge</td>
+    <td class="tid_subject tid_bg2 tid_author">09-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">matyenge</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_13702618" onclick="location.href='./13702618/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Construcción grupo</td>
+    <td class="tid_subject tid_bg2 tid_author">28-06-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[3744329]</td>
+    <td class="tid_subject tid_bg2 tid_author">09-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8226400]</td>
+    <td class="tid_subject tid_bg2 tid_author">26</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_13004149" onclick="location.href='./13004149/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">kubepolis</td>
+    <td class="tid_subject tid_bg2 tid_author">12-06-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[1305243]</td>
+    <td class="tid_subject tid_bg2 tid_author">08-06-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8226400]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_38213143" onclick="location.href='./38213143/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">una ciudad de dulce</td>
+    <td class="tid_subject tid_bg2 tid_author">03-05-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8300042]</td>
+    <td class="tid_subject tid_bg2 tid_author">03-05-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">matyenge</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_36100079" onclick="location.href='./36100079/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">inactividad = privacidad</td>
+    <td class="tid_subject tid_bg2 tid_author">19-02-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">matyenge</td>
+    <td class="tid_subject tid_bg2 tid_author">10-04-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">kakusho14</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25279206" onclick="location.href='./25279206/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Reconstruir una isla</td>
+    <td class="tid_subject tid_bg2 tid_author">06-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Comander_Cody</td>
+    <td class="tid_subject tid_bg2 tid_author">19-02-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">matyenge</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_35148204" onclick="location.href='./35148204/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">nesecito los mejores jugadores de kube</td>
+    <td class="tid_subject tid_bg2 tid_author">19-01-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">santiago</td>
+    <td class="tid_subject tid_bg2 tid_author">24-01-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">montip1</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25542132" onclick="location.href='./25542132/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">NO DESTRUYAN</td>
+    <td class="tid_subject tid_bg2 tid_author">14-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[5898637]</td>
+    <td class="tid_subject tid_bg2 tid_author">12-01-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[5898637]</td>
+    <td class="tid_subject tid_bg2 tid_author">15</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29717764" onclick="location.href='./29717764/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">STAR KUBE recluta</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">huryck</td>
+    <td class="tid_subject tid_bg2 tid_author">13-11-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">matyenge</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_19554563" onclick="location.href='./19554563/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Nuevo puente</td>
+    <td class="tid_subject tid_bg2 tid_author">22-12-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">irvinovich</td>
+    <td class="tid_subject tid_bg2 tid_author">21-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">NicoGoogle</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_31285004" onclick="location.href='./31285004/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Mis proyectos...</td>
+    <td class="tid_subject tid_bg2 tid_author">11-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">12-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[7827392]</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_30830218" onclick="location.href='./30830218/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Fotos...</td>
+    <td class="tid_subject tid_bg2 tid_author">30-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">04-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_25694159" onclick="location.href='./25694159/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Reparar el puente 1k</td>
+    <td class="tid_subject tid_bg2 tid_author">18-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Draconarius</td>
+    <td class="tid_subject tid_bg2 tid_author">04-10-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">adrian15</td>
+    <td class="tid_subject tid_bg2 tid_author">20</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29908984" onclick="location.href='./29908984/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">necesito personas buenas que ayuden</td>
+    <td class="tid_subject tid_bg2 tid_author">11-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">perrita111</td>
+    <td class="tid_subject tid_bg2 tid_author">20-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[6838976]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29582197" onclick="location.href='./29582197/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Busco Equipo</td>
+    <td class="tid_subject tid_bg2 tid_author">04-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">zDavid</td>
+    <td class="tid_subject tid_bg2 tid_author">19-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">NicoGoogle</td>
+    <td class="tid_subject tid_bg2 tid_author">13</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29907128" onclick="location.href='./29907128/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">el puente de zona fenix</td>
+    <td class="tid_subject tid_bg2 tid_author">11-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">perrita111</td>
+    <td class="tid_subject tid_bg2 tid_author">11-09-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">perrita111</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_22746785" onclick="location.href='./22746785/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Constructores. Busca y ofrecete</td>
+    <td class="tid_subject tid_bg2 tid_author">23-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Leon-ex</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">huryck</td>
+    <td class="tid_subject tid_bg2 tid_author">18</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_29046813" onclick="location.href='./29046813/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">BUSCO EQUIPO</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[7700057]</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[7700057]</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27194812" onclick="location.href='./27194812/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Grupo de investigación de Kube</td>
+    <td class="tid_subject tid_bg2 tid_author">16-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[5186113]</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">kakusho14</td>
+    <td class="tid_subject tid_bg2 tid_author">27</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_27285071" onclick="location.href='./27285071/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[Proyecto] El puente de las maravillas</td>
+    <td class="tid_subject tid_bg2 tid_author">18-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[248312]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[248312]</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_26524384" onclick="location.href='./26524384/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[19][4]</td>
+    <td class="tid_subject tid_bg2 tid_author">05-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">05-07-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_22251656" onclick="location.href='./22251656/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Busco Equipo</td>
+    <td class="tid_subject tid_bg2 tid_author">09-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[6345691]</td>
+    <td class="tid_subject tid_bg2 tid_author">16-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">arekipiwi</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_23301789" onclick="location.href='./23301789/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Isla Warponia</td>
+    <td class="tid_subject tid_bg2 tid_author">09-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Brandun</td>
+    <td class="tid_subject tid_bg2 tid_author">08-06-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[6961569]</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_24010474" onclick="location.href='./24010474/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">proyecto casa del arbol</td>
+    <td class="tid_subject tid_bg2 tid_author">27-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">manmachi</td>
+    <td class="tid_subject tid_bg2 tid_author">27-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">manmachi</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_21639965" onclick="location.href='./21639965/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">(Proyecto) Puente.</td>
+    <td class="tid_subject tid_bg2 tid_author">20-02-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Dalakar</td>
+    <td class="tid_subject tid_bg2 tid_author">22-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">matyenge</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_22937341" onclick="location.href='./22937341/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">(16) (0)</td>
+    <td class="tid_subject tid_bg2 tid_author">29-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[4987284]</td>
+    <td class="tid_subject tid_bg2 tid_author">14-04-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[4987284]</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_21596835" onclick="location.href='./21596835/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">el hotel de kube</td>
+    <td class="tid_subject tid_bg2 tid_author">19-02-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">UnTalLucas</td>
+    <td class="tid_subject tid_bg2 tid_author">29-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">UnTalLucas</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_18175994" onclick="location.href='./18175994/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">torre, coordenadas  [16][0]</td>
+    <td class="tid_subject tid_bg2 tid_author">07-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">FineArts</td>
+    <td class="tid_subject tid_bg2 tid_author">29-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[4987284]</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_21914901" onclick="location.href='./21914901/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">¡Gran vídeo del proyecto de Kube Art!</td>
+    <td class="tid_subject tid_bg2 tid_author">28-02-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[3347963]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Leon-ex</td>
+    <td class="tid_subject tid_bg2 tid_author">32</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_21707751" onclick="location.href='./21707751/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">puente ramirez</td>
+    <td class="tid_subject tid_bg2 tid_author">22-02-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[4683936]</td>
+    <td class="tid_subject tid_bg2 tid_author">17-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Leon-ex</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_21996228" onclick="location.href='./21996228/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Construcción en equipo</td>
+    <td class="tid_subject tid_bg2 tid_author">02-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">sergioyeyo</td>
+    <td class="tid_subject tid_bg2 tid_author">15-03-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">Leon-ex</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_9489996" onclick="location.href='./9489996/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[Proyecto] Puente Mil [P1K]</td>
+    <td class="tid_subject tid_bg2 tid_author">26-01-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Drinian</td>
+    <td class="tid_subject tid_bg2 tid_author">15-02-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">nixtio</td>
+    <td class="tid_subject tid_bg2 tid_author">293</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_16836113" onclick="location.href='./16836113/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Permisos en la 1600</td>
+    <td class="tid_subject tid_bg2 tid_author">24-09-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">SteamPirate</td>
+    <td class="tid_subject tid_bg2 tid_author">13-02-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">SteamPirate</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_21079346" onclick="location.href='./21079346/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">puente para todos</td>
+    <td class="tid_subject tid_bg2 tid_author">05-02-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">nixtio</td>
+    <td class="tid_subject tid_bg2 tid_author">13-02-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">LsTlalo17</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_16409935" onclick="location.href='./16409935/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Zona [-9][22]</td>
+    <td class="tid_subject tid_bg2 tid_author">10-09-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[3903569]</td>
+    <td class="tid_subject tid_bg2 tid_author">24-01-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">v0l4t1l3</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_18573170" onclick="location.href='./18573170/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Castillo de Paraiso Perdido</td>
+    <td class="tid_subject tid_bg2 tid_author">20-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[5399330]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-01-2013</td>
+    <td class="tid_subject tid_bg3 tid_author">[1133382]</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_17693294" onclick="location.href='./17693294/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Se busca constructores</td>
+    <td class="tid_subject tid_bg2 tid_author">23-10-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">ManuGanja97</td>
+    <td class="tid_subject tid_bg2 tid_author">17-12-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">nixtio</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_18572985" onclick="location.href='./18572985/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Segundo C (F)</td>
+    <td class="tid_subject tid_bg2 tid_author">20-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[5399330]</td>
+    <td class="tid_subject tid_bg2 tid_author">28-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">FineArts</td>
+    <td class="tid_subject tid_bg2 tid_author">25</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_17749262" onclick="location.href='./17749262/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">PREGUNTA preyecto</td>
+    <td class="tid_subject tid_bg2 tid_author">24-10-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">maxox</td>
+    <td class="tid_subject tid_bg2 tid_author">28-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">kakusho14</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_17060820" onclick="location.href='./17060820/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Construyendo una ciudad</td>
+    <td class="tid_subject tid_bg2 tid_author">01-10-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Maelo</td>
+    <td class="tid_subject tid_bg2 tid_author">20-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[5387084]</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_15750741" onclick="location.href='./15750741/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">HOTEL  en kube muxxu</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">ansepra</td>
+    <td class="tid_subject tid_bg2 tid_author">19-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Villanueva</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_18341640" onclick="location.href='./18341640/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">mega proyecto entre todos</td>
+    <td class="tid_subject tid_bg2 tid_author">13-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[1512138]</td>
+    <td class="tid_subject tid_bg2 tid_author">13-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[1512138]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_16561463" onclick="location.href='./16561463/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">busco compañeros de construccion</td>
+    <td class="tid_subject tid_bg2 tid_author">15-09-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[4763204]</td>
+    <td class="tid_subject tid_bg2 tid_author">11-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[5312800]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_16468098" onclick="location.href='./16468098/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">construccion con migo</td>
+    <td class="tid_subject tid_bg2 tid_author">12-09-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[3903569]</td>
+    <td class="tid_subject tid_bg2 tid_author">11-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">[5312800]</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_17782829" onclick="location.href='./17782829/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Torre Farol</td>
+    <td class="tid_subject tid_bg2 tid_author">26-10-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">maxox</td>
+    <td class="tid_subject tid_bg2 tid_author">10-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">UnTalLucas</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_17955794" onclick="location.href='./17955794/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">como saco fotos a mis proyectos?</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">FineArts</td>
+    <td class="tid_subject tid_bg2 tid_author">03-11-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">FineArts</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_16519486" onclick="location.href='./16519486/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">proyectos hecos</td>
+    <td class="tid_subject tid_bg2 tid_author">14-09-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">guillencin</td>
+    <td class="tid_subject tid_bg2 tid_author">19-09-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">guillencin</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_12351764" onclick="location.href='./12351764/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">hotel  para nosotros</td>
+    <td class="tid_subject tid_bg2 tid_author">29-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">romansmosh</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">ansepra</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_15430675" onclick="location.href='./15430675/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Ayudaaa!</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">xiwachimierda</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">kakusho14</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_12875406" onclick="location.href='./12875406/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">templo  antiguo</td>
+    <td class="tid_subject tid_bg2 tid_author">09-06-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">romansmosh</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">romansmosh</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_12853180" onclick="location.href='./12853180/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Nuevo proyecto:Puente milagroso</td>
+    <td class="tid_subject tid_bg2 tid_author">09-06-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">irvinovich</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">irvinovich</td>
+    <td class="tid_subject tid_bg2 tid_author">21</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_14488675" onclick="location.href='./14488675/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Proyecto Muxxu</td>
+    <td class="tid_subject tid_bg2 tid_author">17-07-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Anonimo</td>
+    <td class="tid_subject tid_bg2 tid_author">17-07-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Trapped</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_12359557" onclick="location.href='./12359557/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Proyecto MonstruHotel</td>
+    <td class="tid_subject tid_bg2 tid_author">30-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">XxNachxX</td>
+    <td class="tid_subject tid_bg2 tid_author">17-06-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">irvinovich</td>
+    <td class="tid_subject tid_bg2 tid_author">20</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_12843095" onclick="location.href='./12843095/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">comentarios</td>
+    <td class="tid_subject tid_bg2 tid_author">08-06-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">romansmosh</td>
+    <td class="tid_subject tid_bg2 tid_author">08-06-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">romansmosh</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_12354191" onclick="location.href='./12354191/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Nuevo foro</td>
+    <td class="tid_subject tid_bg2 tid_author">30-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">Rana</td>
+    <td class="tid_subject tid_bg2 tid_author">30-05-2012</td>
+    <td class="tid_subject tid_bg3 tid_author">VegitoDark</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

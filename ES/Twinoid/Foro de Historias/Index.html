@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Foro de Historias</title>
+    <link rel="icon" type="image/gif" href="..\..\gfx\game\Twinoid.ico">
+    <link href="../../../css/twinoid_layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/twinoid_bar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/custom.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tid_boutBank {
+            height: 40px;
+        }
+        .tid_thread {
+            height: 30px;
+        }
+        .tid_threads .tid_title {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .tid_threads .tid_icon, 
+        .tid_threads .tid_subject {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tid_threads th {
+            background-color: #7E4D2A;
+            color: white;
+            vertical-align: middle;
+            cursor: default;
+            position: relative;
+            height: 28px;
+        }
+        .tid_threads td {
+            padding: 8px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .filter-input {
+            width: 90%;
+            padding: 5px;
+            margin: 5px auto;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            background-color: #B2A36C;
+            color: #333;
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+            background-color: #7E4D2A;
+            padding: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const getCellValue = (row, index) => row.children.length > index ? (row.children[index].innerText || row.children[index].textContent) : '';
+            const filterTable = (input, columnIndex) => {
+                const filterValue = input.value.toLowerCase();
+                const table = input.closest('table');
+                const tbody = table.querySelector('tbody');
+                const dateSeparators = Array.from(tbody.querySelectorAll('.tid_dateSeparator'));
+                Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+                    const cellValue = getCellValue(row, columnIndex).toLowerCase();
+                    row.style.display = cellValue.includes(filterValue) ? '' : 'none';
+                });
+                dateSeparators.slice(0, 2).forEach(separator => separator.style.display = '');
+            };
+            const createFilterRow = (columns) => {
+                const filterRow = document.createElement('tr');
+                columns.forEach((th, index) => {
+                    const filterCell = document.createElement('th');
+                    if (index !== 0 && index !== 6) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.classList.add('filter-input');
+                        input.placeholder = "Filtrer";
+                        input.addEventListener('input', function() { filterTable(this, index); });
+                        filterCell.appendChild(input);
+                    }
+                    filterRow.appendChild(filterCell);
+                });
+                return filterRow;
+            };
+            const thead = document.querySelector('.tid_threads thead');
+            const columns = Array.from(thead.querySelectorAll('th'));
+            const filterRow = createFilterRow(columns);
+            thead.insertBefore(filterRow, thead.firstChild);
+        });
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <div id="contentBg">
+        <div class="tid_forum_init" id="tid_forum">
+            <div id="tid_forum_all">
+                <table class="tid_forumLayout">
+                    <tbody>
+                        <tr>
+                            <td id="tid_forum_left">
+                                <div class="tid_containerWrapper">
+                                    <div class="tid_forumThreads">
+                                        <div class="tid_mainBar">                                            
+                                            <div class="tid_stack tid_bg4">
+												<a class="tid_bg4" href="../../Index.html" tid_href="left:">
+													<img src="../../../gfx/design/flag_ES.svg" style="width: 20px; height: 15px; vertical-align: middle;">
+													Inicio
+												</a>
+                                                <a class="tid_bg4" href="../Index.html" tid_href="left:">Twinoid</a>
+                                                <span class="tid_title">Foro de Historias</span>
+                                            </div>
+                                        </div>
+                                        <div class="tid_forumDesc tid_bg2">
+                                            <span class="tid_quote tid_start">“</span>Apasionantes relatos Twinoides.<span class="tid_quote tid_end">”</span>
+                                        </div>
+										
+                                        <div class="tid_threadsContainer">
+                                            <table class="tid_threads tid_bg1">
+                                                <thead>
+                                                    <tr><th class="tid_index">&nbsp;</th><th class="tid_index">Temas</th><th class="tid_index">Fecha de creación</th><th class="tid_index">Autor del tema</th><th class="tid_index">Última respuesta</th><th class="tid_index">Por</th><th class="tid_index">Número de respuestas</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39976723" onclick="location.href='./39976723/1.html'">
+    <td class="tid_icon tid_bg5"><img src="..\..\..\gfx\icons\pin.png"></td>
+    <td class="tid_title tid_bg5 tid_author">Bar de los poetas ♫</td>
+    <td class="tid_subject tid_bg2 tid_author">10-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Adhan_Frozt</td>
+    <td class="tid_subject tid_bg2 tid_author">30-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">El-Consul</td>
+    <td class="tid_subject tid_bg2 tid_author">162</td>
+</tr>
+                                                    <tr class="tid_dateSeparator"><td class="tid_bg3" colspan="99">&nbsp;</td></tr>
+                                                    <tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41452244" onclick="location.href='./41452244/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Tópico del Foro de Historias II</td>
+    <td class="tid_subject tid_bg2 tid_author">22-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Adhan_Frozt</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Hector_Lionalis</td>
+    <td class="tid_subject tid_bg2 tid_author">622</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49506033" onclick="location.href='./49506033/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Concurso de Historias</td>
+    <td class="tid_subject tid_bg2 tid_author">22-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">A13X</td>
+    <td class="tid_subject tid_bg2 tid_author">08-05-2021</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">324</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39800687" onclick="location.href='./39800687/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Diccionario Twinoide</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8239777]</td>
+    <td class="tid_subject tid_bg2 tid_author">08-05-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Leon-ex</td>
+    <td class="tid_subject tid_bg2 tid_author">24</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41346455" onclick="location.href='./41346455/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[Oficial] Votaciones</td>
+    <td class="tid_subject tid_bg2 tid_author">16-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">GonDragon</td>
+    <td class="tid_subject tid_bg2 tid_author">11-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">52</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39918011" onclick="location.href='./39918011/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">¿Críticas Constructivas?</td>
+    <td class="tid_subject tid_bg2 tid_author">07-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">07-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39779214" onclick="location.href='./39779214/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[GUÍA] Guías para las historias.</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6790831]</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6790831]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39789952" onclick="location.href='./39789952/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Compilado de Historias</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39781842" onclick="location.href='./39781842/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">/!\ Reglamento General del Foro</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">GonDragon</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">GonDragon</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39781548" onclick="location.href='./39781548/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Reglamento del Foro de Historias</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">GonDragon</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">GonDragon</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_61102240" onclick="location.href='./61102240/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Alowey, solo.</td>
+    <td class="tid_subject tid_bg2 tid_author">16-04-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">Alowey</td>
+    <td class="tid_subject tid_bg2 tid_author">12-09-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">GuruPlayer</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_63088446" onclick="location.href='./63088446/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Random.</td>
+    <td class="tid_subject tid_bg2 tid_author">12-06-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">01-06-2022</td>
+    <td class="tid_subject tid_bg3 tid_author">[7756378]</td>
+    <td class="tid_subject tid_bg2 tid_author">295</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_65592817" onclick="location.href='./65592817/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Una historia y cierta tecnología</td>
+    <td class="tid_subject tid_bg2 tid_author">06-09-2021</td>
+    <td class="tid_subject tid_bg3 tid_author">Alowey</td>
+    <td class="tid_subject tid_bg2 tid_author">09-09-2021</td>
+    <td class="tid_subject tid_bg3 tid_author">Alowey</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39855828" onclick="location.href='./39855828/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Game of Death</td>
+    <td class="tid_subject tid_bg2 tid_author">05-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[3375143]</td>
+    <td class="tid_subject tid_bg2 tid_author">08-04-2021</td>
+    <td class="tid_subject tid_bg3 tid_author">Shampiatro</td>
+    <td class="tid_subject tid_bg2 tid_author">154</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_64214127" onclick="location.href='./64214127/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Creepypasta de Teacher Story</td>
+    <td class="tid_subject tid_bg2 tid_author">02-04-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">PiliPili</td>
+    <td class="tid_subject tid_bg2 tid_author">04-01-2021</td>
+    <td class="tid_subject tid_bg3 tid_author">[7756378]</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54380807" onclick="location.href='./54380807/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Lily.</td>
+    <td class="tid_subject tid_bg2 tid_author">17-05-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">04-01-2021</td>
+    <td class="tid_subject tid_bg3 tid_author">[7756378]</td>
+    <td class="tid_subject tid_bg2 tid_author">277</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_64670029" onclick="location.href='./64670029/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Horror sin nombre.  [+16.9]</td>
+    <td class="tid_subject tid_bg2 tid_author">06-06-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">22-10-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">18</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57324991" onclick="location.href='./57324991/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] El Diario del Señor Vinográdov</td>
+    <td class="tid_subject tid_bg2 tid_author">15-01-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[4449541]</td>
+    <td class="tid_subject tid_bg2 tid_author">03-09-2020</td>
+    <td class="tid_subject tid_bg3 tid_author">[9968484]</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_63606259" onclick="location.href='./63606259/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Primer cap de mi novela</td>
+    <td class="tid_subject tid_bg2 tid_author">03-11-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">Jacky_</td>
+    <td class="tid_subject tid_bg2 tid_author">04-11-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">Tydram</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_62807023" onclick="location.href='./62807023/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Juego de viajes.</td>
+    <td class="tid_subject tid_bg2 tid_author">01-04-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">[9838218]</td>
+    <td class="tid_subject tid_bg2 tid_author">01-04-2019</td>
+    <td class="tid_subject tid_bg3 tid_author">[9838218]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_61900093" onclick="location.href='./61900093/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Novela de zombies</td>
+    <td class="tid_subject tid_bg2 tid_author">06-09-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9792245]</td>
+    <td class="tid_subject tid_bg2 tid_author">07-09-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">Tydram</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_61401643" onclick="location.href='./61401643/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El cuento de la buena pipa.</td>
+    <td class="tid_subject tid_bg2 tid_author">03-06-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">PedroJet</td>
+    <td class="tid_subject tid_bg2 tid_author">27-07-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9722954]</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_60074686" onclick="location.href='./60074686/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+13] A13X</td>
+    <td class="tid_subject tid_bg2 tid_author">19-11-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">A13X</td>
+    <td class="tid_subject tid_bg2 tid_author">17-06-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">A13X</td>
+    <td class="tid_subject tid_bg2 tid_author">19</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_61345601" onclick="location.href='./61345601/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Diario de Andie Graham</td>
+    <td class="tid_subject tid_bg2 tid_author">25-05-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9762379]</td>
+    <td class="tid_subject tid_bg2 tid_author">26-05-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9762379]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42008810" onclick="location.href='./42008810/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Twinoid Creepy Contest 2</td>
+    <td class="tid_subject tid_bg2 tid_author">22-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6790831]</td>
+    <td class="tid_subject tid_bg2 tid_author">17-05-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">Dice</td>
+    <td class="tid_subject tid_bg2 tid_author">43</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_60324541" onclick="location.href='./60324541/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Pokémon: Historias de un Entrenador.</td>
+    <td class="tid_subject tid_bg2 tid_author">24-12-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[9327691]</td>
+    <td class="tid_subject tid_bg2 tid_author">23-03-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9327691]</td>
+    <td class="tid_subject tid_bg2 tid_author">16</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39884718" onclick="location.href='./39884718/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Memorias de la Guerra.</td>
+    <td class="tid_subject tid_bg2 tid_author">06-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">SSKlaber</td>
+    <td class="tid_subject tid_bg2 tid_author">12-02-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">SSKlaber</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_60564114" onclick="location.href='./60564114/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Honor y acero</td>
+    <td class="tid_subject tid_bg2 tid_author">25-01-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9723020]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-01-2018</td>
+    <td class="tid_subject tid_bg3 tid_author">[9723020]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_59220083" onclick="location.href='./59220083/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Dimensiones cruzadas</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">-TheSurvivor</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_59368110" onclick="location.href='./59368110/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">MHZ-Muchas Historias de Zombies</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">-TheSurvivor</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">-TheSurvivor</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_59242106" onclick="location.href='./59242106/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Señalados</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">SombriAcius</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[9617261]</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_52694528" onclick="location.href='./52694528/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Crónicas del Nexo; relatos del Abismo</td>
+    <td class="tid_subject tid_bg2 tid_author">08-02-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">25-07-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_58075555" onclick="location.href='./58075555/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Los dioses no necesitan armas</td>
+    <td class="tid_subject tid_bg2 tid_author">23-03-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Alowey</td>
+    <td class="tid_subject tid_bg2 tid_author">26-06-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[9613799]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57114975" onclick="location.href='./57114975/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">terror policial</td>
+    <td class="tid_subject tid_bg2 tid_author">28-12-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Techo</td>
+    <td class="tid_subject tid_bg2 tid_author">08-06-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Techo</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_58273659" onclick="location.href='./58273659/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Luna del recuerdo</td>
+    <td class="tid_subject tid_bg2 tid_author">14-04-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">05-06-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_58503720" onclick="location.href='./58503720/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">War in home.</td>
+    <td class="tid_subject tid_bg2 tid_author">10-05-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Orion</td>
+    <td class="tid_subject tid_bg2 tid_author">01-06-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Orion</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57575338" onclick="location.href='./57575338/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Sr. Darkness</td>
+    <td class="tid_subject tid_bg2 tid_author">05-02-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[9402175]</td>
+    <td class="tid_subject tid_bg2 tid_author">14-04-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[9402175]</td>
+    <td class="tid_subject tid_bg2 tid_author">60</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54157946" onclick="location.href='./54157946/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Pokémon: Staraptor y Pidgeot</td>
+    <td class="tid_subject tid_bg2 tid_author">02-05-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[9327691]</td>
+    <td class="tid_subject tid_bg2 tid_author">12-04-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">[9327691]</td>
+    <td class="tid_subject tid_bg2 tid_author">139</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_58236859" onclick="location.href='./58236859/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Remembranzas de los Reinados.</td>
+    <td class="tid_subject tid_bg2 tid_author">09-04-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Cloud-Leverium</td>
+    <td class="tid_subject tid_bg2 tid_author">09-04-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Cloud-Leverium</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54061822" onclick="location.href='./54061822/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Pokemon the open door</td>
+    <td class="tid_subject tid_bg2 tid_author">27-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Togo</td>
+    <td class="tid_subject tid_bg2 tid_author">11-03-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Togo</td>
+    <td class="tid_subject tid_bg2 tid_author">40</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_56922130" onclick="location.href='./56922130/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Back To Sleep</td>
+    <td class="tid_subject tid_bg2 tid_author">12-12-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Togo</td>
+    <td class="tid_subject tid_bg2 tid_author">11-03-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Togo</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57741590" onclick="location.href='./57741590/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] El café de mamá.</td>
+    <td class="tid_subject tid_bg2 tid_author">20-02-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Yogurt</td>
+    <td class="tid_subject tid_bg2 tid_author">22-02-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">Kennedy</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57351650" onclick="location.href='./57351650/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Manos sucias</td>
+    <td class="tid_subject tid_bg2 tid_author">17-01-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">LaGogda</td>
+    <td class="tid_subject tid_bg2 tid_author">17-01-2017</td>
+    <td class="tid_subject tid_bg3 tid_author">LaGogda</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57099739" onclick="location.href='./57099739/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">la tierra perdida</td>
+    <td class="tid_subject tid_bg2 tid_author">26-12-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">leonardo</td>
+    <td class="tid_subject tid_bg2 tid_author">26-12-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">leonardo</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57084920" onclick="location.href='./57084920/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">feliz navidad... o así debería ser</td>
+    <td class="tid_subject tid_bg2 tid_author">25-12-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Techo</td>
+    <td class="tid_subject tid_bg2 tid_author">26-12-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Techo</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_57052602" onclick="location.href='./57052602/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Ayúdame…aunque sea con tu amor</td>
+    <td class="tid_subject tid_bg2 tid_author">22-12-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Raxus</td>
+    <td class="tid_subject tid_bg2 tid_author">24-12-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Raxus</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_56756608" onclick="location.href='./56756608/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Fuera de escala</td>
+    <td class="tid_subject tid_bg2 tid_author">28-11-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Alowey</td>
+    <td class="tid_subject tid_bg2 tid_author">04-12-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_56728220" onclick="location.href='./56728220/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Paranoia (One Shot)</td>
+    <td class="tid_subject tid_bg2 tid_author">26-11-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[9470809]</td>
+    <td class="tid_subject tid_bg2 tid_author">26-11-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[9470809]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_56650835" onclick="location.href='./56650835/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Quebradura Universal</td>
+    <td class="tid_subject tid_bg2 tid_author">19-11-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Luis_Wonder</td>
+    <td class="tid_subject tid_bg2 tid_author">22-11-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_56426865" onclick="location.href='./56426865/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Escándalo en el aire.</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">SSKlaber</td>
+    <td class="tid_subject tid_bg2 tid_author">02-11-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_56362007" onclick="location.href='./56362007/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">(+16)La era del pendulo</td>
+    <td class="tid_subject tid_bg2 tid_author">25-10-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Snakykirvin</td>
+    <td class="tid_subject tid_bg2 tid_author">26-10-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Adriandando</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_56299335" onclick="location.href='./56299335/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Edad de Oscuridad (Historia Alternativa)</td>
+    <td class="tid_subject tid_bg2 tid_author">19-10-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[5028066]</td>
+    <td class="tid_subject tid_bg2 tid_author">19-10-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[5028066]</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_56192821" onclick="location.href='./56192821/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+14] Zombies look at you</td>
+    <td class="tid_subject tid_bg2 tid_author">09-10-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Orion</td>
+    <td class="tid_subject tid_bg2 tid_author">11-10-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Orion</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_46771711" onclick="location.href='./46771711/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Una verdad con el mundo acabará</td>
+    <td class="tid_subject tid_bg2 tid_author">19-06-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">riquitus</td>
+    <td class="tid_subject tid_bg2 tid_author">06-10-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">riquitus</td>
+    <td class="tid_subject tid_bg2 tid_author">38</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_50938825" onclick="location.href='./50938825/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Los sueños también matan</td>
+    <td class="tid_subject tid_bg2 tid_author">09-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Soac2</td>
+    <td class="tid_subject tid_bg2 tid_author">01-10-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[9402175]</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_55594101" onclick="location.href='./55594101/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Historia galactica</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[5028066]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[5028066]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_55160698" onclick="location.href='./55160698/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">The uniform world</td>
+    <td class="tid_subject tid_bg2 tid_author">15-07-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[9414825]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[9390773]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54601664" onclick="location.href='./54601664/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">H | Amanda</td>
+    <td class="tid_subject tid_bg2 tid_author">03-06-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[9379102]</td>
+    <td class="tid_subject tid_bg2 tid_author">18-07-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Drekar</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54517630" onclick="location.href='./54517630/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Pokémon: El Náufrago Definitivo</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[9327691]</td>
+    <td class="tid_subject tid_bg2 tid_author">13-07-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[9327691]</td>
+    <td class="tid_subject tid_bg2 tid_author">23</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54595816" onclick="location.href='./54595816/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">13+: Laboratorio 312</td>
+    <td class="tid_subject tid_bg2 tid_author">02-06-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[9382215]</td>
+    <td class="tid_subject tid_bg2 tid_author">10-07-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[8941560]</td>
+    <td class="tid_subject tid_bg2 tid_author">25</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44797801" onclick="location.href='./44797801/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16]  Blood.</td>
+    <td class="tid_subject tid_bg2 tid_author">08-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[4628469]</td>
+    <td class="tid_subject tid_bg2 tid_author">29-06-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Drekar</td>
+    <td class="tid_subject tid_bg2 tid_author">177</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54717066" onclick="location.href='./54717066/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">La Ira, historia de un guerrero.</td>
+    <td class="tid_subject tid_bg2 tid_author">12-06-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Basster</td>
+    <td class="tid_subject tid_bg2 tid_author">12-06-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">McLane</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_50778078" onclick="location.href='./50778078/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Las "ShakaHistorias" : su camino escolar</td>
+    <td class="tid_subject tid_bg2 tid_author">03-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[882424]</td>
+    <td class="tid_subject tid_bg2 tid_author">10-06-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Alpa223</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_53795678" onclick="location.href='./53795678/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Magical Doremi</td>
+    <td class="tid_subject tid_bg2 tid_author">10-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Togo</td>
+    <td class="tid_subject tid_bg2 tid_author">26-05-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Togo</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54472965" onclick="location.href='./54472965/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Pesadilla</td>
+    <td class="tid_subject tid_bg2 tid_author">24-05-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">CBRS</td>
+    <td class="tid_subject tid_bg2 tid_author">24-05-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">CBRS</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_54061997" onclick="location.href='./54061997/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] El Duelo. (Terminado.)</td>
+    <td class="tid_subject tid_bg2 tid_author">27-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">14-05-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">GrimDevourer</td>
+    <td class="tid_subject tid_bg2 tid_author">24</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44832298" onclick="location.href='./44832298/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[ATP] Pokemon: Equipo de Rescate.</td>
+    <td class="tid_subject tid_bg2 tid_author">09-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8616320]</td>
+    <td class="tid_subject tid_bg2 tid_author">28-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Drekar</td>
+    <td class="tid_subject tid_bg2 tid_author">18</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_53795640" onclick="location.href='./53795640/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Magical doremi</td>
+    <td class="tid_subject tid_bg2 tid_author">10-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Togo</td>
+    <td class="tid_subject tid_bg2 tid_author">10-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">GonDragon</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_53756786" onclick="location.href='./53756786/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Concurso de historias</td>
+    <td class="tid_subject tid_bg2 tid_author">07-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Togo</td>
+    <td class="tid_subject tid_bg2 tid_author">08-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_53724293" onclick="location.href='./53724293/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[¿16?] Dime ¡¿Quien Soy?!</td>
+    <td class="tid_subject tid_bg2 tid_author">05-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">05-04-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_53466421" onclick="location.href='./53466421/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+14]Until the last drop of blood</td>
+    <td class="tid_subject tid_bg2 tid_author">21-03-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Reckshix_JG37</td>
+    <td class="tid_subject tid_bg2 tid_author">21-03-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Reckshix_JG37</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_53448073" onclick="location.href='./53448073/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Historia veridica</td>
+    <td class="tid_subject tid_bg2 tid_author">20-03-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Inforgamer1111</td>
+    <td class="tid_subject tid_bg2 tid_author">20-03-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Inforgamer1111</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_53366199" onclick="location.href='./53366199/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Villa 31</td>
+    <td class="tid_subject tid_bg2 tid_author">15-03-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Yogurt</td>
+    <td class="tid_subject tid_bg2 tid_author">15-03-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Yogurt</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_52390602" onclick="location.href='./52390602/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Lo que no conocemos:Mafia(+14)</td>
+    <td class="tid_subject tid_bg2 tid_author">25-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Linchelo</td>
+    <td class="tid_subject tid_bg2 tid_author">03-03-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">NullPlayer</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_47273938" onclick="location.href='./47273938/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Quien fui? Quien soy? Quien Sere?</td>
+    <td class="tid_subject tid_bg2 tid_author">17-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">LionGalaxy</td>
+    <td class="tid_subject tid_bg2 tid_author">26-02-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">LionGalaxy</td>
+    <td class="tid_subject tid_bg2 tid_author">81</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_52072003" onclick="location.href='./52072003/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El Limbo</td>
+    <td class="tid_subject tid_bg2 tid_author">12-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[8978536]</td>
+    <td class="tid_subject tid_bg2 tid_author">21-02-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[2279677]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_52838855" onclick="location.href='./52838855/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Algo que no es cuestión de tiempo.</td>
+    <td class="tid_subject tid_bg2 tid_author">15-02-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[8616320]</td>
+    <td class="tid_subject tid_bg2 tid_author">16-02-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[8616320]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_51848304" onclick="location.href='./51848304/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] El Torneo de la Muerte</td>
+    <td class="tid_subject tid_bg2 tid_author">03-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">27-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Kzander</td>
+    <td class="tid_subject tid_bg2 tid_author">14</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_48242969" onclick="location.href='./48242969/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] I'm fine</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8961562]</td>
+    <td class="tid_subject tid_bg2 tid_author">22-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[8961562]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_52089246" onclick="location.href='./52089246/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Felipe de las Tinieblas.</td>
+    <td class="tid_subject tid_bg2 tid_author">12-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Yogurt</td>
+    <td class="tid_subject tid_bg2 tid_author">12-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Yogurt</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_52040752" onclick="location.href='./52040752/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] La Guerra De Los Demonios</td>
+    <td class="tid_subject tid_bg2 tid_author">11-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[1864950]</td>
+    <td class="tid_subject tid_bg2 tid_author">11-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[1864950]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41205068" onclick="location.href='./41205068/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">La maskara más mejor de todas.</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8197062]</td>
+    <td class="tid_subject tid_bg2 tid_author">05-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">[3347963]</td>
+    <td class="tid_subject tid_bg2 tid_author">106</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_51581491" onclick="location.href='./51581491/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Alma de Plata</td>
+    <td class="tid_subject tid_bg2 tid_author">26-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[9208085]</td>
+    <td class="tid_subject tid_bg2 tid_author">05-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Leon-ex</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_51794535" onclick="location.href='./51794535/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Sin Titulo</td>
+    <td class="tid_subject tid_bg2 tid_author">01-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Ambusher</td>
+    <td class="tid_subject tid_bg2 tid_author">01-01-2016</td>
+    <td class="tid_subject tid_bg3 tid_author">Ambusher</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_50548822" onclick="location.href='./50548822/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] The Alowey's paradox</td>
+    <td class="tid_subject tid_bg2 tid_author">27-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Alowey</td>
+    <td class="tid_subject tid_bg2 tid_author">22-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Alowey</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_50771116" onclick="location.href='./50771116/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Esperanza</td>
+    <td class="tid_subject tid_bg2 tid_author">03-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Nightmare5353</td>
+    <td class="tid_subject tid_bg2 tid_author">22-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[9208085]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_50711690" onclick="location.href='./50711690/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Historias del tema zombies</td>
+    <td class="tid_subject tid_bg2 tid_author">01-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Sanlixx</td>
+    <td class="tid_subject tid_bg2 tid_author">02-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[3347963]</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43794541" onclick="location.href='./43794541/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">No mires atrás...</td>
+    <td class="tid_subject tid_bg2 tid_author">15-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Silver</td>
+    <td class="tid_subject tid_bg2 tid_author">01-12-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Silver</td>
+    <td class="tid_subject tid_bg2 tid_author">18</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_50644464" onclick="location.href='./50644464/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">-El último día- (Relato breve)</td>
+    <td class="tid_subject tid_bg2 tid_author">29-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">TheBurnedOne</td>
+    <td class="tid_subject tid_bg2 tid_author">29-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[9138745]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_50468571" onclick="location.href='./50468571/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">The Five Dastardly's</td>
+    <td class="tid_subject tid_bg2 tid_author">25-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8858962]</td>
+    <td class="tid_subject tid_bg2 tid_author">26-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_50378288" onclick="location.href='./50378288/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Compilación de Historias Cortas</td>
+    <td class="tid_subject tid_bg2 tid_author">24-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Hector_Lionalis</td>
+    <td class="tid_subject tid_bg2 tid_author">24-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Hector_Lionalis</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43786977" onclick="location.href='./43786977/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">The New Beginning Of The Dark {H}</td>
+    <td class="tid_subject tid_bg2 tid_author">15-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8583550]</td>
+    <td class="tid_subject tid_bg2 tid_author">11-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Spardante</td>
+    <td class="tid_subject tid_bg2 tid_author">20</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49800430" onclick="location.href='./49800430/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El mundo ha vivido equivocado.</td>
+    <td class="tid_subject tid_bg2 tid_author">09-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Facu</td>
+    <td class="tid_subject tid_bg2 tid_author">09-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Facu</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_45914657" onclick="location.href='./45914657/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Feel Alive</td>
+    <td class="tid_subject tid_bg2 tid_author">06-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">07-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">47</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49734325" onclick="location.href='./49734325/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">El fin del látigo</td>
+    <td class="tid_subject tid_bg2 tid_author">05-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">joaneitor</td>
+    <td class="tid_subject tid_bg2 tid_author">07-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">GonDragon</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49612865" onclick="location.href='./49612865/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Confesión.</td>
+    <td class="tid_subject tid_bg2 tid_author">28-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8952834]</td>
+    <td class="tid_subject tid_bg2 tid_author">03-11-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8952834]</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49438547" onclick="location.href='./49438547/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Memorias Felinas</td>
+    <td class="tid_subject tid_bg2 tid_author">18-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">square</td>
+    <td class="tid_subject tid_bg2 tid_author">27-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">square</td>
+    <td class="tid_subject tid_bg2 tid_author">15</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49248533" onclick="location.href='./49248533/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Zombie Escape (Historia interactiva)</td>
+    <td class="tid_subject tid_bg2 tid_author">06-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8775352]</td>
+    <td class="tid_subject tid_bg2 tid_author">24-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">miauman9000</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39853325" onclick="location.href='./39853325/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">La Única Verdad</td>
+    <td class="tid_subject tid_bg2 tid_author">04-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">LordSombras</td>
+    <td class="tid_subject tid_bg2 tid_author">24-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Michelin</td>
+    <td class="tid_subject tid_bg2 tid_author">81</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49394498" onclick="location.href='./49394498/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Guerra de Universos</td>
+    <td class="tid_subject tid_bg2 tid_author">16-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">19-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49376826" onclick="location.href='./49376826/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Too much for me</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[2430534]</td>
+    <td class="tid_subject tid_bg2 tid_author">17-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[2430534]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_48868504" onclick="location.href='./48868504/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Bloody love</td>
+    <td class="tid_subject tid_bg2 tid_author">16-09-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_49362448" onclick="location.href='./49362448/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Sentimiento Artificial</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[7969552]</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_48814363" onclick="location.href='./48814363/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16]Beyond the maws of the Darkness</td>
+    <td class="tid_subject tid_bg2 tid_author">13-09-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Vexlar</td>
+    <td class="tid_subject tid_bg2 tid_author">29-09-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Vexlar</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_48226423" onclick="location.href='./48226423/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Un Destino Incierto</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Saffari</td>
+    <td class="tid_subject tid_bg2 tid_author">17-09-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Saffari</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_48573600" onclick="location.href='./48573600/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">{H} Reabducción</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">The_Wolfcrow</td>
+    <td class="tid_subject tid_bg2 tid_author">16-09-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">The_Wolfcrow</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_47820361" onclick="location.href='./47820361/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Silver's Adventure</td>
+    <td class="tid_subject tid_bg2 tid_author">31-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Silver</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">masterwar</td>
+    <td class="tid_subject tid_bg2 tid_author">15</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_47950438" onclick="location.href='./47950438/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+13]El valle de los lamentos</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8911454]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8911454]</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_47809619" onclick="location.href='./47809619/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Date a Live</td>
+    <td class="tid_subject tid_bg2 tid_author">31-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40054379" onclick="location.href='./40054379/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] Segundo Apocalipsis</td>
+    <td class="tid_subject tid_bg2 tid_author">13-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">CGKO</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Techo</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39806137" onclick="location.href='./39806137/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">{ + 16 }En la Corte del Príncipe.</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">SSKlaber</td>
+    <td class="tid_subject tid_bg2 tid_author">22-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8914913]</td>
+    <td class="tid_subject tid_bg2 tid_author">40</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_46989607" onclick="location.href='./46989607/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Despertar de un zombie</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">MrGarsia</td>
+    <td class="tid_subject tid_bg2 tid_author">20-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">LionGalaxy</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_47285227" onclick="location.href='./47285227/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[+13] La Guerra de los Siete Años</td>
+    <td class="tid_subject tid_bg2 tid_author">18-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">20-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">sonic23</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_47195883" onclick="location.href='./47195883/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">La Mujer De Blanco</td>
+    <td class="tid_subject tid_bg2 tid_author">13-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8352897]</td>
+    <td class="tid_subject tid_bg2 tid_author">13-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8352897]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_46477402" onclick="location.href='./46477402/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Yrian el gran mago</td>
+    <td class="tid_subject tid_bg2 tid_author">02-06-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8775352]</td>
+    <td class="tid_subject tid_bg2 tid_author">11-07-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Spardante</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41245872" onclick="location.href='./41245872/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+13] Alice Prim</td>
+    <td class="tid_subject tid_bg2 tid_author">10-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[7880184]</td>
+    <td class="tid_subject tid_bg2 tid_author">27-06-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">protocolos</td>
+    <td class="tid_subject tid_bg2 tid_author">34</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_46780702" onclick="location.href='./46780702/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El pecado original</td>
+    <td class="tid_subject tid_bg2 tid_author">19-06-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">23-06-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_46225056" onclick="location.href='./46225056/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Todo un mundo de Melodrama</td>
+    <td class="tid_subject tid_bg2 tid_author">19-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Cloud-Leverium</td>
+    <td class="tid_subject tid_bg2 tid_author">14-06-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Adriandando</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41170711" onclick="location.href='./41170711/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Relatos Del Sangre Caida</td>
+    <td class="tid_subject tid_bg2 tid_author">07-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Drekar</td>
+    <td class="tid_subject tid_bg2 tid_author">12-06-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">56</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42694452" onclick="location.href='./42694452/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Diario de un condenado: Gary Wallace.</td>
+    <td class="tid_subject tid_bg2 tid_author">27-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Cajin</td>
+    <td class="tid_subject tid_bg2 tid_author">06-06-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">TomasCard</td>
+    <td class="tid_subject tid_bg2 tid_author">14</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_46352611" onclick="location.href='./46352611/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+7] Caesar</td>
+    <td class="tid_subject tid_bg2 tid_author">27-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[5781872]</td>
+    <td class="tid_subject tid_bg2 tid_author">28-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Leon-ex</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_46229796" onclick="location.href='./46229796/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Undergraund</td>
+    <td class="tid_subject tid_bg2 tid_author">20-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[3939432]</td>
+    <td class="tid_subject tid_bg2 tid_author">20-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[3939432]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_46211189" onclick="location.href='./46211189/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Recuerdos</td>
+    <td class="tid_subject tid_bg2 tid_author">19-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Leon-ex</td>
+    <td class="tid_subject tid_bg2 tid_author">19-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Leon-ex</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_45931795" onclick="location.href='./45931795/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Survive in the Evil</td>
+    <td class="tid_subject tid_bg2 tid_author">07-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8594313]</td>
+    <td class="tid_subject tid_bg2 tid_author">09-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8594313]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_45822737" onclick="location.href='./45822737/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Meian Temporada 1 de ??</td>
+    <td class="tid_subject tid_bg2 tid_author">02-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8701565]</td>
+    <td class="tid_subject tid_bg2 tid_author">02-05-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8701565]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_45682367" onclick="location.href='./45682367/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El abismo del miedo.</td>
+    <td class="tid_subject tid_bg2 tid_author">24-04-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[7969552]</td>
+    <td class="tid_subject tid_bg2 tid_author">25-04-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_45538669" onclick="location.href='./45538669/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Elite Men Temporada 1 español</td>
+    <td class="tid_subject tid_bg2 tid_author">17-04-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8678429]</td>
+    <td class="tid_subject tid_bg2 tid_author">25-04-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Capolol</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_45476242" onclick="location.href='./45476242/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Sangre en la Arena vol 1</td>
+    <td class="tid_subject tid_bg2 tid_author">13-04-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">lluis</td>
+    <td class="tid_subject tid_bg2 tid_author">17-04-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">lluis</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_45292810" onclick="location.href='./45292810/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Mis historias en otro foro de historias</td>
+    <td class="tid_subject tid_bg2 tid_author">04-04-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">LionGalaxy</td>
+    <td class="tid_subject tid_bg2 tid_author">05-04-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_45059909" onclick="location.href='./45059909/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Histories from a far world (+17)</td>
+    <td class="tid_subject tid_bg2 tid_author">22-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8761939]</td>
+    <td class="tid_subject tid_bg2 tid_author">22-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[3847039]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_45045723" onclick="location.href='./45045723/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Ipervolian destruction wonderax</td>
+    <td class="tid_subject tid_bg2 tid_author">21-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8386068]</td>
+    <td class="tid_subject tid_bg2 tid_author">21-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8386068]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44803690" onclick="location.href='./44803690/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">La bestia</td>
+    <td class="tid_subject tid_bg2 tid_author">08-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">MrDiper</td>
+    <td class="tid_subject tid_bg2 tid_author">08-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">masterwar</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39788415" onclick="location.href='./39788415/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+16] Por la gracia de Dios.</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Kamoz</td>
+    <td class="tid_subject tid_bg2 tid_author">08-03-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">masterwar</td>
+    <td class="tid_subject tid_bg2 tid_author">62</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44661280" onclick="location.href='./44661280/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Amor paralelo</td>
+    <td class="tid_subject tid_bg2 tid_author">28-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8738281]</td>
+    <td class="tid_subject tid_bg2 tid_author">28-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8738281]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42345522" onclick="location.href='./42345522/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El sexto sentido</td>
+    <td class="tid_subject tid_bg2 tid_author">08-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Anaa</td>
+    <td class="tid_subject tid_bg2 tid_author">27-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[143452]</td>
+    <td class="tid_subject tid_bg2 tid_author">61</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44514015" onclick="location.href='./44514015/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Astral selection</td>
+    <td class="tid_subject tid_bg2 tid_author">21-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8386068]</td>
+    <td class="tid_subject tid_bg2 tid_author">24-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8386068]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40980973" onclick="location.href='./40980973/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Después De La Vida</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8475307]</td>
+    <td class="tid_subject tid_bg2 tid_author">18-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8443241]</td>
+    <td class="tid_subject tid_bg2 tid_author">48</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44409499" onclick="location.href='./44409499/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">¿Este mundo es real?</td>
+    <td class="tid_subject tid_bg2 tid_author">15-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">15-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44369650" onclick="location.href='./44369650/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Aqui Mi Historia n.n</td>
+    <td class="tid_subject tid_bg2 tid_author">13-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">SnoopMens</td>
+    <td class="tid_subject tid_bg2 tid_author">13-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">SnoopMens</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44146216" onclick="location.href='./44146216/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El Proyecto Darwin</td>
+    <td class="tid_subject tid_bg2 tid_author">01-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">12-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_44201093" onclick="location.href='./44201093/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">3 cuentos de horror y un final de horror</td>
+    <td class="tid_subject tid_bg2 tid_author">04-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">RonaldMCDonald</td>
+    <td class="tid_subject tid_bg2 tid_author">04-02-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">RonaldMCDonald</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42982765" onclick="location.href='./42982765/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Destrong Guerra en Myrtana (+16)</td>
+    <td class="tid_subject tid_bg2 tid_author">09-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">SirYaguarete</td>
+    <td class="tid_subject tid_bg2 tid_author">23-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">SirYaguarete</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43424723" onclick="location.href='./43424723/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Non-Sacred Goddess</td>
+    <td class="tid_subject tid_bg2 tid_author">29-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8619942]</td>
+    <td class="tid_subject tid_bg2 tid_author">23-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[2279677]</td>
+    <td class="tid_subject tid_bg2 tid_author">40</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41161597" onclick="location.href='./41161597/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Temas futuristicos</td>
+    <td class="tid_subject tid_bg2 tid_author">06-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8366605]</td>
+    <td class="tid_subject tid_bg2 tid_author">16-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8366605]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43749904" onclick="location.href='./43749904/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Memorias de un mago negro</td>
+    <td class="tid_subject tid_bg2 tid_author">13-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Riuji</td>
+    <td class="tid_subject tid_bg2 tid_author">13-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Riuji</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43626488" onclick="location.href='./43626488/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Libro 1 "La Nueva Era" (16+)</td>
+    <td class="tid_subject tid_bg2 tid_author">07-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8677542]</td>
+    <td class="tid_subject tid_bg2 tid_author">11-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8677542]</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43390717" onclick="location.href='./43390717/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">La Resistencia</td>
+    <td class="tid_subject tid_bg2 tid_author">28-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Wolfcastlew</td>
+    <td class="tid_subject tid_bg2 tid_author">08-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Wolfcastlew</td>
+    <td class="tid_subject tid_bg2 tid_author">7</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42855393" onclick="location.href='./42855393/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">The new beginning of the dark.</td>
+    <td class="tid_subject tid_bg2 tid_author">04-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8583550]</td>
+    <td class="tid_subject tid_bg2 tid_author">05-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8583550]</td>
+    <td class="tid_subject tid_bg2 tid_author">32</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43347519" onclick="location.href='./43347519/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] Seven</td>
+    <td class="tid_subject tid_bg2 tid_author">26-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Adhan_Frozt</td>
+    <td class="tid_subject tid_bg2 tid_author">05-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8616320]</td>
+    <td class="tid_subject tid_bg2 tid_author">21</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43487204" onclick="location.href='./43487204/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Un desafortunado más.</td>
+    <td class="tid_subject tid_bg2 tid_author">01-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8437201]</td>
+    <td class="tid_subject tid_bg2 tid_author">03-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">[8437201]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43431794" onclick="location.href='./43431794/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] 300 Días Antes</td>
+    <td class="tid_subject tid_bg2 tid_author">29-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">SkyDrxne</td>
+    <td class="tid_subject tid_bg2 tid_author">02-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">Adriandando</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43430089" onclick="location.href='./43430089/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Caminante del vacío</td>
+    <td class="tid_subject tid_bg2 tid_author">29-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Hasenmaull</td>
+    <td class="tid_subject tid_bg2 tid_author">01-01-2015</td>
+    <td class="tid_subject tid_bg3 tid_author">valeriix</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43428089" onclick="location.href='./43428089/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">¿Porque vivimos?</td>
+    <td class="tid_subject tid_bg2 tid_author">29-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">30-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43380041" onclick="location.href='./43380041/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Proyecto Darwin</td>
+    <td class="tid_subject tid_bg2 tid_author">27-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Sico</td>
+    <td class="tid_subject tid_bg2 tid_author">30-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">matyenge</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42771447" onclick="location.href='./42771447/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Cianuro (16+)</td>
+    <td class="tid_subject tid_bg2 tid_author">01-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">27-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43376268" onclick="location.href='./43376268/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">¿Aun vivimos?</td>
+    <td class="tid_subject tid_bg2 tid_author">27-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">27-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43328684" onclick="location.href='./43328684/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Animales</td>
+    <td class="tid_subject tid_bg2 tid_author">25-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8352814]</td>
+    <td class="tid_subject tid_bg2 tid_author">25-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[7880184]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39783077" onclick="location.href='./39783077/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] La otra vida en la muerte</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Adhan_Frozt</td>
+    <td class="tid_subject tid_bg2 tid_author">24-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Adhan_Frozt</td>
+    <td class="tid_subject tid_bg2 tid_author">90</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41352814" onclick="location.href='./41352814/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+13]Spore,el imperio de los Simius</td>
+    <td class="tid_subject tid_bg2 tid_author">16-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Phoonyx</td>
+    <td class="tid_subject tid_bg2 tid_author">21-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Phoonyx</td>
+    <td class="tid_subject tid_bg2 tid_author">19</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42787349" onclick="location.href='./42787349/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Guerra universal 1 (+16)</td>
+    <td class="tid_subject tid_bg2 tid_author">01-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">RonaldMCDonald</td>
+    <td class="tid_subject tid_bg2 tid_author">16-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">RonaldMCDonald</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_43122209" onclick="location.href='./43122209/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Lean tales</td>
+    <td class="tid_subject tid_bg2 tid_author">16-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Leitolar</td>
+    <td class="tid_subject tid_bg2 tid_author">16-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Leitolar</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42633713" onclick="location.href='./42633713/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Recuerdos de la Antigua Era (+13)</td>
+    <td class="tid_subject tid_bg2 tid_author">23-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8419860]</td>
+    <td class="tid_subject tid_bg2 tid_author">15-12-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Adhan_Frozt</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42541740" onclick="location.href='./42541740/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[N] ¿Que somos?</td>
+    <td class="tid_subject tid_bg2 tid_author">18-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">18-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42414207" onclick="location.href='./42414207/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El Cambio</td>
+    <td class="tid_subject tid_bg2 tid_author">12-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8352814]</td>
+    <td class="tid_subject tid_bg2 tid_author">18-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8352814]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42487668" onclick="location.href='./42487668/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Juega o muere</td>
+    <td class="tid_subject tid_bg2 tid_author">16-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Nexusdefuego</td>
+    <td class="tid_subject tid_bg2 tid_author">17-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[7880184]</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42070698" onclick="location.href='./42070698/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Twinoid Atorney: Trials and Trolls</td>
+    <td class="tid_subject tid_bg2 tid_author">25-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[143452]</td>
+    <td class="tid_subject tid_bg2 tid_author">15-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8609854]</td>
+    <td class="tid_subject tid_bg2 tid_author">21</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42333928" onclick="location.href='./42333928/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Elegimos o Obedecemos</td>
+    <td class="tid_subject tid_bg2 tid_author">08-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">11-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Feuer</td>
+    <td class="tid_subject tid_bg2 tid_author">17</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39804335" onclick="location.href='./39804335/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] Circus of Black Desert</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Dain</td>
+    <td class="tid_subject tid_bg2 tid_author">08-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Dain</td>
+    <td class="tid_subject tid_bg2 tid_author">48</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42330366" onclick="location.href='./42330366/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">(+16) Legend</td>
+    <td class="tid_subject tid_bg2 tid_author">07-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">ReturNoFDiamonD</td>
+    <td class="tid_subject tid_bg2 tid_author">07-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">ReturNoFDiamonD</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42296146" onclick="location.href='./42296146/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">El trapo (+10)</td>
+    <td class="tid_subject tid_bg2 tid_author">06-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Absolute_Teo</td>
+    <td class="tid_subject tid_bg2 tid_author">07-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">GonDragon</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42229860" onclick="location.href='./42229860/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[¿+13?] Hospedado con Freddy</td>
+    <td class="tid_subject tid_bg2 tid_author">02-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">masternico97</td>
+    <td class="tid_subject tid_bg2 tid_author">02-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">masternico97</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42226739" onclick="location.href='./42226739/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+13] el cadáver maldito</td>
+    <td class="tid_subject tid_bg2 tid_author">02-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">garbriel</td>
+    <td class="tid_subject tid_bg2 tid_author">02-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[7880184]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39999707" onclick="location.href='./39999707/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+13]  Stad City</td>
+    <td class="tid_subject tid_bg2 tid_author">11-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">A13X</td>
+    <td class="tid_subject tid_bg2 tid_author">01-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">A13X</td>
+    <td class="tid_subject tid_bg2 tid_author">21</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42158315" onclick="location.href='./42158315/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+13] El Espejo</td>
+    <td class="tid_subject tid_bg2 tid_author">30-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">garbriel</td>
+    <td class="tid_subject tid_bg2 tid_author">01-11-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42153687" onclick="location.href='./42153687/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">La invasion</td>
+    <td class="tid_subject tid_bg2 tid_author">29-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Diego321</td>
+    <td class="tid_subject tid_bg2 tid_author">29-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Diego321</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41614372" onclick="location.href='./41614372/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[T2] The Zombies.</td>
+    <td class="tid_subject tid_bg2 tid_author">01-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[4628469]</td>
+    <td class="tid_subject tid_bg2 tid_author">25-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[4628469]</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42023144" onclick="location.href='./42023144/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Cuando maduran los cerezos</td>
+    <td class="tid_subject tid_bg2 tid_author">23-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Sephiran</td>
+    <td class="tid_subject tid_bg2 tid_author">23-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Sephiran</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_42013031" onclick="location.href='./42013031/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Star Wars La antigua República (+16)</td>
+    <td class="tid_subject tid_bg2 tid_author">22-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">22-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41844383" onclick="location.href='./41844383/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El diario de un Héroe Maldito +16</td>
+    <td class="tid_subject tid_bg2 tid_author">13-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">21-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41340705" onclick="location.href='./41340705/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">(+16)La venganza de Stewar</td>
+    <td class="tid_subject tid_bg2 tid_author">15-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8529617]</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Kamoz</td>
+    <td class="tid_subject tid_bg2 tid_author">25</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41658412" onclick="location.href='./41658412/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] Apicula. [+16]</td>
+    <td class="tid_subject tid_bg2 tid_author">03-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6790831]</td>
+    <td class="tid_subject tid_bg2 tid_author">14-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Kamoz</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41611861" onclick="location.href='./41611861/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Spirit Stones.</td>
+    <td class="tid_subject tid_bg2 tid_author">30-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8418166]</td>
+    <td class="tid_subject tid_bg2 tid_author">13-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8418166]</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41701736" onclick="location.href='./41701736/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">{H} Dentro Del Corazón Del Caos.</td>
+    <td class="tid_subject tid_bg2 tid_author">05-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8456978]</td>
+    <td class="tid_subject tid_bg2 tid_author">08-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8456978]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41670715" onclick="location.href='./41670715/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Nonhuman</td>
+    <td class="tid_subject tid_bg2 tid_author">04-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">REDACTED</td>
+    <td class="tid_subject tid_bg2 tid_author">04-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">REDACTED</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40915038" onclick="location.href='./40915038/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Una Flor Entre Los Escombros</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">TheSkark</td>
+    <td class="tid_subject tid_bg2 tid_author">03-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">TheSkark</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41652765" onclick="location.href='./41652765/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Cronicas Apocalipticas</td>
+    <td class="tid_subject tid_bg2 tid_author">03-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Alan_Danek</td>
+    <td class="tid_subject tid_bg2 tid_author">03-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Alan_Danek</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41191123" onclick="location.href='./41191123/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El cactus</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8352814]</td>
+    <td class="tid_subject tid_bg2 tid_author">02-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8352814]</td>
+    <td class="tid_subject tid_bg2 tid_author">15</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41539303" onclick="location.href='./41539303/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[+15] Vive mientras puedas</td>
+    <td class="tid_subject tid_bg2 tid_author">26-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Jacky_</td>
+    <td class="tid_subject tid_bg2 tid_author">01-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Jacky_</td>
+    <td class="tid_subject tid_bg2 tid_author">12</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41623785" onclick="location.href='./41623785/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">MUSH- La Civilización</td>
+    <td class="tid_subject tid_bg2 tid_author">01-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">RomnerJesus</td>
+    <td class="tid_subject tid_bg2 tid_author">01-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">RomnerJesus</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41612414" onclick="location.href='./41612414/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Paııse</td>
+    <td class="tid_subject tid_bg2 tid_author">30-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Anaa</td>
+    <td class="tid_subject tid_bg2 tid_author">01-10-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">SSKlaber</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41412566" onclick="location.href='./41412566/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">¿El fin del mundo?</td>
+    <td class="tid_subject tid_bg2 tid_author">20-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8518274]</td>
+    <td class="tid_subject tid_bg2 tid_author">30-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8518274]</td>
+    <td class="tid_subject tid_bg2 tid_author">4</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41484403" onclick="location.href='./41484403/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Escapando de la Muerte</td>
+    <td class="tid_subject tid_bg2 tid_author">23-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Izmochu100</td>
+    <td class="tid_subject tid_bg2 tid_author">29-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8197062]</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41429148" onclick="location.href='./41429148/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Relatos cortos y otros, por H. Lionalis</td>
+    <td class="tid_subject tid_bg2 tid_author">21-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Hector_Lionalis</td>
+    <td class="tid_subject tid_bg2 tid_author">27-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Hector_Lionalis</td>
+    <td class="tid_subject tid_bg2 tid_author">19</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41510483" onclick="location.href='./41510483/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Immortui Mortis</td>
+    <td class="tid_subject tid_bg2 tid_author">25-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">defensa</td>
+    <td class="tid_subject tid_bg2 tid_author">26-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">defensa</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41007423" onclick="location.href='./41007423/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El francotirador: Capitulo 1</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8443241]</td>
+    <td class="tid_subject tid_bg2 tid_author">25-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8443241]</td>
+    <td class="tid_subject tid_bg2 tid_author">37</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41460023" onclick="location.href='./41460023/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El Reino Prometido</td>
+    <td class="tid_subject tid_bg2 tid_author">22-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">xiwangchan</td>
+    <td class="tid_subject tid_bg2 tid_author">24-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8418166]</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41412824" onclick="location.href='./41412824/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">THE ZOMBIES [Serie]</td>
+    <td class="tid_subject tid_bg2 tid_author">20-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[4628469]</td>
+    <td class="tid_subject tid_bg2 tid_author">20-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8443241]</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41328478" onclick="location.href='./41328478/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">El 2012</td>
+    <td class="tid_subject tid_bg2 tid_author">15-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Nexusdefuego</td>
+    <td class="tid_subject tid_bg2 tid_author">16-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Nexusdefuego</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39769918" onclick="location.href='./39769918/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Tópico del foro de Historias.</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6790831]</td>
+    <td class="tid_subject tid_bg2 tid_author">16-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8197062]</td>
+    <td class="tid_subject tid_bg2 tid_author">992</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41327668" onclick="location.href='./41327668/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Drguun Tales: Magican quest I</td>
+    <td class="tid_subject tid_bg2 tid_author">15-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Mc_Donald_Trump</td>
+    <td class="tid_subject tid_bg2 tid_author">15-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8197062]</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41154020" onclick="location.href='./41154020/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">10 chicos y un mundo destruido...</td>
+    <td class="tid_subject tid_bg2 tid_author">06-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">orianaRock</td>
+    <td class="tid_subject tid_bg2 tid_author">14-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">andres</td>
+    <td class="tid_subject tid_bg2 tid_author">29</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41296714" onclick="location.href='./41296714/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Wilterg: La dictadura de los Zets</td>
+    <td class="tid_subject tid_bg2 tid_author">13-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Crystalpokanzer</td>
+    <td class="tid_subject tid_bg2 tid_author">14-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[2437987]</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41255820" onclick="location.href='./41255820/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\lock.png"></td>
+    <td class="tid_title tid_bg4 tid_author">El Ninja Volador continuación</td>
+    <td class="tid_subject tid_bg2 tid_author">11-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Husdom</td>
+    <td class="tid_subject tid_bg2 tid_author">12-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">LordSombras</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41245096" onclick="location.href='./41245096/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Perdido en mi memoria-Definitive Edition</td>
+    <td class="tid_subject tid_bg2 tid_author">10-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6790831]</td>
+    <td class="tid_subject tid_bg2 tid_author">10-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6790831]</td>
+    <td class="tid_subject tid_bg2 tid_author">1</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39788829" onclick="location.href='./39788829/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] Hackeando la malicia</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Adhan_Frozt</td>
+    <td class="tid_subject tid_bg2 tid_author">10-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">LordSombras</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41168585" onclick="location.href='./41168585/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Entre dunas</td>
+    <td class="tid_subject tid_bg2 tid_author">06-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Anaa</td>
+    <td class="tid_subject tid_bg2 tid_author">09-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Anaa</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_41193467" onclick="location.href='./41193467/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">La mejor de todas las historias del foro</td>
+    <td class="tid_subject tid_bg2 tid_author">08-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Hector_Lionalis</td>
+    <td class="tid_subject tid_bg2 tid_author">09-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">15</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40957076" onclick="location.href='./40957076/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Fuente de los sueños~</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[7837379]</td>
+    <td class="tid_subject tid_bg2 tid_author">06-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6819920]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40988607" onclick="location.href='./40988607/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Walker (Sr. Robenson Titulo 1)</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8450990]</td>
+    <td class="tid_subject tid_bg2 tid_author">04-09-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Dain</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39814965" onclick="location.href='./39814965/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">{H} Psychosis</td>
+    <td class="tid_subject tid_bg2 tid_author">03-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8197062]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8197062]</td>
+    <td class="tid_subject tid_bg2 tid_author">21</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40974401" onclick="location.href='./40974401/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Apocalipsis: CAPITULO 1</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8443241]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[3375143]</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40973266" onclick="location.href='./40973266/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">La gran mina misteriosa:MINECRAFT</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8443241]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[8443241]</td>
+    <td class="tid_subject tid_bg2 tid_author">19</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40834443" onclick="location.href='./40834443/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Un Mundo diferente</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">andres</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">andres</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39788448" onclick="location.href='./39788448/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Folwinz</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Hector_Lionalis</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">LordSombras</td>
+    <td class="tid_subject tid_bg2 tid_author">18</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40566605" onclick="location.href='./40566605/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Kings: cuatro imperios</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[2430534]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[2430534]</td>
+    <td class="tid_subject tid_bg2 tid_author">8</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39832956" onclick="location.href='./39832956/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">¡Por Todo el Mundo!</td>
+    <td class="tid_subject tid_bg2 tid_author">04-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[7880184]</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">[7880184]</td>
+    <td class="tid_subject tid_bg2 tid_author">29</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40054938" onclick="location.href='./40054938/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[H]Esto Es Solo Un Sueño</td>
+    <td class="tid_subject tid_bg2 tid_author">13-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Dany781</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">ansepra</td>
+    <td class="tid_subject tid_bg2 tid_author">47</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40616154" onclick="location.href='./40616154/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Cronicas de Medieva. Minecraft</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">ansepra</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">ansepra</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39881150" onclick="location.href='./39881150/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] No More Gods</td>
+    <td class="tid_subject tid_bg2 tid_author">06-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Tydram</td>
+    <td class="tid_subject tid_bg2 tid_author">31-10-2023</td>
+    <td class="tid_subject tid_bg3 tid_author">Dain</td>
+    <td class="tid_subject tid_bg2 tid_author">16</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40419688" onclick="location.href='./40419688/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[H]The Infection.</td>
+    <td class="tid_subject tid_bg2 tid_author">30-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6789887]</td>
+    <td class="tid_subject tid_bg2 tid_author">30-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6789887]</td>
+    <td class="tid_subject tid_bg2 tid_author">3</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40265245" onclick="location.href='./40265245/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">NeoRenacimiento [H]</td>
+    <td class="tid_subject tid_bg2 tid_author">23-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Wolfcastlew</td>
+    <td class="tid_subject tid_bg2 tid_author">26-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Wolfcastlew</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_40197189" onclick="location.href='./40197189/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">**SPACE OSILATION**</td>
+    <td class="tid_subject tid_bg2 tid_author">20-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8386068]</td>
+    <td class="tid_subject tid_bg2 tid_author">23-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">VanDreitt</td>
+    <td class="tid_subject tid_bg2 tid_author">5</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39875047" onclick="location.href='./39875047/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">The saints of the resurrection</td>
+    <td class="tid_subject tid_bg2 tid_author">05-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Minoae</td>
+    <td class="tid_subject tid_bg2 tid_author">15-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[3375143]</td>
+    <td class="tid_subject tid_bg2 tid_author">21</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39778908" onclick="location.href='./39778908/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Las sombras,el fin de la humanidad?</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Phoonyx</td>
+    <td class="tid_subject tid_bg2 tid_author">07-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Phoonyx</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39787828" onclick="location.href='./39787828/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">Hundido en las sombras.</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">05-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">9</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39856453" onclick="location.href='./39856453/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">Opinión sobre el foro...</td>
+    <td class="tid_subject tid_bg2 tid_author">05-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">ByNahu</td>
+    <td class="tid_subject tid_bg2 tid_author">05-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Venriik</td>
+    <td class="tid_subject tid_bg2 tid_author">6</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39783944" onclick="location.href='./39783944/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] Entre las Sombras...</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8239777]</td>
+    <td class="tid_subject tid_bg2 tid_author">04-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[7880184]</td>
+    <td class="tid_subject tid_bg2 tid_author">14</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39781341" onclick="location.href='./39781341/1.html'">
+    <td class="tid_icon tid_bg4"><img src="..\..\..\gfx\icons\done.png"></td>
+    <td class="tid_title tid_bg4 tid_author">[H] El caso de la organización Fractal.</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6790831]</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[6790831]</td>
+    <td class="tid_subject tid_bg2 tid_author">11</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39779038" onclick="location.href='./39779038/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">La humanidad separada</td>
+    <td class="tid_subject tid_bg2 tid_author">01-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">kirenkill</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">[8197062]</td>
+    <td class="tid_subject tid_bg2 tid_author">10</td>
+</tr><tr class="tid_thread tid_threadLink tid_unread" id="tid_forumThread_39787072" onclick="location.href='./39787072/1.html'">
+    <td class="tid_icon tid_bg4"></td>
+    <td class="tid_title tid_bg4 tid_author">E.T.W cap1. el comienzo de la leyenda</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Zangetsu</td>
+    <td class="tid_subject tid_bg2 tid_author">02-07-2014</td>
+    <td class="tid_subject tid_bg3 tid_author">Zangetsu</td>
+    <td class="tid_subject tid_bg2 tid_author">2</td>
+</tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
