@@ -1,9 +1,10 @@
 exports.handler = async function(event, context) {
     if (event.httpMethod === "POST") {
+        let targetUrl = event.headers.referer || '/';
         return {
             statusCode: 301,
             headers: {
-                Location: "/"
+                Location: targetUrl
             }
         };
     }
