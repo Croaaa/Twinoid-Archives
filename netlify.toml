@@ -1,7 +1,36 @@
 [build]
-functions = "functions"
+  publish = "public"
+  functions = "netlify/functions"
+
+# Redirections pour chaque langue
+[[redirects]]
+  from = "/fr/*"
+  to = "/fr/index.html"
+  status = 200
+  force = true
 
 [[redirects]]
-from = "/*"
-to = "/.netlify/functions/handle-post"
-status = 200
+  from = "/es/*"
+  to = "/es/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/de/*"
+  to = "/de/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/en/*"
+  to = "/en/index.html"
+  status = 200
+  force = true
+
+# Headers pour tous les chemins de langue
+[[headers]]
+  for = "/(fr|es|de|en)/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "POST, GET, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
