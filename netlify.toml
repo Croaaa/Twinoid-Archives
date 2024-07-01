@@ -2,6 +2,9 @@
   publish = "."
   functions = "functions"
 
+[[plugins]]
+  package = "@netlify/plugin-cache-clear"
+
 # Redirections pour la langue française
 [[redirects]]
   from = "/fr/*"
@@ -11,16 +14,24 @@
 
 # Headers pour les chemins français
 [[headers]]
-  for = "/FR/*"
+  for = "/fr/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "POST, GET, OPTIONS"
     Access-Control-Allow-Headers = "Content-Type"
 
-# Headers pour les requêtes POST
+# Headers pour toutes les requêtes
 [[headers]]
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "POST, GET, OPTIONS"
     Access-Control-Allow-Headers = "Content-Type"
+    Access-Control-Allow-Credentials = "true"
+
+# Requête POST redirigée vers la fonction Netlify
+[[redirects]]
+  from = "/fr"
+  to = "/.netlify/functions/handle_post"
+  status = 307
+  force = true
